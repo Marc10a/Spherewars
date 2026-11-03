@@ -1,0 +1,30 @@
+SPHEREWARS: OTRO MUNDO - subir a Hostinger (Aplicacion web Node.js)
+
+Este ZIP es el proyecto COMPLETO (codigo fuente). Hostinger lo instala y lo compila el solo.
+
+1. hPanel > Sitios web > Anadir sitio web > Aplicacion web Node.js > Subir archivos.
+   Sube el ZIP tal cual (package.json debe quedar en la raiz del zip).
+2. Hostinger detecta "Next.js" y rellena:
+     Comando de build:   npm run build
+     Directorio salida:  .next
+   Dejalo asi. No hace falta archivo de entrada.
+3. Node.js: elige 20 o superior (22 recomendado; los avisos "Unsupported engine"
+   con Node 20 son solo advertencias).
+4. Variables de entorno: ninguna obligatoria. (Opcional: NEXT_PUBLIC_SITE_URL=https://tu-dominio
+   ANTES de compilar para que las URL canonicas y el sitemap usen tu dominio.)
+5. Despliega. Al abrir el dominio debe redirigir a /es. Activa el SSL gratuito en hPanel.
+
+Notas
+- El build no necesita internet: las tipografias ya van incluidas.
+- BASE DE DATOS: guia paso a paso en docs/BASE-DE-DATOS.md (todo el SQL en supabase/setup.sql).
+- Sin Supabase, el catalogo comercial, los eventos, las descargas y /admin salen vacios o
+  desactivados. Para activarlos, define NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY
+  como variables de entorno y vuelve a desplegar (se incrustan al compilar).
+- Si el build falla por memoria, prueba un plan con mas RAM o subir la version ya compilada
+  (spherewars-prebuilt-vps.zip, solo para servidores donde tu ejecutas "node server.js").
+- Instalacion y comandos en local: LEEME-ARRANCAR.txt y docs/SETUP.md
+
+TIENDA ONLINE (Stripe)
+Para cobrar necesitas ademas estas variables SECRETAS de servidor (nunca con NEXT_PUBLIC_):
+  SUPABASE_SERVICE_ROLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+Guia completa paso a paso (webhook, envios, pruebas, puesta en real): docs/TIENDA.md

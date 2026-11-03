@@ -1,0 +1,49 @@
+{
+  "name": "spherewars",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run css && next dev",
+    "build": "next build --webpack && node scripts/postbuild.mjs",
+    "start": "next start",
+    "lint": "eslint",
+    "css": "node scripts/build-css.mjs",
+    "css:check": "node scripts/build-css.mjs --check",
+    "check": "node scripts/check-site.mjs && node scripts/build-css.mjs --check",
+    "sync:wiki": "node scripts/sync-wiki.mjs && node scripts/optimize-images.mjs",
+    "test:shop": "node scripts/test-shop.mjs",
+    "photos": "node scripts/sync-mini-photos.mjs",
+    "test:contact": "node scripts/test-contact.mjs",
+    "test:cms": "node scripts/test-cms.mjs",
+    "mock:wp": "node scripts/mock-wp.mjs",
+    "test": "npm run test:shop && npm run test:contact && npm run test:cms && npm run test:woo",
+    "test:woo": "node scripts/test-woo.mjs",
+    "mock:wc": "node scripts/mock-wc.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "lucide-react": "^1.61.0",
+    "motion": "^14.5.0",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sanitize-html": "^2.18.1",
+    "stripe": "^23.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

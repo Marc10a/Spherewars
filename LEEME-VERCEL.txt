@@ -1,0 +1,41 @@
+SPHEREWARS: OTRO MUNDO - publicar en Vercel (gratis, hecho para Next.js)
+
+Vercel es la plataforma de los creadores de Next.js. No hace falta configurar nada:
+detecta el proyecto, lo compila y lo publica con HTTPS.
+
+NOTA: el plan gratuito (Hobby) es para uso no comercial. Si la web vende productos o es de una
+empresa, necesitaras el plan Pro (unos 20 USD/mes) segun sus condiciones.
+
+OPCION A - la mas facil (sin GitHub)
+1. Instala Node.js 20 o superior desde https://nodejs.org (version LTS).
+2. Haz doble clic en  desplegar-vercel.bat
+3. Se abre el navegador para iniciar sesion en Vercel (crea la cuenta gratis con tu correo o GitHub).
+4. Cuando pregunte, pulsa Enter a todo (valores por defecto).
+5. Al terminar te da la direccion publica: https://algo.vercel.app  -> ya puede verla cualquiera.
+
+OPCION B - con GitHub (para actualizar con cada cambio)
+1. Sube esta carpeta a un repositorio de GitHub.
+2. En https://vercel.com/new importa el repositorio. Framework: Next.js (automatico). Pulsa Deploy.
+
+VARIABLES DE ENTORNO (Project > Settings > Environment Variables), despues pulsa Redeploy:
+  NEXT_PUBLIC_SITE_URL            https://tu-dominio.com
+  NEXT_PUBLIC_SUPABASE_URL        (cuando tengas la base de datos, ver docs/BASE-DE-DATOS.md)
+  NEXT_PUBLIC_SUPABASE_ANON_KEY   (idem)
+Sin ellas la web funciona igual; solo quedan vacios el panel, los eventos y las descargas.
+
+DOMINIO PROPIO (por ejemplo spherewars.es)
+Vercel > Project > Settings > Domains > Add. Te indica que registros DNS crear en el panel donde
+tengas el dominio (Hostinger): normalmente un registro A (76.76.21.21) y un CNAME para www
+(cname.vercel-dns.com). Los valores exactos te los muestra Vercel.
+Aviso: mientras apunte a Hostinger, la web actual seguira viendose; cambia el DNS solo cuando
+la nueva este lista.
+
+TIENDA ONLINE (Stripe)
+Para cobrar necesitas ademas estas variables SECRETAS de servidor (nunca con NEXT_PUBLIC_):
+  SUPABASE_SERVICE_ROLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+Guia completa paso a paso (webhook, envios, pruebas, puesta en real): docs/TIENDA.md
+
+TIENDA CON WOOCOMMERCE (opcional, ver docs/WORDPRESS.md)
+Si usas WooCommerce como tienda, anade ademas (todas SECRETAS salvo la URL): WC_API_URL, WC_CONSUMER_KEY,
+WC_CONSUMER_SECRET, WC_WEBHOOK_SECRET. Sin ellas la tienda usa los precios de src/content/prices.json
+(columna Propuesta de tu Excel) y el pago queda cerrado hasta conectar una pasarela real.
