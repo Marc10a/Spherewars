@@ -1,0 +1,13 @@
+/* WooCommerce screens (payment, order received) in the SphereWars look. */
+.sw-woo { color: rgb(242 238 227 / .9); }
+.sw-woo a { color: #c3a267; }
+.sw-woo h1, .sw-woo h2, .sw-woo h3 { font-family: var(--font-cinzel, serif); color: #f2eee3; }
+.sw-woo table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.sw-woo th, .sw-woo td { padding: .6rem .5rem; border-bottom: 1px solid rgb(195 162 103 / .2); text-align: left; }
+.sw-woo input[type=text], .sw-woo input[type=email], .sw-woo input[type=tel], .sw-woo select, .sw-woo textarea { background: #080a0d; color: #f2eee3; border: 1px solid rgb(195 162 103 / .4); padding: .6rem .75rem; width: 100%; }
+.sw-woo .button, .sw-woo button[type=submit], .sw-woo #place_order { background: #c3a267; color: #080a0d; border: 0; padding: .9rem 1.6rem; text-transform: uppercase; letter-spacing: .15em; font-size: .75rem; font-weight: 600; cursor: pointer; }
+.sw-woo .woocommerce-info, .sw-woo .woocommerce-message, .sw-woo .woocommerce-error { border: 1px solid rgb(195 162 103 / .4); background: rgb(255 255 255 / .03); padding: 1rem; list-style: none; margin: 1rem 0; }
+.sw-woo .woocommerce-error { border-color: #a63827; }
+.sw-woo ul.order_details { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; padding: 0; }
+.sw-woo .payment_methods { list-style: none; padding: 0; }
+.sw-woo .form-row { margin-bottom: 1rem; }

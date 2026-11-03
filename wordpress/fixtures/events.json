@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "id": 201, "slug": "torneo-de-prueba", "kind": "tournament", "title": "Torneo de prueba desde WordPress",
+      "starts_at": "2030-05-10T09:00:00Z", "ends_at": "2030-05-10T19:00:00Z", "organizer": "Tienda Ejemplo", "city": "Madrid",
+      "address": "Calle Ejemplo 1", "format": "Escaramuza", "requirements": "Banda de 8 miniaturas", "description": "Descripción de prueba.",
+      "prizes": null, "fee_cents": 1000, "capacity": 16, "registration_url": "https://example.com/inscripcion", "image": null
+    },
+    {
+      "id": 202, "slug": "demo-pasada", "kind": "demo", "title": "Demostración pasada",
+      "starts_at": "2020-01-01T09:00:00Z", "city": "Barcelona"
+    }
+  ]
+}

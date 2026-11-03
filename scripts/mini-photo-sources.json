@@ -1,0 +1,16 @@
+{
+  "_comment": "Official illustrations from the SphereWars wiki asset library (https://wiki-spherewars.klerix.com) for miniatures whose wiki page has no image. Key = wiki page slug, file = asset filename in the wiki. They are shown as 'Ilustración', never as miniature photos.",
+  "personajes/adeptos-de-malesur/liehhan": { "file": "oso.png", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/mihualo": { "file": "búho-removebg-preview.png", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/yenay": { "file": "yenay.png", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/aguila": { "file": "águila.png", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/eriza": { "file": "mujer_erizo_final[1].jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/topo": { "file": "topo_color.jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/cabra": { "file": "lincantropo-cabra2.jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/mangostas": { "file": "mangosta4.jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/morena": { "file": "morena_adeptos.jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/toro": { "file": "toro.jpg", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/valhery": { "file": "valhery_(1).png", "kind": "illustration" },
+  "personajes/adeptos-de-malesur/druida-lobo": { "file": "wolf_druid_(1).png", "kind": "illustration" },
+  "personajes/alianza/laroc": { "file": "laroc_sf.png", "kind": "illustration" }
+}

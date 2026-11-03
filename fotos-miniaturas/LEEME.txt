@@ -1,0 +1,15 @@
+FOTOS DE MINIATURAS
+
+Deja aqui tus fotos oficiales y la web las usara en lugar del marcador "imagen provisional".
+
+1. Nombra cada archivo con el FINAL del nombre de la ficha de la wiki, en minusculas, sin espacios:
+     nirlem.jpg      (Nirlem, el Paladin)
+     rodanes.png     (Rodanes, Brazo de Metal)
+     lince.jpg       (Lince)
+   Formatos: JPG, PNG o WebP. Una foto por miniatura, fondo limpio y buena luz si es posible.
+2. Ejecuta:   npm run photos
+3. Vuelve a compilar/desplegar la web.
+
+Las fotos tienen prioridad sobre las ilustraciones oficiales; si un nombre no existe o es ambiguo, el
+comando te avisa. Lista de nombres validos: busca en  src/content/wiki.json  los slugs que empiezan por
+"personajes/" (o abre la faccion en la web y mira la direccion de cada ficha).

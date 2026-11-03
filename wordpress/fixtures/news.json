@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "id": 101, "slug": "nueva-miniatura-de-ejemplo", "title": "Noticia de prueba desde WordPress", "category": "Miniaturas",
+      "published_at": "2026-10-20T10:00:00Z", "excerpt": "Resumen de la noticia de prueba.",
+      "content_html": "<p>Contenido <strong>de prueba</strong> con un <a href=\"https://example.com\">enlace</a>.</p><script>alert('xss')</script><img src=\"https://cms.example.com/wp-content/uploads/a.jpg\" alt=\"Foto\" onerror=\"alert(1)\">",
+      "image": { "url": "https://cms.example.com/wp-content/uploads/hero.jpg", "alt": "Imagen de portada" },
+      "seo": { "title": "SEO título de prueba", "description": "SEO descripción de prueba" }
+    },
+    {
+      "id": 102, "slug": "segunda-noticia", "title": "Segunda noticia de prueba", "category": "Reglas",
+      "published_at": "2026-10-10T10:00:00Z", "excerpt": "", "content_html": "<p>Otro texto.</p>", "image": null
+    }
+  ]
+}
