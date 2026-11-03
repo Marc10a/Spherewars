@@ -1,0 +1,258 @@
+{
+ "guides": [
+  {
+   "id": "guia-rapida-a4",
+   "title": "Guía rápida 2026 · A4 (imprimible)",
+   "file": "/descargas/guia-rapida-a4.pdf",
+   "size": "24.5 MB",
+   "type": "PDF",
+   "preview": null
+  },
+  {
+   "id": "guia-rapida-a5",
+   "title": "Guía rápida 2026 · A5 (imprimible)",
+   "file": "/descargas/guia-rapida-a5.pdf",
+   "size": "18.6 MB",
+   "type": "PDF",
+   "preview": null
+  }
+ ],
+ "posters": [
+  {
+   "id": "poster-50x70",
+   "title": "Póster 50×70 · SphereWars Otro Mundo",
+   "file": "/descargas/poster-50x70.jpg",
+   "size": "2.6 MB",
+   "type": "JPG",
+   "preview": "/material/poster-50x70.webp",
+   "w": 900,
+   "h": 643
+  },
+  {
+   "id": "poster-a3-facciones",
+   "title": "Póster A3 · Las cuatro facciones",
+   "file": "/descargas/poster-a3-facciones.jpg",
+   "size": "2.2 MB",
+   "type": "JPG",
+   "preview": "/material/poster-a3-facciones.webp",
+   "w": 900,
+   "h": 637
+  },
+  {
+   "id": "poster-a3-golothar",
+   "title": "Póster A3 · Mapa de Golothar",
+   "file": "/descargas/poster-a3-golothar.jpg",
+   "size": "3.4 MB",
+   "type": "JPG",
+   "preview": "/material/poster-a3-golothar.webp",
+   "w": 658,
+   "h": 900
+  },
+  {
+   "id": "poster-a3-raggarth",
+   "title": "Póster A3 · Raggarth (con QR)",
+   "file": "/descargas/poster-a3-raggarth.jpg",
+   "size": "2.1 MB",
+   "type": "JPG",
+   "preview": "/material/poster-a3-raggarth.webp",
+   "w": 658,
+   "h": 900
+  },
+  {
+   "id": "cartel-a4",
+   "title": "Cartel A4 · SphereWars",
+   "file": "/descargas/cartel-a4.jpg",
+   "size": "1.3 MB",
+   "type": "JPG",
+   "preview": "/material/cartel-a4.webp",
+   "w": 636,
+   "h": 900
+  },
+  {
+   "id": "flyer-2026-anverso",
+   "title": "Flyer 2026 · anverso",
+   "file": "/descargas/flyer-2026-anverso.jpg",
+   "size": "1.6 MB",
+   "type": "JPG",
+   "preview": "/material/flyer-2026-anverso.webp",
+   "w": 636,
+   "h": 900
+  },
+  {
+   "id": "flyer-2026-reverso",
+   "title": "Flyer 2026 · reverso",
+   "file": "/descargas/flyer-2026-reverso.jpg",
+   "size": "1.3 MB",
+   "type": "JPG",
+   "preview": "/material/flyer-2026-reverso.webp",
+   "w": 636,
+   "h": 900
+  }
+ ],
+ "maps": [
+  {
+   "id": "mapa-golothar",
+   "title": "Mapa de Golothar",
+   "file": "/descargas/mapa-golothar.jpg",
+   "size": "3.0 MB",
+   "type": "JPG",
+   "preview": "/material/mapa-golothar.webp",
+   "w": 659,
+   "h": 900
+  },
+  {
+   "id": "mapa-saphir",
+   "title": "Mapa de Saphir 2026",
+   "file": "/descargas/mapa-saphir.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/mapa-saphir.webp",
+   "w": 900,
+   "h": 662
+  },
+  {
+   "id": "esfera-saphir",
+   "title": "La esfera de Saphir",
+   "file": "/descargas/esfera-saphir.jpg",
+   "size": "0.3 MB",
+   "type": "JPG",
+   "preview": "/material/esfera-saphir.webp",
+   "w": 900,
+   "h": 675
+  },
+  {
+   "id": "escalas-distancias",
+   "title": "Escalas y distancias de Saphir",
+   "file": "/descargas/escalas-distancias.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/escalas-distancias.webp",
+   "w": 637,
+   "h": 900
+  },
+  {
+   "id": "darlime",
+   "title": "Darlime",
+   "file": "/descargas/darlime.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/darlime.webp",
+   "w": 615,
+   "h": 900
+  },
+  {
+   "id": "teokkis",
+   "title": "Mapa de Teokkis 2026",
+   "file": "/descargas/teokkis.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/teokkis.webp",
+   "w": 643,
+   "h": 900
+  },
+  {
+   "id": "bosque-de-lilean",
+   "title": "Bosque de Lilean",
+   "file": "/descargas/bosque-de-lilean.jpg",
+   "size": "0.3 MB",
+   "type": "JPG",
+   "preview": "/material/bosque-de-lilean.webp",
+   "w": 900,
+   "h": 832
+  },
+  {
+   "id": "cienagas-de-bolban",
+   "title": "Ciénagas de Bolban",
+   "file": "/descargas/cienagas-de-bolban.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/cienagas-de-bolban.webp",
+   "w": 667,
+   "h": 900
+  },
+  {
+   "id": "azorhan",
+   "title": "Azörhan",
+   "file": "/descargas/azorhan.jpg",
+   "size": "0.3 MB",
+   "type": "JPG",
+   "preview": "/material/azorhan.webp",
+   "w": 643,
+   "h": 900
+  },
+  {
+   "id": "volcanes-de-urueh",
+   "title": "Los volcanes de Urueh",
+   "file": "/descargas/volcanes-de-urueh.jpg",
+   "size": "0.1 MB",
+   "type": "JPG",
+   "preview": "/material/volcanes-de-urueh.webp",
+   "w": 788,
+   "h": 590
+  },
+  {
+   "id": "picos-de-kurgan",
+   "title": "Picos de Kurgan",
+   "file": "/descargas/picos-de-kurgan.jpg",
+   "size": "0.2 MB",
+   "type": "JPG",
+   "preview": "/material/picos-de-kurgan.webp",
+   "w": 900,
+   "h": 838
+  },
+  {
+   "id": "caldara",
+   "title": "Caldara, la Flor del Lago",
+   "file": "/descargas/caldara.jpg",
+   "size": "0.6 MB",
+   "type": "JPG",
+   "preview": "/material/caldara.webp",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "id": "ciudadela-del-corazon",
+   "title": "La Ciudadela del Corazón",
+   "file": "/descargas/ciudadela-del-corazon.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/ciudadela-del-corazon.webp",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "id": "zonas-volcanicas",
+   "title": "Zonas volcánicas",
+   "file": "/descargas/zonas-volcanicas.jpg",
+   "size": "0.4 MB",
+   "type": "JPG",
+   "preview": "/material/zonas-volcanicas.webp",
+   "w": 637,
+   "h": 900
+  },
+  {
+   "id": "archipielago-volcanico",
+   "title": "Archipiélago volcánico",
+   "file": "/descargas/archipielago-volcanico.jpg",
+   "size": "0.2 MB",
+   "type": "JPG",
+   "preview": "/material/archipielago-volcanico.webp",
+   "w": 900,
+   "h": 873
+  }
+ ],
+ "game": [
+  {
+   "id": "caracteristicas-swom",
+   "src": "/material/caracteristicas-swom.webp",
+   "w": 1100,
+   "h": 1100
+  },
+  {
+   "id": "progresion-puntos-de-banda",
+   "src": "/material/progresion-puntos-de-banda.webp",
+   "w": 1100,
+   "h": 1100
+  }
+ ]
+}

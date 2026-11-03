@@ -1,0 +1,755 @@
+{
+ "_note": "Fotos oficiales de miniaturas y Starter Packs (carpeta del propietario). Orden de la galería: fondo, limpia, con tamaño, tarjeta.",
+ "photos": {
+  "personajes/alianza/explorador": {
+   "tile": "/tienda/alianza/explorador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/explorador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/explorador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/explorador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/explorador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/laroc": {
+   "tile": "/tienda/alianza/laroc-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/laroc-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/laroc-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/laroc-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/laroc-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/nirlem": {
+   "tile": "/tienda/alianza/nirlem-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/nirlem-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/nirlem-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/nirlem-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/nirlem-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/oteadora": {
+   "tile": "/tienda/alianza/oteadora-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/oteadora-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/oteadora-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/oteadora-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/oteadora-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/recaudadora": {
+   "tile": "/tienda/alianza/recaudadora-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/recaudadora-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/recaudadora-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/recaudadora-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/recaudadora-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/rodanes": {
+   "tile": "/tienda/alianza/rodanes-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/rodanes-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/rodanes-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/rodanes-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/rodanes-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/roxter": {
+   "tile": "/tienda/alianza/roxter-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/roxter-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/roxter-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/roxter-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/roxter-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/corazon-equite": {
+   "tile": "/tienda/alianza/corazon-equite-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/corazon-equite-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/corazon-equite-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/alianza/corazon-equite-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/corazon-equite-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/alianza/corazon-postulante": {
+   "tile": "/tienda/alianza/corazon-postulante-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/corazon-postulante-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/alianza/corazon-postulante-bg2.webp",
+     "kind": "bg2"
+    },
+    {
+     "src": "/tienda/alianza/corazon-postulante-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/alianza/corazon-postulante-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "packs/alianza": {
+   "tile": "/tienda/alianza/starter-pack.webp",
+   "gallery": [
+    {
+     "src": "/tienda/alianza/starter-pack.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/cangrejo": {
+   "tile": "/tienda/adeptos-de-malesur/cangrejo-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/cangrejo-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/cangrejo-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/cangrejo-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/cangrejo-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/liehhan": {
+   "tile": "/tienda/adeptos-de-malesur/liehhan-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/liehhan-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/liehhan-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/liehhan-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/liehhan-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/mangostas": {
+   "tile": "/tienda/adeptos-de-malesur/mangostas-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/mangostas-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/mangostas-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/mangostas-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/mangostas-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/morena": {
+   "tile": "/tienda/adeptos-de-malesur/morena-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/morena-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/morena-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/morena-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/morena-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/serpiente": {
+   "tile": "/tienda/adeptos-de-malesur/serpiente-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/serpiente-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/serpiente-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/serpiente-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/serpiente-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/toro": {
+   "tile": "/tienda/adeptos-de-malesur/toro-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/toro-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/toro-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/toro-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/toro-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/yenay": {
+   "tile": "/tienda/adeptos-de-malesur/yenay-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/yenay-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/yenay-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/yenay-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/yenay-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/adeptos-de-malesur/aguila": {
+   "tile": "/tienda/adeptos-de-malesur/aguila-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/aguila-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/aguila-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/aguila-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/adeptos-de-malesur/aguila-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "packs/adeptos-de-malesur": {
+   "tile": "/tienda/adeptos-de-malesur/starter-pack.webp",
+   "gallery": [
+    {
+     "src": "/tienda/adeptos-de-malesur/starter-pack.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/abrasador": {
+   "tile": "/tienda/mandas-de-urueh/abrasador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/abrasador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/abrasador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/abrasador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/abrasador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/calcinador": {
+   "tile": "/tienda/mandas-de-urueh/calcinador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/calcinador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/calcinador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/calcinador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/calcinador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/fundidor": {
+   "tile": "/tienda/mandas-de-urueh/fundidor-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/fundidor-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/fundidor-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/fundidor-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/fundidor-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/leva-demontre": {
+   "tile": "/tienda/mandas-de-urueh/leva-demontre-bg-a.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/leva-demontre-bg-a.webp",
+     "kind": "bg-a"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/leva-demontre-bg-b.webp",
+     "kind": "bg-b"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/leva-demontre-bg-c.webp",
+     "kind": "bg-c"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/leva-demontre-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/leva-demontre-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/lucio": {
+   "tile": "/tienda/mandas-de-urueh/lucio-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/lucio-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/lucio-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/lucio-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/lucio-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/pyronus": {
+   "tile": "/tienda/mandas-de-urueh/pyronus-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/pyronus-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/pyronus-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/pyronus-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/pyronus-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/sorkep": {
+   "tile": "/tienda/mandas-de-urueh/sorkep-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/sorkep-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/sorkep-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/sorkep-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/sorkep-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/mandas-de-urueh/satanor": {
+   "tile": "/tienda/mandas-de-urueh/satanor-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/satanor-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/satanor-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/satanor-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/mandas-de-urueh/satanor-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "packs/manadas-de-urueh": {
+   "tile": "/tienda/mandas-de-urueh/starter-pack.webp",
+   "gallery": [
+    {
+     "src": "/tienda/mandas-de-urueh/starter-pack.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/acechador": {
+   "tile": "/tienda/vastagos-de-kurgan/acechador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/acechador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/acechador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/acechador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/acechador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/chaman": {
+   "tile": "/tienda/vastagos-de-kurgan/chaman-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/chaman-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/chaman-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/chaman-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/desacrador": {
+   "tile": "/tienda/vastagos-de-kurgan/desacrador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/desacrador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/desacrador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/desacrador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/desacrador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/destripador": {
+   "tile": "/tienda/vastagos-de-kurgan/destripador-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/destripador-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/destripador-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/destripador-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/destripador-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/jorguin": {
+   "tile": "/tienda/vastagos-de-kurgan/jorguin-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/jorguin-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/jorguin-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/jorguin-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/jorguin-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/leviatan": {
+   "tile": "/tienda/vastagos-de-kurgan/leviatan-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/leviatan-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/leviatan-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/leviatan-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/leviatan-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+   "tile": "/tienda/vastagos-de-kurgan/nek-org-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/nek-org-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/nek-org-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/nek-org-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/nek-org-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/raggarth": {
+   "tile": "/tienda/vastagos-de-kurgan/raggarth-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/raggarth-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/raggarth-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/raggarth-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/raggarth-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "personajes/vastagos-de-kurgan/regoretes": {
+   "tile": "/tienda/vastagos-de-kurgan/regoretes-bg.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/regoretes-bg.webp",
+     "kind": "bg"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/regoretes-clean.webp",
+     "kind": "clean"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/regoretes-size.webp",
+     "kind": "size"
+    },
+    {
+     "src": "/tienda/vastagos-de-kurgan/regoretes-card.webp",
+     "kind": "card"
+    }
+   ]
+  },
+  "packs/vastagos-de-kurgan": {
+   "tile": "/tienda/vastagos-de-kurgan/starter-pack.webp",
+   "gallery": [
+    {
+     "src": "/tienda/vastagos-de-kurgan/starter-pack.webp",
+     "kind": "card"
+    }
+   ]
+  }
+ }
+}

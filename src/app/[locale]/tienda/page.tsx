@@ -1,0 +1,40 @@
+import { notFound } from "next/navigation";
+import { dict, isLocale } from "@/lib/i18n";
+import { staticMeta } from "@/lib/seo";
+import { factions } from "@/content/factions";
+import { shopReadiness } from "@/lib/shop/settings";
+import { factionCharacters } from "@/lib/wiki";
+import { PageHero, Section } from "@/components/ui";
+import { ShopTile } from "@/components/shop/ShopTile";
+import { PackTile } from "@/components/shop/PackTile";
+import { packFor } from "@/lib/shop/packs";
+import { ShopFilters } from "@/components/shop/ShopFilters";
+
+export const generateMetadata = staticMeta({ title: (t) => t.shop.title, description: (t) => t.shop.lead, path: "/tienda" });
+
+/** Shop home: every miniature as a photo + name card, with the faction filters. Price and buying happen on each product page. */
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const t = dict[locale];
+  const ready = await shopReadiness();
+  const items = factions.flatMap((f) => factionCharacters(f.slug).map((page) => ({ f, page })));
+
+  return (
+    <>
+      <PageHero title={t.shop.title} lead={t.shop.lead} />
+      <div className="mx-auto max-w-7xl px-4 pt-8">
+        {!ready.canCheckout && <p role="note" className="border border-dashed border-gold/40 bg-coal/60 p-4 text-sm text-stone">{t.shop.closed}</p>}
+        <ShopFilters locale={locale} active={null} />
+      </div>
+      <Section title={t.shop.allProducts} compact>
+        <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+          {factions.flatMap((f) => { const pk = packFor(f.slug); return pk ? [<li key={pk.key}><PackTile pack={pk} theme={f.theme} href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>] : []; })}
+          {items.map(({ f, page }, i) => (
+            <li key={page.slug}><ShopTile page={page} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${page.slug.split("/").pop()}`} /></li>
+          ))}
+        </ul>
+      </Section>
+    </>
+  );
+}

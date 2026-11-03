@@ -1,0 +1,1665 @@
+{
+ "_note": "Texto oficial de las descripciones de artículos (Descripciones Artículos .docx del propietario).",
+ "aliases": {
+  "personajes/alianza/postulante-raso": "personajes/alianza/corazon-postulante"
+ },
+ "products": {
+  "packs/alianza": {
+   "faction": "alianza",
+   "title": "Defensores de Caldara — Starter Pack",
+   "ref": null,
+   "intro": "Defensores de Caldara es un Starter Pack de SphereWars perteneciente a la Alianza. Incluye cuatro miniaturas —Ródanes, Brazo de Metal, una Cohorte de Postulantes formada por dos miniaturas y la Recaudadora de Isha— que forman una banda versátil en la que se combinan liderazgo, resistencia, magia y capacidad ofensiva. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, son ideales para iniciarse en SphereWars, ampliar una banda de la Alianza, pintar y coleccionar.",
+   "lore": [
+    "Defensores de Caldara ofrece una banda equilibrada que combina liderazgo, presencia en el campo de batalla y diferentes formas de responder a las amenazas del enemigo. Ródanes, Brazo de Metal actúa como el núcleo de la banda y permite aprovechar su capacidad de mando, mientras la Cohorte de Postulantes aporta presencia y capacidad de combate y la Recaudadora de Isha incorpora el poder del Hebrado y el ataque a distancia.",
+    "La combinación de sus miniaturas permite desarrollar una estrategia basada en la coordinación y el aprovechamiento de diferentes recursos. Ródanes dirige al grupo y ayuda a sacar partido de las demás piezas; los Postulantes permiten ocupar posiciones, combatir y aumentar la presencia de la banda sobre la mesa; y la Recaudadora aporta una amenaza diferente gracias a su capacidad para dominar las hebras y combatir tanto mediante la magia como a distancia.",
+    "En partida, Defensores de Caldara permite descubrir algunas de las características más representativas de la Alianza: disciplina, coordinación, versatilidad y capacidad para responder a situaciones muy diferentes. Es una banda especialmente adecuada para jugadores que disfrutan combinando distintas herramientas tácticas y haciendo que sus miniaturas trabajen juntas para controlar el desarrollo de la batalla."
+   ],
+   "items": [
+    "Ródanes, Brazo de Metal",
+    "Cohorte de Postulantes (2 miniaturas)",
+    "Recaudadora de Isha"
+   ],
+   "specs": [
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Puntos de Banda",
+     "31"
+    ],
+    [
+     "Número de miniaturas",
+     "4"
+    ],
+    [
+     "Dados de Vida",
+     "4"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniaturas sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Comienza tu banda de la Alianza con Defensores de Caldara y adéntrate en las batallas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/rodanes": {
+   "faction": "alianza",
+   "title": "Ródanes, Brazo de Metal",
+   "ref": "SWOM-AL01",
+   "intro": "Rodanes, Brazo de Metal es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al Corazón Supremo de la Legión de los Cien Corazones, un estratega legendario capaz de cambiar el rumbo de cualquier batalla. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Rodanes, Brazo de Metal, no heredó su leyenda: la forjó. Corazón Supremo de la Legión de los Cien Corazones, es temido más allá de las fronteras de Darlime y venerado por los suyos. Maestro de la guerra, su genio táctico y su clarividencia en combate cambian el curso de las batallas en pleno fragor.Su ascenso fue único: elegido por unanimidad sin siquiera postularse, prueba de que tanto el hombre como la amenaza que enfrenta son extraordinarios. Su único juramento es claro: defender Darlime hasta la muerte."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL01"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "16"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "36 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Ródanes, Brazo de Metal a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/laroc": {
+   "faction": "alianza",
+   "title": "Laroc, la Seductora",
+   "ref": "SWOM-AL04",
+   "intro": "Laroc, la Seductora es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una de las hechiceras más poderosas de las Mercenarias de Isha, capaz de devastar a sus enemigos o proteger a sus aliados mediante la magia. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Rechazada al nacer y marcada como La Loca, la niña sin nombre aprendió a sobrevivir entre golpes y burlas, viendo hebras que nadie más podía comprender. Donde otros vieron debilidad, ella forjó dominio. Entregada como pago y arrancada de su pasado, halló en Alquézar un nuevo destino. Allí, las Tutoras revelaron la verdad: Laroc no era una maldición, sino una de las hechiceras más poderosas jamás vistas. Frágil en el acero, devastadora en la magia, capaz de destruir al enemigo o salvar a los suyas, Laroc convirtió el dolor en poder."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL04"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Mercenarias de Isha"
+    ],
+    [
+     "Puntos de Banda",
+     "14 o 12"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "33 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Laroc, la Seductora a tu banda de la Alianza o las Mercenarias de Isha y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/corazon-postulante": {
+   "faction": "alianza",
+   "title": "Cohorte de Postulantes (2)",
+   "ref": "SWOM-AL11",
+   "intro": "La Cohorte de Postulantes son unas miniaturas de SphereWars pertenecientes a la Alianza. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representan a un joven soldado que inicia su duro camino militar y su oficial de la Legión de los Cien Corazones. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "En la Legión de los Cien Corazones, ni el rango más bajo escapa a la disciplina. Los Postulantes Rasos, aún jóvenes, forjan su acero durante cinco años de servicio implacable entre escoltas y batallas reales. Solo quienes resisten la prueba ascienden a Corazón Postulante, ganando con sudor y honor su lugar en la Legión.",
+    "Como Corazón Postulante, la prueba ya no es solo resistir, sino mandar. Durante cinco años, guían a los Postulantes Rasos y deciden su destino: la comodidad del rango intermedio… o la senda del mérito. Solo quienes lideran con excelencia y ambición ascienden, forjándose como Corazones Próximos dentro de la Legión de los Cien Corazones."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL11"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "9"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "51 mm"
+    ],
+    [
+     "Dado de Vida",
+     "2"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Cohorte de Postulantes a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/explorador": {
+   "faction": "alianza",
+   "title": "Explorador",
+   "ref": "SWOM-AL13",
+   "intro": "El Explorador es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un experto rastreador e infiltrador encargado de proteger las fronteras de Darlime y descubrir las amenazas antes de que sea demasiado tarde. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "El Explorador no lucha por paga ni por gloria: lucha por vocación. Nacido para avanzar donde otros no se atreven, vigila las fronteras de Darlime, adentrándose en la incertidumbre para detectar amenazas antes de que emerjan. En la guerra, su valor es decisivo: infiltración, rastreo y disparo certero, la sombra que protege al reino antes de que suene la batalla."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL13"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "4"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "54 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Explorador a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/oteadora": {
+   "faction": "alianza",
+   "title": "Oteadora de Isha",
+   "ref": "SWOM-AL14",
+   "intro": "La Oteadora de Isha es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una estratega de las Mercenarias de Isha, especializada en reconocimiento, apoyo táctico y combate a distancia. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "La Oteadora discurre por un camino distinto al del resto de Mercenarias. Si bien sus inicios son iguales, al convertirse en Novicia no se preparará para la prueba de la Voluntad de Isha, puesto que su Tutora ha visto en ella unas dotes tácticas fuera de lo común. Es por ello que es adiestrada en el arte de la estrategia para poder ayudar a sus líderes en la batalla. Esta inteligente luchadora, se entrena para estar en posiciones avanzadas y así dar órdenes allí donde su líder no puede. Además, es entrenada para luchar a distancia con eficiencia."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL14"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Mercenarias de Isha"
+    ],
+    [
+     "Puntos de Banda",
+     "5"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "31 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Oteadora de Isha a tu banda de la Alianza o las Mercenarias de Isha y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/recaudadora": {
+   "faction": "alianza",
+   "title": "Recaudadora de Isha",
+   "ref": "SWOM-AL24",
+   "intro": "La Recaudadora de Isha es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una hechicera y arquera de las Mercenarias de Isha, encargada de dominar las hebras y garantizar que toda deuda sea saldada. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Por miedo o cautela, muchas ocultan su don para ver las hebras, pero ninguna escapa a la Voluntad de Isha. Descubiertas y guiadas por las Tutoras, las futuras Recaudadoras dominan el poder de hebrar y se forjan en el combate cercano y a distancia. Porque sobre sus manos recae un deber sagrado: cobrar la deuda del servicio solicitado y asegurar que toda Mercenaria de Isha reciba lo que le es debido."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL24"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Mercenarias de Isha"
+    ],
+    [
+     "Puntos de Banda",
+     "6"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "38 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Recaudadora de Isha a tu banda de la Alianza o las Mercenarias de Isha y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/corazon-equite": {
+   "faction": "alianza",
+   "title": "Corazón Équite",
+   "ref": "SWOM-AL31A",
+   "intro": "El Corazón Équite es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un miembro de la élite de la Legión de los Cien Corazones, responsable de abrir brechas enemigas y decidir el destino de la batalla. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Ser Corazón Équite no es solo un rango, es un ascenso a la élite. Tras escalar en los Latires y ganar el favor de los altos mandos de la Legión de los Cien Corazones, se accede a honor, poder y privilegio. Las puertas de la Ciudadela de los Latires se abren, y en la guerra el Équite se convierte en pieza clave, forjando estrategias y decidiendo el destino del campo de batalla."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL31A"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "9"
+    ],
+    [
+     "Peana",
+     "50 mm"
+    ],
+    [
+     "Altura",
+     "69 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Corazón Équite a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/roxter": {
+   "faction": "alianza",
+   "title": "Róxter, el Piloto",
+   "ref": "SWOM-AL41",
+   "intro": "Róxter, el Piloto es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al legendario piloto de un traje de guerra único, creada para dominar los cielos y combatir las mayores amenazas de Darlime. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Róxter no es un nombre: es un legado. El primer Piloto, elegido por Bolban, se unió a un artilugio imposible de replicar, una máquina de engranajes y pólvora capaz de hacer volar a un hombre y convertirlo en arma contra la fatalidad venidera. Muchos ansían ser Róxter por gloria y poder, pero solo uno porta el título. Cuando el Piloto cae, el destino del siguiente queda en manos del Corazón Supremo de la Legión de los Cien Corazones."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL41"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "11"
+    ],
+    [
+     "Peana",
+     "50 mm"
+    ],
+    [
+     "Altura",
+     "92 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Róxter, el Piloto a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "packs/adeptos-de-malesur": {
+   "faction": "adeptos-de-malesur",
+   "title": "Vientos de Guerra — Starter Pack",
+   "ref": null,
+   "intro": "Vientos de Guerra es un Starter Pack de SphereWars perteneciente a los Adeptos de Malesur. Incluye tres miniaturas —Liehhan, el Oso, la Manada de Mangostas y el Águila— que forman una banda versátil en la que se combinan resistencia, apoyo y movilidad. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, son ideales para iniciarse en SphereWars, ampliar una banda de los Adeptos de Malesur, pintar y coleccionar.",
+   "lore": [
+    "Vientos de Guerra ofrece una banda equilibrada y versátil que combina control, apoyo y una gran capacidad para adaptarse a diferentes situaciones de batalla. Liehhan, el Oso actúa como el núcleo resistente del grupo, avanzando hacia las posiciones importantes y fijando a los enemigos en combate, mientras la Manada de Mangostas mantiene a sus aliados en mejores condiciones y el Águila aprovecha su extraordinaria movilidad para intervenir allí donde resulta más necesaria.",
+    "La combinación de las tres miniaturas permite desarrollar una estrategia basada en la cooperación. Liehhan ejerce presión sobre las piezas enemigas y dificulta que puedan abandonar el combate; las Mangostas aportan protección y recuperación para prolongar la resistencia de la banda; y el Águila puede reposicionarse rápidamente, apoyar la magia y extender la influencia del grupo hacia zonas de la mesa difíciles de alcanzar.",
+    "En partida, Vientos de Guerra permite descubrir algunas de las características más representativas de los Adeptos de Malesur: resistencia, movilidad, apoyo y sinergia entre sus integrantes. Es una banda especialmente adecuada para jugadores que disfrutan combinando las capacidades de sus miniaturas y adaptando su estrategia a medida que evoluciona la batalla."
+   ],
+   "items": [
+    "Liehhan, el Oso",
+    "Manada de Mangostas",
+    "Águila"
+   ],
+   "specs": [
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "28"
+    ],
+    [
+     "Número de miniaturas",
+     "3"
+    ],
+    [
+     "Dados de Vida",
+     "3"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniaturas sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Comienza tu banda de los Adeptos de Malesur con Vientos de Guerra y adéntrate en las batallas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/liehhan": {
+   "faction": "adeptos-de-malesur",
+   "title": "Liehhan, el Oso",
+   "ref": "SWOM-AD01",
+   "intro": "Liehhan, el Oso es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un poderoso guerrero elegido por el Espíritu del Oso, dispuesto a liderar el primer golpe contra sus enemigos. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Heredero del linaje de Lilean y elegido por el Oso, Liehhan forjó su leyenda como uno de los guerreros más temidos del bosque. Cuando los presagios oscuros anunciaron la guerra, no esperó a un consejo débil: reunió a sus fieles y marchó primero. Darlime sería el golpe inicial, brutal y decisivo, con el que Liehhan demostraría que la paz solo se conquista con fuerza."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD01"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "16"
+    ],
+    [
+     "Peana",
+     "40 mm"
+    ],
+    [
+     "Altura",
+     "69 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Liehhan, el Oso a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/yenay": {
+   "faction": "adeptos-de-malesur",
+   "title": "Yenay, la Mantis",
+   "ref": "SWOM-AD03",
+   "intro": "Yenay, la Mantis es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una experta asesina bendecida por el Espíritu de la Mantis, especializada en actuar desde las sombras. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "De contrabandista de sombras a elegida por los espíritus, Yenay fue marcada por la Mantis de Malesur. Rechazó su destino… hasta comprender que no era una maldición, sino un llamado. Cuando regresaron las brumas y Mihualo trajo palabras de guerra, Yenay aceptó su papel: ser la daga en la oscuridad, guiando a los suyos hacia la victoria."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD03"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "17"
+    ],
+    [
+     "Peana",
+     "40 mm"
+    ],
+    [
+     "Altura",
+     "69 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Yenay, la Mantis a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/serpiente": {
+   "faction": "adeptos-de-malesur",
+   "title": "Serpiente",
+   "ref": "SWOM-AD11A",
+   "intro": "La Serpiente es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una letal cazadora especializada en emboscadas, venenos y ataques precisos. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Temida en los bosques de Lilean, el Espíritu de la Serpiente elige a los astutos… o a los condenados. Pacientes y silenciosas, sus benditas aguardan en la espesura hasta el instante perfecto. Entonces atacan: veneno paralizante, golpe certero y retirada sin rastro. Porque cuando la Serpiente te atrapa, no hay escapatoria."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD11A"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "4"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "44 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Serpiente a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/mangostas": {
+   "faction": "adeptos-de-malesur",
+   "title": "Manada de Mangostas",
+   "ref": "SWOM-AD22",
+   "intro": "La Manada de Mangostas es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un grupo unido por antiguos vínculos espirituales capaz de proteger y apoyar a sus aliados durante la batalla. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Elegidas desde la infancia por el Espíritu de la Mangosta, sus benditas no buscan el poder individual, sino la fuerza del vínculo. Unidas en manada, elevan sus voces en cánticos ancestrales que, incluso en pleno combate, tejen protección y sanación, manteniendo viva la melodía que sostiene a sus aliados."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD22"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "6"
+    ],
+    [
+     "Peana",
+     "50 mm"
+    ],
+    [
+     "Altura",
+     "44 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Manada de Mangostas a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/cangrejo": {
+   "faction": "adeptos-de-malesur",
+   "title": "Cangrejo",
+   "ref": "SWOM-AD31",
+   "intro": "El Cangrejo es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una imponente criatura acorazada capaz de resistir los golpes más duros y aplastar incluso las armaduras más resistentes. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "En Lilean, solo los más violentos atraen la mirada del Espíritu del Cangrejo. Bendecidos por Malesur con caparazones casi indestructibles y pinzas colosales, avanzan sin prisa pero sin temor. Desde la segunda línea, resisten lo imposible y aplastan al enemigo, destrozando incluso las armaduras más resistentes cuando sus pinzas se cierran."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD31"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "10"
+    ],
+    [
+     "Peana",
+     "50 mm"
+    ],
+    [
+     "Altura",
+     "71 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Cangrejo a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/morena": {
+   "faction": "adeptos-de-malesur",
+   "title": "Morena",
+   "ref": "SWOM-AD32",
+   "intro": "La Morena es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una feroz criatura bendecida por Malesur capaz de deslizarse entre sus enemigos para acabar con ellos de un solo ataque. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Cuando Malesur llama al mar, surge el Espíritu de la Morena. Elegidas por su valentía y lealtad al hogar, estas criaturas avanzan por tierra con gracia antinatural. Entre cuerpos y acero se deslizan sin freno, y con un solo mordisco de sus mandíbulas desatan una muerte brutal e inevitable."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD32"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "9"
+    ],
+    [
+     "Peana",
+     "40 mm"
+    ],
+    [
+     "Altura",
+     "67 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Morena a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/toro": {
+   "faction": "adeptos-de-malesur",
+   "title": "Toro",
+   "ref": "SWOM-AD41",
+   "intro": "El Toro es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una de las criaturas más poderosas de Lilean, diseñada para liderar las cargas más devastadoras del ejército de Malesur. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Elegidos por el Espíritu del Toro, solo los Adeptos más excepcionales reciben este honor. Fuerza, agilidad y perfección encarnadas en la criatura más colosal de Lilean. En batalla, los Toros son el corazón del choque, avanzando sin freno y sembrando el caos con embestidas y pisotones. Sus cuernos benditos por Malesur atraviesan metal y hueso, reduciendo armaduras y escudos a polvo."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD41"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "12"
+    ],
+    [
+     "Peana",
+     "60 mm"
+    ],
+    [
+     "Altura",
+     "66 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Toro a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/aguila": {
+   "faction": "adeptos-de-malesur",
+   "title": "Águila",
+   "ref": "SWOM-AD51",
+   "intro": "El Águila es una miniatura de SphereWars perteneciente a los Adeptos de Malesur. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una exploradora alada capaz de dominar los cielos y apoyar a sus aliados con el poder del viento. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Elegidos por el Espíritu del Águila, los señores de los cielos dominan los vientos de Malesur. Desde las alturas vuelan, exploran y guían a las tropas, agitando sus alas para desatar corrientes de poder. No luchan por fuerza bruta, sino por visión y liderazgo, amplificando la magia y llevando la voluntad de sus líderes allí donde alcanza el viento."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AD51"
+    ],
+    [
+     "Facción",
+     "Adeptos de Malesur"
+    ],
+    [
+     "Puntos de Banda",
+     "5"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "45 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Águila a tu banda de los Adeptos de Malesur y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "packs/manadas-de-urueh": {
+   "faction": "manadas-de-urueh",
+   "title": "Primeras Ascuas — Starter Pack",
+   "ref": null,
+   "intro": "Primeras Ascuas es un Starter Pack de SphereWars perteneciente a las Manadas de Urueh. Incluye seis miniaturas —Sátanor, el Volcán, una Leva Demontre formada por tres miniaturas, un Sorkep y un Abrasador— que forman una banda agresiva en la que se combinan magia, superioridad numérica, movilidad y fuerza bruta. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, son ideales para iniciarse en SphereWars, ampliar una banda de las Manadas de Urueh, pintar y coleccionar.",
+   "lore": [
+    "Primeras Ascuas ofrece una banda ofensiva y variada que permite atacar al enemigo mediante amenazas muy diferentes. Sátanor, el Volcán aporta liderazgo y el poder destructivo del Hebrado, mientras la Leva Demontre proporciona superioridad numérica y permite presionar diferentes zonas del campo de batalla. El Sorkep añade una amenaza rápida y agresiva, y el Abrasador aporta la resistencia y la fuerza necesarias para enfrentarse a los objetivos más difíciles.",
+    "La combinación de sus miniaturas permite desarrollar una estrategia basada en mantener una presión constante sobre el rival. Los Demontres pueden lanzarse contra el enemigo y aprovechar su número para generar oportunidades, mientras el Sorkep hostiga los puntos vulnerables y el Abrasador concentra una amenaza mucho mayor sobre las posiciones más resistentes. Desde una posición más protegida, Sátanor puede utilizar su magia para apoyar el avance de la banda y aumentar todavía más su capacidad destructiva.",
+    "En partida, Primeras Ascuas permite descubrir algunas de las características más representativas de las Manadas de Urueh: agresividad, número, fuerza y poder destructivo. Es una banda especialmente adecuada para jugadores que disfrutan tomando la iniciativa, manteniendo la presión sobre el enemigo y combinando numerosas amenazas hasta conseguir que las líneas rivales terminen por quebrarse."
+   ],
+   "items": [
+    "Sátanor, el Volcán",
+    "Leva Demontre (3 miniaturas)",
+    "Sorkep",
+    "Abrasador"
+   ],
+   "specs": [
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Puntos de Banda",
+     "31"
+    ],
+    [
+     "Número de miniaturas",
+     "6"
+    ],
+    [
+     "Dados de Vida",
+     "6"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniaturas sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Comienza tu banda de las Manadas de Urueh con Primeras Ascuas y adéntrate en las batallas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/pyronus": {
+   "faction": "manadas-de-urueh",
+   "title": "Pyronus, el Heraldo",
+   "ref": "SWOM-MA03",
+   "intro": "Pyronus, el Heraldo es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un poderoso líder demontre que desafió su destino para convertirse en una de las mayores amenazas al servicio de Kazag. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Al matar a un Primigenio, Pyronus selló su destino. Robó el fuego de Pyrokan y, usando el saber de Satanor, trascendió su forma para convertirse en algo más allá de un Demontre. Odiado por unos y admirado por otros, avanza entre intrigas mientras las huestes lo siguen con fervor ciego. En la guerra por la Quinta Esencia es un arma temible… pero sabe que el ajuste de cuentas con su antiguo maestro es inevitable. Solo uno arderá hasta el final."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA03"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "15"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "7,1 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Pyronus, el Heraldo a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/satanor": {
+   "faction": "manadas-de-urueh",
+   "title": "Sátanor, el Volcán",
+   "ref": "SWOM-MA04",
+   "intro": "Satanor, el Volcán es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al segundo Primigenio de Kazag y el primer hechicero de Urueh, capaz de dominar el fuego y liderar la destrucción. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "A través de visiones de fuego y ruina, Satanor, segundo Primigenio y primer hechicero de Kazag, contempla el destino de Urueh: ciudadelas ardiendo y ejércitos reducidos a ceniza. Elegido para hacer realidad esas profecías, forja manadas y ejércitos nacidos de la roca, mientras las hebras rojas palpitan a su alrededor, ansiosas de destrucción. Pronto, el fuego de Kazag caerá sobre Caldara, y el mundo arderá bajo su voluntad."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA04"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "13 u 11"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "3,9 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Sátanor, el Volcán a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/leva-demontre": {
+   "faction": "manadas-de-urueh",
+   "title": "Leva Demontre (3)",
+   "ref": "SWOM-MA11",
+   "intro": "La Leva Demontre son unas miniaturas de SphereWars pertenecientes a las Manadas de Urueh. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representan a las innumerables hordas de demontres que abruman al enemigo mediante su número y ferocidad. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Salvajes y temerarios, los Demontres carecen de ingenio pero rebosan violencia. Indisciplinados y poco fiables, avanzan sin miedo ni orden… pero nunca solos. Lanzados en Levas innumerables, su marea caótica inunda el campo de batalla, sacrificándose para sembrar confusión y ahogar al enemigo bajo el peso de su número."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA11"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "6"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "3,3 cm"
+    ],
+    [
+     "Dado de Vida",
+     "3"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a la Leva Demontre a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/sorkep": {
+   "faction": "manadas-de-urueh",
+   "title": "Sorkep",
+   "ref": "SWOM-MA13",
+   "intro": "El Sorkep es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una feroz bestia de Urueh empleada como arma de guerra por su agresividad y resistencia al fuego. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Reflejo brutal de los Demontres, los Sorkep son bestias agresivas de piel ignífuga que prosperan entre el fuego y la sangre de Urueh. Carroñeros voraces, siguen a las huestes para devorar a caídos y heridos, disputando restos incluso con sus aliados. Fue Lanza Avernal quien vio en su ferocidad un arma y los arrastró del margen al corazón de la batalla."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA13"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Bestia Autóctona de Urueh"
+    ],
+    [
+     "Puntos de Banda",
+     "4"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "3,0 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Sorkep a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/abrasador": {
+   "faction": "manadas-de-urueh",
+   "title": "Abrasador",
+   "ref": "SWOM-MA22",
+   "intro": "El Abrasador es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un colosal Hijo de Kazag nacido del magma, capaz de sembrar destrucción con su fuerza y el poder de la lava. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Nacidos en las profundidades del magma, los Abrasadores, Hijos de Kazag, emergen con lava en las venas y sed de destrucción. Forjados para la guerra, avanzan lanzando torrentes incandescentes y destrozando armaduras con puños ardientes. Insensibles al acero y al dolor, esperan junto al fuego… ansiosos por convertir el mundo en ceniza."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA22"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "8"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "8,6 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Abrasador a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/calcinador": {
+   "faction": "manadas-de-urueh",
+   "title": "Calcinador",
+   "ref": "SWOM-MA24",
+   "intro": "El Calcinador es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a uno de los guerreros de élite de Urueh, entrenado para combatir en formación y mantener el orden entre los ejércitos de Kazag. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Forjados en el fuego incompleto del volcán, los Calcinadores no dominan la llama… la empuñan. Armados con lanzas volcánicas, luchan desde su nacimiento hasta la muerte. Más lúcidos que los suyos, combaten en formación y se alzan como la élite de Urueh, tan valiosos que los Primigenios rivalizan por su lealtad. En guerra y en campamento, sostienen el orden y el avance, pues todos saben que, sin guías divinos, ellos mandarían a los ejércitos."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA24"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "6"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "7,3 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Calcinador a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/fundidor": {
+   "faction": "manadas-de-urueh",
+   "title": "Fundidor",
+   "ref": "SWOM-MA31",
+   "intro": "El Fundidor es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un gigantesco Hijo de Kazag especializado en romper las líneas enemigas mediante una fuerza imparable. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Grandes y primarios, los Fundidores, Hijos de Kazag, nacieron para la carga y la destrucción. En las profundidades excavan y mueven montañas; en la guerra avanzan como arietes vivientes, resistentes y letales. Lentos de mente pero imparables de fuerza, sostienen el peso de Urueh… y cuando llega la batalla, rompen líneas como si fueran piedra."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA31"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "9"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "5,0 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Fundidor a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/lucio": {
+   "faction": "manadas-de-urueh",
+   "title": "Lucio, Capataz Demontre",
+   "ref": "SWOM-MA62",
+   "intro": "Lucio, Capataz Demontre es una miniatura de SphereWars perteneciente a las Manadas de Urueh. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un despiadado capataz demontre que gobierna mediante el terror y el poder del fuego. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Entre la mala calaña de Urueh, Lucio, el Capataz destaca por su crueldad. Nacido Demontre, su mente afilada lo elevó sobre los suyos, manipulándolos para trabajar, matar… o morir por él. Pyronus, el Heraldo lo alzó a capataz y le otorgó un látigo de hebras de fuego, capaz de hacer estallar a otros Demontres desde dentro. Temido por sus subordinados y odiado por Satanor, Lucio gobierna mediante terror y llamas."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-MA62"
+    ],
+    [
+     "Facción",
+     "Manadas de Urueh"
+    ],
+    [
+     "Subfacción",
+     "Hijo de Kazag"
+    ],
+    [
+     "Puntos de Banda",
+     "7"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "3,9 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Lucio, Capataz Demontre a tu banda de las Manadas de Urueh y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "packs/vastagos-de-kurgan": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Furia Helada — Starter Pack",
+   "ref": null,
+   "intro": "Furia Helada es un Starter Pack de SphereWars perteneciente a los Vástagos de Kurgan. Incluye tres miniaturas —Raggarth, el Liberador, un Acechador y un Desacrador Gélido— que forman una banda agresiva en la que se combinan liderazgo, infiltración y poder ofensivo. Fabricadas en resina termoplástica flexible de alta resistencia y gran nivel de detalle, son ideales para iniciarse en SphereWars, ampliar una banda de los Vástagos de Kurgan, pintar y coleccionar.",
+   "lore": [
+    "Furia Helada ofrece una banda ofensiva y versátil capaz de ejercer presión sobre el enemigo desde diferentes posiciones del campo de batalla. Raggarth, el Liberador actúa como el núcleo del grupo y aporta liderazgo y capacidad de combate, mientras el Acechador utiliza la infiltración y las emboscadas para amenazar posiciones vulnerables y el Desacrador Gélido aporta la contundencia necesaria para enfrentarse a las piezas más importantes del rival.",
+    "La combinación de las tres miniaturas permite desarrollar una estrategia basada en crear amenazas constantes y obligar al enemigo a dividir su atención. Raggarth puede avanzar hacia los enfrentamientos decisivos, mientras el Acechador aprovecha su capacidad para actuar desde posiciones inesperadas y hostigar al rival. El Desacrador Gélido completa la banda como una amenaza especialmente peligrosa contra líderes y hechiceros, convirtiendo las piezas clave del enemigo en objetivos prioritarios.",
+    "En partida, Furia Helada permite descubrir algunas de las características más representativas de los Vástagos de Kurgan: agresividad, infiltración, ferocidad y capacidad para castigar los puntos débiles del enemigo. Es una banda especialmente adecuada para jugadores que disfrutan tomando la iniciativa, creando amenazas desde diferentes zonas de la mesa y concentrando su fuerza sobre los objetivos más importantes del rival."
+   ],
+   "items": [
+    "Raggarth, el Liberador",
+    "Acechador",
+    "Desacrador Gélido"
+   ],
+   "specs": [
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Puntos de Banda",
+     "30"
+    ],
+    [
+     "Número de miniaturas",
+     "3"
+    ],
+    [
+     "Dados de Vida",
+     "3"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniaturas sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Comienza tu banda de los Vástagos de Kurgan con Furia Helada y adéntrate en las batallas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/raggarth": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Raggarth, el Liberador",
+   "ref": "SWOM-VA04",
+   "intro": "Raggarth, el Liberador es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al líder de la rebelión regor, un guerrero que lucha por la libertad de su pueblo frente a la opresión soimi. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Silencioso y paciente, Raggarth observó durante años la crueldad de su amo, hasta que decidió ponerle fin con un solo golpe fulminante. Al alzarse contra la esclavitud, se convirtió en líder de los regors, que ahora luchan a su lado por la libertad. Nek’Org aceptó su revuelta como parte de la frágil unión para conquistar Saphir, aunque Raggarth no confía en las promesas soimi. Sabe que la guerra acabará… y que entonces deberá decidir si el destino de su pueblo se forja con alianzas o con sangre."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA04"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto de los Liberados"
+    ],
+    [
+     "Puntos de Banda",
+     "15"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "5,8 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Raggarth, el Liberador del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/acechador": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Acechador",
+   "ref": "SWOM-VA12",
+   "intro": "El Acechador es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un astuto regor especializado en emboscadas, infiltración y ataques sorpresa desde las sombras. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Pequeños y subestimados, los Acechadores regor viven para la sombra. Débiles en fuerza, pero astutos y coordinados, se camuflan en la maleza para hostigar sin descanso. Aunque los soimi los desprecian como esclavos, sus emboscadas letales demostraron su valía durante la revuelta de Raggarth, donde muchos cayeron por ignorarlos. Temidos y despreciados a la vez, los regor cazan cuando el enemigo ya es demasiado confiado."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA12"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto de los Liberados"
+    ],
+    [
+     "Puntos de Banda",
+     "5"
+    ],
+    [
+     "Peana",
+     "3 cm"
+    ],
+    [
+     "Altura",
+     "5,0 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Acechador del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/destripador": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Destripador",
+   "ref": "SWOM-VA23",
+   "intro": "El Destripador es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un feroz guerrero regor consumido por la violencia, preparado para lanzarse sobre el enemigo sin temor a la muerte. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Aunque pequeños, los regors comparten la ferocidad predatoria de Kurgan. Forzados desde la infancia, los Destripadores fueron usados como bestias y carne de guerra. Tras la revuelta, muchos quedaron consumidos por la sangre y la desesperación. Raggarth el Liberador los envía a la vanguardia, para que luchen una última vez… y mueran como hijos de Kurgan, no como esclavos."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA23"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto de los Liberados"
+    ],
+    [
+     "Puntos de Banda",
+     "7"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "3,7 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Destripador del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/desacrador": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Desacrador Gélido",
+   "ref": "SWOM-VA32",
+   "intro": "El Desacrador Gélido es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a uno de los campeones más temidos de Tur’Na’Kurg, encargado de destruir la fe y la moral de sus enemigos. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Para Nek’Org, vencer no es suficiente: hay que quebrar el espíritu del enemigo. Los Desacradores de Tur’Na’Kurg son sus instrumentos de ruina, campeones temidos encargados de profanar lo sagrado y borrar toda fe rival. Allí donde caen líderes, campeones o hechiceros, los Desacradores dejan claro que la victoria de Kurgan comienza en el alma del derrotado."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA32"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto Tur'Na'Kurg"
+    ],
+    [
+     "Puntos de Banda",
+     "10"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "7,5 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Desacrador Gélido del Culto Tur’Na’Kurg a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/chaman": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Chamán",
+   "ref": "SWOM-VA33",
+   "intro": "El Chamán es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a un poderoso hechicero regor capaz de dominar las hebras del hielo y guiar espiritualmente a su pueblo. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Aunque los soimi de Huram’Koll se burlen de ellos, los Chamanes regor dominan las hebras con poder verdadero. Tejedores de hechizos de hielo y forjadores de báculos rituales, son magos temibles. Entre los suyos, no solo lanzan conjuros: predican y guían, elevando a Raggarth el Liberador como figura mítica y encendiendo la fe que sostiene la revuelta."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA33"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto de los Liberados"
+    ],
+    [
+     "Puntos de Banda",
+     "6"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "4,5 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Chamán del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/jorguin": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Jorguín de la Escarcha",
+   "ref": "SWOM-VA34",
+   "intro": "El Jorguín de la Escarcha es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a uno de los más poderosos magos de Kurgan, maestro del hielo y guardián de las antiguas profecías. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Solo los más grandes hechiceros de Kurgan alcanzan el rango de jorguín en Huram’Koll. Su rito exige forjar el báculo Llamaventiscas, trenzando magia en cristales nacidos en los Colmillos del Sol. En batalla desatan el poder del hielo, y en la calma del trance interpretan las escasas visiones de Kurgan, guiando el destino del culto entre niebla y presagios."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA34"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto Huram'Koll"
+    ],
+    [
+     "Puntos de Banda",
+     "10"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "6,6 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade al Jorguín de la Escarcha del Culto Huram’Koll a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/leviatan": {
+   "faction": "vastagos-de-kurgan",
+   "title": "El Leviatán",
+   "ref": "SWOM-VA41",
+   "intro": "El Leviatán es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a la criatura más colosal creada por Kurgan, un titán capaz de arrasar ejércitos enteros y cambiar el destino de cualquier batalla. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Forjado en la Profecía de Kurgan, el Leviatán es un titán de leyenda, invocado tras siglos de sacrificios y plegarias. Con el Ciclo Evolutivo, el dios del hielo dio forma al monstruo ansiado. En batalla, el Leviatán no solo aniquila ejércitos en un instante, sino que resiste lo que mataría a cualquier otro. Cuando marcha junto a los Vástagos de Kurgan, la guerra se inclina… y el mundo tiembla."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA41"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Puntos de Banda",
+     "14"
+    ],
+    [
+     "Peana",
+     "6 cm"
+    ],
+    [
+     "Altura",
+     "9,8 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a El Leviatán a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo! Regoretes Agitadores Los Regoretes Agitadores son una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una jauría de pequeñas y violentas criaturas regor que atacan en grupo sembrando el caos entre sus enemigos. Ideal para jugar, pintar y coleccionar. Pequeños pero rabiosos, los Regoretes atacan siempre en jauría, desatando un frenesí contagioso en la batalla. Privados de las colas mortales de los regor, prefieren capturar a sus presas vivas para devorarlas después. Considerados un experimento fallido de Kurgan, los soimi los desprecian y mantienen a distancia… aunque en el caos de la guerra, estas alimañas siguen siendo violencia pura y descontrolada. Características Referencia: SWOM-VA52 Facción: Vástagos de Kurgan Subfacción: Culto Regor Puntos de Banda: 4 Peana: 4 cm Altura: 3,3 cm Dado de Vida: 1 Material: Resina termoplástica flexible de alta resistencia y gran nivel de detalle. Estado: Miniatura sin montar y sin pintar. Añade a los Regoretes Agitadores del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  }
+ }
+}

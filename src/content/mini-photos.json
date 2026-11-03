@@ -1,0 +1,54 @@
+{
+ "personajes/adeptos-de-malesur/liehhan": {
+  "src": "/miniaturas/liehhan.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/mihualo": {
+  "src": "/miniaturas/mihualo.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/yenay": {
+  "src": "/miniaturas/yenay.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/aguila": {
+  "src": "/miniaturas/aguila.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/eriza": {
+  "src": "/miniaturas/eriza.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/topo": {
+  "src": "/miniaturas/topo.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/cabra": {
+  "src": "/miniaturas/cabra.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/mangostas": {
+  "src": "/miniaturas/mangostas.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/morena": {
+  "src": "/miniaturas/morena.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/toro": {
+  "src": "/miniaturas/toro.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/valhery": {
+  "src": "/miniaturas/valhery.webp",
+  "kind": "illustration"
+ },
+ "personajes/adeptos-de-malesur/druida-lobo": {
+  "src": "/miniaturas/druida-lobo.webp",
+  "kind": "illustration"
+ },
+ "personajes/alianza/laroc": {
+  "src": "/miniaturas/laroc.webp",
+  "kind": "illustration"
+ }
+}
