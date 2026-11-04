@@ -19,6 +19,7 @@ export default async function ShopSettingsPage({ searchParams }: { searchParams:
     ["Clave de servidor de Supabase", r.server, "Variable SUPABASE_SERVICE_ROLE_KEY (solo en el servidor, nunca pública)"],
     ["Clave secreta de Stripe", r.stripe, "Variable STRIPE_SECRET_KEY"],
     ["Secreto del webhook de Stripe", r.webhook, "Variable STRIPE_WEBHOOK_SECRET (Stripe → Developers → Webhooks)"],
+    ["Dirección pública de la web", r.siteUrl, "Variable NEXT_PUBLIC_SITE_URL, por ejemplo https://spherewars.es"],
     ["Al menos una zona de envío", r.shipping, "Configúrala más abajo"],
     ["Tienda activada", r.settings.enabled, "Casilla «Tienda abierta» más abajo"],
   ];

@@ -84,6 +84,7 @@ const productSchema = z.object({
   sku: z.string().trim().max(60).optional(),
   wiki_slug: z.string().trim().max(200).optional(),
   stock: z.string().optional(),
+  stock_original: z.string().optional(),
   sellable: z.string().optional(),
 });
 
@@ -119,6 +120,15 @@ export async function saveProduct(formData: FormData) {
     commercial_status: d.commercial_status, buy_url: d.buy_url || null, profile_url: d.profile_url || null,
     publish_at: d.publish_at ? new Date(d.publish_at).toISOString() : null, image_alt: d.image_alt || null,
   };
+
+  // Stock moves on its own while the form is open (reservations, payments): never overwrite it unless the editor changed it.
+  if (d.id) {
+    if ((d.stock ?? "").trim() === (d.stock_original ?? "").trim()) delete row.stock;
+    else {
+      const { data: cur } = await sb.from("products").select("stock").eq("id", d.id).single();
+      if (String(cur?.stock ?? "") !== (d.stock_original ?? "").trim()) return fail(back, `El stock ha cambiado mientras editabas: ahora es ${cur?.stock ?? "sin límite"}. Revisa el dato y guarda de nuevo.`);
+    }
+  }
 
   const file = formData.get("image");
   if (file instanceof File && file.size > 0) {

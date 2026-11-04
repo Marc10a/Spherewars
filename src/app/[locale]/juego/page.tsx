@@ -5,7 +5,7 @@ import { links, stats } from "@/content/site";
 import Image from "next/image";
 import official from "@/content/official-files.json";
 import { Lightbox } from "@/components/Lightbox";
-import { Button, PageHero, Pending, Section } from "@/components/ui";
+import { Button, PageHero, Section } from "@/components/ui";
 
 export const generateMetadata = staticMeta({ title: (t) => t.game.title, description: (t) => t.game.description, path: "/juego" });
 
@@ -25,7 +25,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <PageHero title={g.title} lead={g.lead} />
+      <PageHero title={g.title} lead={g.lead}>
+        <Button href={links.rules} external>{g.downloadRules}</Button>
+      </PageHero>
 
       <Section title={g.figuresTitle}>
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -66,8 +68,16 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </Section>
 
       <Section title={g.howTitle} lead={g.howLead}>
-        <Pending label={t.common.pendingLabel}>{g.howPending}</Pending>
-        <div className="mt-6 flex flex-wrap gap-4">
+        <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {g.howSteps.map(([title, text], i) => (
+            <li key={title}>
+              <span aria-hidden className="block font-display text-5xl font-bold leading-none text-gold/70">{i + 1}</span>
+              <h3 className="mt-3 font-display text-xl">{title}</h3>
+              <p className="mt-2 text-ivory/90">{text}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 flex flex-wrap gap-4">
           <Button href={links.rules} external>{g.downloadRules}</Button>
         </div>
       </Section>
@@ -76,7 +86,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="divide-y divide-gold/10 border border-gold/20 bg-coal">
           {g.faq.map(([q, a]) => (
             <details key={q} className="group p-5">
-              <summary className="cursor-pointer list-none font-display text-lg marker:hidden">{q}</summary>
+              <summary className="cursor-pointer font-display text-lg">{q}</summary>
               <p className="mt-2 text-ivory/80">{a}</p>
             </details>
           ))}

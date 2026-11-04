@@ -3,11 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "./cart-store";
 import { computeCart, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
 import type { Dict } from "@/lib/i18n";
 import { startCheckout } from "@/app/[locale]/tienda/actions";
+
+function CheckoutButton({ disabled, label }: { disabled: boolean; label: string }) {
+  const { pending } = useFormStatus(); // each submit reserves stock: never send it twice
+  return <button disabled={disabled || pending} aria-busy={pending} className="btn min-h-12 bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss hover:bg-ivory disabled:opacity-40">{label}</button>;
+}
 
 type Props = {
   locale: "es" | "en" | "ca";
@@ -103,7 +109,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice }: P
 
             {canCheckout ? (
               <>
-                <button disabled={!preview.ok} className="bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss transition hover:bg-ivory disabled:opacity-40">{t.checkout}</button>
+                <CheckoutButton disabled={!preview.ok} label={t.checkout} />
                 <p className="text-xs text-stone">{t.checkoutNote}</p>
                 <p className="text-xs text-stone">
                   {t.termsPre} <Link href={`/${locale}/legal/condiciones`} className="underline">{t.terms}</Link> · <Link href={`/${locale}/legal/devoluciones`} className="underline">{t.returns}</Link>

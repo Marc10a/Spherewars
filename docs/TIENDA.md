@@ -21,8 +21,9 @@ muestra el catálogo pero **no ofrece pagar**.
 Seguridad: el navegador solo envía qué productos y cuántos. Precios, stock, disponibilidad y envío se leen de la base de datos en el servidor. Un pedido solo se da por pagado si llega un aviso con la firma correcta de Stripe.
 
 ## Puesta en marcha (en este orden)
-1. **Base de datos** lista (ver `BASE-DE-DATOS.md`); `supabase/setup.sql` ya incluye las tablas de la tienda (migraciones 0004, 0005 y 0007).
-   - Si ya habías ejecutado el SQL anterior, ejecuta solo `supabase/migrations/0004_shop.sql` y `0005_product_wiki_link.sql`. Esa migración también **cierra permisos que faltaban** en 5 tablas; no te la saltes.
+1. **Base de datos** lista (ver `BASE-DE-DATOS.md`); `supabase/setup.sql` ya incluye las tablas de la tienda (migraciones 0004 a 0008).
+   - Si ya habías ejecutado el SQL anterior, ejecuta en orden las migraciones que te falten de `supabase/migrations/`, **antes** de desplegar el código nuevo. Esa migración también **cierra permisos que faltaban** en 5 tablas; no te la saltes.
+   - **Desactiva los registros públicos** en Supabase → Authentication → Sign In / Providers («Allow new users to sign up»). Un registro nuevo ya no recibe permisos, pero el panel no los necesita.
 2. **Cuenta de Stripe** (stripe.com, gratis). Empieza en **modo de prueba** (interruptor «Test mode»).
 3. **Claves.** Stripe → Developers → API keys → copia la *Secret key* (`sk_test_…`).
 4. **Webhook.** Stripe → Developers → Webhooks → Add endpoint:

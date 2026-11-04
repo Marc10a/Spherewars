@@ -38,7 +38,10 @@ export default async function Page({ params, searchParams }: { params: Promise<{
             <p className="mt-6 font-display text-3xl text-gold">{t.thanksOrder} {order!.number}</p>
           </>
         ) : (
-          <p role="status" className="text-lg text-ivory/90">{t.thanksPendingText}</p>
+          <>
+            {order?.status === "pending" && <ClearCart />}
+            <p role="status" className="text-lg text-ivory/90">{t.thanksPendingText}</p>
+          </>
         )}
         <Link href={`/${locale}/tienda`} className="mt-10 inline-block bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss">{t.backToShop}</Link>
       </div>

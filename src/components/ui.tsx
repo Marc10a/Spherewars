@@ -18,7 +18,7 @@ export function Section({ title, lead, children, id, compact }: { title: string;
   return (
     <section id={id} data-reveal className={`mx-auto max-w-7xl px-4 ${compact ? "py-10 md:py-14" : "py-16 md:py-24"}`}>
       <h2 className="font-display text-3xl tracking-wide text-ivory md:text-5xl"><BrandText text={title} /></h2>
-      {lead && <p className="mt-3 max-w-2xl text-ivory/85">{lead}</p>}
+      {lead && <p className="mt-3 max-w-2xl text-ivory/85"><BrandText text={lead} /></p>}
       <hr className={`rune-divider ${compact ? "my-6" : "my-8"}`} />
       {children}
     </section>
@@ -32,11 +32,11 @@ export function PageHero({ title, lead, theme, image, emblem, children }: { titl
       {image && <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/60 to-abyss/30" aria-hidden />}
       <div className="mist absolute inset-0" aria-hidden />
       <Particles kind={particleKind(theme)} count={18} />
-      <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28">
-        {emblem && <Image src={emblem} alt="" width={96} height={96} className="fade-up mb-4 h-20 w-auto object-contain" />}
-        <h1 className="fade-up font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
-        {lead && <p className="fade-up mt-4 max-w-2xl text-lg text-ivory/90">{lead}</p>}
-        {children && <div className="fade-up mt-6 flex flex-wrap gap-3">{children}</div>}
+      <div className="relative mx-auto max-w-7xl px-4 py-10 md:py-16">
+        {emblem && <Image src={emblem} alt="" width={96} height={96} className="mb-4 h-20 w-auto object-contain" />}
+        <h1 className="font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
+        {lead && <p className="mt-4 max-w-2xl text-lg text-ivory/90"><BrandText text={lead} /></p>}
+        {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
       </div>
     </div>
   );

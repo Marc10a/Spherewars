@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { dict, isLocale } from "@/lib/i18n";
 import { pageMeta } from "@/lib/seo";
 import { shopReadiness } from "@/lib/shop/settings";
+import { cancelAbandonedCheckout } from "@/lib/shop/cancel";
 import { PageHero } from "@/components/ui";
 import { CartView } from "@/components/shop/CartView";
 
@@ -10,11 +11,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return pageMeta({ title: (t) => t.shop.cart, path: "/tienda/carrito", noindex: true }, locale);
 }
 
-export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ e?: string }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ e?: string; o?: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = dict[locale].shop;
-  const { e } = await searchParams;
+  const { e, o } = await searchParams;
+  if (e === "cancelled" && o) await cancelAbandonedCheckout(o); // back from Stripe: free the customer's own reservation at once
   const ready = await shopReadiness();
   const notice = e === "cancelled" ? t.cancelled : e ? t.errors[e] ?? t.errors.generic : null;
 

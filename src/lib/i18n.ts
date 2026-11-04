@@ -65,8 +65,8 @@ const es = {
       ["Consigue tus miniaturas", "Miniaturas coleccionables y pintables."],
       ["Participa en la comunidad", "Discord, eventos y torneos."],
     ] as [string, string][],
-    howTitle: "Cómo se juega", howLead: "Texto basado en el reglamento oficial de tercera edición.",
-    howPending: "Las reglas se explicarán aquí a partir del reglamento oficial. Mientras tanto, descárgalo. No se inventan reglas ni costes de puntos.",
+    howTitle: "Cómo se juega", howLead: "Resumen de la Guía Rápida 2026. Las reglas completas están en el PDF gratuito.",
+    howSteps: [["Tirada enfrentada", "Ambos bandos lanzan dados. Los 1 se descartan y gana el valor más alto; si hay empate, decide el siguiente dado."], ["Tirada a número objetivo", "Con al menos un 5 en los dados, superas la prueba. Si sale el símbolo Sphere, el éxito es mayor."], ["La ronda", "Tras la Fase de Actualización, una tirada enfrentada de EST decide quién actúa primero. La ronda termina con el Final de Ronda."], ["La activación", "Cada combatiente mueve o forcejea, y después ataca, dispara, hace proezas o lanza hechizos en el orden que elijas."], ["Cómo se gana", "No basta con eliminar al rival: vence quien cumple su Misión y sus Objetivos Secundarios."]] as [string, string][],
     downloadRules: "Descargar reglas",
     faqTitle: "Preguntas frecuentes",
     faq: [
@@ -91,7 +91,7 @@ const es = {
   minis: {
     title: "Miniaturas", lead: "Catálogo oficial de miniaturas SphereWars.", allFactions: "Todas las facciones", allCats: "Todo", filters: "Filtros",
     cats: { leader: "Líderes", fighter: "Luchadores", starter: "Starter Packs", accessory: "Accesorios" } as Record<string, string>,
-    interim: "Ficha comercial (precios, contenido y compra) pendiente de publicar desde el panel. Mientras tanto, estos son los personajes y combatientes oficiales de la wiki, con su miniatura.",
+    interim: "Estos son los personajes y combatientes oficiales de la wiki. Si quieres comprarlos, los tienes en la tienda.", viewInShop: "Ver en tienda",
     charactersAria: "Personajes y combatientes", contents: "Contenido", status: "Estado comercial", buy: "Comprar", profile: "Perfil descargable",
   },
   events: {
@@ -137,7 +137,7 @@ const es = {
     cancelled: "Pago cancelado. Tu carrito sigue guardado.", priceChanged: "Revisa tu carrito: hay productos que han cambiado.",
     errors: {
       empty: "Tu carrito está vacío.", too_many: "Hay demasiados productos distintos en el carrito.", bad_qty: "La cantidad de un producto no es válida.",
-      unavailable: "Algún producto ya no está disponible.", out_of_stock: "No queda stock suficiente de algún producto.",
+      busy: "Tienes varios pagos abiertos. Termina uno o espera media hora.", unavailable: "Algún producto ya no está disponible.", out_of_stock: "No queda stock suficiente de algún producto.",
       no_zone: "No enviamos al país elegido.", bad_country: "Elige un país de envío.", disabled: "Los pagos online no están activados todavía.",
       stripe: "No hemos podido iniciar el pago. Inténtalo de nuevo en unos minutos.", generic: "Algo ha fallado. Inténtalo de nuevo.",
     } as Record<string, string>,
@@ -236,8 +236,8 @@ const en: Dict = {
       ["Get your miniatures", "Collectible, paintable miniatures."],
       ["Join the community", "Discord, events and tournaments."],
     ],
-    howTitle: "How to play", howLead: "Text based on the official third-edition rulebook.",
-    howPending: "The rules will be explained here from the official rulebook. In the meantime, download it. No rules or point costs are invented.",
+    howTitle: "How to play", howLead: "Summary of the 2026 Quick Guide. The full rules are in the free PDF.",
+    howSteps: [["Opposed roll", "Both sides roll dice. Any 1s are discarded and the highest value wins; on a tie, the next die decides."], ["Target number roll", "With at least one 5 on the dice, you pass the test. If the Sphere symbol appears, the success is greater."], ["The round", "After the Update Phase, an opposed EST roll decides who acts first. The round closes with the End of Round."], ["Activation", "Each fighter moves or struggles, then attacks, shoots, performs feats or casts spells in the order you choose."], ["How to win", "Eliminating your opponent is not enough: the winner completes their Mission and Secondary Objectives."]] as [string, string][],
     downloadRules: "Download rules",
     faqTitle: "Frequently asked questions",
     faq: [
@@ -262,7 +262,7 @@ const en: Dict = {
   minis: {
     title: "Miniatures", lead: "Official SphereWars miniatures catalogue.", allFactions: "All factions", allCats: "All", filters: "Filters",
     cats: { leader: "Leaders", fighter: "Fighters", starter: "Starter Packs", accessory: "Accessories" },
-    interim: "Commercial listings (prices, contents and purchase) are yet to be published from the admin panel. In the meantime, these are the official characters and fighters from the wiki, with their miniature.",
+    interim: "These are the official characters and fighters from the wiki. To buy them, head to the shop.", viewInShop: "See in shop",
     charactersAria: "Characters and fighters", contents: "Contents", status: "Commercial status", buy: "Buy", profile: "Downloadable profile",
   },
   events: {
@@ -308,7 +308,7 @@ const en: Dict = {
     cancelled: "Payment cancelled. Your cart is still saved.", priceChanged: "Please review your cart: some items have changed.",
     errors: {
       empty: "Your cart is empty.", too_many: "There are too many different products in the cart.", bad_qty: "The quantity of a product is not valid.",
-      unavailable: "A product is no longer available.", out_of_stock: "There is not enough stock of a product.",
+      busy: "You have several open checkouts. Finish one or wait half an hour.", unavailable: "A product is no longer available.", out_of_stock: "There is not enough stock of a product.",
       no_zone: "We do not ship to the selected country.", bad_country: "Choose a shipping country.", disabled: "Online payments are not enabled yet.",
       stripe: "We could not start the payment. Please try again in a few minutes.", generic: "Something went wrong. Please try again.",
     },
@@ -405,8 +405,8 @@ const ca: Dict = {
       ["Aconsegueix les teves miniatures", "Miniatures col·leccionables i pintables."],
       ["Participa a la comunitat", "Discord, esdeveniments i tornejos."],
     ],
-    howTitle: "Com es juga", howLead: "Text basat en el reglament oficial de tercera edició.",
-    howPending: "Les regles s'explicaran aquí a partir del reglament oficial. Mentrestant, descarrega'l. No s'inventen regles ni costos de punts.",
+    howTitle: "Com es juga", howLead: "Resum de la Guia Ràpida 2026. Les regles completes són al PDF gratuït.",
+    howSteps: [["Tirada enfrontada", "Tots dos bàndols llancen daus. Els 1 es descarten i guanya el valor més alt; si hi ha empat, decideix el dau següent."], ["Tirada a número objectiu", "Amb almenys un 5 als daus, superes la prova. Si surt el símbol Sphere, l'èxit és més gran."], ["La ronda", "Després de la Fase d'Actualització, una tirada enfrontada d'EST decideix qui actua primer. La ronda acaba amb el Final de Ronda."], ["L'activació", "Cada combatent es mou o forceja, i després ataca, dispara, fa proeses o llança encanteris en l'ordre que triïs."], ["Com es guanya", "No n'hi ha prou amb eliminar el rival: venç qui compleix la seva Missió i els seus Objectius Secundaris."]] as [string, string][],
     downloadRules: "Descarrega les regles",
     faqTitle: "Preguntes freqüents",
     faq: [
@@ -431,7 +431,7 @@ const ca: Dict = {
   minis: {
     title: "Miniatures", lead: "Catàleg oficial de miniatures SphereWars.", allFactions: "Totes les faccions", allCats: "Tot", filters: "Filtres",
     cats: { leader: "Líders", fighter: "Lluitadors", starter: "Starter Packs", accessory: "Accessoris" },
-    interim: "Les fitxes comercials (preus, contingut i compra) estan pendents de publicar des del tauler. Mentrestant, aquests són els personatges i combatents oficials de la wiki, amb la seva miniatura.",
+    interim: "Aquests són els personatges i combatents oficials de la wiki. Si els vols comprar, els tens a la botiga.", viewInShop: "Veure a la botiga",
     charactersAria: "Personatges i combatents", contents: "Contingut", status: "Estat comercial", buy: "Comprar", profile: "Perfil descarregable",
   },
   events: {
@@ -477,7 +477,7 @@ const ca: Dict = {
     cancelled: "Pagament cancel·lat. El teu carretó continua desat.", priceChanged: "Revisa el carretó: hi ha productes que han canviat.",
     errors: {
       empty: "El teu carretó és buit.", too_many: "Hi ha massa productes diferents al carretó.", bad_qty: "La quantitat d'un producte no és vàlida.",
-      unavailable: "Algun producte ja no està disponible.", out_of_stock: "No queda prou estoc d'algun producte.",
+      busy: "Tens diversos pagaments oberts. Acaba'n un o espera mitja hora.", unavailable: "Algun producte ja no està disponible.", out_of_stock: "No queda prou estoc d'algun producte.",
       no_zone: "No enviem al país triat.", bad_country: "Tria un país d'enviament.", disabled: "Els pagaments en línia encara no estan activats.",
       stripe: "No hem pogut iniciar el pagament. Torna-ho a provar d'aquí a uns minuts.", generic: "Alguna cosa ha fallat. Torna-ho a provar.",
     },

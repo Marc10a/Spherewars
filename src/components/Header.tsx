@@ -54,14 +54,14 @@ export function Header({ locale }: { locale: Locale }) {
 
         <ul className="hidden items-center gap-6 font-display text-sm tracking-wide xl:flex">
           {quick.map(([k, href]) => (
-            <li key={k}><Link href={`/${locale}${href}`} aria-current={rest === href ? "page" : undefined} className="hover:text-gold aria-[current=page]:text-gold">{t[k]}</Link></li>
+            <li key={k}><Link href={`/${locale}${href}`} aria-current={rest === href || rest.startsWith(`${href}/`) ? "page" : undefined} className="hover:text-gold aria-[current=page]:text-gold">{t[k]}</Link></li>
           ))}
         </ul>
 
         <div className="flex items-center gap-4">
           {switcher("hidden items-center gap-3 text-xs sm:flex")}
           <CartLink locale={locale} label={a.cart} />
-          <Link href={`/${locale}/buscar`} aria-label={a.search} className="text-ivory/80 hover:text-gold"><Search size={20} /></Link>
+          <Link href={`/${locale}/buscar`} aria-label={a.search} className="-m-3 p-3 text-ivory/80 hover:text-gold"><Search size={20} /></Link>
           <Link href={`/${locale}/juega-gratis`} className="btn hidden min-h-10 items-center bg-gold px-4 font-display text-sm font-semibold text-abyss hover:bg-ivory md:inline-flex">
             {t.playFree}
           </Link>
@@ -75,7 +75,7 @@ export function Header({ locale }: { locale: Locale }) {
       </nav>
 
       {open && (
-        <div id="site-menu" className="absolute inset-x-0 top-full max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-gold/30 bg-coal/98 shadow-2xl">
+        <div id="site-menu" className="absolute inset-x-0 top-full max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-gold/30 bg-coal shadow-2xl">
           <ul className="mx-auto grid max-w-7xl gap-1 px-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.map(([k, href]) => (
               <li key={k}>

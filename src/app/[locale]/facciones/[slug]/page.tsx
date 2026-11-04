@@ -41,13 +41,7 @@ export default async function FactionPage({ params }: { params: Promise<{ locale
       </PageHero>
 
       <Section title={ft.playstyle} lead={f.style[locale]}>
-        <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">
-          <div>
-            <p className="text-sm text-stone">{ft.tones}: {f.palette[locale].join(" · ")}</p>
-            {wiki && <div className="mt-6"><Button href={wikiHref}>{ft.readFull}</Button></div>}
-          </div>
-          <Image src={`/brand/factions/${f.slug}.webp`} alt={f.name} width={420} height={420} loading="lazy" className="h-40 w-auto justify-self-start sm:justify-self-end" />
-        </div>
+        {wiki && <Button href={wikiHref}>{ft.readFull}</Button>}
       </Section>
 
       {f.subfactions && (
@@ -90,7 +84,7 @@ export default async function FactionPage({ params }: { params: Promise<{ locale
             {miniGroups.map((g) => (
               <div key={g.name ?? "all"}>
                 {g.name && <h3 className="mb-5 font-display text-2xl text-accent">{g.name} <span className="text-sm text-stone">({g.pages.length})</span></h3>}
-                <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
                   {g.pages.map((c) => <li key={c.slug}><MiniCard page={c} locale={locale} theme={f.theme} /></li>)}
                 </ul>
               </div>

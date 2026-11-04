@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { dict, isLocale, locales } from "@/lib/i18n";
 import { factions, getFaction } from "@/content/factions";
 import docs from "@/content/shop-products.json";
+import { Button } from "@/components/ui";
+import { links } from "@/content/site";
 import { formatPrice, listSellableProducts, mediaUrl } from "@/lib/data";
 import { shopReadiness } from "@/lib/shop/settings";
 import { productForMiniature } from "@/lib/shop/match";
@@ -76,7 +78,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </nav>
       </div>
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-8 md:py-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
+      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-8 md:py-12 grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
         <div data-wp-slot="gallery" className="mx-auto w-full max-w-xl lg:max-w-none">
         {photos.length > 0 ? (
           <ProductGallery photos={photos} labels={{ prev: t.shop.prevPhoto, next: t.shop.nextPhoto, zoom: t.shop.zoomIn, zoomToggle: t.shop.zoomToggle, close: t.a11y.close, photoOf: t.shop.photoOf, gallery: t.shop.gallery }} />
@@ -100,12 +102,18 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <>
               <p className="font-display text-4xl text-gold">{price}</p>
               <p className="mt-1 text-xs text-stone">{t.shop.taxIncluded}</p>
+              {ready.canCheckout ? (
               <div className="mt-6">
                 <BuyBox locale={locale}
                   item={{ id: product.id, slug: product.slug, name: product.name, price_cents: product.price_cents!, image: photos[0]?.src ?? null, stock: product.stock }}
                   labels={{ qty: t.shop.qty, add: t.shop.add, added: t.shop.added, buyNow: t.shop.buyNow, viewCart: t.shop.viewCart, soldOut: t.shop.soldOut }} />
               </div>
-              {!ready.canCheckout && <p role="note" className="mt-4 border border-dashed border-gold/40 p-3 text-sm text-stone">{t.shop.closed}</p>}
+              ) : (
+                <div className="mt-6 space-y-4">
+                  <p role="note" className="border border-dashed border-gold/40 p-3 text-sm text-stone">{t.shop.closed}</p>
+                  <Button href={links.rules} external>{t.hero.cta3}</Button>
+                </div>
+              )}
             </>
           ) : (
             <div role="status">

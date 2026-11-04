@@ -38,6 +38,7 @@ export type ShopReadiness = {
   stripe: boolean;     // STRIPE_SECRET_KEY present
   server: boolean;     // service role key present (needed to create orders / receive payments)
   webhook: boolean;    // STRIPE_WEBHOOK_SECRET present (needed to confirm payments)
+  siteUrl: boolean;    // NEXT_PUBLIC_SITE_URL present (Stripe must return customers to the real domain)
   shipping: boolean;   // at least one shipping zone configured
   canCheckout: boolean;
 };
@@ -47,7 +48,7 @@ export async function shopReadiness(): Promise<ShopReadiness> {
   if (wooEnabled()) { // payments, stock and orders are WooCommerce's; the cart only needs its shipping zones
     const settings = (await wooShipping())?.settings ?? defaultShopSettings;
     const shipping = settings.zones.length > 0;
-    return { settings, database: true, stripe: true, server: true, webhook: true, shipping, canCheckout: shipping };
+    return { settings, database: true, stripe: true, server: true, webhook: true, siteUrl: true, shipping, canCheckout: shipping };
   }
   const settings = await getShopSettings();
   const r = {
@@ -56,7 +57,8 @@ export async function shopReadiness(): Promise<ShopReadiness> {
     stripe: Boolean(process.env.STRIPE_SECRET_KEY),
     server: hasServiceRole(),
     webhook: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
+    siteUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL),
     shipping: settings.zones.length > 0,
   };
-  return { ...r, canCheckout: settings.enabled && r.database && r.stripe && r.server && r.webhook && r.shipping };
+  return { ...r, canCheckout: settings.enabled && r.database && r.stripe && r.server && r.webhook && r.siteUrl && r.shipping };
 }

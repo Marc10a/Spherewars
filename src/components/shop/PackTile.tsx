@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Pack } from "@/lib/shop/packs";
 
 /** Catalogue card of a Starter Pack: its photo and its name, like the miniature cards. */
-export function PackTile({ pack, href, theme, priority = false }: { pack: Pack; href: string; theme?: string; priority?: boolean }) {
+export function PackTile({ pack, href, theme, priority = false, price }: { price?: string | null; pack: Pack; href: string; theme?: string; priority?: boolean }) {
   return (
     <Link href={href} data-faction={theme} className="tilt-card group block overflow-hidden border border-accent/40 bg-coal">
       <span className="relative block aspect-[2/3] bg-abyss">
@@ -12,7 +12,7 @@ export function PackTile({ pack, href, theme, priority = false }: { pack: Pack; 
             className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         )}
       </span>
-      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight text-accent group-hover:text-ivory sm:text-base">{pack.title}</span>
+      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight text-accent group-hover:text-ivory sm:text-base">{pack.title}{price && <span className="mt-1 block text-gold">{price}</span>}</span>
     </Link>
   );
 }

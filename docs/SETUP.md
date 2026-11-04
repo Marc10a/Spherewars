@@ -10,7 +10,7 @@ npm run dev
 
 1. Crear un proyecto en Supabase y copiar URL y anon key a `.env.local`.
 2. `supabase link` y `supabase db push` (aplica `supabase/migrations/0001_init.sql` y `0002_cms.sql`).
-3. En Supabase Auth, crear el primer usuario (correo + contraseña). Se crea su fila en `profiles` como `editor`.
+3. En Supabase Auth, crear el primer usuario (correo + contraseña). Se crea su fila en `profiles` **sin rol**: no entra al panel hasta que se le asigne uno. Desactiva los registros públicos en Supabase Auth.
 4. Promoverlo a administrador (SQL editor): `update profiles set role = 'admin' where id = '<uuid del usuario>';`
 5. Entrar en `/admin/login`.
 

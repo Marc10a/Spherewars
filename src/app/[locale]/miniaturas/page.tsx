@@ -17,7 +17,8 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const t = dict[locale].minis;
   const { faccion, categoria } = await searchParams;
   const products = await listProducts({ faction: faccion, category: categoria });
-  const chip = (active: boolean) => `border px-3 py-1 text-xs uppercase tracking-widest ${active ? "border-gold bg-gold text-abyss" : "border-gold/40 text-ivory/80 hover:border-gold"}`;
+  const hasCatalogue = faccion || categoria ? (await listProducts()).length > 0 : products.length > 0;
+  const chip = (active: boolean) => `btn inline-flex min-h-11 items-center border px-4 font-display text-sm font-semibold ${active ? "border-gold bg-gold text-abyss" : "border-gold/50 text-ivory hover:border-gold hover:bg-gold/15"}`;
   const href = (f?: string, c?: string) => `/${locale}/miniaturas${f || c ? "?" : ""}${[f && `faccion=${f}`, c && `categoria=${c}`].filter(Boolean).join("&")}`;
 
   return (
@@ -29,15 +30,17 @@ export default async function Page({ params, searchParams }: { params: Promise<{
             <Link href={href(undefined, categoria)} className={chip(!faccion)}>{t.allFactions}</Link>
             {factions.map((f) => <Link key={f.slug} href={href(f.slug, categoria)} className={chip(faccion === f.slug)}>{f.name}</Link>)}
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Link href={href(faccion)} className={chip(!categoria)}>{t.allCats}</Link>
-            {Object.entries(t.cats).map(([k, l]) => <Link key={k} href={href(faccion, k)} className={chip(categoria === k)}>{l}</Link>)}
-          </div>
+          {hasCatalogue && (
+            <div className="flex flex-wrap gap-2">
+              <Link href={href(faccion)} className={chip(!categoria)}>{t.allCats}</Link>
+              {Object.entries(t.cats).map(([k, l]) => <Link key={k} href={href(faccion, k)} className={chip(categoria === k)}>{l}</Link>)}
+            </div>
+          )}
         </nav>
 
         {products.length === 0 ? (
           <section aria-label={t.charactersAria}>
-            <p className="mb-6 max-w-2xl text-sm text-stone">{t.interim}</p>
+            <p className="mb-6 max-w-2xl text-ivory/90">{t.interim} <Link href={`/${locale}/tienda`} className="text-gold underline underline-offset-4">{t.viewInShop}</Link></p>
             <div className="space-y-12">
               {(faccion ? factions.filter((f) => f.slug === faccion) : factions).map((f) => {
                 const list = factionCharacters(f.slug);
@@ -45,7 +48,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                 return (
                   <div key={f.slug}>
                     <h2 className="mb-5 font-display text-2xl text-accent" data-faction={f.theme}>{f.name} <span className="text-sm text-stone">({list.length})</span></h2>
-                    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
                       {list.map((c) => <li key={c.slug}><MiniCard page={c} locale={locale} theme={f.theme} /></li>)}
                     </ul>
                   </div>

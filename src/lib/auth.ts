@@ -24,7 +24,7 @@ export async function getStaff() {
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return null;
   const { data: profile } = await sb.from("profiles").select("role, display_name").eq("id", user.id).single();
-  if (!profile) return null;
+  if (!profile?.role) return null; // a registered user is not staff until promoted explicitly
   return { id: user.id, email: user.email ?? "", name: profile.display_name as string | null, role: profile.role as Role };
 }
 

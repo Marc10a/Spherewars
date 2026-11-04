@@ -7,6 +7,8 @@ import { factionCharacters } from "@/lib/wiki";
 import { PageHero, Section } from "@/components/ui";
 import { ShopTile } from "@/components/shop/ShopTile";
 import { PackTile } from "@/components/shop/PackTile";
+import { formatPrice, listSellableProducts } from "@/lib/data";
+import { productForMiniature } from "@/lib/shop/match";
 import { packFor } from "@/lib/shop/packs";
 import { ShopFilters } from "@/components/shop/ShopFilters";
 
@@ -18,6 +20,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
   const ready = await shopReadiness();
+  const products = await listSellableProducts();
+  const priceOf = (key: string) => {
+    const p = productForMiniature(products, key);
+    return p?.sellable && p.price_cents ? formatPrice(p.price_cents, p.currency, locale) : null;
+  };
   const items = factions.flatMap((f) => factionCharacters(f.slug).map((page) => ({ f, page })));
 
   return (
@@ -29,13 +36,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </div>
       <Section title={t.home.step2Title} lead={t.home.step2Text} compact>
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-          {factions.flatMap((f) => { const pk = packFor(f.slug); return pk ? [<li key={pk.key}><PackTile pack={pk} theme={f.theme} href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>] : []; })}
+          {factions.flatMap((f) => { const pk = packFor(f.slug); return pk ? [<li key={pk.key}><PackTile price={priceOf(pk.key)} pack={pk} theme={f.theme} href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>] : []; })}
         </ul>
       </Section>
       <Section title={t.shop.allProducts} compact>
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {items.map(({ f, page }, i) => (
-            <li key={page.slug}><ShopTile page={page} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${page.slug.split("/").pop()}`} /></li>
+            <li key={page.slug}><ShopTile price={priceOf(page.slug)} page={page} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${page.slug.split("/").pop()}`} /></li>
           ))}
         </ul>
       </Section>

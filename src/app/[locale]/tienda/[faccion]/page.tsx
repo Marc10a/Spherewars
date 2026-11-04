@@ -8,6 +8,8 @@ import { pageMeta } from "@/lib/seo";
 import { PageHero, Section } from "@/components/ui";
 import { ShopTile } from "@/components/shop/ShopTile";
 import { PackTile } from "@/components/shop/PackTile";
+import { formatPrice, listSellableProducts } from "@/lib/data";
+import { productForMiniature } from "@/lib/shop/match";
 import { packFor } from "@/lib/shop/packs";
 import { ShopFilters } from "@/components/shop/ShopFilters";
 
@@ -26,6 +28,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   if (!isLocale(locale) || !f) notFound();
   const t = dict[locale];
   const ready = await shopReadiness();
+  const products = await listSellableProducts();
+  const priceOf = (key: string) => {
+    const p = productForMiniature(products, key);
+    return p?.sellable && p.price_cents ? formatPrice(p.price_cents, p.currency, locale) : null;
+  };
   const pack = packFor(f.slug);
   const groups = groupBySubfaction(f, factionCharacters(f.slug), t.factions.leadersTitle).filter((g) => g.pages.length);
 
@@ -40,7 +47,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="space-y-10">
           {pack && (
             <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-              <li><PackTile pack={pack} theme={f.theme} priority href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>
+              <li><PackTile price={priceOf(pack.key)} pack={pack} theme={f.theme} priority href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>
             </ul>
           )}
           {groups.map((g) => (
@@ -48,7 +55,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               {g.name && <h3 className="mb-4 font-display text-2xl text-accent">{g.name} <span className="text-sm text-stone">({g.pages.length})</span></h3>}
               <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
                 {g.pages.map((m, i) => (
-                  <li key={m.slug}><ShopTile page={m} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${m.slug.split("/").pop()}`} /></li>
+                  <li key={m.slug}><ShopTile price={priceOf(m.slug)} page={m} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${m.slug.split("/").pop()}`} /></li>
                 ))}
               </ul>
             </div>

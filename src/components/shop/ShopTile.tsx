@@ -5,7 +5,7 @@ import { dict } from "@/lib/i18n";
 import { miniVisual, type WikiPage } from "@/lib/wiki";
 
 /** Catalogue card: the photo and the name, nothing else. Price, quantity and buy buttons live on the product page. */
-export function ShopTile({ page, href, theme, locale, priority = false }: { page: WikiPage; href: string; theme?: string; locale: Locale; priority?: boolean }) {
+export function ShopTile({ page, href, theme, locale, priority = false, price }: { price?: string | null; page: WikiPage; href: string; theme?: string; locale: Locale; priority?: boolean }) {
   const visual = miniVisual(page);
   const art = visual?.kind === "illustration";
   return (
@@ -18,12 +18,12 @@ export function ShopTile({ page, href, theme, locale, priority = false }: { page
           <span className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_50%_40%,rgb(255_255_255/.08),transparent_60%)]">
             <span className="text-center">
               <span className="block font-display text-6xl text-accent/40" aria-hidden>{page.title.charAt(0)}</span>
-              <span className="mt-2 block text-[10px] uppercase tracking-[0.3em] text-stone">{dict[locale].common.provisional}</span>
+              <span className="mt-2 block text-xs text-stone">{dict[locale].common.provisional}</span>
             </span>
           </span>
         )}
       </span>
-      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight group-hover:text-accent sm:text-base">{page.title}</span>
+      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight group-hover:text-accent sm:text-base">{page.title}{price && <span className="mt-1 block text-gold">{price}</span>}</span>
     </Link>
   );
 }

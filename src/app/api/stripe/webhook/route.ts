@@ -42,8 +42,15 @@ export async function POST(req: Request) {
       if (error) throw error;
     },
     async refundByPaymentIntent(pi) {
-      const { error } = await sb.from("orders").update({ status: "refunded" }).eq("stripe_payment_intent", pi).in("status", ["paid", "shipped"]);
+      const { data, error } = await sb.from("orders").update({ status: "refunded" }).eq("stripe_payment_intent", pi).in("status", ["paid", "shipped"]).select("id");
       if (error) throw error;
+      if (data?.length) return;
+      // Stripe does not guarantee order: the refund may arrive before the payment confirmation. Ask for a retry instead of losing it.
+      const { data: sessions } = await new Stripe(key).checkout.sessions.list({ payment_intent: pi, limit: 1 });
+      const session = sessions[0]?.id;
+      if (!session) return; // a charge that is not one of our orders
+      const { data: pending } = await sb.from("orders").select("id").eq("stripe_session_id", session).eq("status", "pending").maybeSingle();
+      if (pending) throw new Error(`refund arrived before payment confirmation: ${pending.id}`);
     },
   };
 

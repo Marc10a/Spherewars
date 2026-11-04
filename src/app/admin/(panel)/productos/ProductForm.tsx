@@ -44,7 +44,8 @@ export function ProductForm({ value, readOnly }: { value?: ProductValue; readOnl
           <input type="checkbox" name="sellable" defaultChecked={value?.sellable} disabled={d} /> A la venta en la tienda (necesita precio y estado «Publicado»)
         </label>
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Stock" hint="Vacío = sin límite (bajo pedido). 0 = agotado. Baja solo al confirmarse cada pago.">
+          <Field label="Stock" hint="Unidades disponibles, ya sin las reservadas en pagos abiertos. Vacío = sin límite. 0 = agotado. Baja al iniciar el pago y vuelve si no se completa.">
+            <input type="hidden" name="stock_original" value={value?.stock ?? ""} />
             <input name="stock" inputMode="numeric" defaultValue={value?.stock ?? ""} className={inputCls} disabled={d} />
           </Field>
           <Field label="SKU (opcional)"><input name="sku" defaultValue={value?.sku ?? ""} className={inputCls} disabled={d} /></Field>

@@ -70,13 +70,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-abyss via-abyss/80 via-30% to-transparent to-60% md:block" aria-hidden />
         <div className="mx-auto w-full max-w-5xl px-4 pb-8 pt-5 text-center md:pt-0">
           <h1 className="fade-up font-display text-3xl font-bold leading-tight md:text-5xl"><BrandText text={hero.title} /></h1>
-          <p className="fade-up mt-2 font-display text-lg font-semibold text-gold md:text-2xl" style={{ animationDelay: ".15s" }}>{hero.subtitle}</p>
-          <p className="fade-up mx-auto mt-3 max-w-xl text-lg" style={{ animationDelay: ".3s" }}>{hero.text}</p>
-          <div className="fade-up mt-6 flex flex-wrap justify-center gap-3" style={{ animationDelay: ".45s" }}>
+          <p className="fade-up mt-2 font-display text-lg font-semibold text-gold md:text-2xl" style={{ animationDelay: ".05s" }}>{hero.subtitle}</p>
+          <p className="fade-up mx-auto mt-3 max-w-xl text-lg" style={{ animationDelay: ".1s" }}>{hero.text}</p>
+          <div className="fade-up mt-6 flex flex-wrap justify-center gap-3" style={{ animationDelay: ".15s" }}>
             <Button href={links.rules} external>{hero.cta3}</Button>
             <Button href={`/${locale}/juego`} variant="ghost">{hero.cta1}</Button>
           </div>
-          <ul className="fade-up mt-7 flex flex-wrap items-center justify-center gap-6 md:gap-12" style={{ animationDelay: ".6s" }}>
+          <ul className="fade-up mt-7 flex flex-wrap items-center justify-center gap-6 md:gap-12" style={{ animationDelay: ".2s" }}>
             {factions.map((f) => (
               <li key={f.slug}>
                 <Link href={`/${locale}/facciones/${f.slug}`} className="block transition-transform duration-200 hover:-translate-y-1" aria-label={f.name} title={f.name}>
@@ -120,7 +120,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <span aria-hidden className="block font-display text-6xl font-bold leading-none text-gold/70">3</span>
               <h4 className="mt-3 font-display text-2xl">{h.step3Title}</h4>
               <p className="mt-2 text-ivory/90">{h.step3Text}</p>
-              <div className="mt-5"><Button href={`/${locale}/miniaturas`} variant="ghost">{h.step3Cta}</Button></div>
+              <div className="mt-5"><Button href={`/${locale}/tienda`} variant="ghost">{h.step3Cta}</Button></div>
             </li>
           </ol>
           <div className="mt-8"><Button href={`/${locale}/juego`} variant="ghost">{h.whatCta}</Button></div>
@@ -244,7 +244,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* News + events: two compact columns */}
-      <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-4 py-10 md:py-14 lg:grid-cols-2">
+      {(news.length > 0 || nextEvents.length > 0) && <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-4 py-10 md:py-14 lg:grid-cols-2">
         <div data-wp-slot="home-news">
           <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl"><BrandText text={h.newsTitle} /></h2>
           <hr className="rune-divider my-4" />
@@ -284,7 +284,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           )}
           <div className="mt-5"><Button href={`/${locale}/eventos`} variant="ghost">{h.allEvents}</Button></div>
         </div>
-      </section>
+      </section>}
 
       {/* Final call to action */}
       <div className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_center,#3a1510,#080a0d_70%)] py-28 text-center">
