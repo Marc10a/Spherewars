@@ -257,3 +257,15 @@ html.fc-vt::view-transition-old(fc-chosen) { animation: fcVtChosen .42s var(--ea
 }
 
 .orb-text h2, .orb-text blockquote, .orb-text dt, .orb-text dd { text-shadow: 0 2px 18px rgb(0 0 0 / .95), 0 0 42px rgb(0 0 0 / .8); }
+
+/* SphereEvents agenda. */
+.ev-card { --tone: var(--gold); border: 1px solid color-mix(in srgb, var(--tone) 55%, transparent); background: var(--coal); transition: border-color .2s var(--ease-out); }
+.ev-card[data-tone="ice"] { --tone: var(--ice); }
+.ev-card[data-tone="ember"] { --tone: var(--faction-urueh, #f07a55); }
+@media (hover: hover) { .ev-card:hover { border-color: var(--tone); } }
+.ev-past { opacity: .6; }
+.ev-day-lit { background: color-mix(in srgb, var(--ember) 22%, transparent); animation: ev-ember 2.8s ease-in-out infinite; }
+@keyframes ev-ember { 50% { box-shadow: 0 0 16px color-mix(in srgb, var(--ember) 70%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .ev-day-lit { animation: none; } }
+dialog.ev-poster { margin: auto; background: transparent; padding: 0; border: 0; max-height: 100svh; }
+dialog.ev-poster::backdrop { background: rgb(5 5 7 / .88); }

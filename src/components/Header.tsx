@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import { dict, localeNames, locales, type Locale } from "@/lib/i18n";
 import { CartLink } from "@/components/shop/CartLink";
@@ -17,6 +17,7 @@ const quick = [["game", "/juego"], ["factions", "/facciones"], ["wiki", "/wikisp
 
 export function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
+  const bar = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const t = dict[locale].nav;
   const a = dict[locale].a11y;
@@ -25,8 +26,10 @@ export function Header({ locale }: { locale: Locale }) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onDown = (e: PointerEvent) => { if (!bar.current?.contains(e.target as Node)) setOpen(false); };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("pointerdown", onDown); };
   }, [open]);
 
   const switcher = (cls: string) => (
@@ -44,7 +47,7 @@ export function Header({ locale }: { locale: Locale }) {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/25 bg-abyss">
+    <header ref={bar} className="sticky top-0 z-40 border-b border-gold/25 bg-abyss">
       <nav aria-label={a.mainNav} className="mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-4 py-2">
         <Link href={`/${locale}`} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60" />
@@ -76,29 +79,27 @@ export function Header({ locale }: { locale: Locale }) {
       </nav>
 
       {open && (
-        <div id="site-menu" className="absolute inset-x-0 top-full max-h-[calc(100svh-4rem)] overflow-y-auto border-b border-gold/30 bg-coal shadow-2xl">
-          <ul className="mx-auto grid max-w-7xl gap-1 px-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+        /* Only what the bar is not showing at this width: nothing appears twice. */
+        <div id="site-menu" className="absolute inset-x-0 top-full max-h-[calc(100svh-4rem)] overflow-y-auto border-b border-gold/30 bg-coal shadow-2xl xl:inset-x-auto xl:right-[max(1rem,calc((100vw-90rem)/2+1rem))] xl:w-64 xl:border">
+          <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 py-2 sm:grid-cols-3 xl:grid-cols-1 xl:py-1">
             {items.map(([k, href]) => (
-              <li key={k}>
+              <li key={k} className={quick.some(([q]) => q === k) || k === "home" ? "xl:hidden" : ""}>
                 <Link
                   onClick={() => setOpen(false)} href={`/${locale}${href}`}
                   aria-current={rest === href || (href === "" && rest === "") ? "page" : undefined}
-                  className="block border-b border-gold/10 py-3 font-display text-xl uppercase tracking-wider hover:text-gold aria-[current=page]:text-gold"
+                  className="flex min-h-11 items-center font-display text-lg hover:text-gold aria-[current=page]:text-gold"
                 >
                   {t[k]}
                 </Link>
               </li>
             ))}
-            <li className="sm:col-span-2 lg:col-span-3">
-              <Link onClick={() => setOpen(false)} href={`/${locale}/tienda`} className="btn mt-3 block border border-gold py-3 text-center font-display text-base text-gold hover:bg-gold/15">{t.shop}</Link>
-            </li>
-            <li className="sm:col-span-2 lg:col-span-3">
-              <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn mt-3 block bg-gold py-3 text-center font-display text-base text-abyss">{t.playFree}</Link>
-            </li>
-            <li className="pt-4 text-sm sm:col-span-2 lg:col-span-3">
-              {switcher("flex gap-5")}
-            </li>
           </ul>
+          <div className="grid grid-cols-2 gap-3 px-4 pb-3 sm:hidden">
+            <Link onClick={() => setOpen(false)} href={`/${locale}/tienda`} className="btn flex min-h-11 items-center justify-center border border-gold font-display text-base text-gold hover:bg-gold/15">{t.shop}</Link>
+            <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn flex min-h-11 items-center justify-center bg-gold font-display text-base text-abyss">{t.playFree}</Link>
+          </div>
+          <div className="px-4 pb-3 sm:hidden">{switcher("flex min-h-11 items-center gap-6 text-base")}</div>
+          <div className="hidden px-4 pb-3 sm:block md:hidden"><Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn flex min-h-11 items-center justify-center bg-gold font-display text-base text-abyss">{t.playFree}</Link></div>
         </div>
       )}
     </header>

@@ -99,7 +99,7 @@ const es = {
     charactersAria: "Personajes y combatientes", contents: "Contenido", status: "Estado comercial", buy: "Comprar", profile: "Perfil descargable",
   },
   events: {
-    title: "SphereEvents", lead: "Demostraciones, torneos, eventos especiales, encuentros de comunidad y ferias.", upcoming: "Próximos", past: "Pasados",
+    title: "SphereEvents", lead: "Demostraciones, torneos, eventos especiales, encuentros de comunidad y ferias.", upcoming: "Próximos", past: "Pasados", eventLabel: "evento", clearFilters: "Quitar filtros", agendaCta: "Ver la agenda", closePoster: "Cerrar", tagline: "Elige tu batalla. Entra en Otro Mundo.", eventsLabel: "eventos", citiesLabel: "ciudades", nextLabel: "Próximo evento", todayLabel: "hoy", tomorrowLabel: "mañana", inDays: "faltan {n} días", calendar: "Calendario", showPoster: "Ver cartel", soundOn: "Activar sonido", soundOff: "Silenciar", videoLabel: "Vídeo de los SphereEvents del mes", hoursNote: "Consulta la hora exacta con cada tienda.", slots: { demoAfternoon: "Demos por la tarde", tournamentMorning: "Torneo por la mañana", tournamentAfternoon: "Torneo por la tarde", exhibition: "Exposición de miniaturas y taller de pintura" },
     allCities: "Todas las ciudades", allTypes: "Todos los tipos", filters: "Filtros",
     none: "No hay eventos {when} publicados{filters}.", whenUpcoming: "próximos", whenPast: "pasados", withFilters: " con estos filtros",
     kinds: { demo: "Demostración", tournament: "Torneo", special: "Evento especial", community: "Encuentro de comunidad", fair: "Feria" } as Record<string, string>,
@@ -274,7 +274,7 @@ const en: Dict = {
     charactersAria: "Characters and fighters", contents: "Contents", status: "Commercial status", buy: "Buy", profile: "Downloadable profile",
   },
   events: {
-    title: "SphereEvents", lead: "Demos, tournaments, special events, community meetups and trade fairs.", upcoming: "Upcoming", past: "Past",
+    title: "SphereEvents", lead: "Demos, tournaments, special events, community meetups and trade fairs.", upcoming: "Upcoming", past: "Past", eventLabel: "event", clearFilters: "Clear filters", agendaCta: "See the agenda", closePoster: "Close", tagline: "Choose your battle. Enter Otro Mundo.", eventsLabel: "events", citiesLabel: "cities", nextLabel: "Next event", todayLabel: "today", tomorrowLabel: "tomorrow", inDays: "in {n} days", calendar: "Calendar", showPoster: "See poster", soundOn: "Turn sound on", soundOff: "Mute", videoLabel: "Video of this month's SphereEvents", hoursNote: "Check the exact time with each shop.", slots: { demoAfternoon: "Afternoon demos", tournamentMorning: "Morning tournament", tournamentAfternoon: "Afternoon tournament", exhibition: "Miniature exhibition and painting workshop" },
     allCities: "All cities", allTypes: "All types", filters: "Filters",
     none: "No {when} events published{filters}.", whenUpcoming: "upcoming", whenPast: "past", withFilters: " with these filters",
     kinds: { demo: "Demo", tournament: "Tournament", special: "Special event", community: "Community meetup", fair: "Trade fair" },
@@ -447,7 +447,7 @@ const ca: Dict = {
     charactersAria: "Personatges i combatents", contents: "Contingut", status: "Estat comercial", buy: "Comprar", profile: "Perfil descarregable",
   },
   events: {
-    title: "SphereEvents", lead: "Demostracions, tornejos, esdeveniments especials, trobades de comunitat i fires.", upcoming: "Propers", past: "Passats",
+    title: "SphereEvents", lead: "Demostracions, tornejos, esdeveniments especials, trobades de comunitat i fires.", upcoming: "Propers", past: "Passats", eventLabel: "esdeveniment", clearFilters: "Treure filtres", agendaCta: "Veure l'agenda", closePoster: "Tancar", tagline: "Tria la teva batalla. Entra a Otro Mundo.", eventsLabel: "esdeveniments", citiesLabel: "ciutats", nextLabel: "Proper esdeveniment", todayLabel: "avui", tomorrowLabel: "demà", inDays: "falten {n} dies", calendar: "Calendari", showPoster: "Veure cartell", soundOn: "Activar el so", soundOff: "Silenciar", videoLabel: "Vídeo dels SphereEvents del mes", hoursNote: "Consulta l'hora exacta amb cada botiga.", slots: { demoAfternoon: "Demos a la tarda", tournamentMorning: "Torneig al matí", tournamentAfternoon: "Torneig a la tarda", exhibition: "Exposició de miniatures i taller de pintura" },
     allCities: "Totes les ciutats", allTypes: "Tots els tipus", filters: "Filtres",
     none: "No hi ha esdeveniments {when} publicats{filters}.", whenUpcoming: "propers", whenPast: "passats", withFilters: " amb aquests filtres",
     kinds: { demo: "Demostració", tournament: "Torneig", special: "Esdeveniment especial", community: "Trobada de comunitat", fair: "Fira" },

@@ -1,0 +1,147 @@
+{
+  "month": "2026-11",
+  "video": "/eventos/sphereevents-noviembre-2026.mp4",
+  "poster": "/eventos/sphereevents-noviembre-2026.webp",
+  "events": [
+    {
+      "id": "2026-11-07-ulises",
+      "date": "2026-11-07",
+      "venue": "Llibreria Ulises",
+      "city": "Barcelona",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/ulises.webp",
+      "logo": "/eventos/noviembre-2026/logos/ulises.webp"
+    },
+    {
+      "id": "2026-11-07-bgame",
+      "date": "2026-11-07",
+      "venue": "BGame",
+      "city": "Andorra la Vella",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/bgame.webp",
+      "logo": "/eventos/noviembre-2026/logos/bgame.webp"
+    },
+    {
+      "id": "2026-11-12-fortaleza",
+      "date": "2026-11-12",
+      "venue": "La Fortaleza",
+      "city": "A Coruña",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/fortaleza.webp",
+      "logo": "/eventos/noviembre-2026/logos/fortaleza.webp"
+    },
+    {
+      "id": "2026-11-14-hamelin",
+      "date": "2026-11-14",
+      "venue": "Hamelin Games",
+      "city": "Mataró",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/hamelin.webp",
+      "logo": "/eventos/noviembre-2026/logos/hamelin.webp"
+    },
+    {
+      "id": "2026-11-14-senores",
+      "date": "2026-11-14",
+      "venue": "Señores del Valle",
+      "city": "Valladolid",
+      "kind": "special",
+      "slot": "exhibition",
+      "still": "/eventos/noviembre-2026/senores.webp",
+      "logo": "/eventos/noviembre-2026/logos/senores.webp"
+    },
+    {
+      "id": "2026-11-14-bgame",
+      "date": "2026-11-14",
+      "venue": "BGame",
+      "city": "Andorra la Vella",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/bgame.webp",
+      "logo": "/eventos/noviembre-2026/logos/bgame.webp"
+    },
+    {
+      "id": "2026-11-20-torre",
+      "date": "2026-11-20",
+      "venue": "La Torre Oscura",
+      "city": "Sabadell",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/torre.webp",
+      "logo": "/eventos/noviembre-2026/logos/torre.webp"
+    },
+    {
+      "id": "2026-11-21-santako",
+      "date": "2026-11-21",
+      "venue": "Santako Friki",
+      "city": "Santa Coloma de Gramanet",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/santako.webp",
+      "logo": "/eventos/noviembre-2026/logos/santako.webp"
+    },
+    {
+      "id": "2026-11-21-bgame",
+      "date": "2026-11-21",
+      "venue": "BGame",
+      "city": "Andorra la Vella",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/bgame.webp",
+      "logo": "/eventos/noviembre-2026/logos/bgame.webp"
+    },
+    {
+      "id": "2026-11-22-ulises",
+      "date": "2026-11-22",
+      "venue": "Llibreria Ulises",
+      "city": "Barcelona",
+      "kind": "tournament",
+      "slot": "tournamentMorning",
+      "still": "/eventos/noviembre-2026/ulises22.webp",
+      "logo": "/eventos/noviembre-2026/logos/ulises.webp"
+    },
+    {
+      "id": "2026-11-24-orco",
+      "date": "2026-11-24",
+      "venue": "El Orco Rojo",
+      "city": "Valladolid",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/orco.webp",
+      "logo": "/eventos/noviembre-2026/logos/orco.webp"
+    },
+    {
+      "id": "2026-11-24-wargen",
+      "date": "2026-11-24",
+      "venue": "Wargen Wargames",
+      "city": "Madrid",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/wargen.webp",
+      "logo": "/eventos/noviembre-2026/logos/wargen.webp"
+    },
+    {
+      "id": "2026-11-28-rincon",
+      "date": "2026-11-28",
+      "venue": "Rincón del Friki",
+      "city": "Sabadell",
+      "kind": "demo",
+      "slot": "demoAfternoon",
+      "still": "/eventos/noviembre-2026/rincon.webp",
+      "logo": "/eventos/noviembre-2026/logos/rincon.webp"
+    },
+    {
+      "id": "2026-11-28-bgame",
+      "date": "2026-11-28",
+      "venue": "BGame",
+      "city": "Andorra la Vella",
+      "kind": "tournament",
+      "slot": "tournamentAfternoon",
+      "still": "/eventos/noviembre-2026/bgame28.webp",
+      "logo": "/eventos/noviembre-2026/logos/bgame.webp"
+    }
+  ]
+}
