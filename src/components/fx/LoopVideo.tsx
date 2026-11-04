@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { playWithTouchFallback } from "@/lib/video";
 
 /** Decorative looping video that only loads near the screen, and never with reduced motion or data saver. */
 export function LoopVideo({ src, className }: { src: string; className?: string }) {
@@ -9,8 +10,10 @@ export function LoopVideo({ src, className }: { src: string; className?: string 
     const v = ref.current;
     const saver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     if (!v || saver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let inView = false;
     const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { if (!v.src) v.src = src; v.play().catch(() => undefined); } else v.pause();
+      inView = e.isIntersecting;
+      if (inView) { if (!v.src) v.src = src; playWithTouchFallback(v, () => inView); } else v.pause();
     }, { threshold: 0.2 });
     io.observe(v);
     return () => io.disconnect();

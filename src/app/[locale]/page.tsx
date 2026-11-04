@@ -36,7 +36,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="relative -z-30 aspect-video w-full md:absolute md:inset-0 md:aspect-auto">
           <Image src="/brand/hero-intro.webp" alt="Los dioses de SphereWars sobre el mundo de Saphir." fill priority sizes="100vw" className="object-cover object-center" />
         </div>
-        <HeroVideo src="/brand/sphere-hero.mp4" position="center" pauseLabel={t.a11y.pauseVideo} playLabel={t.a11y.playVideo} />
+        <HeroVideo src="/brand/sphere-hero.mp4" mobileSrc="/brand/sphere-hero-m.mp4" position="center" pauseLabel={t.a11y.pauseVideo} playLabel={t.a11y.playVideo} />
         <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-abyss via-abyss/50 via-30% to-transparent to-65% md:block" aria-hidden />
         <div className="land-hero-out mx-auto w-full max-w-7xl px-4 pb-10 pt-6 md:pb-14 md:pt-0">
           <p className="ember-text land-rise font-wordmark leading-none" style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}>SphereWars</p>

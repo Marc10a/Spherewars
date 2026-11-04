@@ -2,44 +2,44 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
+import { muteForAutoplay, playWithTouchFallback } from "@/lib/video";
 
 /**
  * Home hero background. The poster image underneath stays as the fallback: the video only loads on wide screens,
  * never with reduced motion or data saver, and fades in once it can play.
  */
-export function HeroVideo({ src, pauseLabel, playLabel, anyScreen = false, position = "center 22%" }: { src: string; pauseLabel: string; playLabel: string; anyScreen?: boolean; position?: string }) {
+export function HeroVideo({ src, mobileSrc, pauseLabel, playLabel, anyScreen = false, position = "center 22%" }: { src: string; /** Lighter file for phones. The video then fills only the 16:9 band above the text there. */ mobileSrc?: string; pauseLabel: string; playLabel: string; anyScreen?: boolean; position?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [state, setState] = useState<"off" | "playing" | "paused">("off");
+  const [state, setState] = useState<"off" | "refused" | "playing" | "paused">("off");
   const userPaused = useRef(false);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const wide = anyScreen || window.matchMedia("(min-width: 768px)").matches;
+    const wide = anyScreen || Boolean(mobileSrc) || window.matchMedia("(min-width: 768px)").matches;
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!wide || calm || conn?.saveData) return;
-    // React sets muted only as a property; mobile browsers check it before allowing autoplay, so state it explicitly.
-    video.setAttribute("muted", "");
-    video.defaultMuted = true;
-    video.muted = true;
+    muteForAutoplay(video);
+    const wanted = wide && window.matchMedia("(min-width: 768px)").matches ? src : mobileSrc ?? src;
     // Assigning the source again would restart the load.
-    if (video.getAttribute("src") !== src) video.src = src;
-    const start = () => { if (!userPaused.current) video.play().catch(() => undefined); };
-    video.addEventListener("canplay", start);
+    if (video.getAttribute("src") !== wanted) video.src = wanted;
+    const start = () => { if (!userPaused.current) playWithTouchFallback(video, () => !userPaused.current, () => setState("refused")); };
+    video.addEventListener("canplay", start, { once: true });
     start();
-    // Off screen it stops spending battery; it only resumes if the visitor did not pause it.
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) video.pause();
       else start();
     });
     io.observe(video);
     return () => { io.disconnect(); video.removeEventListener("canplay", start); };
-  }, [src, anyScreen]);
+  }, [src, mobileSrc, anyScreen]);
 
   const toggle = () => {
     const video = ref.current;
     if (!video) return;
+    // After a refused autoplay this same touch may already have started it: the button only means "play" here.
+    if (state === "refused") { userPaused.current = false; video.play().catch(() => undefined); return; }
     userPaused.current = !video.paused;
     if (video.paused) video.play().catch(() => undefined);
     else video.pause();
@@ -49,12 +49,12 @@ export function HeroVideo({ src, pauseLabel, playLabel, anyScreen = false, posit
     <>
       <video
         ref={ref} muted loop playsInline preload="none" aria-hidden tabIndex={-1}
-        onPlaying={() => setState("playing")} onPause={() => setState("paused")}
+        onPlaying={() => setState("playing")} onPause={() => setState((now) => (now === "playing" ? "paused" : now))}
         style={{ objectPosition: position }}
-        className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-700 ${anyScreen ? "" : "hidden md:block"} ${state === "off" ? "opacity-0" : "opacity-100"}`}
+        className={`absolute inset-x-0 top-0 -z-20 w-full object-cover transition-opacity duration-700 ${mobileSrc ? "aspect-video md:inset-y-0 md:aspect-auto md:h-full" : "bottom-0 h-full"} ${anyScreen || mobileSrc ? "" : "hidden md:block"} ${state === "off" || state === "refused" ? "opacity-0" : "opacity-100"}`}
       />
       {state !== "off" && (
-        <button type="button" onClick={toggle} aria-label={state === "playing" ? pauseLabel : playLabel} className={`btn absolute right-4 top-4 z-10 md:bottom-5 md:right-5 md:top-auto h-11 w-11 items-center justify-center border border-gold/70 bg-abyss/70 text-ivory hover:bg-gold hover:text-abyss ${anyScreen ? "inline-flex" : "hidden md:inline-flex"}`}>
+        <button type="button" onClick={toggle} aria-label={state === "playing" ? pauseLabel : playLabel} className={`btn absolute right-4 top-4 z-10 md:bottom-5 md:right-5 md:top-auto h-11 w-11 items-center justify-center border border-gold/70 bg-abyss/70 text-ivory hover:bg-gold hover:text-abyss ${anyScreen || mobileSrc ? "inline-flex" : "hidden md:inline-flex"}`}>
           {state === "playing" ? <Pause size={18} aria-hidden /> : <Play size={18} aria-hidden />}
         </button>
       )}

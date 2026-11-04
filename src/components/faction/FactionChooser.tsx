@@ -1,5 +1,6 @@
 "use client";
 
+import { playWithTouchFallback } from "@/lib/video";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -47,8 +48,10 @@ function PanelVideo({ slug, live }: { slug: string; live: boolean }) {
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-    if (live) v.play().catch(() => {}); // autoplay refused or interrupted: the poster stays
-    else v.pause();
+    if (!live) { v.pause(); return; }
+    let current = true;
+    playWithTouchFallback(v, () => current); // refused until a touch, or interrupted: the poster stays meanwhile
+    return () => { current = false; };
   }, [live, failed]);
 
   if (failed) return null;

@@ -104,7 +104,7 @@ Esquinas rectas y bordes finos en oro o en el acento de facción.
 - **`StarterBlock`:** bloque destacado del producto de entrada de cada facción.
 - **`ElementCanvas`:** fuego, hielo, viento o chispas de forja según la facción, sobre sus cabeceras y al pasar por sus tarjetas.
 - **`EssenceThreads`:** escena de las hebras de la Quinta Esencia, ligada al scroll, que cambia de color al elegir un dios.
-- **`HeroVideo`:** vídeo de cabecera, en la portada solo en pantallas anchas, sin movimiento reducido ni ahorro de datos, con botón de pausa, y se detiene fuera de pantalla.
+- **`HeroVideo`:** vídeo de cabecera, con versión ligera en móvil, sin movimiento reducido ni ahorro de datos, con botón de pausa, y se detiene fuera de pantalla.
 - **`EventsAgenda`:** cabecera con el vídeo del mes, calendario completo con los días de evento marcados (también filtran), Próximos/Pasados, desplegables de ciudad y tipo, y tarjetas por día con logo de la tienda y cartel. Cada campaña se edita en `src/content/events-campaign.json`.
 - **`LoreOverview`:** entrada de WikiSphere con mapa, dioses, leyes, historias y leyendas.
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ElementShader } from "@/components/faction/ElementShader";
 import type { Element } from "@/lib/element";
+import { playWithTouchFallback } from "@/lib/video";
 
 export type PanFaction = { slug: string; name: string; theme: string; hook: string; href: string; element: Element };
 
@@ -20,10 +21,12 @@ export function FactionPan({ factions, title, cta }: { factions: PanFaction[]; t
     const saver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     const videos = [...tr.querySelectorAll<HTMLVideoElement>("video")];
     const playable = !calm && !saver;
+    const visible = new WeakMap<HTMLVideoElement, boolean>();
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const v = e.target as HTMLVideoElement;
       if (!playable) return;
-      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src!; v.play().catch(() => undefined); } else v.pause();
+      visible.set(v, e.isIntersecting);
+      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src!; playWithTouchFallback(v, () => visible.get(v) === true); } else v.pause();
     }), { threshold: 0.55 });
     videos.forEach((v) => io.observe(v));
     const wide = window.matchMedia("(min-width: 1024px)");

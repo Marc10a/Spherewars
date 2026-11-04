@@ -7,6 +7,7 @@ import { ChevronDown, MapPin, Pause, Play, Volume2, VolumeX, X } from "lucide-re
 import { dict, fmt, type Locale } from "@/lib/i18n";
 import { Button, chipCls, Pending } from "@/components/ui";
 import { ElementCanvas } from "@/components/ElementCanvas";
+import { muteForAutoplay, playWithTouchFallback } from "@/lib/video";
 
 export type AgendaItem = { id: string; date: string; venue: string; city: string | null; kind: string; slot?: string; note?: string | null; still?: string; logo?: string; href?: string };
 /** Date text is formatted once on the server: browsers and Node do not format every locale alike. */
@@ -48,14 +49,12 @@ function PromoVideo({ src, poster, label, soundOn, soundOff, pause, play }: { sr
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-    v.setAttribute("muted", "");
-    v.defaultMuted = true;
-    v.muted = true;
+    muteForAutoplay(v);
     const saver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     if (saver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) userPaused.current = true;
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) v.pause();
-      else if (!userPaused.current) v.play().catch(() => undefined);
+      else if (!userPaused.current) playWithTouchFallback(v, () => !userPaused.current);
     }, { threshold: 0.25 });
     io.observe(v);
     return () => io.disconnect();
