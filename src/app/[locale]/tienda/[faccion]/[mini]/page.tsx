@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
 
         <div className="lg:pt-4">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">{f.name}</p>
+          <p className="font-display text-xs uppercase tracking-[0.3em] text-accent">{f.name}</p>
           <h1 lang="es" className="mt-2 font-display text-3xl leading-tight md:text-5xl">{title}</h1>
           {doc ? <p lang="es" className="mt-4 text-base leading-relaxed text-ivory/80">{doc.intro}</p>
             : info?.excerpt && <p lang="es" className="mt-4 line-clamp-4 text-base leading-relaxed text-ivory/80">{info.excerpt}</p>}

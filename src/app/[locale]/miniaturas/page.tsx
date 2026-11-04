@@ -66,7 +66,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                     </div>
                     <div className="p-4">
                       <h2 className="font-display text-lg">{p.name}</h2>
-                      <p className="text-xs uppercase tracking-widest text-accent">{factions.find((f) => f.slug === p.factions?.slug)?.name}</p>
+                      <p className="font-display text-xs uppercase tracking-widest text-accent">{factions.find((f) => f.slug === p.factions?.slug)?.name}</p>
                       {price && <p className="mt-1 text-sm text-stone">{price}</p>}
                     </div>
                   </Link>

@@ -9,4 +9,4 @@ export const links = {
   rules: "https://www.dropbox.com/transfer/AAAAAImr8ghFT9iGSXEgjffkvFU68MbJd6sOqJ521oeL_7vyK6G1KSo",
   legacyWeb: "https://www.spherewarsgames.com/",
 };
-export const stats = { minis: "5–12", minutes: "30–55", table: "90 × 90" };
+export const stats = { minis: "5–12", minutes: "45–55", table: "90 × 90" };

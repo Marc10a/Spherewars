@@ -64,7 +64,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                     <Link href={`/${locale}/eventos/${e.slug}`} className="grid gap-1 p-4 hover:bg-gold/5 sm:grid-cols-[8rem_1fr_auto] sm:items-center">
                       <time dateTime={e.starts_at} className="font-display text-gold">{new Date(e.starts_at).toLocaleDateString(locale, { day: "numeric", month: "short" })}</time>
                       <span>{e.title}<span className="block text-xs text-stone">{[e.organizer, e.city].filter(Boolean).join(" · ")}</span></span>
-                      <span className="text-xs uppercase tracking-widest text-ice">{t.events.kinds[e.kind]}</span>
+                      <span className="font-display text-xs uppercase tracking-widest text-ice">{t.events.kinds[e.kind]}</span>
                     </Link>
                   </li>
                 ))}

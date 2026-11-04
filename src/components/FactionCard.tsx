@@ -23,7 +23,7 @@ export function FactionCard({ f, locale }: { f: Faction; locale: Locale }) {
       <div className="relative">
         <h3 className="font-display text-2xl text-ivory">{f.name}</h3>
         <p className="mt-2 text-sm text-ivory/85">{f.blurb[locale]}</p>
-        <p className="mt-2 text-xs uppercase tracking-wider text-accent">{f.style[locale]}</p>
+        <p className="font-display mt-2 text-xs uppercase tracking-wider text-accent">{f.style[locale]}</p>
       </div>
     </Link>
   );
@@ -43,7 +43,7 @@ export function FactionSlide({ f, locale }: { f: Faction; locale: Locale }) {
         {count > 0 && <p className="text-xs uppercase tracking-widest text-accent">{count} {t.factions.minisCount}</p>}
         <h3 className="font-display text-3xl text-ivory md:text-4xl">{f.name}</h3>
         <p className="text-ivory/85">{f.blurb[locale]}</p>
-        <p className="text-xs uppercase tracking-wider text-accent">{f.style[locale]}</p>
+        <p className="font-display text-xs uppercase tracking-wider text-accent">{f.style[locale]}</p>
         {f.subfactions && <p className="text-sm text-stone">{f.subfactions.map((s) => s.name).join(" · ")}</p>}
         <div className="mt-2 flex flex-wrap gap-3">
           <Link href={`/${locale}/facciones/${f.slug}`} className="bg-accent px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss transition hover:bg-ivory">{t.home.factionEnter}</Link>

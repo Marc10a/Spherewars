@@ -41,7 +41,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
               {shown.map((h) => (
                 <li key={h.type + h.href + h.title}>
                   <Link href={h.href} className="block p-4 hover:bg-gold/5">
-                    <span className="text-xs uppercase tracking-widest text-gold">{groups[h.type]}</span>
+                    <span className="font-display text-xs uppercase tracking-widest text-gold">{groups[h.type]}</span>
                     <span lang={h.type === "wiki" ? "es" : undefined} className="block">{h.title}</span>
                     {h.detail && <span className="text-xs text-stone">{h.detail}</span>}
                   </Link>

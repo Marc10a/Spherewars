@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { dict, isLocale } from "@/lib/i18n";
 import { factions } from "@/content/factions";
 import { links, stats } from "@/content/site";
-import { Button, Pending, Section } from "@/components/ui";
+import { BrandText, Button, Pending, Section } from "@/components/ui";
 import { FactionSlide } from "@/components/FactionCard";
 import { Carousel } from "@/components/Carousel";
 import { ContactSection } from "@/components/ContactSection";
@@ -63,9 +63,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-abyss via-abyss/30 to-transparent" aria-hidden />
         <Particles kind="dust" count={26} />
         <div className="mx-auto max-w-7xl px-4 py-14 md:py-20">
-          <p className="fade-up text-xs uppercase tracking-[0.4em] text-gold">SphereWars: Otro Mundo</p>
-          <h1 className="fade-up mt-4 max-w-4xl font-display text-4xl uppercase leading-tight tracking-wide md:text-7xl" style={{ animationDelay: ".2s" }}>{hero.title}</h1>
-          <p className="fade-up mt-4 text-lg uppercase tracking-[0.25em] text-ice" style={{ animationDelay: ".5s" }}>{hero.subtitle}</p>
+          <p className="fade-up font-display text-sm uppercase tracking-[0.3em] text-gold"><span className="font-wordmark normal-case tracking-[0.04em] text-lg">SphereWars</span>: Otro Mundo</p>
+          <h1 className="fade-up mt-4 max-w-4xl font-display text-4xl uppercase leading-tight tracking-wide md:text-7xl" style={{ animationDelay: ".2s" }}><BrandText text={hero.title} /></h1>
+          <p className="fade-up mt-4 font-display text-lg uppercase tracking-[0.25em] text-ice" style={{ animationDelay: ".5s" }}>{hero.subtitle}</p>
           <p className="fade-up mt-6 max-w-xl text-lg text-ivory/80" style={{ animationDelay: ".8s" }}>{hero.text}</p>
           <div className="fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: "1.1s" }}>
             <Button href={`/${locale}/juego`}>{hero.cta1}</Button>
@@ -125,7 +125,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/40 to-transparent" aria-hidden />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <h3 className="font-display text-3xl">{g.name}</h3>
-                    <p className="text-xs uppercase tracking-widest text-accent">{h[g.epithet]}</p>
+                    <p className="font-display text-xs uppercase tracking-widest text-accent">{h[g.epithet]}</p>
                     {p && <p className="mt-1 text-xs text-stone">{h.readOnWiki}</p>}
                   </div>
                 </Link>
@@ -191,7 +191,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {/* News + events: two compact columns */}
       <section data-reveal className="mx-auto grid max-w-7xl gap-10 px-4 py-10 md:py-14 lg:grid-cols-2">
         <div data-wp-slot="home-news">
-          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">{h.newsTitle}</h2>
+          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl"><BrandText text={h.newsTitle} /></h2>
           <hr className="rune-divider my-4" />
           {news.length === 0 ? (
             <Pending label={common.pendingLabel}>{h.newsEmpty}</Pending>
@@ -200,7 +200,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {news.map((n) => (
                 <li key={n.id}>
                   <Link href={`/${locale}/novedades/${n.slug}`} className="block p-4 hover:bg-gold/5">
-                    <span className="text-xs uppercase tracking-widest text-gold">{n.category}{n.publish_at ? ` · ${new Date(n.publish_at).toLocaleDateString(locale)}` : ""}</span>
+                    <span className="font-display text-xs uppercase tracking-widest text-gold">{n.category}{n.publish_at ? ` · ${new Date(n.publish_at).toLocaleDateString(locale)}` : ""}</span>
                     <span className="mt-1 block font-display text-lg">{n.title}</span>
                   </Link>
                 </li>

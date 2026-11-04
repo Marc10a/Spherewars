@@ -31,7 +31,7 @@ export function MiniCard({ page, locale, theme }: { page: WikiPage; locale: Loca
           <Link href={`/${locale}/wikisphere/${page.slug}`} className="hover:text-accent">{page.title}</Link>
         </h3>
         {info.race && (
-          <p className="mt-1 text-xs uppercase tracking-widest text-accent">
+          <p className="font-display mt-1 text-xs uppercase tracking-widest text-accent">
             {t.factions.raceLabel}: <span lang="es">{info.race}</span>
           </p>
         )}

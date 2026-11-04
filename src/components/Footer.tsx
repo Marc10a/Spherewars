@@ -8,7 +8,7 @@ export function Footer({ locale }: { locale: Locale }) {
     <footer className="mt-24 border-t border-gold/20 bg-coal">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="text-3xl tracking-[0.12em] text-gold" style={{ fontFamily: "var(--font-abaddon), var(--font-cinzel), serif" }}>SPHEREWARS</p>
+          <p className="font-wordmark text-3xl tracking-[0.04em] text-gold">SphereWars</p>
           <p className="mt-2 text-sm text-stone">{t.footer.tagline}</p>
           <p className="mt-4 flex gap-3 text-xs text-stone">
             {locales.map((l) => (

@@ -3,6 +3,11 @@ import Link from "next/link";
 import { Particles, particleKind } from "@/components/Particles";
 import type { ReactNode } from "react";
 
+/** Brand rule: the name "SphereWars" is always set in Abaddon; the rest of a title stays in Cinzel. */
+export function BrandText({ text }: { text: string }) {
+  return text.split(/(SphereWars)/i).map((part, i) => (i % 2 ? <span key={i} className="font-wordmark">SphereWars</span> : part));
+}
+
 export function Button({ href, children, variant = "solid", external }: { href: string; children: ReactNode; variant?: "solid" | "ghost"; external?: boolean }) {
   const cls = `inline-block px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${
     variant === "solid" ? "bg-gold text-abyss hover:bg-ivory" : "border border-gold/60 text-gold hover:bg-gold/10"
@@ -13,7 +18,7 @@ export function Button({ href, children, variant = "solid", external }: { href: 
 export function Section({ title, lead, children, id, compact }: { title: string; lead?: string; children?: ReactNode; id?: string; compact?: boolean }) {
   return (
     <section id={id} data-reveal className={`mx-auto max-w-7xl px-4 ${compact ? "py-10 md:py-14" : "py-16 md:py-24"}`}>
-      <h2 className="font-display text-3xl tracking-wide text-ivory md:text-5xl">{title}</h2>
+      <h2 className="font-display text-3xl tracking-wide text-ivory md:text-5xl"><BrandText text={title} /></h2>
       {lead && <p className="mt-3 max-w-2xl text-stone">{lead}</p>}
       <hr className={`rune-divider ${compact ? "my-6" : "my-8"}`} />
       {children}
@@ -29,7 +34,7 @@ export function PageHero({ title, lead, theme, image }: { title: string; lead?: 
       <div className="mist absolute inset-0" aria-hidden />
       <Particles kind={particleKind(theme)} count={18} />
       <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28">
-        <h1 className="fade-up font-display text-4xl tracking-wide text-ivory md:text-6xl">{title}</h1>
+        <h1 className="fade-up font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
         {lead && <p className="fade-up mt-4 max-w-2xl text-lg text-stone">{lead}</p>}
       </div>
     </div>

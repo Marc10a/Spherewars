@@ -46,7 +46,7 @@ export function Header({ locale }: { locale: Locale }) {
       <nav aria-label={a.mainNav} className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
         <Link href={`/${locale}`} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60" />
-          <span className="text-2xl tracking-[0.12em] text-gold" style={{ fontFamily: "var(--font-abaddon), var(--font-cinzel), serif" }}>SPHEREWARS</span>
+          <span className="font-wordmark text-2xl tracking-[0.04em] text-gold">SphereWars</span>
           <span className="sr-only">{a.home}</span>
         </Link>
 

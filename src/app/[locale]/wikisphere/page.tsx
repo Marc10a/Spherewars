@@ -53,7 +53,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                 <Link href={`/${locale}/wikisphere/${p.slug}`} className="tilt-card block h-full overflow-hidden border border-gold/20 bg-coal">
                   {p.image && (p.category === "personajes" || p.category === "lugares") && <Image src={p.image} alt="" width={480} height={320} loading="lazy" className="h-40 w-full object-cover object-top" />}
                   <div className="p-4">
-                    <p className="text-xs uppercase tracking-widest text-gold">{w.cat[p.category] ?? p.categoryName}</p>
+                    <p className="font-display text-xs uppercase tracking-widest text-gold">{w.cat[p.category] ?? p.categoryName}</p>
                     <h2 lang="es" className="mt-1 font-display text-lg">{p.title}</h2>
                     {p.description && <p lang="es" className="mt-1 line-clamp-2 text-sm text-stone">{p.description}</p>}
                   </div>
@@ -63,7 +63,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
             {extra.map((a) => (
               <li key={a.id}>
                 <Link href={`/${locale}/wikisphere/${a.slug}`} className="tilt-card block h-full border border-gold/20 bg-coal p-4">
-                  <p className="text-xs uppercase tracking-widest text-gold">{a.article_categories?.name[locale] ?? a.article_categories?.name.es}</p>
+                  <p className="font-display text-xs uppercase tracking-widest text-gold">{a.article_categories?.name[locale] ?? a.article_categories?.name.es}</p>
                   <h2 className="mt-1 font-display text-lg">{a.title}</h2>
                 </Link>
               </li>
