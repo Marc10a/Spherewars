@@ -1,3 +1,4 @@
+import { oneParam } from "@/lib/params";
 import { notFound } from "next/navigation";
 import { dict, fmt, isLocale } from "@/lib/i18n";
 import { formatPrice, getEvent, isUpcoming, registrationCount } from "@/lib/data";
@@ -12,9 +13,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return pageMeta({ title: e?.title, path: `/eventos/${slug}` }, locale);
 }
 
-export default async function Page({ params, searchParams }: { params: Promise<{ locale: string; slug: string }>; searchParams: Promise<{ reg?: string }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string; slug: string }>; searchParams: Promise<{ reg?: string | string[] }> }) {
   const { locale, slug } = await params;
-  const { reg } = await searchParams;
+  const reg = oneParam((await searchParams).reg);
   if (!isLocale(locale)) notFound();
   const t = dict[locale].events;
   const e = await getEvent(slug);
@@ -48,7 +49,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
 
         <aside aria-label={t.registration} className="h-fit border border-gold/30 bg-coal p-5">
           <h2 className="font-display text-lg">{t.registration}</h2>
-          {reg && <p role="status" className="mt-3 border border-gold/50 p-2 text-sm">{t.reg[reg] ?? t.reg.error}</p>}
+          {reg && <p role="status" className="mt-3 border border-gold/50 p-2 text-sm">{Object.hasOwn(t.reg, reg) ? t.reg[reg] : t.reg.error}</p>}
           {!upcoming ? <p className="mt-3 text-sm text-stone">{t.happened}</p>
             : e.registration_open ? (
               full ? <p className="mt-3 text-sm text-stone">{t.full}</p> : (

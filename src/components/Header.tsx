@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import { dict, localeNames, locales, type Locale } from "@/lib/i18n";
 import { CartLink } from "@/components/shop/CartLink";
+import { AddConfirm } from "@/components/shop/AddConfirm";
 
 const items = [
   ["home", ""], ["game", "/juego"], ["factions", "/facciones"], ["wiki", "/wikisphere"], ["minis", "/miniaturas"],
@@ -21,6 +22,7 @@ export function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const t = dict[locale].nav;
   const a = dict[locale].a11y;
+  const s = dict[locale].shop;
   const rest = pathname.replace(/^\/(es|en|ca)(?=\/|$)/, "");
 
   useEffect(() => {
@@ -47,11 +49,12 @@ export function Header({ locale }: { locale: Locale }) {
   );
 
   return (
+    <>
     <header ref={bar} className="sticky top-0 z-40 border-b border-gold/25 bg-abyss">
       <nav aria-label={a.mainNav} className="mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-4 py-2">
-        <Link href={`/${locale}`} className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60" />
-          <span className="font-wordmark text-2xl tracking-[0.04em] text-gold">SphereWars</span>
+        <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>
+          <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60 max-sm:size-9" />
+          <span className="font-wordmark text-xl tracking-[0.04em] text-gold sm:text-2xl">SphereWars</span>
           <span className="sr-only">{a.home}</span>
         </Link>
 
@@ -61,9 +64,10 @@ export function Header({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {switcher("hidden items-center gap-3 text-sm sm:flex")}
           <Link href={`/${locale}/tienda`} aria-current={rest === "/tienda" || rest.startsWith("/tienda/") ? "page" : undefined} className="btn hidden min-h-10 items-center border border-gold/70 px-4 font-display text-base text-ivory hover:bg-gold/15 aria-[current=page]:border-gold aria-[current=page]:text-gold sm:inline-flex">{t.shop}</Link>
+          <Link href={`/${locale}/tienda`} aria-current={rest === "/tienda" || rest.startsWith("/tienda/") ? "page" : undefined} className="hidden min-h-11 items-center font-display text-base text-ivory hover:text-gold aria-[current=page]:text-gold min-[23rem]:inline-flex sm:hidden">{t.shop}</Link>
           <CartLink locale={locale} label={a.cart} />
           <Link href={`/${locale}/buscar`} aria-label={a.search} className="-m-3 p-3 text-ivory/80 hover:text-gold"><Search size={20} /></Link>
           <Link href={`/${locale}/juega-gratis`} className="btn hidden min-h-10 items-center bg-gold px-4 font-display text-base text-abyss hover:bg-ivory md:inline-flex">
@@ -95,13 +99,15 @@ export function Header({ locale }: { locale: Locale }) {
             ))}
           </ul>
           <div className="grid grid-cols-2 gap-3 px-4 pb-3 sm:hidden">
-            <Link onClick={() => setOpen(false)} href={`/${locale}/tienda`} className="btn flex min-h-11 items-center justify-center border border-gold font-display text-base text-gold hover:bg-gold/15">{t.shop}</Link>
-            <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn flex min-h-11 items-center justify-center bg-gold font-display text-base text-abyss">{t.playFree}</Link>
+            <Link onClick={() => setOpen(false)} href={`/${locale}/tienda`} className="btn flex min-h-11 items-center justify-center border border-gold font-display text-base text-gold hover:bg-gold/15 min-[23rem]:hidden">{t.shop}</Link>
+            <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn flex min-h-11 items-center justify-center bg-gold font-display text-base text-abyss min-[23rem]:col-span-2">{t.playFree}</Link>
           </div>
           <div className="px-4 pb-3 sm:hidden">{switcher("flex min-h-11 items-center gap-6 text-base")}</div>
           <div className="hidden px-4 pb-3 sm:block md:hidden"><Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn flex min-h-11 items-center justify-center bg-gold font-display text-base text-abyss">{t.playFree}</Link></div>
         </div>
       )}
     </header>
+    <AddConfirm locale={locale} labels={{ added: s.added, close: a.close, subtotal: s.subtotal, viewCart: s.viewCart, continue: s.continue, crossTitle: s.crossTitle }} />
+    </>
   );
 }

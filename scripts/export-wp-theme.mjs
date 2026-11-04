@@ -31,6 +31,13 @@ for (const l of LOCALES) {
   for (const f of factions) urls.add(`/${l}/miniaturas?faccion=${f}`);
   for (const c of cats) urls.add(`/${l}/miniaturas?categoria=${c}`);
   for (const c of wikiCats) urls.add(`/${l}/wikisphere?categoria=${c}`);
+  // shop filters: parameters in the order of shopHref (src/lib/shop/catalogue.ts) and of ksort in the theme's router
+  for (const base of [`/${l}/tienda`, ...factions.map((f) => `/${l}/tienda/${f}`)]) {
+    for (const orden of ["", "precio", "puntos"]) for (const tipo of ["", "starter", "sueltas"]) {
+      const qs = [orden && `orden=${orden}`, tipo && `tipo=${tipo}`].filter(Boolean).join("&");
+      if (qs) urls.add(`${base}?${qs}`);
+    }
+  }
 }
 const list = [...urls].filter((u) => !/^\/(api|admin|_next)/.test(u)).sort();
 

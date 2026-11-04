@@ -205,6 +205,17 @@
     paint();
   })();
 
+  /* ---------- catalogue: one-tap add ---------- */
+  $$("[data-sw-quick]").forEach(function (root) {
+    var item; try { item = JSON.parse(root.getAttribute("data-sw-item")); } catch (e) { return; }
+    var btn = $("button", root), status = $('p[role="status"]', root), timer = 0;
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      cart.add(item, 1);
+      if (status) { status.innerHTML = esc(S.added) + ' · <a href="/' + L + '/tienda/carrito" class="underline underline-offset-4">' + esc(S.viewCart) + "</a>"; clearTimeout(timer); timer = setTimeout(function () { status.textContent = ""; }, 4000); }
+    });
+  });
+
   /* ---------- cart page ---------- */
   (function () {
     var box = location.pathname.indexOf("/tienda/carrito") < 0 ? null : $("main .max-w-6xl");

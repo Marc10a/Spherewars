@@ -1,8 +1,8 @@
 "use server";
 
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import Stripe from "stripe";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { dict, fmt } from "@/lib/i18n";
@@ -10,7 +10,8 @@ import { siteUrl } from "@/lib/seo";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { shopReadiness } from "@/lib/shop/settings";
 import { computeCart, type ShopProduct } from "@/lib/shop/pricing";
-import { wooCreateOrder, wooEnabled, wooProductsById, wooShipping } from "@/lib/woo";
+import { wooAllowAttempt, wooClientIpReady, wooCreateOrder, wooEnabled, wooProductsById, wooShipping, wooVisitor } from "@/lib/woo";
+import { browserCookieOptions, cartErrorPath, CHECKOUT_COOKIE, parseBrowserId, returnUrlFor, type Visitor } from "@/lib/woo/map";
 
 const form = z.object({
   locale: z.enum(["es", "en", "ca"]),
@@ -58,13 +59,22 @@ async function releaseExpiredReservations(sb: ReturnType<typeof supabaseAdmin>) 
 export async function startCheckout(formData: FormData) {
   const parsed = form.safeParse(Object.fromEntries(formData));
   const locale = parsed.success ? parsed.data.locale : "es";
-  const back = (code: string): never => redirect(`/${locale}/tienda/carrito?e=${code}`);
+  const back = (code: string, line?: string): never => redirect(cartErrorPath(locale, code, line));
   if (!parsed.success) return back("generic");
+
+  // WooCommerce path: a read/write key is in play and there is no database to lean on, so the limit runs before any call to WooCommerce.
+  let visitor: Visitor | null = null;
+  if (wooEnabled()) {
+    if (!wooClientIpReady()) return back("disabled"); // no trusted IP source on this host: limits would be worthless
+    visitor = wooVisitor(await headers());
+    if (!visitor) return back("generic");
+    if (!wooAllowAttempt(visitor)) return back("busy");
+  }
 
   const ready = await shopReadiness();
   if (!ready.canCheckout) return back("disabled");
 
-  if (wooEnabled()) return startWooCheckout(parsed.data.cart, parsed.data.country, back);
+  if (visitor) return startWooCheckout(parsed.data.cart, parsed.data.country, locale, visitor, back);
 
   let cart;
   try { cart = cartSchema.parse(JSON.parse(parsed.data.cart)); } catch { return back("generic"); }
@@ -170,7 +180,7 @@ export async function startCheckout(formData: FormData) {
  * WooCommerce checkout: products and shipping are read AGAIN from WooCommerce (the browser only sends ids, quantities and country),
  * the same cart rules are applied, a pending order is created in WooCommerce and the customer pays on WooCommerce's payment page.
  */
-async function startWooCheckout(rawCart: string, country: string, back: (code: string) => never): Promise<never> {
+async function startWooCheckout(rawCart: string, country: string, locale: string, visitor: Visitor, back: (code: string, line?: string) => never): Promise<never> {
   let cart;
   try { cart = z.array(z.object({ id: z.string().regex(/^[0-9]{1,12}$/), qty: z.number().int() })).max(60).parse(JSON.parse(rawCart)); } catch { return back("generic"); }
 
@@ -179,11 +189,22 @@ async function startWooCheckout(rawCart: string, country: string, back: (code: s
   const map = new Map<string, ShopProduct>(products.map((p) => [p.id, { id: p.id, name: p.name, sku: null, price_cents: p.price_cents, currency: p.currency, stock: p.stock, sellable: p.sellable }]));
 
   const result = computeCart(cart, map, shipping.settings, country);
-  if (!result.ok) return back(result.error);
+  if (!result.ok) return back(result.error, result.productId);
   const detail = shipping.details.find((d) => d.zone.id === result.zone.id);
   if (!detail) return back("no_zone");
 
-  const url = await wooCreateOrder(result.lines.map((l) => ({ id: l.product.id, qty: l.qty })), country, detail, result.shipping_cents);
-  if (!url) return back("stripe");
-  redirect(url);
+  const jar = await cookies();
+  let browser = parseBrowserId(jar.get(CHECKOUT_COOKIE)?.value);
+  if (!browser) {
+    browser = randomUUID();
+    jar.set(CHECKOUT_COOKIE, browser, browserCookieOptions(process.env.NODE_ENV === "production"));
+  }
+
+  const order = await wooCreateOrder({
+    lines: result.lines.map((l) => ({ id: l.product.id, qty: l.qty, unit_cents: l.unit_cents })),
+    country, detail, shipping_cents: result.shipping_cents, visitor, browser,
+    returnUrl: returnUrlFor(process.env.NEXT_PUBLIC_SITE_URL, locale),
+  });
+  if ("error" in order) return back(order.error === "busy" ? "busy" : "stripe");
+  redirect(order.url);
 }

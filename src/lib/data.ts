@@ -10,6 +10,7 @@ import { wooEnabled, wooProducts } from "@/lib/woo";
 // the explicit filters below keep intent visible and handle embargoes. Returns [] when Supabase is not configured.
 
 export type Product = {
+  regular_price_cents?: number | null; sale_price_cents?: number | null;
   id: string; slug: string; name: string; category: string; description: { text?: string } | null; contents: string | null;
   price_cents: number | null; currency: string | null; commercial_status: string; buy_url: string | null; profile_url: string | null;
   stock: number | null; sellable: boolean; wiki_slug: string | null; image_path: string | null; image_alt: string | null; factions: { slug: string } | null;

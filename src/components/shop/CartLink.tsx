@@ -4,14 +4,13 @@ import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "./cart-store";
 
-/** Header cart icon: appears only once something is in the cart. */
+/** Header cart icon: always there, so the cart can be found before anything is in it. The count shows once there is one. */
 export function CartLink({ locale, label }: { locale: string; label: string }) {
   const { count } = useCart();
-  if (count === 0) return null;
   return (
-    <Link href={`/${locale}/tienda/carrito`} aria-label={`${label} (${count})`} className="relative text-ivory/80 hover:text-gold">
-      <ShoppingBag size={20} />
-      <span className="absolute -right-2 -top-2 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-xs font-bold text-abyss">{count}</span>
+    <Link href={`/${locale}/tienda/carrito`} aria-label={count ? `${label} (${count})` : label} className="relative grid size-11 shrink-0 place-items-center text-ivory/80 hover:text-gold">
+      <ShoppingBag size={20} aria-hidden />
+      {count > 0 && <span key={count} className="sw-pop absolute right-0 top-0 grid h-5 min-w-5 place-items-center bg-gold px-1 text-sm leading-none text-abyss tabular-nums">{count}</span>}
     </Link>
   );
 }

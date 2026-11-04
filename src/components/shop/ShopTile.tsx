@@ -1,30 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Locale } from "@/lib/i18n";
-import { dict } from "@/lib/i18n";
-import { miniVisual, ownerPhotos, type WikiPage } from "@/lib/wiki";
+import type { Dict } from "@/lib/i18n";
+import type { ShopEntry } from "@/lib/shop/catalogue";
+import { EntryStatus, factLine } from "./facts-ui";
 
-/** Catalogue card: the photo and the name, nothing else. Price, quantity and buy buttons live on the product page. */
-export function ShopTile({ page, href, theme, locale, priority = false, price }: { price?: string | null; page: WikiPage; href: string; theme?: string; locale: Locale; priority?: boolean }) {
-  const clean = ownerPhotos(page.slug)?.gallery.find((g) => g.kind === "clean");
-  const visual = clean ? { src: clean.src, kind: "photo" as const } : miniVisual(page);
-  const art = visual?.kind === "illustration";
+/** Catalogue card of a product on sale. Only entries with a real photo reach it; the scene photo fades in on hover. */
+export function ShopTile({ entry: e, t, open, showFaction = false, priority = false }: { entry: ShopEntry & { photo: string }; t: Dict; open: boolean; showFaction?: boolean; priority?: boolean }) {
+  const facts = factLine(e, t);
   return (
-    <Link href={href} data-faction={theme} className="tilt-card group block overflow-hidden border border-accent/25 bg-coal">
-      <span className={`relative block aspect-square ${art ? "bg-ivory" : "spot"}`}>
-        {visual ? (
-          <Image src={visual.src} alt={page.title} fill sizes="(min-width:1280px) 22vw, (min-width:768px) 30vw, 50vw" priority={priority} loading={priority ? undefined : "lazy"}
-            className={`object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-[1.03] ${art ? "mix-blend-multiply" : ""}`} />
-        ) : (
-          <span className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_50%_40%,rgb(255_255_255/.08),transparent_60%)]">
-            <span className="text-center">
-              <span className="block font-display text-6xl text-accent/40" aria-hidden>{page.title.charAt(0)}</span>
-              <span className="mt-2 block text-xs text-stone">{dict[locale].common.provisional}</span>
-            </span>
-          </span>
-        )}
+    <Link href={e.href} data-faction={e.faction.theme} className="shop-tile group">
+      <span className="spot relative block aspect-square overflow-hidden">
+        <Image src={e.photo} alt="" fill sizes="(min-width:1280px) 22vw, (min-width:768px) 30vw, 50vw" priority={priority} loading={priority ? undefined : "lazy"} className={`shop-tile-mini ${e.photoFills ? "object-cover object-[50%_75%]" : "object-contain p-4"}`} />
+        {e.scene && <Image src={e.scene} alt="" fill sizes="(min-width:1280px) 22vw, 30vw" loading="lazy" className="shop-tile-scene object-cover object-[50%_75%]" />}
       </span>
-      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight group-hover:text-accent sm:text-base">{page.title}{price && <span className="mt-1 block text-gold">{price}</span>}</span>
+      <span className="flex flex-1 flex-col gap-1 border-t border-accent/20 px-3 py-3 sm:px-4">
+        <span lang="es" className="font-display text-lg leading-tight text-ivory transition-colors duration-200 group-hover:text-accent group-focus-visible:text-accent">{e.name}</span>
+        {showFaction && <span className="text-sm text-accent">{e.faction.name}</span>}
+        {facts && <span className="text-sm text-stone">{facts}</span>}
+        <span className="mt-auto flex flex-wrap items-baseline justify-between gap-x-3 pt-1">
+          {e.price && <span className="shop-num font-display text-xl text-gold">{e.price}</span>}
+          <EntryStatus entry={e} t={t} open={open} className="text-sm text-ivory/85" />
+        </span>
+      </span>
     </Link>
   );
 }

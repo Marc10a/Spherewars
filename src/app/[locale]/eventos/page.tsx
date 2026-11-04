@@ -1,3 +1,4 @@
+import { oneParam } from "@/lib/params";
 import { staticMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
@@ -7,10 +8,11 @@ import { EventsAgenda, type AgendaDates, type AgendaItem } from "@/components/Ev
 
 export const generateMetadata = staticMeta({ title: (t) => t.events.title, description: (t) => t.events.lead, path: "/eventos" });
 
-export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ ciudad?: string; tipo?: string; pasados?: string }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ ciudad?: string | string[]; tipo?: string | string[]; pasados?: string | string[] }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const { ciudad, tipo, pasados } = await searchParams;
+  const query = await searchParams;
+  const [ciudad, tipo, pasados] = [oneParam(query.ciudad), oneParam(query.tipo), oneParam(query.pasados)];
   const [upcoming, past] = await Promise.all([listEvents(), listEvents({ past: true })]);
 
   // The monthly campaign (official poster video) plus anything published from the CMS.

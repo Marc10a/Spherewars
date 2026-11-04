@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { wooEnabled, wooShipping } from "@/lib/woo";
+import { wooClientIpReady, wooEnabled, wooPaymentReady, wooShipping } from "@/lib/woo";
 import { isConfigured, supabaseServer } from "@/lib/supabase/server";
 import { hasServiceRole } from "@/lib/supabase/admin";
 import type { ShopSettings } from "@/lib/shop/pricing";
@@ -45,10 +45,20 @@ export type ShopReadiness = {
 
 /** Checkout is only offered when EVERYTHING is really configured; otherwise the shop says so honestly. */
 export async function shopReadiness(): Promise<ShopReadiness> {
-  if (wooEnabled()) { // payments, stock and orders are WooCommerce's; the cart only needs its shipping zones
-    const settings = (await wooShipping())?.settings ?? defaultShopSettings;
+  if (wooEnabled()) { // payments, stock and orders are WooCommerce's; the cart needs its shipping zones and a gateway that can take the payment
+    const [ship, gateway] = await Promise.all([wooShipping(), wooPaymentReady()]);
+    const settings = ship?.settings ?? defaultShopSettings;
     const shipping = settings.zones.length > 0;
-    return { settings, database: true, stripe: true, server: true, webhook: true, siteUrl: true, shipping, canCheckout: shipping };
+    const ipSource = wooClientIpReady();
+    // The checklist has no WooCommerce rows yet, so these fields report the WooCommerce equivalent and a gap shows instead of a false green:
+    // stripe = a gateway is ready; server = trusted visitor IP source; webhook and siteUrl = configured here (whether WordPress really calls
+    // the webhook cannot be checked from this side). Only the gateway, shipping and IP source block checkout: without the other two a sale still works.
+    return {
+      settings, database: true, stripe: gateway, server: ipSource,
+      webhook: Boolean(process.env.WC_WEBHOOK_SECRET),
+      siteUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://")),
+      shipping, canCheckout: shipping && gateway && ipSource,
+    };
   }
   const settings = await getShopSettings();
   const r = {

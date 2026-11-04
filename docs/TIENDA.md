@@ -47,8 +47,12 @@ Seguridad: el navegador solo envía qué productos y cuántos. Precios, stock, d
 ## Límites actuales
 Solo euros. Sin códigos de descuento. Sin cuentas de cliente ni historial de pedidos para el cliente. Los correos propios (aviso de envío) no están: Stripe envía el recibo; el aviso de envío es manual por ahora. Otras pasarelas (Redsys, PayPal) no están integradas; el cobro está aislado en `src/app/[locale]/tienda/actions.ts` y `src/app/api/stripe/webhook/route.ts`.
 
+## WooCommerce
+Si están las variables `WC_*`, WooCommerce sustituye a este flujo: productos, stock, envíos, pedidos y pago. El resto de la web sigue en Next.js. Esta guía de Stripe no aplica entonces. Consulta `WORDPRESS.md`, sobre todo el bloqueo de datos del cliente y los límites de envío (Canarias y Baleares), antes de vender con WooCommerce.
+
 ## Pruebas
 `npm run test:shop` (precios, envío, stock, webhook y firma de Stripe; sin red ni base de datos).
+`npm run test:woo` (capa de WooCommerce contra el simulador, que arranca solo; no sustituye a una prueba en un WooCommerce real).
 
 ## Precios actuales (sin base de datos ni WooCommerce)
 Mientras no haya base de datos ni WooCommerce, los precios salen de `src/content/prices.json` (columna «Propuesta» de tu Excel `Catalogo Sphere Wars 2025.xlsx`, IVA incluido). Las miniaturas que no están en ese archivo no tienen precio y muestran «No disponible». Con WooCommerce o la base de datos conectados, sus productos sustituyen a esta lista. El pago real sigue cerrado hasta configurar la pasarela.

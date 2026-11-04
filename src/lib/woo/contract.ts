@@ -16,6 +16,7 @@ export const wcProduct = z.object({
   price: money.default(""),
   regular_price: money.default(""),
   sale_price: money.default(""),
+  on_sale: z.boolean().default(false),
   stock_status: z.enum(["instock", "outofstock", "onbackorder"]).default("instock"),
   manage_stock: z.boolean().default(false),
   stock_quantity: z.number().int().nullable().default(null),
@@ -26,8 +27,25 @@ export const wcProduct = z.object({
 export const wcProductList = z.array(wcProduct).max(500);
 export type WcProduct = z.infer<typeof wcProduct>;
 
+/** The list itself must be an array; its items are validated one by one (parseProductList). */
+export const wcRawList = z.array(z.unknown()).max(500);
+
+/**
+ * One malformed product must not empty the whole shop: it is skipped and logged (id and failing fields only), and everything else stays
+ * strictly validated. At checkout a skipped product is simply "unavailable", so it can never be bought with unchecked data.
+ */
+export function parseProductList(raw: unknown[], warn: (message: string) => void = console.warn): WcProduct[] {
+  return raw.flatMap((item) => {
+    const p = wcProduct.safeParse(item);
+    if (p.success) return [p.data];
+    const id = (item as { id?: unknown } | null)?.id;
+    warn(`woo: skipped invalid product ${typeof id === "number" ? id : "(no id)"}: ${[...new Set(p.error.issues.map((i) => i.path.join(".")))].join(", ")}`);
+    return [];
+  });
+}
+
 const setting = z.object({ value: z.union([z.string(), z.number()]).transform((v) => String(v)) }).partial().optional();
-export const wcZone = z.object({ id: z.number().int(), name: z.string() });
+export const wcZone = z.object({ id: z.number().int(), name: z.string(), order: z.number().int().default(0) });
 export const wcZoneList = z.array(wcZone).max(50);
 export const wcLocationList = z.array(z.object({ code: z.string(), type: z.string() })).max(500);
 export const wcMethodList = z.array(z.object({
@@ -40,3 +58,21 @@ export const wcMethodList = z.array(z.object({
 export type WcMethod = z.infer<typeof wcMethodList>[number];
 
 export const wcOrderCreated = z.object({ id: z.number().int().positive(), payment_url: https });
+
+/** Recent orders, read to detect an order already created for this checkout and to cap unpaid orders. */
+export const wcOrderList = z.array(z.object({
+  id: z.number().int().positive(),
+  status: z.string(),
+  date_created_gmt: z.string().nullable().default(null),
+  payment_url: https.nullable().catch(null).default(null),
+  needs_payment: z.boolean().optional(),
+  meta_data: z.array(meta).default([]),
+})).max(100);
+export type WcOrderSummary = z.infer<typeof wcOrderList>[number];
+
+export const wcOrderStatus = z.object({ id: z.number().int().positive(), number: z.string(), status: z.string(), order_key: z.string() });
+export type WcOrderStatus = z.infer<typeof wcOrderStatus>;
+
+// needs_setup is optional: not every WooCommerce version sends it.
+export const wcGatewayList = z.array(z.object({ id: z.string(), enabled: z.boolean(), needs_setup: z.boolean().optional() })).max(100);
+export const wcContinent = z.object({ code: z.string(), countries: z.array(z.object({ code: z.string() })).max(300) });

@@ -1,51 +1,63 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { dict, isLocale } from "@/lib/i18n";
 import { staticMeta } from "@/lib/seo";
 import { factions } from "@/content/factions";
 import { shopReadiness } from "@/lib/shop/settings";
-import { factionCharacters } from "@/lib/wiki";
-import { PageHero, Section } from "@/components/ui";
-import { ShopTile } from "@/components/shop/ShopTile";
-import { PackTile } from "@/components/shop/PackTile";
-import { formatPrice, listSellableProducts } from "@/lib/data";
-import { productForMiniature } from "@/lib/shop/match";
-import { packFor } from "@/lib/shop/packs";
+import { listSellableProducts } from "@/lib/data";
+import { buildCatalogue, parseShopQuery, shopHref, sortEntries } from "@/lib/shop/catalogue";
+import { NotForSale } from "@/components/shop/NotForSale";
+import { ProductGrid } from "@/components/shop/ProductGrid";
 import { ShopFilters } from "@/components/shop/ShopFilters";
+import { ShopHero } from "@/components/shop/ShopHero";
+import { StarterCompare } from "@/components/shop/StarterCompare";
 
 export const generateMetadata = staticMeta({ title: (t) => t.shop.title, description: (t) => t.shop.lead, path: "/tienda" });
 
-/** Shop home: every miniature as a photo + name card, with the faction filters. Price and buying happen on each product page. */
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+/** Shop home: compare the Starter Packs, then what can be bought per faction, and last (closed) what is not on sale yet. */
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ tipo?: string | string[]; orden?: string | string[] }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
-  const ready = await shopReadiness();
-  const products = await listSellableProducts();
-  const priceOf = (key: string) => {
-    const p = productForMiniature(products, key);
-    return p?.sellable && p.price_cents ? formatPrice(p.price_cents, p.currency, locale) : null;
-  };
-  const items = factions.flatMap((f) => factionCharacters(f.slug).map((page) => ({ f, page })));
+  const c = t.catalogue;
+  const query = parseShopQuery(await searchParams);
+  const [ready, products] = await Promise.all([shopReadiness(), listSellableProducts()]);
+  const open = ready.canCheckout;
+  const { packs, singles, unlisted } = buildCatalogue(products, locale);
+  const onSale = packs.filter((p) => p.status !== "unlisted").length + singles.length;
+  const showSingles = query.tipo !== "starter";
 
   return (
     <>
-      <PageHero title={t.shop.title} lead={t.shop.lead} image="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" />
-      <div className="mx-auto max-w-7xl px-4 pt-8">
-        {!ready.canCheckout && <p role="note" className="border border-dashed border-gold/40 bg-coal/60 p-4 text-sm text-stone">{t.shop.closed}</p>}
-        <ShopFilters locale={locale} active={null} />
-      </div>
-      <Section title={t.home.step2Title} lead={t.home.step2Text} compact>
-        <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-          {factions.flatMap((f) => { const pk = packFor(f.slug); return pk ? [<li key={pk.key}><PackTile price={priceOf(pk.key)} pack={pk} theme={f.theme} href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>] : []; })}
-        </ul>
-      </Section>
-      <Section title={t.shop.allProducts} compact>
-        <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-          {items.map(({ f, page }, i) => (
-            <li key={page.slug}><ShopTile price={priceOf(page.slug)} page={page} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${page.slug.split("/").pop()}`} /></li>
-          ))}
-        </ul>
-      </Section>
+      <ShopHero t={t} title={t.shop.title} image="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" count={onSale} open={open} />
+      <ShopFilters locale={locale} active={null} query={query} />
+      {query.tipo !== "sueltas" && <StarterCompare packs={packs} t={t} open={open} locale={locale} orden={query.orden} />}
+      {showSingles && (query.orden ? (
+        <section aria-labelledby="all-singles" className="mx-auto max-w-7xl px-4 pt-12 md:pt-16">
+          <h2 id="all-singles" className="mb-5 font-display text-3xl tracking-wide md:text-4xl">{c.singles} <span className="shop-num text-stone">({singles.length})</span></h2>
+          <ProductGrid entries={sortEntries(singles, query.orden)} t={t} open={open} showFaction />
+        </section>
+      ) : factions.map((f) => {
+        const list = singles.filter((e) => e.faction.slug === f.slug);
+        if (!list.length) return null;
+        return (
+          <section key={f.slug} id={f.slug} data-faction={f.theme} aria-labelledby={`h-${f.slug}`} className="mx-auto max-w-7xl px-4 pt-12 md:pt-16">
+            <div className="shop-sec-head">
+              <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={64} height={64} loading="lazy" className="h-12 w-auto shrink-0 object-contain md:h-14" />
+              <h2 id={`h-${f.slug}`} className="min-w-0 flex-1 font-display text-3xl tracking-wide text-accent md:text-4xl">{f.name}</h2>
+              <div className="flex items-center justify-between gap-4 max-sm:w-full">
+                <p className="shop-num whitespace-nowrap text-base text-stone">{list.length} {c.count[list.length === 1 ? 0 : 1]}</p>
+                <Link href={shopHref(locale, f.slug, query)} className="shop-arrow-link">{c.viewFaction}<span className="sr-only">: {f.name}</span><ArrowRight size={18} aria-hidden /></Link>
+              </div>
+            </div>
+            <ProductGrid entries={list} t={t} open={open} />
+          </section>
+        );
+      }))}
+      {showSingles && !singles.length && <p className="mx-auto max-w-7xl px-4 pt-12 text-stone">{c.noSingles}</p>}
+      {showSingles ? <NotForSale entries={unlisted} t={t} /> : <div className="pb-16" />}
     </>
   );
 }

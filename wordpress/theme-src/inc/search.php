@@ -57,6 +57,14 @@ function sw_site_search_page(string $html, string $locale): string {
     foreach (array_slice(sw_search_wiki($q), 0, 40) as $p) {
         $hits[] = ['type' => 'wiki', 'title' => $p['title'], 'href' => '/' . $locale . '/wikisphere/' . $p['slug'], 'detail' => $i18n['wiki']['cat'][$p['category']] ?? $p['categoryName']];
     }
+    // shop products (official documents): same accent-insensitive substring rule; pack pages live at /starter-pack
+    $shopHits = [];
+    foreach (sw_data('data/shop-index')['products'] ?? [] as $p) {
+        if (!str_contains(sw_norm($p['title'] . ' ' . $p['faction'] . ' ' . $p['slug']), sw_norm($q))) continue;
+        $mini = str_starts_with($p['slug'], 'packs/') ? 'starter-pack' : basename($p['slug']);
+        $shopHits[] = ['type' => 'shop', 'title' => $p['title'], 'href' => '/' . $locale . '/tienda/' . $p['faction'] . '/' . $mini];
+    }
+    $hits = array_merge($shopHits, $hits);
     $groups = $t['groups'];
     $shown = ($tipo !== '' && isset($groups[$tipo])) ? array_values(array_filter($hits, static fn($h) => $h['type'] === $tipo)) : $hits;
     $chip = static fn(bool $a) => 'border px-3 py-1 text-xs uppercase tracking-widest ' . ($a ? 'border-gold bg-gold text-abyss' : 'border-gold/40 text-ivory/80 hover:border-gold');

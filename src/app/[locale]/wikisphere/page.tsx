@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { oneParam } from "@/lib/params";
 import { staticMeta } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -10,12 +11,14 @@ import { LoreOverview } from "@/components/LoreOverview";
 
 export const generateMetadata = staticMeta({ title: (t) => t.wiki.title, description: (t) => t.wiki.lead, path: "/wikisphere" });
 
-export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ categoria?: string; q?: string }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ categoria?: string | string[]; q?: string | string[] }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
   const w = t.wiki;
-  const { categoria, q } = await searchParams;
+  const sp = await searchParams;
+  const categoria = oneParam(sp.categoria);
+  const q = oneParam(sp.q);
   const pages = searchWiki(q, categoria);
   const extra = await listArticles(locale, { q }); // editorial articles from the CMS, if any
   const total = pages.length + extra.length;

@@ -66,7 +66,7 @@ function sw_redirect_to_locale(string $path): void {
 /** Finds the stored page for a URL (with the filter variants the site had, e.g. ?faccion=alianza) or null. */
 function sw_find_route(string $path): ?array {
     $routes = sw_data('routes')['routes'] ?? [];
-    $keep = ['faccion', 'categoria'];
+    $keep = ['faccion', 'categoria', 'orden', 'tipo'];
     $q = array_intersect_key($_GET, array_flip($keep));
     ksort($q);
     if ($q) {

@@ -54,12 +54,13 @@ export const cartActions = {
       ? items.map((i) => (i.id === item.id ? { ...i, ...item, qty: clamp(i.qty + qty, item.stock) } : i))
       : [...items, { ...item, qty: clamp(qty, item.stock) }]);
   },
-  setQty(id: string, qty: number) {
-    write(snapshot().map((i) => (i.id === id ? { ...i, qty: clamp(qty, i.stock) } : i)));
+  /** `stock`, when given, is the live figure and replaces the stored copy, which can be old. */
+  setQty(id: string, qty: number, stock?: number | null) {
+    write(snapshot().map((i) => { const s = stock === undefined ? i.stock : stock; return i.id === id ? { ...i, stock: s, qty: clamp(qty, s) } : i; }));
   },
   /** Relative change computed from the stored quantity, so rapid clicks never use a stale value. */
-  change(id: string, delta: number) {
-    write(snapshot().map((i) => (i.id === id ? { ...i, qty: clamp(i.qty + delta, i.stock) } : i)));
+  change(id: string, delta: number, stock?: number | null) {
+    write(snapshot().map((i) => { const s = stock === undefined ? i.stock : stock; return i.id === id ? { ...i, stock: s, qty: clamp(i.qty + delta, s) } : i; }));
   },
   remove(id: string) { write(snapshot().filter((i) => i.id !== id)); },
   clear() { write([]); },

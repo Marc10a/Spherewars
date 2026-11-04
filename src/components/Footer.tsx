@@ -10,7 +10,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div>
           <p className="ember-text font-wordmark text-3xl tracking-[0.04em] text-gold">SphereWars</p>
           <p className="mt-2 text-sm text-stone">{t.footer.tagline}</p>
-          <p className="mt-4 flex gap-3 text-xs text-stone">
+          <p className="mt-4 flex gap-3 text-sm text-stone">
             {locales.map((l) => (
               <Link key={l} href={`/${l}`} hrefLang={l} lang={l} aria-current={l === locale ? "true" : undefined} className={l === locale ? "text-gold" : "hover:text-ivory"}>{localeNames[l]}</Link>
             ))}
@@ -31,7 +31,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <li><Link className="inline-block py-1.5" href={`/${locale}/legal/devoluciones`}>{t.legal.titles.devoluciones}</Link></li>
         </ul>
       </div>
-      <p className="border-t border-gold/10 py-4 text-center text-xs text-stone">© SphereWars. {t.common.rights}</p>
+      <p className="border-t border-gold/10 py-4 text-center text-sm text-stone">© SphereWars. {t.common.rights}</p>
     </footer>
   );
 }

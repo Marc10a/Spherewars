@@ -18,7 +18,13 @@ export function wcUrl(baseUrl: string, path: string, params: Record<string, stri
 
 const auth = (o: WcOptions) => `Basic ${Buffer.from(`${o.key}:${o.secret}`).toString("base64")}`;
 
-async function call<T>(method: "GET" | "POST", path: string, schema: ZodType<T>, o: WcOptions, params: Record<string, string | number | undefined>, body?: unknown): Promise<T | null> {
+/**
+ * Result of a write. `ambiguous` = we cannot know whether WooCommerce applied it (timeout, connection lost, 5xx, unreadable reply):
+ * retrying blindly could duplicate it. A clear 4xx rejection is not ambiguous.
+ */
+export type WcWrite<T> = { ok: true; data: T } | { ok: false; ambiguous: boolean };
+
+async function send<T>(method: "GET" | "POST", path: string, schema: ZodType<T>, o: WcOptions, params: Record<string, string | number | undefined>, body?: unknown): Promise<WcWrite<T>> {
   const f = o.fetchImpl ?? fetch;
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), o.timeoutMs ?? 5000);
@@ -29,15 +35,19 @@ async function call<T>(method: "GET" | "POST", path: string, schema: ZodType<T>,
       ...(body ? { body: JSON.stringify(body) } : {}),
       ...(method === "POST" || o.revalidate === false ? { cache: "no-store" as const } : { next: { revalidate: o.revalidate ?? 300, tags: ["woo"] } }),
     } as RequestInit);
-    if (!res.ok) return null;
+    if (!res.ok) return { ok: false, ambiguous: res.status >= 500 };
     const parsed = schema.safeParse(await res.json());
-    return parsed.success ? parsed.data : null;
+    return parsed.success ? { ok: true, data: parsed.data } : { ok: false, ambiguous: true };
   } catch {
-    return null;
+    return { ok: false, ambiguous: true };
   } finally {
     clearTimeout(timer);
   }
 }
 
-export const wcGet = <T,>(path: string, schema: ZodType<T>, o: WcOptions, params: Record<string, string | number | undefined> = {}) => call("GET", path, schema, o, params);
-export const wcPost = <T,>(path: string, schema: ZodType<T>, o: WcOptions, body: unknown) => call("POST", path, schema, o, {}, body);
+const orNull = <T,>(r: WcWrite<T>) => (r.ok ? r.data : null);
+
+export const wcGet = async <T,>(path: string, schema: ZodType<T>, o: WcOptions, params: Record<string, string | number | undefined> = {}) => orNull(await send("GET", path, schema, o, params));
+export const wcPost = async <T,>(path: string, schema: ZodType<T>, o: WcOptions, body: unknown) => orNull(await send("POST", path, schema, o, {}, body));
+/** Like wcPost, but tells a clear rejection from an unknown outcome, for writes that must not be repeated blindly (orders). */
+export const wcWrite = <T,>(path: string, schema: ZodType<T>, o: WcOptions, body: unknown) => send("POST", path, schema, o, {}, body);
