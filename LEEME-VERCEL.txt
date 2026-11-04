@@ -39,3 +39,7 @@ TIENDA CON WOOCOMMERCE (opcional, ver docs/WORDPRESS.md)
 Si usas WooCommerce como tienda, anade ademas (todas SECRETAS salvo la URL): WC_API_URL, WC_CONSUMER_KEY,
 WC_CONSUMER_SECRET, WC_WEBHOOK_SECRET. Sin ellas la tienda usa los precios de src/content/prices.json
 (columna Propuesta de tu Excel) y el pago queda cerrado hasta conectar una pasarela real.
+
+CONTRASENA DE ACCESO (mientras se revisa la web)
+En produccion la web queda cerrada hasta poner SITE_ACCESS_PASSWORD en Vercel > Settings > Environment Variables
+(Production, Sensitive) y volver a desplegar. El usuario da igual. Para lanzar la web: anade SITE_ACCESS_OPEN=1 y despliega.

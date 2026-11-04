@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, isLocale, locales } from "@/lib/i18n";
+import { checkGate } from "@/lib/site-gate";
 
 const COOKIE = "sw_locale";
 
@@ -25,8 +26,20 @@ async function guardAdmin(req: NextRequest) {
   return res;
 }
 
-// /admin: session refresh + auth gate. Everything else: locale redirect to /es (default) or the browser's language.
+// Temporary site password first. Then /admin: session refresh + auth gate. Everything else: locale redirect to /es (default) or the browser's language.
 export async function proxy(req: NextRequest) {
+  const gate = checkGate(req.headers.get("authorization"));
+  if (gate === "ask" || gate === "locked") {
+    const closed = { "X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store" };
+    if (gate === "locked") return new NextResponse("Web en preparación.", { status: 503, headers: { ...closed, "Content-Type": "text/plain; charset=utf-8" } });
+    return new NextResponse("Acceso restringido.", { status: 401, headers: { ...closed, "Content-Type": "text/plain; charset=utf-8", "WWW-Authenticate": 'Basic realm="SphereWars", charset="UTF-8"' } });
+  }
+  const res = await route(req);
+  if (gate === "allowed") { res.headers.set("X-Robots-Tag", "noindex, nofollow"); res.headers.set("Cache-Control", "private, no-store"); }
+  return res;
+}
+
+async function route(req: NextRequest) {
   const { pathname } = req.nextUrl;
   if (pathname.startsWith("/admin")) return guardAdmin(req);
 
