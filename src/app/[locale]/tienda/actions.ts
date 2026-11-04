@@ -1,21 +1,21 @@
 "use server";
 
-import { createHash, randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import Stripe from "stripe";
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { dict, fmt } from "@/lib/i18n";
 import { siteUrl } from "@/lib/seo";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { shopReadiness } from "@/lib/shop/settings";
-import { computeCart, type ShopProduct } from "@/lib/shop/pricing";
-import { wooAllowAttempt, wooClientIpReady, wooCreateOrder, wooEnabled, wooProductsById, wooShipping, wooVisitor } from "@/lib/woo";
-import { browserCookieOptions, cartErrorPath, CHECKOUT_COOKIE, parseBrowserId, returnUrlFor, type Visitor } from "@/lib/woo/map";
+import { checkLines, computeCart, type ShopProduct } from "@/lib/shop/pricing";
+import { wooCheckoutUrl, wooEnabled, wooProductsById } from "@/lib/woo";
+import { cartErrorPath } from "@/lib/woo/map";
 
 const form = z.object({
   locale: z.enum(["es", "en", "ca"]),
-  country: z.string().regex(/^[A-Z]{2}$/),
+  country: z.string().regex(/^[A-Z]{2}$/).optional(), // WooCommerce asks for the address on its own checkout
   cart: z.string().max(10_000),
 });
 const cartSchema = z.array(z.object({ id: z.string().uuid(), qty: z.number().int() })).max(60);
@@ -62,19 +62,14 @@ export async function startCheckout(formData: FormData) {
   const back = (code: string, line?: string): never => redirect(cartErrorPath(locale, code, line));
   if (!parsed.success) return back("generic");
 
-  // WooCommerce path: a read/write key is in play and there is no database to lean on, so the limit runs before any call to WooCommerce.
-  let visitor: Visitor | null = null;
-  if (wooEnabled()) {
-    if (!wooClientIpReady()) return back("disabled"); // no trusted IP source on this host: limits would be worthless
-    visitor = wooVisitor(await headers());
-    if (!visitor) return back("generic");
-    if (!wooAllowAttempt(visitor)) return back("busy");
-  }
-
-  const ready = await shopReadiness();
+  const woo = wooEnabled();
+  const ready = await shopReadiness(woo); // WooCommerce: read fresh, so a gateway that was just turned off is not offered
   if (!ready.canCheckout) return back("disabled");
 
-  if (visitor) return startWooCheckout(parsed.data.cart, parsed.data.country, locale, visitor, back);
+  if (woo) return startWooCheckout(parsed.data.cart, locale, back);
+
+  const country = parsed.data.country;
+  if (!country) return back("bad_country");
 
   let cart;
   try { cart = cartSchema.parse(JSON.parse(parsed.data.cart)); } catch { return back("generic"); }
@@ -101,7 +96,7 @@ export async function startCheckout(formData: FormData) {
     if (r.image_path) images.set(r.id, `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/media/${r.image_path}`);
   }
 
-  const result = computeCart(cart, products, ready.settings, parsed.data.country);
+  const result = computeCart(cart, products, ready.settings, country);
   if (!result.ok) return back(result.error);
 
   // 1) pending order (the webhook flips it to "paid" once Stripe confirms the payment)
@@ -110,7 +105,7 @@ export async function startCheckout(formData: FormData) {
     .insert({
       status: "pending", currency: ready.settings.currency, locale,
       subtotal_cents: result.subtotal_cents, shipping_cents: result.shipping_cents, total_cents: result.total_cents,
-      shipping_country: parsed.data.country, client_hash: client,
+      shipping_country: country, client_hash: client,
     })
     .select("id")
     .single();
@@ -148,7 +143,7 @@ export async function startCheckout(formData: FormData) {
           product_data: { name: l.product.name, ...(images.get(l.product.id) ? { images: [images.get(l.product.id)!] } : {}) },
         },
       })),
-      shipping_address_collection: { allowed_countries: [parsed.data.country as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry] },
+      shipping_address_collection: { allowed_countries: [country as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry] },
       shipping_options: [{ shipping_rate_data: { type: "fixed_amount", fixed_amount: { amount: result.shipping_cents, currency }, display_name: result.zone.label, ...taxInclusive } }],
       phone_number_collection: { enabled: true },
       custom_text: { submit: { message: fmt(dict[locale].shop.stripeNote, { url: `${siteUrl}/${locale}/legal/condiciones` }) } },
@@ -177,34 +172,20 @@ export async function startCheckout(formData: FormData) {
 }
 
 /**
- * WooCommerce checkout: products and shipping are read AGAIN from WooCommerce (the browser only sends ids, quantities and country),
- * the same cart rules are applied, a pending order is created in WooCommerce and the customer pays on WooCommerce's payment page.
+ * WooCommerce checkout: products are read AGAIN from WooCommerce (the browser only sends ids and quantities) so that a sold-out line is explained in the
+ * cart, and the customer goes to WooCommerce's own checkout. It collects the address and email, charges its own prices, and creates the order when they buy.
  */
-async function startWooCheckout(rawCart: string, country: string, locale: string, visitor: Visitor, back: (code: string, line?: string) => never): Promise<never> {
+async function startWooCheckout(rawCart: string, locale: string, back: (code: string, line?: string) => never): Promise<never> {
   let cart;
   try { cart = z.array(z.object({ id: z.string().regex(/^[0-9]{1,12}$/), qty: z.number().int() })).max(60).parse(JSON.parse(rawCart)); } catch { return back("generic"); }
 
-  const [products, shipping] = await Promise.all([wooProductsById([...new Set(cart.map((c) => c.id))]), wooShipping(true)]);
-  if (!products || !shipping) return back("generic");
+  const products = await wooProductsById([...new Set(cart.map((c) => c.id))]);
+  if (!products) return back("generic");
   const map = new Map<string, ShopProduct>(products.map((p) => [p.id, { id: p.id, name: p.name, sku: null, price_cents: p.price_cents, currency: p.currency, stock: p.stock, sellable: p.sellable }]));
 
-  const result = computeCart(cart, map, shipping.settings, country);
+  const result = checkLines(cart, map);
   if (!result.ok) return back(result.error, result.productId);
-  const detail = shipping.details.find((d) => d.zone.id === result.zone.id);
-  if (!detail) return back("no_zone");
-
-  const jar = await cookies();
-  let browser = parseBrowserId(jar.get(CHECKOUT_COOKIE)?.value);
-  if (!browser) {
-    browser = randomUUID();
-    jar.set(CHECKOUT_COOKIE, browser, browserCookieOptions(process.env.NODE_ENV === "production"));
-  }
-
-  const order = await wooCreateOrder({
-    lines: result.lines.map((l) => ({ id: l.product.id, qty: l.qty, unit_cents: l.unit_cents })),
-    country, detail, shipping_cents: result.shipping_cents, visitor, browser,
-    returnUrl: returnUrlFor(process.env.NEXT_PUBLIC_SITE_URL, locale),
-  });
-  if ("error" in order) return back(order.error === "busy" ? "busy" : "stripe");
-  redirect(order.url);
+  const url = wooCheckoutUrl(result.lines.map((l) => ({ id: l.product.id, qty: l.qty })), locale);
+  if (!url) return back("generic");
+  redirect(url);
 }

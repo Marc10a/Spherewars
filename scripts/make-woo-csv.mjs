@@ -8,6 +8,7 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const prices = JSON.parse(fs.readFileSync(path.join(ROOT, "src/content/prices.json"), "utf8")).prices;
 const docs = JSON.parse(fs.readFileSync(path.join(ROOT, "src/content/shop-products.json"), "utf8"));
 const factionName = { "adeptos-de-malesur": "Adeptos de Malesur", "manadas-de-urueh": "Manadas de Urueh", "vastagos-de-kurgan": "Vástagos de Kurgan", alianza: "Alianza" };
+// No BOM: before a quoted first header it stops WooCommerce recognising the "Type" column (seen on a real import).
 const q = (s) => `"${String(s ?? "").replace(/"/g, '""')}"`;
 const rows = [["Type", "SKU", "Name", "Published", "Short description", "Regular price", "Categories", "Meta: sw_wiki_slug"].map(q).join(",")];
 for (const [slug, v] of Object.entries(prices)) {
@@ -18,5 +19,5 @@ for (const [slug, v] of Object.entries(prices)) {
   const cats = slug.startsWith("packs/") ? `${factionName[faction]}, Starter Packs` : factionName[faction];
   rows.push(["simple", v.sku ?? "", d.title.replace(/\s*\(\d+\)$/, ""), 1, d.intro, (v.cents / 100).toFixed(2), cats, slug].map(q).join(","));
 }
-fs.writeFileSync(path.join(ROOT, "wordpress", "productos-woocommerce.csv"), "\ufeff" + rows.join("\r\n") + "\r\n");
+fs.writeFileSync(path.join(ROOT, "wordpress", "productos-woocommerce.csv"), rows.join("\n") + "\n");
 console.log(rows.length - 1, "products");

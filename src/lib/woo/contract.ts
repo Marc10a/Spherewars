@@ -1,4 +1,4 @@
-// Subset of the WooCommerce REST API v3 (/wp-json/wc/v3) that the shop reads and writes. Everything coming from WooCommerce
+// Subset of the WooCommerce REST API v3 (/wp-json/wc/v3) that the shop reads. Everything coming from WooCommerce
 // is validated with zod: a malformed or tampered response is rejected instead of reaching the pages.
 import { z } from "zod";
 
@@ -44,35 +44,11 @@ export function parseProductList(raw: unknown[], warn: (message: string) => void
   });
 }
 
-const setting = z.object({ value: z.union([z.string(), z.number()]).transform((v) => String(v)) }).partial().optional();
-export const wcZone = z.object({ id: z.number().int(), name: z.string(), order: z.number().int().default(0) });
-export const wcZoneList = z.array(wcZone).max(50);
-export const wcLocationList = z.array(z.object({ code: z.string(), type: z.string() })).max(500);
-export const wcMethodList = z.array(z.object({
-  instance_id: z.number().int(),
-  title: z.string().default(""),
-  enabled: z.boolean(),
-  method_id: z.string(),
-  settings: z.object({ cost: setting, min_amount: setting, requires: setting }).partial().default({}),
-})).max(50);
-export type WcMethod = z.infer<typeof wcMethodList>[number];
-
-export const wcOrderCreated = z.object({ id: z.number().int().positive(), payment_url: https });
-
-/** Recent orders, read to detect an order already created for this checkout and to cap unpaid orders. */
-export const wcOrderList = z.array(z.object({
-  id: z.number().int().positive(),
-  status: z.string(),
-  date_created_gmt: z.string().nullable().default(null),
-  payment_url: https.nullable().catch(null).default(null),
-  needs_payment: z.boolean().optional(),
-  meta_data: z.array(meta).default([]),
-})).max(100);
-export type WcOrderSummary = z.infer<typeof wcOrderList>[number];
+export const wcZoneList = z.array(z.object({ id: z.number().int() })).max(100);
+export const wcMethodList = z.array(z.object({ enabled: z.boolean() })).max(100);
 
 export const wcOrderStatus = z.object({ id: z.number().int().positive(), number: z.string(), status: z.string(), order_key: z.string() });
 export type WcOrderStatus = z.infer<typeof wcOrderStatus>;
 
 // needs_setup is optional: not every WooCommerce version sends it.
 export const wcGatewayList = z.array(z.object({ id: z.string(), enabled: z.boolean(), needs_setup: z.boolean().optional() })).max(100);
-export const wcContinent = z.object({ code: z.string(), countries: z.array(z.object({ code: z.string() })).max(300) });

@@ -1,8 +1,7 @@
 // Fake WooCommerce (REST v3 subset) for local testing only. Usage: node scripts/mock-wc.mjs   (PORT=4030, MOCK_WC_KEY / MOCK_WC_SECRET)
-// GET  /wp-json/wc/v3/products | shipping/zones | shipping/zones/:id/{locations,methods} | payment_gateways | data/continents/:code | orders | orders/:id   (Basic auth required)
-// POST /wp-json/wc/v3/orders  -> stores the order, returns its payment_url
-// Test helpers (a real WooCommerce has none of these): GET /_orders -> orders received; POST /_control {reset, set: {...}, hangNextOrder, payOrder}
-// It reproduces shapes documented by WooCommerce, not its behaviour: it computes no taxes, renders no payment page and sends no customer back.
+// GET  /wp-json/wc/v3/products | shipping/zones | shipping/zones/:id/methods | payment_gateways | orders/:id   (Basic auth required). Writes are rejected, as with a read-only key.
+// Test helpers (a real WooCommerce has none of these): GET /_orders, GET /_writes -> write attempts seen; POST /_control {reset, set: {...}, addOrder, payOrder}
+// It reproduces shapes seen on a real WooCommerce, not its behaviour: it has no checkout, computes no taxes and sends no customer back. That is proven on a real one (docs/WORDPRESS.md).
 import http from "node:http";
 
 const PORT = Number(process.env.PORT ?? 4030);
@@ -27,24 +26,15 @@ const products = [
     images: [], categories: [{ slug: "alianza" }], meta_data: [] },
 ];
 const initial = () => ({
-  zones: [{ id: 0, name: "Resto del mundo", order: 0 }, { id: 1, name: "España", order: 0 }, { id: 2, name: "Francia (fórmula)", order: 1 }, { id: 3, name: "Europa", order: 2 }],
-  locations: { 1: [{ code: "ES", type: "country" }], 2: [{ code: "FR", type: "country" }], 3: [{ code: "EU", type: "continent" }] },
-  methods: {
-    1: [
-      { instance_id: 7, title: "Envío estándar", enabled: true, method_id: "flat_rate", settings: { cost: { value: "5.00" } } },
-      { instance_id: 8, title: "Envío gratis", enabled: true, method_id: "free_shipping", settings: { requires: { value: "min_amount" }, min_amount: { value: "50" } } },
-    ],
-    2: [{ instance_id: 9, title: "Tarifa con fórmula", enabled: true, method_id: "flat_rate", settings: { cost: { value: "5 + [qty]" } } }],
-    3: [{ instance_id: 10, title: "Envío Europa", enabled: true, method_id: "flat_rate", settings: { cost: { value: "12.00" } } }],
-  },
-  continents: { EU: { code: "EU", name: "Europe", countries: ["ES", "FR", "PT", "DE", "IT"].map((code) => ({ code, name: code })) } },
+  zones: [{ id: 0, name: "Resto del mundo", order: 0 }, { id: 1, name: "España", order: 0 }],
+  methods: { 1: [{ instance_id: 7, title: "Envío estándar", enabled: true, method_id: "flat_rate" }] },
   gateways: [{ id: "bacs", title: "Transferencia", enabled: false }, { id: "stripe", title: "Tarjeta", enabled: true }],
 });
 let world = initial();
-let hangNextOrder = false;
+let writeAttempts = 0;
 const orders = [];
 
-const orderView = (o) => ({ ...o, number: String(o.id), payment_url: `${HOST}/checkout/order-pay/${o.id}/?pay_for_order=true&key=${o.order_key}`, needs_payment: o.status === "pending" });
+const orderView = (o) => ({ ...o, number: String(o.id) });
 
 const readBody = (req) => new Promise((done) => { let b = ""; req.on("data", (c) => (b += c)); req.on("end", () => done(b)); });
 
@@ -52,13 +42,13 @@ http.createServer(async (req, res) => {
   const u = new URL(req.url, HOST);
   const send = (code, body) => { res.writeHead(code, { "Content-Type": "application/json" }); res.end(JSON.stringify(body)); };
   if (u.pathname === "/_orders") return send(200, orders.map(orderView));
+  if (u.pathname === "/_writes") return send(200, { count: writeAttempts });
   if (u.pathname === "/_control" && req.method === "POST") {
     const c = JSON.parse((await readBody(req)) || "{}");
-    if (c.reset) { world = initial(); orders.length = 0; hangNextOrder = false; }
+    if (c.reset) { world = initial(); orders.length = 0; writeAttempts = 0; }
     if (c.set) Object.assign(world, c.set);
-    if (c.hangNextOrder) hangNextOrder = true;
+    if (c.addOrder) { const id = 1000 + orders.length + 1; orders.push({ id, status: "pending", order_key: `wc_order_test${id}` }); }
     if (c.payOrder) { const o = orders.find((x) => x.id === c.payOrder); if (o) o.status = "processing"; }
-    if (c.ageOrders) for (const o of orders) o.date_created_gmt = new Date(Date.now() - c.ageOrders).toISOString().slice(0, 19);
     return send(200, { ok: true });
   }
   console.log(new Date().toISOString(), req.method, u.pathname + u.search);
@@ -76,25 +66,10 @@ http.createServer(async (req, res) => {
   }
   if (req.method === "GET" && p === "shipping/zones") return send(200, world.zones);
   if (req.method === "GET" && p === "payment_gateways") return world.gateways ? send(200, world.gateways) : send(403, { code: "woocommerce_rest_cannot_view" });
-  let z = p.match(/^data\/continents\/([\w-]+)$/);
-  if (req.method === "GET" && z) { const c = world.continents[z[1].toUpperCase()]; return c ? send(200, c) : send(404, { code: "woocommerce_rest_data_invalid_location" }); }
-  z = p.match(/^shipping\/zones\/(\d+)\/locations$/);
-  if (req.method === "GET" && z) return send(200, world.locations[z[1]] ?? []);
-  z = p.match(/^shipping\/zones\/(\d+)\/methods$/);
+  let z = p.match(/^shipping\/zones\/(\d+)\/methods$/);
   if (req.method === "GET" && z) return send(200, world.methods[z[1]] ?? []);
   z = p.match(/^orders\/(\d+)$/);
   if (req.method === "GET" && z) { const o = orders.find((x) => x.id === Number(z[1])); return o ? send(200, orderView(o)) : send(404, { code: "woocommerce_rest_shop_order_invalid_id" }); }
-  if (req.method === "GET" && p === "orders") {
-    if (world.ordersDown) return send(500, { code: "internal_error" });
-    const status = u.searchParams.get("status");
-    return send(200, orders.filter((o) => !status || status === "any" || o.status === status).slice(-Number(u.searchParams.get("per_page") ?? 10)).reverse().map(orderView));
-  }
-  if (req.method === "POST" && p === "orders") {
-    const o = JSON.parse((await readBody(req)) || "{}");
-    const id = 1000 + orders.length + 1;
-    orders.push({ ...o, id, status: "pending", order_key: `wc_order_test${id}`, date_created_gmt: new Date().toISOString().slice(0, 19) });
-    if (hangNextOrder) { hangNextOrder = false; return; } // the order exists, but the response never arrives (timeout on the other side)
-    return send(201, orderView(orders.at(-1)));
-  }
+  if (req.method !== "GET") { writeAttempts++; return send(401, { code: "woocommerce_rest_authentication_error" }); }
   return send(404, { error: "unknown" });
 }).listen(PORT, () => console.log(`mock WooCommerce on ${HOST}`));

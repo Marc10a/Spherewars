@@ -25,8 +25,8 @@ export function zoneFor(s: ShopSettings, country: string): ShippingZone | null {
   return s.zones.find((z) => z.countries.includes(country)) ?? null;
 }
 
-export function computeCart(input: CartInput, products: Map<string, ShopProduct>, settings: ShopSettings, country: string): CartResult {
-  if (!/^[A-Z]{2}$/.test(country)) return { ok: false, error: "bad_country" };
+/** The rules every checkout applies to the lines themselves: quantities, availability and stock. */
+export function checkLines(input: CartInput, products: Map<string, ShopProduct>): { ok: true; lines: CartLine[]; subtotal_cents: number } | { ok: false; error: CartError; productId?: string } {
   if (input.length === 0) return { ok: false, error: "empty" };
   if (input.length > MAX_LINES) return { ok: false, error: "too_many" };
 
@@ -45,12 +45,19 @@ export function computeCart(input: CartInput, products: Map<string, ShopProduct>
     if (p.stock !== null && qty > p.stock) return { ok: false, error: "out_of_stock", productId: id };
     lines.push({ product: p, qty, unit_cents: p.price_cents, line_cents: p.price_cents * qty });
   }
+  return { ok: true, lines, subtotal_cents: lines.reduce((n, l) => n + l.line_cents, 0) };
+}
+
+export function computeCart(input: CartInput, products: Map<string, ShopProduct>, settings: ShopSettings, country: string): CartResult {
+  if (!/^[A-Z]{2}$/.test(country)) return { ok: false, error: "bad_country" };
+  const checked = checkLines(input, products);
+  if (!checked.ok) return checked;
 
   const zone = zoneFor(settings, country);
   if (!zone) return { ok: false, error: "no_zone" };
 
-  const subtotal = lines.reduce((n, l) => n + l.line_cents, 0);
+  const subtotal = checked.subtotal_cents;
   const free = zone.free_over_cents !== null && subtotal >= zone.free_over_cents;
   const shipping = free ? 0 : zone.price_cents;
-  return { ok: true, lines, subtotal_cents: subtotal, shipping_cents: shipping, total_cents: subtotal + shipping, zone };
+  return { ok: true, lines: checked.lines, subtotal_cents: subtotal, shipping_cents: shipping, total_cents: subtotal + shipping, zone };
 }

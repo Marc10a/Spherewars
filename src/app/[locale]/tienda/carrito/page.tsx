@@ -42,7 +42,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     <>
       <PageHero title={t.cart} />
       <div className="mx-auto max-w-6xl px-4 py-8 md:py-12 lg:max-w-7xl">
-        <CartView locale={locale} settings={ready.settings} canCheckout={ready.canCheckout} labels={t} notice={notice} live={live} failedLine={e && e !== "cancelled" && line && /^[0-9]{1,12}$/.test(line) ? line : null} />
+        <CartView locale={locale} settings={ready.settings} canCheckout={ready.canCheckout} addressAtCheckout={ready.addressAtCheckout} labels={t} notice={notice} live={live} failedLine={e && e !== "cancelled" && line && /^[0-9]{1,12}$/.test(line) ? line : null} />
       </div>
     </>
   );

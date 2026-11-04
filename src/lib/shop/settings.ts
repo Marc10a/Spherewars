@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { wooClientIpReady, wooEnabled, wooPaymentReady, wooShipping } from "@/lib/woo";
+import { wooEnabled, wooPaymentReady, wooShippingReady } from "@/lib/woo";
 import { isConfigured, supabaseServer } from "@/lib/supabase/server";
 import { hasServiceRole } from "@/lib/supabase/admin";
 import type { ShopSettings } from "@/lib/shop/pricing";
@@ -41,23 +41,20 @@ export type ShopReadiness = {
   siteUrl: boolean;    // NEXT_PUBLIC_SITE_URL present (Stripe must return customers to the real domain)
   shipping: boolean;   // at least one shipping zone configured
   canCheckout: boolean;
+  addressAtCheckout: boolean; // WooCommerce: address, IVA and shipping cost are settled on its own checkout, so the cart does not show a shipping amount
 };
 
 /** Checkout is only offered when EVERYTHING is really configured; otherwise the shop says so honestly. */
-export async function shopReadiness(): Promise<ShopReadiness> {
-  if (wooEnabled()) { // payments, stock and orders are WooCommerce's; the cart needs its shipping zones and a gateway that can take the payment
-    const [ship, gateway] = await Promise.all([wooShipping(), wooPaymentReady()]);
-    const settings = ship?.settings ?? defaultShopSettings;
-    const shipping = settings.zones.length > 0;
-    const ipSource = wooClientIpReady();
-    // The checklist has no WooCommerce rows yet, so these fields report the WooCommerce equivalent and a gap shows instead of a false green:
-    // stripe = a gateway is ready; server = trusted visitor IP source; webhook and siteUrl = configured here (whether WordPress really calls
-    // the webhook cannot be checked from this side). Only the gateway, shipping and IP source block checkout: without the other two a sale still works.
+export async function shopReadiness(fresh = false): Promise<ShopReadiness> {
+  if (wooEnabled()) { // payments, stock, shipping and orders are WooCommerce's; the web only needs to know a sale can be completed there
+    const [shipping, gateway] = await Promise.all([wooShippingReady(fresh), wooPaymentReady(fresh)]);
+    // The checklist has no WooCommerce rows yet, so these fields report the WooCommerce equivalent: stripe = a gateway is ready; webhook and siteUrl = configured
+    // here (whether WordPress really calls the webhook cannot be checked from this side). Only the gateway and shipping block checkout.
     return {
-      settings, database: true, stripe: gateway, server: ipSource,
+      settings: { enabled: true, currency: "EUR", zones: [] }, database: true, stripe: gateway, server: true,
       webhook: Boolean(process.env.WC_WEBHOOK_SECRET),
       siteUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://")),
-      shipping, canCheckout: shipping && gateway && ipSource,
+      shipping, canCheckout: shipping && gateway, addressAtCheckout: true,
     };
   }
   const settings = await getShopSettings();
@@ -70,5 +67,5 @@ export async function shopReadiness(): Promise<ShopReadiness> {
     siteUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL),
     shipping: settings.zones.length > 0,
   };
-  return { ...r, canCheckout: settings.enabled && r.database && r.stripe && r.server && r.webhook && r.siteUrl && r.shipping };
+  return { ...r, addressAtCheckout: false, canCheckout: settings.enabled && r.database && r.stripe && r.server && r.webhook && r.siteUrl && r.shipping };
 }

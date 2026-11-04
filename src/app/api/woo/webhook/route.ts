@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   if (isWooPing(raw, signature)) return Response.json({ ok: true });
   if (!verifyWooSignature(raw, signature, secret)) return new Response("Unauthorized", { status: 401 });
 
-  revalidateTag("woo", "max");
+  revalidateTag("woo", { expire: 0 }); // expire now: with "max" the first visitor after a price or stock change would still see the old data
   for (const l of locales) revalidatePath(`/${l}/tienda`, "layout");
   return Response.json({ ok: true });
 }

@@ -87,7 +87,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   // WooCommerce gallery first (only images hosted on the WooCommerce domain, which next/image is configured for), then the official ones.
   const wcHost = process.env.WC_API_URL ? new URL(process.env.WC_API_URL).hostname : null;
   const wooPhotos = (product?.images ?? []).filter((i) => { try { return i.src.startsWith("https://") && new URL(i.src).hostname === wcHost; } catch { return false; } });
-  const photos = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos, ...wikiPhotos];
+  // With a WooCommerce gallery the owner manages the photos there: only the illustrations are added, or the same photo would show twice.
+  const photos = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos, ...(wooPhotos.length ? wikiPhotos.filter((p) => "art" in p && p.art) : wikiPhotos)];
 
   const priced = Boolean(product?.sellable && product.price_cents && product.price_cents > 0);
   const price = priced && product ? formatPrice(product.price_cents, product.currency, locale) : null;

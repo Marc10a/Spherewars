@@ -43,9 +43,10 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     <>
       <PageHero title={title} />
       <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
-        {paid && <ClearCart order={woo ? `woo-${wc_order}` : `order-${number}`} />}
+        {/* The order exists, so this cart has been bought even if its payment is still confirming (bank transfer, a delayed gateway). */}
+        {(paid || (woo && pending)) && <ClearCart order={woo ? `woo-${wc_order}` : `order-${number}`} />}
         <p role={paid ? undefined : "status"} className="max-w-[60ch] text-lg text-ivory/90">{text}</p>
-        {paid && <p className="mt-6 font-display text-3xl text-gold">{t.thanksOrder} {number}</p>}
+        {(paid || (woo && pending)) && <p className="mt-6 font-display text-3xl text-gold">{t.thanksOrder} {number}</p>}
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={`/${locale}/tienda`} className="btn inline-flex min-h-12 items-center bg-gold px-6 py-3 font-display text-base tracking-[0.03em] text-abyss hover:bg-ivory">{t.backToShop}</Link>
         </div>

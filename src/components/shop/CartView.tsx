@@ -7,7 +7,7 @@ import { useFormStatus } from "react-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { links } from "@/content/site";
 import { cartActions, useCart } from "./cart-store";
-import { computeCart, MAX_QTY_PER_LINE, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
+import { checkLines, computeCart, MAX_QTY_PER_LINE, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
 import type { Dict } from "@/lib/i18n";
 import { startCheckout } from "@/app/[locale]/tienda/actions";
 
@@ -23,6 +23,7 @@ type Props = {
   locale: "es" | "en" | "ca";
   settings: ShopSettings;
   canCheckout: boolean;
+  addressAtCheckout?: boolean; // WooCommerce: no country or shipping amount here, its checkout settles them with the real address
   labels: Dict["shop"];
   notice: string | null; // already-localized message coming from the server (?e=...)
   live?: Record<string, LiveProduct> | null;
@@ -31,7 +32,7 @@ type Props = {
 
 const noSubscribe = () => () => {};
 
-export function CartView({ locale, settings, canCheckout, labels: t, notice, live = null, failedLine = null }: Props) {
+export function CartView({ locale, settings, canCheckout, addressAtCheckout = false, labels: t, notice, live = null, failedLine = null }: Props) {
   const { items: stored, change, remove } = useCart();
   const hydrated = useSyncExternalStore(noSubscribe, () => true, () => false); // the cart lives in the browser: don't flash "empty" before reading it
   const countries = useMemo(() => shippableCountries(settings), [settings]);
@@ -53,13 +54,14 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice, liv
   const changed = blocked || lines.some((l) => l.oldPrice !== null);
 
   // Browser-side PREVIEW only. The server recomputes everything from the database before charging.
-  const preview = useMemo(() => {
+  const preview = useMemo((): { ok: true; shipping_cents?: number; total_cents?: number } | { ok: false; error: string } => {
     const products = new Map<string, ShopProduct>(buyable.map((i) => [i.id, { id: i.id, name: i.name, sku: null, price_cents: i.price_cents, currency: settings.currency, stock: i.short ? null : i.stock, sellable: true }]));
-    return computeCart(buyable.map((i) => ({ id: i.id, qty: i.qty })), products, settings, country);
-  }, [buyable, settings, country]);
+    const input = buyable.map((i) => ({ id: i.id, qty: i.qty }));
+    return addressAtCheckout ? checkLines(input, products) : computeCart(input, products, settings, country);
+  }, [buyable, settings, country, addressAtCheckout]);
   const zone = country ? zoneFor(settings, country) : null;
   const subtotal = buyable.reduce((n, i) => n + i.price_cents * i.qty, 0);
-  const total = preview.ok ? preview.total_cents : subtotal;
+  const total = (preview.ok && preview.total_cents) || subtotal;
   const failedName = stored.find((i) => i.id === failedLine)?.name ?? null;
   const alert = "border border-ember bg-ember/20 p-3 text-base";
   const small = "text-sm text-stone";
@@ -137,7 +139,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice, liv
       </div>
 
       <aside aria-label={t.total} className="h-fit border border-gold/30 bg-coal p-5 lg:sticky lg:top-20">
-        {countries.length === 0 ? (
+        {countries.length === 0 && !addressAtCheckout ? (
           <div className="space-y-4">
             <div className="flex items-baseline justify-between font-display text-2xl text-gold"><span>{t.subtotal}</span><span className="tabular-nums">{money.format(subtotal / 100)}</span></div>
             <p className={small}>{t.taxIncluded}</p>
@@ -148,20 +150,26 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice, liv
           <form action={startCheckout} className="grid gap-4">
             <input type="hidden" name="locale" value={locale} />
             <input type="hidden" name="cart" value={JSON.stringify(stored.map((i) => ({ id: i.id, qty: i.qty })))} />
-            <label className="grid gap-1.5 font-display text-base">
+            {!addressAtCheckout && <label className="grid gap-1.5 font-display text-base">
               {t.shipTo}
               <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="min-h-12 border border-gold/40 bg-abyss px-3 font-sans text-base">
                 {countries.map((c) => <option key={c} value={c}>{names.of(c) ?? c}</option>)}
               </select>
-            </label>
+            </label>}
             {zone?.free_over_cents != null && <p className={small}>{t.freeOver.replace("{amount}", money.format(zone.free_over_cents / 100))}</p>}
 
-            <dl className="space-y-2 border-t border-gold/20 pt-4 text-base">
-              <div className="flex justify-between gap-4"><dt>{t.subtotal}</dt><dd className="tabular-nums">{money.format(subtotal / 100)}</dd></div>
-              <div className="flex justify-between gap-4"><dt>{t.shipping}{zone ? ` (${zone.label})` : ""}</dt><dd className="tabular-nums">{preview.ok ? (preview.shipping_cents === 0 ? t.free : money.format(preview.shipping_cents / 100)) : "—"}</dd></div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-gold/20 pt-3 font-display text-2xl text-gold"><dt>{t.total}</dt><dd className="tabular-nums">{money.format(total / 100)}</dd></div>
-            </dl>
-            <p className={`-mt-2 ${small}`}>{t.taxIncluded}</p>
+            {addressAtCheckout ? (
+              <dl className="space-y-2 text-base">
+                <div className="flex items-baseline justify-between gap-4 font-display text-2xl text-gold"><dt>{t.subtotal}</dt><dd className="tabular-nums">{money.format(subtotal / 100)}</dd></div>
+              </dl>
+            ) : (
+              <dl className="space-y-2 border-t border-gold/20 pt-4 text-base">
+                <div className="flex justify-between gap-4"><dt>{t.subtotal}</dt><dd className="tabular-nums">{money.format(subtotal / 100)}</dd></div>
+                <div className="flex justify-between gap-4"><dt>{t.shipping}{zone ? ` (${zone.label})` : ""}</dt><dd className="tabular-nums">{preview.ok && preview.shipping_cents !== undefined ? (preview.shipping_cents === 0 ? t.free : money.format(preview.shipping_cents / 100)) : "—"}</dd></div>
+                <div className="flex items-baseline justify-between gap-4 border-t border-gold/20 pt-3 font-display text-2xl text-gold"><dt>{t.total}</dt><dd className="tabular-nums">{money.format(total / 100)}</dd></div>
+              </dl>
+            )}
+            <p className={`-mt-2 ${small}`}>{t.taxIncluded}{addressAtCheckout && <> · {t.shippingAtCheckout}</>}</p>
 
             {!preview.ok && !blocked && <p role="alert" className="text-base text-ivory">{t.errors[preview.error] ?? t.errors.generic}</p>}
             {blocked && <p className="text-base text-ivory">{t.cartBlocked}</p>}
@@ -169,7 +177,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice, liv
             {canCheckout ? (
               <>
                 <CheckoutButton disabled={!preview.ok || blocked} label={t.checkout} />
-                <p className={small}>{t.checkoutNote}</p>
+                <p className={small}>{addressAtCheckout ? t.checkoutNoteAddress : t.checkoutNote}</p>
                 <p className={small}>
                   {t.termsPre} <Link href={`/${locale}/legal/condiciones`} className="underline underline-offset-2 hover:text-gold">{t.terms}</Link> · <Link href={`/${locale}/legal/devoluciones`} className="underline underline-offset-2 hover:text-gold">{t.returns}</Link>
                 </p>
