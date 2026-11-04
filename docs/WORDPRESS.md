@@ -51,7 +51,7 @@ Ejemplos reales en `wordpress/fixtures/`. Todo se valida con zod: lo que no cump
 
 ## Plan de migración (con copia de seguridad antes)
 
-1. Copia completa del WordPress actual de spherewars.es (archivos + base de datos) y del Supabase si ya existe. Descargarla fuera del servidor.
+1. Copia completa del WordPress de la tienda (archivos + base de datos) y del Supabase si ya existe. Descargarla fuera del servidor.
 2. Montar WordPress nuevo en un subdominio (p. ej. `cms.`) sin tocar el dominio público.
 3. Instalar el plugin, importar lore (162 páginas) y miniaturas (71) y las imágenes.
 4. Apuntar un entorno de pruebas de la web a ese WordPress y revisar todo con vista previa.

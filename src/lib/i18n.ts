@@ -178,7 +178,7 @@ const es = {
   },
   legal: {
     titles: { "aviso-legal": "Aviso legal", privacidad: "Política de privacidad", cookies: "Política de cookies", condiciones: "Condiciones de venta", devoluciones: "Desistimiento y devoluciones" } as Record<string, string>,
-    pendingTitle: "Pendiente de revisión jurídica", pending: "Texto legal pendiente de redacción y revisión por el titular. Se puede migrar el de spherewars.es una vez validado.",
+    pendingTitle: "Pendiente de revisión jurídica", pending: "Texto legal pendiente de redacción y revisión por el titular.",
   },
   news: { title: "Novedades", lead: "Lo último de SphereWars.", empty: "Todavía no hay novedades publicadas.", back: "← Todas las novedades", published: "Publicado el" },
   contact: {
@@ -368,7 +368,7 @@ const en: Dict = {
   },
   legal: {
     titles: { "aviso-legal": "Legal notice", privacidad: "Privacy policy", cookies: "Cookie policy", condiciones: "Terms of sale", devoluciones: "Withdrawal and returns" },
-    pendingTitle: "Pending legal review", pending: "Legal text pending drafting and review by the owner. The text from spherewars.es can be migrated once validated.",
+    pendingTitle: "Pending legal review", pending: "Legal text pending drafting and review by the owner.",
   },
   news: { title: "News", lead: "The latest from SphereWars.", empty: "No news published yet.", back: "← All news", published: "Published on" },
   contact: {
@@ -556,7 +556,7 @@ const ca: Dict = {
   },
   legal: {
     titles: { "aviso-legal": "Avís legal", privacidad: "Política de privacitat", cookies: "Política de galetes", condiciones: "Condicions de venda", devoluciones: "Desistiment i devolucions" },
-    pendingTitle: "Pendent de revisió jurídica", pending: "Text legal pendent de redacció i revisió pel titular. Es pot migrar el de spherewars.es un cop validat.",
+    pendingTitle: "Pendent de revisió jurídica", pending: "Text legal pendent de redacció i revisió pel titular.",
   },
   news: { title: "Novetats", lead: "Les últimes notícies de SphereWars.", empty: "Encara no hi ha novetats publicades.", back: "← Totes les novetats", published: "Publicat el" },
   contact: {

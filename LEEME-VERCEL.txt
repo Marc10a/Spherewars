@@ -23,11 +23,11 @@ VARIABLES DE ENTORNO (Project > Settings > Environment Variables), despues pulsa
   NEXT_PUBLIC_SUPABASE_ANON_KEY   (idem)
 Sin ellas la web funciona igual; solo quedan vacios el panel, los eventos y las descargas.
 
-DOMINIO PROPIO (por ejemplo spherewars.es)
+DOMINIO PROPIO (spherewars.com)
 Vercel > Project > Settings > Domains > Add. Te indica que registros DNS crear en el panel donde
-tengas el dominio (Hostinger): normalmente un registro A (76.76.21.21) y un CNAME para www
+tengas el dominio (cdmon): normalmente un registro A (76.76.21.21) y un CNAME para www
 (cname.vercel-dns.com). Los valores exactos te los muestra Vercel.
-Aviso: mientras apunte a Hostinger, la web actual seguira viendose; cambia el DNS solo cuando
+Aviso: mientras apunte a otro servidor, la web anterior seguira viendose; cambia el DNS solo cuando
 la nueva este lista.
 
 TIENDA ONLINE (Stripe)

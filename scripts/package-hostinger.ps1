@@ -1,6 +1,6 @@
 # Assembles a ready-to-upload folder for Node.js hosting (Hostinger) from a STANDALONE build.
 # Usage (from the project root):
-#   $env:STANDALONE="1"; $env:NEXT_PUBLIC_SITE_URL="https://spherewars.es"; npm run build
+#   $env:STANDALONE="1"; $env:NEXT_PUBLIC_SITE_URL="https://spherewars.com"; npm run build
 #   powershell -File scripts/package-hostinger.ps1 -LinuxSharp <folder with node_modules/@img linux packages>
 param(
   [string]$Out = "..\spherewars-hostinger",

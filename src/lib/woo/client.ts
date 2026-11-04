@@ -4,7 +4,7 @@
 import type { ZodType } from "zod";
 
 export type WcOptions = {
-  baseUrl: string;            // e.g. https://cms.spherewars.es
+  baseUrl: string;            // e.g. https://tienda.spherewars.com
   key: string; secret: string;
   fetchImpl?: typeof fetch;
   timeoutMs?: number;

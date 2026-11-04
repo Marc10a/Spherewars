@@ -1,6 +1,6 @@
 # Auditoría (2026-10-21)
 
-## Web actual (spherewars.es)
+## Web antigua (spherewars.es, ya fuera del proyecto)
 Rutas: /noticias, /miniaturas (+ /manadas-de-urueh, /vastagos-de-kurgan, /adeptos-de-malesur), /comprar (+ /alianza, /adeptos-de-malesur, /neonatos), /contacto, /aviso-legal, /politica-de-privacidad, /politica-de-cookies.
 
 Es una web de edición anterior, sin enlaces a Instagram, YouTube, Discord, wiki, generador ni reglamento.

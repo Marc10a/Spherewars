@@ -36,7 +36,8 @@ Web oficial de SphereWars: Otro Mundo, un juego de escaramuzas con miniaturas pa
 - Secciones existentes: juego, facciones, miniaturas, tienda con carrito, wikisphere, eventos, descargas, novedades, comunidad, búsqueda y panel `/admin`.
 - Rigen los límites de `docs/`: CSS de Tailwind precompilado (`npm run css`) y compilación apta para Hostinger o Vercel.
 - Terminología que no se traduce: Saphir, WikiSphere, SphereEvents y nombres de facciones, personajes y dioses.
-- **Sin decidir:** pasarela de pago (Stripe o WooCommerce), alojamiento (Vercel o Hostinger), dominio principal (`spherewars.es` o `spherewarsgames.com`), precio del starter (39 € en el material impreso; 39,99 € según `docs/WORDPRESS-TEMA.md`) y licencia web de la fuente Abaddon.
+- **Decidido:** web en `spherewars.com` (Vercel) y tienda en `tienda.spherewars.com` (WooCommerce en cdmon). `spherewars.es` queda fuera del proyecto.
+- **Sin decidir:** pasarela de pago, precio del starter (39 € en el material impreso; 39,99 € en el catálogo) y licencia web de la fuente Abaddon.
 
 ## Brand Commitments
 

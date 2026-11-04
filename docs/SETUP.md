@@ -68,7 +68,7 @@ El HTML se sanea con lista de etiquetas permitidas al sincronizar. Los enlaces i
 ## Comandos útiles
 - `npm run check`: verifica enlaces internos, imágenes y arte de facciones (falla si algo falta).
 - `npm run sync:wiki`: refresca wiki e imágenes.
-- Antiguas URLs de spherewars.es redirigen con 308 (ver `next.config.ts`).
+- Las rutas de la web antigua redirigen con 308 (ver `next.config.ts`).
 
 # Estado
 

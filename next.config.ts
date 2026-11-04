@@ -4,7 +4,7 @@ const wpHost = process.env.WP_API_URL ? new URL(process.env.WP_API_URL).hostname
 const wcHost = process.env.WC_API_URL ? new URL(process.env.WC_API_URL).hostname : null;
 const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname : null;
 
-// Permanent redirects from the previous spherewars.es (see docs/AUDIT.md).
+// Permanent redirects from the previous site paths (see docs/AUDIT.md).
 const legacy: [string, string][] = [
   ["/noticias", "/es"],
   ["/miniaturas", "/es/miniaturas"],

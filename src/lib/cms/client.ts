@@ -3,7 +3,7 @@
 import type { ZodType } from "zod";
 
 export type WpOptions = {
-  baseUrl: string;                 // e.g. https://cms.spherewars.es
+  baseUrl: string;                 // e.g. https://tienda.spherewars.com
   fetchImpl?: typeof fetch;
   timeoutMs?: number;
   previewToken?: string | null;    // only for draft previews; sent as a Bearer token, never exposed to the browser
