@@ -24,9 +24,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <>
       <PageHero title={n.title} lead={n.category} image={cmsImageUrl(n.image?.url)} />
       <article className="mx-auto max-w-3xl px-4 py-12">
-        {n.publish_at && <p className="mb-6 text-xs uppercase tracking-widest text-stone">{t.news.published} {new Date(n.publish_at).toLocaleDateString(locale)}</p>}
+        {n.publish_at && <p className="mb-6 font-display text-sm text-stone">{t.news.published} {new Date(n.publish_at).toLocaleDateString(locale)}</p>}
         {n.body?.html ? <div className="wiki-prose" dangerouslySetInnerHTML={{ __html: cleanCmsHtml(n.body.html) }} /> : <RichText md={n.body?.md} />}
-        <Link href={`/${locale}/novedades`} className="mt-10 inline-block text-xs uppercase tracking-widest text-gold hover:text-ivory">{t.news.back}</Link>
+        <Link href={`/${locale}/novedades`} className="mt-10 inline-block font-display text-sm text-gold hover:text-ivory">{t.news.back}</Link>
       </article>
     </>
   );

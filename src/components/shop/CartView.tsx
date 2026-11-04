@@ -61,7 +61,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice }: P
               <div>
                 <Link href={`/${locale}/miniaturas/${i.slug}`} className="font-display text-lg hover:text-gold">{i.name}</Link>
                 <p className="text-sm text-stone">{money.format(i.price_cents / 100)}</p>
-                <button type="button" onClick={() => remove(i.id)} className="mt-2 inline-flex items-center gap-1 text-xs uppercase tracking-widest text-stone hover:text-ember">
+                <button type="button" onClick={() => remove(i.id)} className="mt-2 inline-flex items-center gap-1 font-display text-sm text-stone hover:text-ember">
                   <Trash2 size={14} aria-hidden /> {t.remove}
                 </button>
               </div>
@@ -76,7 +76,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice }: P
             </li>
           ))}
         </ul>
-        <Link href={`/${locale}/tienda`} className="mt-6 inline-block text-xs uppercase tracking-widest text-gold hover:text-ivory">← {t.continue}</Link>
+        <Link href={`/${locale}/tienda`} className="mt-6 inline-block font-display text-sm text-gold hover:text-ivory">← {t.continue}</Link>
       </div>
 
       <aside aria-label={t.total} className="h-fit border border-gold/30 bg-coal p-5">

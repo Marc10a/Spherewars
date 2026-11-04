@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { dict, isLocale } from "@/lib/i18n";
 import { factions } from "@/content/factions";
 import { formatPrice, listProducts, mediaUrl } from "@/lib/data";
-import { PageHero } from "@/components/ui";
+import { chipCls, PageHero } from "@/components/ui";
 import { factionCharacters } from "@/lib/wiki";
 import { MiniCard } from "@/components/MiniCard";
 
@@ -18,12 +18,12 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const { faccion, categoria } = await searchParams;
   const products = await listProducts({ faction: faccion, category: categoria });
   const hasCatalogue = faccion || categoria ? (await listProducts()).length > 0 : products.length > 0;
-  const chip = (active: boolean) => `btn inline-flex min-h-11 items-center border px-4 font-display text-sm font-semibold ${active ? "border-gold bg-gold text-abyss" : "border-gold/50 text-ivory hover:border-gold hover:bg-gold/15"}`;
+  const chip = chipCls;
   const href = (f?: string, c?: string) => `/${locale}/miniaturas${f || c ? "?" : ""}${[f && `faccion=${f}`, c && `categoria=${c}`].filter(Boolean).join("&")}`;
 
   return (
     <>
-      <PageHero title={t.title} lead={t.lead} />
+      <PageHero title={t.title} lead={t.lead} image="/wiki/images/hijos_de_malesur_concept.webp" imagePosition="center 30%" />
       <div className="mx-auto max-w-7xl px-4 py-12">
         <nav aria-label={t.filters} className="mb-8 grid gap-3">
           <div className="flex flex-wrap gap-2">
@@ -69,7 +69,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                     </div>
                     <div className="p-4">
                       <h2 className="font-display text-lg">{p.name}</h2>
-                      <p className="font-display text-xs uppercase tracking-widest text-accent">{factions.find((f) => f.slug === p.factions?.slug)?.name}</p>
+                      <p className="font-display text-sm text-accent">{factions.find((f) => f.slug === p.factions?.slug)?.name}</p>
                       {price && <p className="mt-1 text-sm text-stone">{price}</p>}
                     </div>
                   </Link>

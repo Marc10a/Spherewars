@@ -7,7 +7,7 @@ import { groupBySubfaction } from "@/lib/minigroups";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, Section } from "@/components/ui";
 import { ShopTile } from "@/components/shop/ShopTile";
-import { PackTile } from "@/components/shop/PackTile";
+import { StarterBlock } from "@/components/shop/StarterBlock";
 import { formatPrice, listSellableProducts } from "@/lib/data";
 import { productForMiniature } from "@/lib/shop/match";
 import { packFor } from "@/lib/shop/packs";
@@ -45,11 +45,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </div>
       <Section title={t.factions.minisTitle} compact>
         <div className="space-y-10">
-          {pack && (
-            <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-              <li><PackTile price={priceOf(pack.key)} pack={pack} theme={f.theme} priority href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>
-            </ul>
-          )}
+          {pack && <StarterBlock pack={pack} price={priceOf(pack.key)} href={`/${locale}/tienda/${f.slug}/starter-pack`} title={t.home.step2Title} text={t.home.step2Text} cta={t.home.step2Cta} />}
           {groups.map((g) => (
             <div key={g.name ?? "all"}>
               {g.name && <h3 className="mb-4 font-display text-2xl text-accent">{g.name} <span className="text-sm text-stone">({g.pages.length})</span></h3>}

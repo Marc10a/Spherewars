@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <PageHero title={t.shop.title} lead={t.shop.lead} />
+      <PageHero title={t.shop.title} lead={t.shop.lead} image="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" />
       <div className="mx-auto max-w-7xl px-4 pt-8">
         {!ready.canCheckout && <p role="note" className="border border-dashed border-gold/40 bg-coal/60 p-4 text-sm text-stone">{t.shop.closed}</p>}
         <ShopFilters locale={locale} active={null} />

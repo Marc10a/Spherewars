@@ -19,8 +19,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <PageHero title={t.downloads.title} lead={t.downloads.lead} />
-      <div className="mx-auto max-w-5xl space-y-12 px-4 py-12">
+      <PageHero title={t.downloads.title} lead={t.downloads.lead} image="/wiki/images/mapa_saphir_2026.webp" />
+      <div className="mx-auto max-w-7xl space-y-12 px-4 py-12">
         {([["guides", official.guides], ["posters", official.posters], ["maps", official.maps]] as ["guides" | "posters" | "maps", OfficialFile[]][]).map(([key, list]) => (
           <section key={key}>
             <h2 className="font-display text-2xl text-gold">{t.downloads[key]}</h2>
@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   )}
                   <div className="flex flex-1 flex-col gap-3 p-4">
                     <p lang="es" className="font-medium">{f.title}</p>
-                    <p className="text-xs text-stone">{f.type} · {f.size}</p>
+                    <p className="text-sm text-stone">{f.type}, {f.size}</p>
                     <div className="mt-auto"><Button href={f.file} external>{t.downloads.download}</Button></div>
                   </div>
                 </li>

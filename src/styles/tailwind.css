@@ -21,16 +21,16 @@
   --color-ember: var(--ember);
   --color-stone: var(--stone);
   --color-accent: var(--accent);
-  --font-display: var(--font-cinzel), serif;
-  --font-wordmark: var(--font-abaddon), var(--font-cinzel), serif;
+  --font-display: var(--font-federo), sans-serif;
+  --font-wordmark: var(--font-abaddon), var(--font-federo), serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; scrollbar-color: var(--gold) var(--abyss); }
+html { font-synthesis-weight: none; scroll-behavior: smooth; scroll-padding-top: 5rem; scrollbar-color: var(--gold) var(--abyss); }
 ::selection { background: var(--gold); color: var(--abyss); }
-/* Every heading uses Cinzel (utilities such as .font-sans can still override it). */
+/* Every heading uses Federo (utilities such as .font-sans can still override it). */
 @layer base {
-  h1, h2, h3, h4, h5, h6 { text-wrap: balance; font-family: var(--font-cinzel), "Times New Roman", serif; font-weight: 500; letter-spacing: 0.02em; }
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance; font-family: var(--font-federo), "Trebuchet MS", sans-serif; font-weight: 400; letter-spacing: 0.01em; }
 }
 body { background: var(--abyss); color: var(--ivory); font-family: var(--font-inter), system-ui, sans-serif; }
 
@@ -79,12 +79,12 @@ body { background: var(--abyss); color: var(--ivory); font-family: var(--font-in
 @keyframes sway { from { margin-left: -16px; } to { margin-left: 16px; } }
 
 /* Sanitized official wiki HTML */
-.wiki-prose { line-height: 1.75; color: rgb(232 224 207 / .92); }
+.wiki-prose { line-height: 1.75; font-size: 1.0625rem; max-width: 72ch; color: rgb(242 231 207 / .94); }
 .wiki-prose > * + * { margin-top: 1.1rem; }
-.wiki-prose h1, .wiki-prose h2, .wiki-prose h3, .wiki-prose h4 { font-family: var(--font-cinzel), serif; color: var(--ivory); margin-top: 2rem; }
+.wiki-prose h1, .wiki-prose h2, .wiki-prose h3, .wiki-prose h4 { font-family: var(--font-federo), sans-serif; font-weight: 400; color: var(--ivory); margin-top: 2rem; }
 .wiki-prose h1 { font-size: 2rem; } .wiki-prose h2 { font-size: 1.6rem; } .wiki-prose h3 { font-size: 1.25rem; color: var(--gold); }
 .wiki-prose a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
-.wiki-prose blockquote { border-left: 2px solid var(--gold); padding-left: 1rem; color: var(--stone); font-style: italic; }
+.wiki-prose blockquote { border-left: 2px solid var(--gold); padding-left: 1rem; color: var(--ivory); font-style: italic; }
 .wiki-prose ul { list-style: disc; padding-left: 1.5rem; } .wiki-prose ol { list-style: decimal; padding-left: 1.5rem; }
 .wiki-prose img { max-width: 100%; height: auto; margin-inline: auto; border: 1px solid rgb(195 162 103 / .25); }
 .wiki-prose .table-container { overflow-x: auto; }
@@ -106,3 +106,154 @@ body { background: var(--abyss); color: var(--ivory); font-family: var(--font-in
   .btn, .tilt-card, [data-reveal] { transition: none; }
   .js-reveal [data-reveal]:not(.is-in) { opacity: 1; transform: none; }
 }
+
+/* Faction landings */
+[data-faction="malesur"] { --land-tint: #122419; }
+[data-faction="alianza"] { --land-tint: #231d15; }
+[data-faction="urueh"] { --land-tint: #2a0f0a; }
+[data-faction="kurgan"] { --land-tint: #0d1e2e; }
+.land-tint { background: linear-gradient(180deg, var(--abyss), var(--land-tint) 18%, var(--land-tint) 82%, var(--abyss)); }
+.land-name { font-size: clamp(3rem, 10vw, 9.5rem); line-height: .95; }
+.tilt-3d { perspective: 900px; }
+.tilt-3d-mini { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1); transition: transform .25s var(--ease-out); }
+@media (hover: hover) { .tilt-3d:hover .tilt-3d-mini { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.05); } }
+@media (prefers-reduced-motion: no-preference) {
+  .land-rise { animation: landRise .8s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms); }
+  @keyframes landRise { from { opacity: 0; transform: translateY(32px); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  .sigil-glow { animation: sigilGlow 3.6s ease-in-out infinite alternate; }
+  @keyframes sigilGlow { from { filter: drop-shadow(0 0 6px var(--accent)); } to { filter: drop-shadow(0 0 28px var(--accent)); } }
+  @supports (animation-timeline: scroll()) {
+    .land-hero-out { animation: landOut linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+    @keyframes landOut { to { opacity: 0; transform: translateY(-70px) scale(.97); } }
+    .land-hero-bg { animation: landBg linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    @keyframes landBg { to { transform: scale(1.14); } }
+  }
+}
+
+/* Faction chooser (/facciones). Stacked rules match stackedLayout in FactionChooser.tsx. */
+[data-faction="malesur"] { --fc-x: 53%; }
+[data-faction="alianza"] { --fc-x: 56%; }
+[data-faction="urueh"] { --fc-x: 46%; }
+[data-faction="kurgan"] { --fc-x: 47%; }
+.fc {
+  --fc-head: 61px; --fc-t: .48s; --fc-pad: clamp(.75rem, 1.7vw, 2rem);
+  --fc-veil: 11 11 13;
+  position: relative; isolation: isolate; overflow: hidden; background: var(--abyss);
+  height: calc(100svh - var(--fc-head)); min-height: 34rem;
+}
+.fc-head { position: absolute; inset: 0 0 auto; z-index: 20; pointer-events: none; padding: clamp(1.25rem, 4.5vh, 2.75rem) 1rem 0; text-align: center; }
+.fc-head::before {
+  content: ""; position: absolute; inset: 0 0 -6.5rem; z-index: -1;
+  background: linear-gradient(to bottom, rgb(var(--fc-veil) / .84), rgb(var(--fc-veil) / .68) calc(100% - 6.5rem), rgb(var(--fc-veil) / .5) calc(100% - 5rem), rgb(var(--fc-veil) / .3) calc(100% - 3.5rem), rgb(var(--fc-veil) / .14) calc(100% - 2rem), rgb(var(--fc-veil) / .04) calc(100% - .75rem), rgb(var(--fc-veil) / 0));
+}
+.fc-title { font-family: var(--font-display); font-weight: 400; color: var(--ivory); font-size: clamp(2.75rem, min(7vw, 12svh), 6.75rem); line-height: 1; letter-spacing: .01em; text-wrap: balance; }
+.fc-lead { font-family: var(--font-display); color: var(--ivory); font-size: clamp(1rem, 1.5vw, 1.375rem); margin-top: .5rem; }
+.fc-list { display: flex; height: 100%; }
+.fc-slot { flex: 1 1 0; min-width: 0; transition: flex-grow var(--fc-t) var(--ease-out); }
+.fc-slot[data-state="active"] { flex-grow: 3.2; }
+.fc-panel { position: relative; isolation: isolate; display: block; height: 100%; overflow: hidden; color: var(--ivory); background: var(--land-tint); }
+.fc-panel:focus-visible { outline: 3px solid var(--gold); outline-offset: -6px; }
+.fc-panel:focus-visible::after { box-shadow: inset 0 0 0 9px rgb(var(--fc-veil) / .6); }
+.fc-panel::before { content: ""; position: absolute; inset: auto 0 0; height: 3px; z-index: 5; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform var(--fc-t) var(--ease-out); }
+.fc-panel::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; border-left: 1px solid rgb(216 168 78 / .28); }
+.fc-slot:first-child .fc-panel::after { border-left: 0; }
+.fc-slot[data-state="active"] .fc-panel::before { transform: none; }
+/* Paint order inside the panel: poster, video, shader (-z-10, blends with what is below), dim, copy. */
+.fc-media { object-fit: cover; object-position: var(--fc-x, 50%) 50%; transform: scale(1.05); transition: transform .9s var(--ease-out); }
+.fc-slot[data-state="active"] .fc-media { transform: none; }
+.fc-poster { z-index: -30; }
+.fc-video { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -20; opacity: 0; transition: opacity .3s var(--ease-out), transform .9s var(--ease-out); }
+.fc-video[data-ready] { opacity: 1; }
+/* Fixed width: resizing a WebGL canvas clears it, which would flicker while the panel grows. */
+.fc-shader { position: absolute; inset: 0 auto 0 0; width: 56vw; pointer-events: none; }
+.fc-shader canvas { animation: fcShaderIn .45s var(--ease-out) backwards; transition: opacity .2s var(--ease-out); }
+.fc-shader[data-leaving] canvas { opacity: 0; }
+@keyframes fcShaderIn { from { opacity: 0; } }
+.fc-dim { position: absolute; inset: 0; background: var(--abyss); opacity: 0; transition: opacity var(--fc-t) var(--ease-out); }
+.fc-slot[data-state="dim"] .fc-dim { opacity: .62; }
+.fc-copy { position: absolute; inset: auto 0 0; z-index: 10; display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; padding: 0 var(--fc-pad) clamp(1.25rem, 4vh, 2.75rem); }
+.fc-emblem { position: relative; display: block; width: clamp(3.5rem, 6vw, 6rem); height: clamp(4.5rem, 8vw, 7.5rem); transform-origin: 0 100%; filter: drop-shadow(0 2px 10px rgb(0 0 0 / .7)); transition: transform var(--fc-t) var(--ease-out), opacity var(--fc-t) var(--ease-out); }
+.fc-slot[data-state="dim"] .fc-emblem { opacity: .75; }
+.fc-slot[data-state="active"] .fc-emblem { transform: translateY(calc(var(--fc-name) * -1.15)) scale(1.1); }
+.fc-text { --fc-under: clamp(1.25rem, 4vh, 2.75rem); position: relative; display: block; width: 100%; }
+.fc-emblem, .fc-text { --fc-name: clamp(1.25rem, 2.3vw, 2.4rem); }
+.fc-text::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; inset: -12rem calc(var(--fc-pad) * -1) calc(var(--fc-under) * -1);
+  background: linear-gradient(to top, rgb(var(--fc-veil) / .9), rgb(var(--fc-veil) / .8) calc(100% - 12rem), rgb(var(--fc-veil) / .68) calc(100% - 9rem), rgb(var(--fc-veil) / .5) calc(100% - 7rem), rgb(var(--fc-veil) / .3) calc(100% - 5rem), rgb(var(--fc-veil) / .14) calc(100% - 3rem), rgb(var(--fc-veil) / .05) calc(100% - 1.5rem), rgb(var(--fc-veil) / 0));
+}
+.fc-name { font-family: var(--font-display); font-weight: 400; font-size: var(--fc-name); line-height: 1.05; transform-origin: 0 100%; transition: transform var(--fc-t) var(--ease-out); }
+/* Headings here have their own motion: no global scroll-driven heading reveal. */
+.fc-title, .fc-name { animation: none; }
+.fc-name > span { display: block; white-space: nowrap; }
+.fc-slot[data-state="active"] .fc-name { transform: scale(1.55); }
+.fc-details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--fc-t) var(--ease-out); }
+.fc-slot[data-state="active"] .fc-details { grid-template-rows: 1fr; }
+/* Fixed width, so the text does not rewrap while the panel grows. */
+.fc-details-inner { display: block; min-height: 0; overflow: hidden; width: min(30rem, 42vw); opacity: 0; transition: opacity .2s var(--ease-out); }
+.fc-slot[data-state="active"] .fc-details-inner { opacity: 1; transition: opacity .32s var(--ease-out) .12s; }
+.fc-blurb { display: block; font-family: var(--font-display); font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.25; padding-top: .875rem; }
+.fc-style { display: block; font-size: 1rem; line-height: 1.5; margin-top: .375rem; }
+.fc-cta { display: inline-flex; align-items: center; gap: .625rem; min-height: 3rem; margin-top: 1rem; padding: .75rem 1.5rem; background: var(--gold); color: var(--abyss); font-family: var(--font-display); letter-spacing: .03em; transition: background-color .15s var(--ease-out), transform .12s var(--ease-out); }
+.fc-panel:hover .fc-cta, .fc-panel:focus-visible .fc-cta { background: var(--ivory); }
+.fc-panel:active .fc-cta { transform: scale(.97); }
+@media (max-width: 767.98px), (hover: none) {
+  .fc { height: auto; min-height: 0; }
+  .fc-list { display: block; height: auto; }
+  .fc-slot { height: max(30rem, calc(100svh - var(--fc-head) - 3.5rem)); }
+  .fc-slot + .fc-slot .fc-panel::after { border-left: 0; border-top: 1px solid rgb(216 168 78 / .35); }
+  .fc-panel::before { display: none; }
+  .fc-shader { width: 100%; }
+  .fc-media { transform: none; }
+  .fc-emblem, .fc-text { --fc-name: clamp(2.25rem, 10.5vw, 4rem); }
+  .fc-emblem { width: 5rem; height: 6rem; }
+  .fc-slot[data-state="active"] .fc-emblem, .fc-slot[data-state="active"] .fc-name { transform: none; }
+  .fc-details { grid-template-rows: 1fr; }
+  .fc-details-inner { width: auto; opacity: 1; }
+  .fc-copy { --fc-pad: 1rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fc-slot { animation: fcRise .56s var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 80ms); }
+  @keyframes fcRise { from { clip-path: inset(100% 0 0 0); transform: translateY(2.5rem); } to { clip-path: inset(0 0 0 0); transform: none; } }
+  .fc-head { animation: fcHead .5s var(--ease-out) .3s backwards; }
+  @keyframes fcHead { from { opacity: 0; transform: translateY(-.75rem); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-slot, .fc-panel::before, .fc-media, .fc-dim, .fc-emblem, .fc-name, .fc-details, .fc-details-inner, .fc-cta { transition: none !important; animation: none; }
+}
+/* Native view transition towards a faction: the chosen panel opens up and dissolves into the new page. */
+html.fc-vt::view-transition-old(root) { animation: none; }
+html.fc-vt::view-transition-new(root) { animation: fcVtIn .3s var(--ease-out) both; }
+html.fc-vt::view-transition-old(fc-chosen) { animation: fcVtChosen .42s var(--ease-out) both; }
+@keyframes fcVtIn { from { opacity: 0; } }
+@keyframes fcVtChosen { to { opacity: 0; transform: scale(1.06); } }
+
+/* Living details */
+.scroll-thread { position: fixed; inset: 0 0 auto; z-index: 70; height: 2px; pointer-events: none; transform-origin: left; transform: scaleX(0); background: var(--gold); box-shadow: 0 1px 8px var(--gold); }
+.btn-solid { position: relative; overflow: hidden; isolation: isolate; }
+.btn-solid::after { content: ""; position: absolute; inset: -40% auto -40% -40%; width: 34%; background: rgb(255 255 255 / .55); transform: skewX(-20deg) translateX(-140%); z-index: -1; }
+.die-scene { --size: clamp(52px, 7vw, 76px); --half: calc(var(--size) / 2); width: var(--size); height: var(--size); perspective: 700px; }
+.die { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 1.35s cubic-bezier(0.18, 0.9, 0.25, 1.04); }
+.die-face { position: absolute; inset: 0; background: linear-gradient(145deg, #2a2730, #121116); border: 1px solid rgb(216 168 78 / .65); border-radius: 12%; backface-visibility: hidden; }
+.die-pip { position: absolute; width: 17%; height: 17%; border-radius: 50%; translate: -50% -50%; background: var(--gold); box-shadow: 0 0 6px rgb(216 168 78 / .7); }
+.die-won .die-face { border-color: var(--ivory); box-shadow: 0 0 22px rgb(216 168 78 / .55); }
+@media (prefers-reduced-motion: reduce) { .die { transition: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) { .btn-solid:hover::after { animation: btnSheen .7s var(--ease-out); } }
+  @keyframes btnSheen { to { transform: skewX(-20deg) translateX(520%); } }
+  .ember-text { background: linear-gradient(100deg, var(--gold) 30%, #fff2c8 44%, #ff8a3d 52%, var(--gold) 66%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: emberText 9s linear infinite; }
+  @keyframes emberText { from { background-position: 150% 0; } to { background-position: -150% 0; } }
+  @supports (animation-timeline: scroll()) {
+    .scroll-thread { animation: scrollThread linear both; animation-timeline: scroll(root); }
+    @keyframes scrollThread { to { transform: scaleX(1); } }
+  }
+  @supports (animation-timeline: view()) {
+    main h2 { animation: headIn linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+    @keyframes headIn { from { opacity: 0; transform: translateY(40px); letter-spacing: .09em; filter: blur(5px); } to { opacity: 1; transform: none; filter: blur(0); } }
+    main .rune-divider { transform-origin: left; animation: runeDraw linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+    @keyframes runeDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    main li > a.tilt-card, main .tilt-card { animation: cardIn linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+    @keyframes cardIn { from { opacity: .001; transform: translateY(46px) scale(.96); } to { opacity: 1; transform: none; } }
+  }
+}
+
+.orb-text h2, .orb-text blockquote, .orb-text dt, .orb-text dd { text-shadow: 0 2px 18px rgb(0 0 0 / .95), 0 0 42px rgb(0 0 0 / .8); }

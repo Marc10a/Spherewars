@@ -1,0 +1,370 @@
+{
+ "manadas-de-urueh": {
+  "god": {
+   "name": "Kazag",
+   "line": "Dios de la incineración, creó a sus Hijos con un propósito sencillo y absoluto: incinerar."
+  },
+  "hook": "No buscan conquistar Saphir. Buscan incinerarlo.",
+  "intro": "Las Manadas de Urueh reúnen a los Hijos de Kazag y a las Bestias Autóctonas de las regiones volcánicas bajo una misma lógica: avanzar, destruir y reducir cuanto encuentran a cenizas. Bajo su caos violento existe un orden funcional.",
+  "chapters": [
+   {
+    "title": "Caos bajo mando",
+    "text": "Cada Manada suele obedecer a un Primigenio, que lucha junto a sus tropas. Por debajo, los Calcinadores contienen el caos lo suficiente para dirigirlo contra el enemigo. Los demontres, caóticos y agresivos, forman el grueso. Avanzan en oleadas, con presión constante.",
+    "image": "/wiki/images/organizaci_n_militar_jerarqu_a.webp",
+    "source": "facciones/manadas-de-urueh/organizacion-militar"
+   },
+   {
+    "title": "La Gran Incineración",
+    "text": "Tras una gran victoria, las Manadas levantan fogatas sobre el mismo terreno devastado y queman restos enemigos, armas, suministros y vegetación. No conservan trofeos ni levantan monumentos: para los Hijos de Kazag, la mejor ofrenda posible es que nada permanezca.",
+    "image": "/wiki/images/la_gran_incineraci_n.webp",
+    "source": "facciones/manadas-de-urueh/religion-y-creencias"
+   },
+   {
+    "title": "Erupción del Renacimiento",
+    "text": "Kazag vinculó a los Primigenios con los Volcanes de Urueh, en Teokkis. Cuando uno muere, allí puede formarse un nuevo cuerpo en el que renace. Para las Manadas, es una de las mayores manifestaciones del poder de su dios.",
+    "image": "/wiki/images/la_erupci_n_del_renacimiento.webp",
+    "source": "facciones/manadas-de-urueh/religion-y-creencias"
+   }
+  ],
+  "quote": {
+   "text": "Urueh no ha eliminado el caos; ha aprendido a vivir dentro de él y a dirigirlo contra sus enemigos.",
+   "source": "facciones/manadas-de-urueh/mentalidad-y-caracter"
+  },
+  "pillars": [
+   {
+    "name": "Presión constante",
+    "text": "Toma la iniciativa y mantén la presión hasta que las líneas rivales terminen por quebrarse."
+   },
+   {
+    "name": "Superioridad numérica",
+    "text": "La Leva Demontre aprovecha su número para presionar diferentes zonas y generar oportunidades."
+   },
+   {
+    "name": "Amenazas combinadas",
+    "text": "Sátanor apoya con magia, el Sorkep hostiga puntos vulnerables y el Abrasador castiga posiciones resistentes."
+   }
+  ],
+  "heroes": [
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/satanor",
+    "name": "Sátanor, el Volcán",
+    "reason": "Segundo Primigenio de Kazag y su primer hechicero; aporta liderazgo y Hebrado."
+   },
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/pyronus",
+    "name": "Pyronus, el Heraldo",
+    "reason": "Demontre convertido en Primigenio; los demontres lo siguen ciegamente."
+   },
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/lucio",
+    "name": "Lucio, Capataz Demontre",
+    "reason": "Manipulador cruel con un látigo que hace estallar a otros demontres."
+   },
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/abrasador",
+    "name": "Abrasador",
+    "reason": "Nacido del magma más profundo; arroja lava y funde armaduras con sus puños."
+   },
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/fundidor",
+    "name": "Fundidor",
+    "reason": "El Hijo de Kazag más voluminoso: tropa de choque de fuerza letal."
+   },
+   {
+    "wikiSlug": "personajes/mandas-de-urueh/calcinador",
+    "name": "Calcinador",
+    "reason": "Élite de Urueh: lanzas volcánicas y combate en formación."
+   }
+  ],
+  "subfactions": [
+   {
+    "name": "Demontres",
+    "text": "La marea ardiente de la horda, letales en grupo; el grupo más numeroso entre los Hijos de Kazag."
+   },
+   {
+    "name": "Hijos de Kazag",
+    "text": "La élite devastadora de las Manadas, con Hijos grandes y especializados como Calcinadores, Abrasadores y Fundidores."
+   },
+   {
+    "name": "Bestias de Urueh",
+    "text": "Desatan una brutalidad salvaje que solo los más osados pueden controlar; cada especie conserva sus instintos."
+   }
+  ]
+ },
+ "vastagos-de-kurgan": {
+  "god": {
+   "name": "Kurgan",
+   "line": "Dios del hielo, uno de los cuatro dioses primordiales del Panteón Celestial: la fuerza fría que avanza, domina y permanece."
+  },
+  "hook": "Hijos de Kurgan unidos por la Profecía, divididos por heridas antiguas.",
+  "intro": "Los Vástagos de Kurgan son una coalición de soimi y regors nacidos bajo el dios del hielo. Huram’Koll, Enur’Anar, Tur’Na’Kurg y los Liberados conservan gobierno propio, pero han abandonado los Picos de Kurgan en busca de la Quinta Esencia.",
+  "chapters": [
+   {
+    "title": "Nacidos del hielo",
+    "text": "Kurgan creó veinte Nak’Ly, procreadoras de los soimi. Cinkor resultó demasiado cálida y las supervivientes ascendieron a los gélidos Picos de Kurgan. Allí se ejecutaba a todo débil; un malformado escapó, mató a una Nak’Ly y pronunció la profecía de Tur’Na’Kurg, el Heraldo.",
+    "image": "/wiki/images/dios_kurgan.webp",
+    "source": "historia/hijos-de-kurgan"
+   },
+   {
+    "title": "Unión de cultos",
+    "text": "Huram’Koll y Enur’Anar se desangraron durante siglos mientras los Ungidos alimentaban su odio. Entonces Kurgan ordenó engendrar nuevas formas y nació el Leviatán. Muchos vieron en él una señal, y los Ungidos sentaron a los cultos bajo una misma voluntad: los Vástagos de Kurgan.",
+    "image": "/wiki/images/vida_cotidiana_cultura_dividida.webp",
+    "source": "historia/hijos-de-kurgan"
+   },
+   {
+    "title": "Cadenas rotas",
+    "text": "Nacidos esclavos de los soimi, los regors se rebelaron con Raggarth, el Liberador. Llevaron a las Rhy’Naky hasta Cinkor y aseguraron sus propias generaciones. La alianza siguió, frágil, hasta que en 1.471 los Vástagos marcharon hacia Caldara, tras la Quinta Esencia.",
+    "image": "/wiki/images/sociedad_regors.webp",
+    "source": "historia/hijos-de-kurgan"
+   }
+  ],
+  "quote": {
+   "text": "Kurgan los creó como hijos suyos, no como esclavos.",
+   "source": "facciones/vastagos-de-kurgan/religion-y-creencias"
+  },
+  "pillars": [
+   {
+    "name": "Amenazas constantes",
+    "text": "Crea amenazas desde distintas zonas de la mesa y obliga al rival a dividir su atención."
+   },
+   {
+    "name": "Infiltración y emboscada",
+    "text": "El Acechador actúa desde posiciones inesperadas para hostigar al rival y amenazar sus puntos vulnerables."
+   },
+   {
+    "name": "Caza de líderes",
+    "text": "Concentra tu fuerza en las piezas clave: el Desacrador Gélido castiga especialmente a líderes y hechiceros."
+   }
+  ],
+  "heroes": [
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/leviatan",
+    "name": "El Leviatán",
+    "reason": "Híbrido colosal de soimi y regor, señal sagrada para Tur’Na’Kurg; 9,8 cm."
+   },
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/nek-org",
+    "name": "Nek'Org, El Profeta",
+    "reason": "Líder de Tur’Na’Kurg y principal impulsor político de la unión."
+   },
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/raggarth",
+    "name": "Raggarth, El Liberador",
+    "reason": "Líder de la revuelta regor y núcleo del Starter Pack Furia Helada."
+   },
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/desacrador",
+    "name": "Desacrador Gélido",
+    "reason": "Campeón de Tur’Na’Kurg que derriba líderes y hechiceros; 7,5 cm."
+   },
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/jorguin",
+    "name": "Jorguín de la Escarcha",
+    "reason": "Mago de élite de Huram’Koll, forjador de su báculo Llamaventiscas."
+   },
+   {
+    "wikiSlug": "personajes/vastagos-de-kurgan/destripador",
+    "name": "Destripador",
+    "reason": "Regor feroz de primera línea, consumido por su ansia de sangre."
+   }
+  ],
+  "subfactions": [
+   {
+    "name": "Huram’Koll",
+    "text": "Culto de hechiceros, reflexivo e introspectivo, que busca a Kurgan a través del Hebrado. Lo dirige Sull."
+   },
+   {
+    "name": "Enur’Anar",
+    "text": "Culto de guerreros marciales y disciplinados: honran a Kurgan con fuerza, sacrificio y hechos. Su figura es Tir’Abe."
+   },
+   {
+    "name": "Tur’Na’Kurg",
+    "text": "Culto paciente y calculador, consagrado a la Profecía. Nek’Org y sus Ungidos aceptan el engaño como instrumento legítimo."
+   },
+   {
+    "name": "Los Liberados",
+    "text": "Regors y regoretes libres que construyen en Cinkor, con Raggarth, una sociedad sin la rígida pirámide soimi."
+   }
+  ]
+ },
+ "adeptos-de-malesur": {
+  "god": {
+   "name": "Malesur",
+   "line": "Dios del viento, uno de los cuatro dioses primordiales del Panteón Celestial."
+  },
+  "hook": "Encontraron la paz y están dispuestos a convertirse en bestias para defenderla.",
+  "intro": "Humanos que hallaron en el Bosque de Lilean un refugio lejos de las persecuciones de Darlime: sin gobernantes, moneda ni ejército. Unidos a los Espíritus del Bosque, viven en paz hasta que alguien la amenaza; entonces convierten sus cuerpos en armas.",
+  "chapters": [
+   {
+    "title": "El gran Éxodo",
+    "text": "Cuando la Legión de los Cien Corazones prohibió el culto a Malesur, comenzó la persecución de sus creyentes. En el año 1.250, cientos de ellos huyeron desde el Embarcadero de la Paz hacia los bosques de Lilean, donde preservaron su fe.",
+    "image": "/wiki/images/barco_de_la_paz_cerca_del_bosque.webp",
+    "source": "cronologia/hijos-de-malesur"
+   },
+   {
+    "title": "Dos naturalezas, un cuerpo",
+    "text": "Cada Adepto se vincula a un Espíritu del Bosque y puede adoptar una forma fusionada única, con garras, colmillos, alas o escamas. El humano pacífico se vuelve territorial y agresivo, pero nunca pierde su inteligencia: ambas naturalezas dialogan permanentemente.",
+    "image": "/wiki/images/portada_adeptos_bona.webp",
+    "source": "facciones/adeptos-de-malesur"
+   },
+   {
+    "title": "Cuando Lilean responde",
+    "text": "No tienen soldados ni generales, y nadie puede ordenarles combatir. Pero si sus líderes espirituales advierten de una amenaza, cientos de decisiones individuales pueden convertirse en una misma voluntad, y el bosque se llena de criaturas inteligentes, territoriales y extremadamente agresivas.",
+    "image": "/wiki/images/toro_embistiendo.webp",
+    "source": "facciones/adeptos-de-malesur/organizacion-militar"
+   }
+  ],
+  "quote": {
+   "text": "Cuando Lilean está verdaderamente amenazado, el ejército es Lilean.",
+   "source": "facciones/adeptos-de-malesur/organizacion-militar"
+  },
+  "pillars": [
+   {
+    "name": "Presión resistente",
+    "text": "Liehhan avanza hacia posiciones importantes, fija enemigos en combate y dificulta que puedan abandonarlo."
+   },
+   {
+    "name": "Apoyo sostenido",
+    "text": "Las Mangostas aportan protección y recuperación para prolongar la resistencia de la banda."
+   },
+   {
+    "name": "Movilidad y magia",
+    "text": "El Águila se reposiciona rápido, apoya la magia y alcanza zonas de la mesa difíciles."
+   }
+  ],
+  "heroes": [
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/liehhan",
+    "name": "Liehhan, el Oso",
+    "reason": "Heredero del linaje de Lilean, elegido por el Oso; marchó primero sobre Darlime."
+   },
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/yenay",
+    "name": "Yenay, la Mantis",
+    "reason": "Contrabandista elegida por la Mantis: la daga de Malesur en la oscuridad."
+   },
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/toro",
+    "name": "Toro",
+    "reason": "La criatura más colosal de Lilean; sus cuernos atraviesan metal y hueso."
+   },
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/cangrejo",
+    "name": "Cangrejo",
+    "reason": "Caparazón casi indestructible y pinzas que destrozan hasta la armadura más resistente."
+   },
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/morena",
+    "name": "Morena",
+    "reason": "Espíritu del mar capaz de arrancar extremidades de un solo mordisco."
+   },
+   {
+    "wikiSlug": "personajes/adeptos-de-malesur/aguila",
+    "name": "Águila",
+    "reason": "Vuela, dirige a las tropas desde el aire y amplifica los hechizos."
+   }
+  ],
+  "subfactions": [
+   {
+    "name": "Druidas Lobo",
+    "text": "Elegidos por el Lobo, abandonan sus hogares y moran aislados en una sociedad hermética hasta la hora de luchar."
+   },
+   {
+    "name": "Guías de Paz",
+    "text": "Viajan clandestinamente hasta Darlime para ayudar a los perseguidos y conducirlos hasta Lilean."
+   },
+   {
+    "name": "Líderes espirituales",
+    "text": "No gobiernan: aconsejan, y sus palabras pesan precisamente porque no pueden imponerlas."
+   }
+  ]
+ },
+ "alianza": {
+  "god": {
+   "name": "Sin favor divino",
+   "line": "Hijos de Malesur sin favor divino: la Legión es oficialmente atea y las Mercenarias veneran a Isha, ajena al Panteón Celestial."
+  },
+  "hook": "Acero, hebras y una alianza nacida de la necesidad.",
+  "intro": "La Legión de los Cien Corazones y las Mercenarias de Isha, dos fuerzas muy distintas de Darlime, marchan juntas. Sin favor de los dioses, se unieron para controlar y explotar la Quinta Esencia y enfrentarse a quien pretenda arrebatársela.",
+  "chapters": [
+   {
+    "title": "Imperio de acero",
+    "text": "La Legión gobierna Darlime desde la Ciudadela del Corazón, en Caldara. Valora el cuerpo a cuerpo como la forma más honorable de la guerra y no integra hebradores en sus filas oficiales. Su grito lo resume: «¡Legión! ¡Con el corazón!». Cada hombre cuenta, pero ninguno por sí solo.",
+    "image": "/wiki/images/legi_n_portada_concept.webp",
+    "source": "facciones/alianza/legion-de-los-cien-corazones/legion-de-los-cien-corazones-faccion"
+   },
+   {
+    "title": "Hermanas del Bastión",
+    "text": "Desde Alquézar, esta hermandad exclusivamente femenina ofrece sus servicios como guerreras y cobra en monedas, propiedades o hijas. Siete Líneas rivalizan bajo la Fe de Isha, pero siguen reconociéndose como hermanas. Quien intenta huir es buscada para ser devuelta al Bastión.",
+    "image": "/wiki/images/conjunto_mercenarias_bueno.webp",
+    "source": "facciones/alianza/mercenarias-de-isha/mercenarias-de-isha-faccion"
+   },
+   {
+    "title": "Unión sin dioses",
+    "text": "En 1.417, la Legión aprendió a comprender y manipular la Quinta Esencia. Ninguna de las dos fuerzas recibió favor divino, y de esa necesidad nació la Alianza. Durante décadas la estudiaron y explotaron, hasta que en 1.471 comenzó la Búsqueda y se prepararon para defender su dominio.",
+    "image": "/wiki/images/alianza_portada_baja2.webp",
+    "source": "historia/hijos-de-malesur"
+   }
+  ],
+  "quote": {
+   "text": "Sin intervención de los dioses en su beneficio, comprendieron que únicamente podían confiar en sí mismas y en el poder que habían comenzado a dominar.",
+   "source": "historia/hijos-de-malesur"
+  },
+  "pillars": [
+   {
+    "name": "Fuego y magia",
+    "text": "Las Mercenarias aportan número, magia y fuego a distancia, con movilidad para responder a cada amenaza."
+   },
+   {
+    "name": "Acero en formación",
+    "text": "La Legión responde en combate cuerpo a cuerpo y resiste con disciplina marcial, sin recurrir a magia."
+   },
+   {
+    "name": "Banda coordinada",
+    "text": "Ródanes dirige, los Postulantes ocupan posiciones y la Recaudadora amenaza con magia y disparo."
+   }
+  ],
+  "heroes": [
+   {
+    "wikiSlug": "personajes/alianza/rodanes",
+    "name": "Ródanes, Brazo de Metal",
+    "reason": "Corazón Supremo de la Legión; cambia el rumbo de cualquier batalla."
+   },
+   {
+    "wikiSlug": "personajes/alianza/roxter",
+    "name": "Róxter, el Piloto",
+    "reason": "92 mm de altura: un artilugio irreplicable que le permite volar."
+   },
+   {
+    "wikiSlug": "personajes/alianza/corazon-equite",
+    "name": "Corazón Équite",
+    "reason": "Élite de la Legión: 69 mm sobre peana de 50 mm."
+   },
+   {
+    "wikiSlug": "personajes/alianza/laroc",
+    "name": "Laroc, la Seductora",
+    "reason": "Una de las hechiceras más poderosas de las Mercenarias de Isha."
+   },
+   {
+    "wikiSlug": "personajes/alianza/recaudadora",
+    "name": "Recaudadora de Isha",
+    "reason": "Hechicera y arquera que garantiza que toda deuda sea saldada."
+   },
+   {
+    "wikiSlug": "personajes/alianza/oteadora",
+    "name": "Oteadora de Isha",
+    "reason": "Estratega de Isha: reconocimiento, apoyo táctico y combate a distancia."
+   }
+  ],
+  "subfactions": [
+   {
+    "name": "Legión de los Cien Corazones",
+    "text": "Gran poder imperial de Darlime: disciplina férrea, formación y combate cuerpo a cuerpo, sin magia."
+   },
+   {
+    "name": "Mercenarias de Isha",
+    "text": "Hermandad de mujeres de Alquézar: movilidad, disparo, magia y número, unidas por la Fe de Isha."
+   }
+  ]
+ }
+}

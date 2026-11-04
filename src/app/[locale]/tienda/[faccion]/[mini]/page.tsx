@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <ProductGallery photos={photos} labels={{ prev: t.shop.prevPhoto, next: t.shop.nextPhoto, zoom: t.shop.zoomIn, zoomToggle: t.shop.zoomToggle, close: t.a11y.close, photoOf: t.shop.photoOf, gallery: t.shop.gallery }} />
         ) : (
           <div className="grid aspect-[4/5] place-items-center border border-accent/30 bg-coal text-center">
-            <div><span className="block font-display text-8xl text-accent/40" aria-hidden>{title.charAt(0)}</span><span className="mt-2 block text-xs uppercase tracking-[0.3em] text-stone">{t.common.provisional}</span></div>
+            <div><span className="block font-display text-8xl text-accent/40" aria-hidden>{title.charAt(0)}</span><span className="mt-2 block font-display text-sm text-stone">{t.common.provisional}</span></div>
           </div>
         )}
         </div>
@@ -94,7 +94,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <h1 lang="es" className="mt-2 font-display text-3xl leading-tight md:text-5xl">{title}</h1>
           {doc ? <p lang="es" className="mt-4 text-base leading-relaxed text-ivory/80">{doc.intro}</p>
             : info?.excerpt && <p lang="es" className="mt-4 line-clamp-4 text-base leading-relaxed text-ivory/80">{info.excerpt}</p>}
-          {!doc && info?.race && <p className="mt-2 text-xs uppercase tracking-widest text-accent">{t.factions.raceLabel}: <span lang="es">{info.race}</span></p>}
+          {!doc && info?.race && <p className="mt-2 font-display text-sm text-accent">{t.factions.raceLabel}: <span lang="es">{info.race}</span></p>}
           <hr className="rune-divider my-6" />
 
           <div data-wp-slot="buy">
@@ -140,12 +140,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   ))}
                 </dl>
               </div>
-              {doc.lore.length > 0 && (
-                <details className="border border-gold/20 bg-coal p-4">
-                  <summary className="cursor-pointer font-display text-lg text-gold">{t.shop.lore}</summary>
-                  <div lang="es" className="mt-3 space-y-3 text-base leading-relaxed text-ivory/85">{doc.lore.map((p, i) => <p key={i}>{p}</p>)}</div>
-                </details>
-              )}
+              {page && <p><Link href={`/${locale}/wikisphere/${page.slug}`} className="font-display text-lg text-gold underline underline-offset-4 hover:text-ivory">{t.factions.readFull}</Link></p>}
             </div>
           )}
         </div>

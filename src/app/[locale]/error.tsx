@@ -11,7 +11,7 @@ export default function ErrorPage({ reset }: { error: Error; reset: () => void }
       <div>
         <h1 className="font-display text-3xl">{t.title}</h1>
         <p className="mt-3 text-stone">{t.text}</p>
-        <button onClick={reset} className="mt-8 bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss">{t.retry}</button>
+        <button onClick={reset} className="mt-8 bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss">{t.retry}</button>
       </div>
     </div>
   );

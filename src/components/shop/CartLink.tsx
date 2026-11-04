@@ -11,7 +11,7 @@ export function CartLink({ locale, label }: { locale: string; label: string }) {
   return (
     <Link href={`/${locale}/tienda/carrito`} aria-label={`${label} (${count})`} className="relative text-ivory/80 hover:text-gold">
       <ShoppingBag size={20} />
-      <span className="absolute -right-2 -top-2 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-[10px] font-bold text-abyss">{count}</span>
+      <span className="absolute -right-2 -top-2 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-xs font-bold text-abyss">{count}</span>
     </Link>
   );
 }

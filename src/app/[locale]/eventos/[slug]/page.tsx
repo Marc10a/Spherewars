@@ -40,7 +40,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
           <RichText md={e.description ?? undefined} />
           <dl className="grid gap-3 text-sm">
             {rows.filter(([, v]) => v).map(([k, v]) => (
-              <div key={k} className="grid grid-cols-[7rem_1fr] gap-2 border-b border-gold/10 pb-2"><dt className="text-xs uppercase tracking-widest text-gold">{k}</dt><dd>{v}</dd></div>
+              <div key={k} className="grid grid-cols-[7rem_1fr] gap-2 border-b border-gold/10 pb-2"><dt className="font-display text-sm text-gold">{k}</dt><dd>{v}</dd></div>
             ))}
           </dl>
           {e.address && <a className="text-sm text-ice underline" rel="noopener" href={`https://www.openstreetmap.org/search?query=${encodeURIComponent([e.address, e.city].filter(Boolean).join(", "))}`}>{t.map}</a>}
@@ -58,7 +58,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                   <label className="grid gap-1 text-sm">{t.name}<input name="name" required minLength={2} className="border border-gold/40 bg-abyss px-3 py-2" /></label>
                   <label className="grid gap-1 text-sm">{t.email}<input name="email" type="email" required className="border border-gold/40 bg-abyss px-3 py-2" /></label>
                   <p className="text-xs text-stone">{t.privacyNote}</p>
-                  <button className="bg-gold px-4 py-3 text-xs font-semibold uppercase tracking-widest text-abyss">{t.submit}</button>
+                  <button className="bg-gold px-4 py-3 font-display text-sm font-semibold text-abyss">{t.submit}</button>
                 </form>
               )
             ) : e.registration_url ? <div className="mt-4"><Button href={e.registration_url} external>{t.externalReg}</Button></div>

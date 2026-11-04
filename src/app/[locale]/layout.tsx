@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { abaddon, cinzel, inter } from "@/lib/fonts";
+import { abaddon, federo, inter } from "@/lib/fonts";
+import { FxLayer } from "@/components/fx/FxLayer";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import "../globals.css";
@@ -32,8 +33,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
   return (
-    <html lang={locale} className={`${cinzel.variable} ${inter.variable} ${abaddon.variable}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${federo.variable} ${inter.variable} ${abaddon.variable}`}>
       <body className="min-h-screen antialiased">
+        <FxLayer />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:text-abyss">
           {t.common.skip}
         </a>

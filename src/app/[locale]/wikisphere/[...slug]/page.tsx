@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { dict, isLocale, locales } from "@/lib/i18n";
 import { getArticle } from "@/lib/data";
-import { getWikiPage, miniImage, prepareArticle, relatedPages, siblings, wikiCategories, wikiPages, wikiSource } from "@/lib/wiki";
+import { getWikiPage, loreImage, prepareArticle, relatedPages, siblings, wikiCategories, wikiPages, wikiSource } from "@/lib/wiki";
 import { jsonLd, pageMeta, siteUrl } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 import { RichText } from "@/components/RichText";
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<P> }) {
   const { locale, slug } = await params;
   const w = getWikiPage(slug.join("/"));
   if (!w) return {};
-  const img = miniImage(w) ?? w.image ?? undefined;
+  const img = loreImage(w) ?? w.image ?? undefined;
   const original = locale === "es";
   return pageMeta({ title: w.title, description: w.description || `${w.title} · ${w.categoryName}`, path: `/wikisphere/${w.slug}`, image: img, canonicalLocale: original ? undefined : "es", noindex: !original }, locale);
 }
@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: Promise<P> }) {
           <aside className="lg:sticky lg:top-24 lg:h-fit">
             {toc.length > 1 && (
               <nav aria-label={t.wiki.tocAria} className="mb-8 border border-gold/20 bg-coal p-4 text-sm">
-                <p className="mb-2 text-xs uppercase tracking-widest text-gold">{t.wiki.toc}</p>
+                <p className="mb-2 font-display text-sm text-gold">{t.wiki.toc}</p>
                 <ul className="max-h-[50vh] space-y-1 overflow-y-auto">
                   {toc.map((h) => (
                     <li key={h.id} className={h.level === 3 ? "pl-4" : ""}>
@@ -54,9 +54,9 @@ export default async function Page({ params }: { params: Promise<P> }) {
           </aside>
 
           <div className="min-w-0">
-            <nav aria-label={t.wiki.crumbs} className="mb-8 text-xs uppercase tracking-widest text-stone">
-              <Link href={`/${locale}/wikisphere`} className="hover:text-gold">WikiSphere</Link> /{" "}
-              <Link href={`/${locale}/wikisphere?categoria=${w.category}`} className="hover:text-gold">{t.wiki.cat[w.category] ?? w.categoryName}</Link>
+            <nav aria-label={t.wiki.crumbs} className="mb-8 font-display text-sm text-stone">
+              <Link href={`/${locale}/wikisphere`} className="inline-block py-2 hover:text-gold">WikiSphere</Link> /{" "}
+              <Link href={`/${locale}/wikisphere?categoria=${w.category}`} className="inline-block py-2 hover:text-gold">{t.wiki.cat[w.category] ?? w.categoryName}</Link>
             </nav>
             {locale !== "es" && <p role="note" className="mb-6 border border-gold/30 bg-coal p-3 text-sm text-stone">{t.common.spanishOnly}</p>}
             <Lightbox locale={locale}><article lang="es" className="wiki-prose" dangerouslySetInnerHTML={{ __html: html }} /></Lightbox>
@@ -67,8 +67,8 @@ export default async function Page({ params }: { params: Promise<P> }) {
 
             {(prev || next) && (
               <nav aria-label={t.wiki.adjacent} className="mt-10 grid gap-4 sm:grid-cols-2">
-                {prev ? <Link href={`/${locale}/wikisphere/${prev.slug}`} className="border border-gold/20 bg-coal p-4 hover:border-gold"><span className="text-xs uppercase tracking-widest text-gold">{t.wiki.prev}</span><span lang="es" className="block font-display">{prev.title}</span></Link> : <span />}
-                {next && <Link href={`/${locale}/wikisphere/${next.slug}`} className="border border-gold/20 bg-coal p-4 text-right hover:border-gold"><span className="text-xs uppercase tracking-widest text-gold">{t.wiki.next}</span><span lang="es" className="block font-display">{next.title}</span></Link>}
+                {prev ? <Link href={`/${locale}/wikisphere/${prev.slug}`} className="border border-gold/20 bg-coal p-4 hover:border-gold"><span className="font-display text-sm text-gold">{t.wiki.prev}</span><span lang="es" className="block font-display">{prev.title}</span></Link> : <span />}
+                {next && <Link href={`/${locale}/wikisphere/${next.slug}`} className="border border-gold/20 bg-coal p-4 text-right hover:border-gold"><span className="font-display text-sm text-gold">{t.wiki.next}</span><span lang="es" className="block font-display">{next.title}</span></Link>}
               </nav>
             )}
           </div>
@@ -80,12 +80,12 @@ export default async function Page({ params }: { params: Promise<P> }) {
             <hr className="rune-divider my-6" />
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => {
-                const img = r.category === "personajes" || r.category === "lugares" ? miniImage(r) : null;
+                const img = r.category === "personajes" || r.category === "lugares" ? loreImage(r) : null;
                 return (
                   <li key={r.slug}>
                     <Link href={`/${locale}/wikisphere/${r.slug}`} className="tilt-card flex h-full items-center gap-4 border border-gold/20 bg-coal p-3">
                       {img && <Image src={img} alt="" width={64} height={64} loading="lazy" className="h-16 w-16 shrink-0 object-contain" />}
-                      <span><span className="block text-xs uppercase tracking-widest text-gold">{t.wiki.cat[r.category] ?? r.categoryName}</span><span lang="es" className="font-display">{r.title}</span></span>
+                      <span><span className="block font-display text-sm text-gold">{t.wiki.cat[r.category] ?? r.categoryName}</span><span lang="es" className="font-display">{r.title}</span></span>
                     </Link>
                   </li>
                 );
@@ -98,7 +98,7 @@ export default async function Page({ params }: { params: Promise<P> }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd({
             "@context": "https://schema.org", "@type": "Article", headline: w.title, inLanguage: "es", dateModified: w.updatedAt,
-            description: w.description || undefined, image: (miniImage(w) ?? w.image) ? `${siteUrl}${miniImage(w) ?? w.image}` : undefined,
+            description: w.description || undefined, image: (loreImage(w) ?? w.image) ? `${siteUrl}${loreImage(w) ?? w.image}` : undefined,
             mainEntityOfPage: `${siteUrl}/${locale}/wikisphere/${w.slug}`, publisher: { "@type": "Organization", name: "SphereWars" },
           }) }}
         />

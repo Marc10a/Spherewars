@@ -33,7 +33,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
         <div className="space-y-5">
           <RichText md={p.description?.text} />
-          {p.contents && <p><span className="text-xs uppercase tracking-widest text-gold">{t.contents}</span><br />{p.contents}</p>}
+          {p.contents && <p><span className="font-display text-sm text-gold">{t.contents}</span><br />{p.contents}</p>}
           <p className="text-sm text-stone">{t.status}: {p.commercial_status}{price ? ` · ${price}` : ""}</p>
           {p.sellable && price && (
             <div className="space-y-3 border border-gold/30 bg-coal p-5">

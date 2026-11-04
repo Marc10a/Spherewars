@@ -43,7 +43,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
             <p role="status" className="text-lg text-ivory/90">{t.thanksPendingText}</p>
           </>
         )}
-        <Link href={`/${locale}/tienda`} className="mt-10 inline-block bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss">{t.backToShop}</Link>
+        <Link href={`/${locale}/tienda`} className="mt-10 inline-block bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss">{t.backToShop}</Link>
       </div>
     </>
   );

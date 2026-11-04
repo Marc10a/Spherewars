@@ -3,7 +3,7 @@ import { staticMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { dict, fmt, isLocale } from "@/lib/i18n";
 import { listEvents, type EventRow } from "@/lib/data";
-import { PageHero, Pending } from "@/components/ui";
+import { chipCls, PageHero, Pending } from "@/components/ui";
 
 export const generateMetadata = staticMeta({ title: (t) => t.events.title, description: (t) => t.events.lead, path: "/eventos" });
 
@@ -22,7 +22,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     if (o.pasados) qs.set("pasados", "1");
     return `/${locale}/eventos${qs.size ? `?${qs}` : ""}`;
   };
-  const chip = (a: boolean) => `border px-3 py-1 text-xs uppercase tracking-widest ${a ? "border-gold bg-gold text-abyss" : "border-gold/40 text-ivory/80 hover:border-gold"}`;
+  const chip = chipCls;
 
   // Agenda grouped by month (calendar view).
   const byMonth = new Map<string, EventRow[]>();
@@ -33,7 +33,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
 
   return (
     <>
-      <PageHero title={t.events.title} lead={t.events.lead} />
+      <PageHero title={t.events.title} lead={t.events.lead} image="/wiki/images/gran_via_m_s_concepts.webp" />
       <div className="mx-auto max-w-7xl px-4 py-12" data-wp-slot="events-list">
         <nav aria-label={t.events.filters} className="mb-8 grid gap-3">
           <div className="flex flex-wrap gap-2">
@@ -64,7 +64,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                     <Link href={`/${locale}/eventos/${e.slug}`} className="grid gap-1 p-4 hover:bg-gold/5 sm:grid-cols-[8rem_1fr_auto] sm:items-center">
                       <time dateTime={e.starts_at} className="font-display text-gold">{new Date(e.starts_at).toLocaleDateString(locale, { day: "numeric", month: "short" })}</time>
                       <span>{e.title}<span className="block text-xs text-stone">{[e.organizer, e.city].filter(Boolean).join(" · ")}</span></span>
-                      <span className="font-display text-xs uppercase tracking-widest text-ice">{t.events.kinds[e.kind]}</span>
+                      <span className="font-display text-sm text-ice">{t.events.kinds[e.kind]}</span>
                     </Link>
                   </li>
                 ))}

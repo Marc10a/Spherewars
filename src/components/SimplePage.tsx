@@ -5,14 +5,14 @@ import { Button, PageHero, Pending, Section } from "@/components/ui";
 export type Block = { title: string; lead?: string; pending?: string; cta?: { label: string; href: string; external?: boolean }[] };
 
 /** Builds a simple page from the localized dictionary; `build` receives the dictionary for the page's locale. */
-export async function SimplePage({ params, build }: { params: Promise<{ locale: string }>; build: (t: (typeof dict)["es"], locale: "es" | "en" | "ca") => { title: string; lead?: string; blocks: Block[] } }) {
+export async function SimplePage({ params, build }: { params: Promise<{ locale: string }>; build: (t: (typeof dict)["es"], locale: "es" | "en" | "ca")  => { title: string; image?: string; lead?: string; blocks: Block[] } }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
-  const { title, lead, blocks } = build(t, locale);
+  const { title, lead, blocks, image } = build(t, locale);
   return (
     <>
-      <PageHero title={title} lead={lead} />
+      <PageHero title={title} lead={lead} image={image} />
       {blocks.map((b) => (
         <Section key={b.title} title={b.title} lead={b.lead}>
           {b.pending && <Pending label={t.common.pendingLabel}>{b.pending}</Pending>}

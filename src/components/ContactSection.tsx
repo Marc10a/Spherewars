@@ -4,7 +4,7 @@ import { contactChannels, publicContactEmail } from "@/lib/contact-config";
 import { Button } from "@/components/ui";
 import { ContactForm } from "@/components/ContactForm";
 
-/** Home contact block (replaces the old "Community" strip). Shows only real data: nothing is invented. */
+/** Contact block of the Community page. Shows only real data: nothing is invented. */
 export function ContactSection({ locale }: { locale: Locale }) {
   const t = dict[locale];
   const c = t.contact;
@@ -22,12 +22,12 @@ export function ContactSection({ locale }: { locale: Locale }) {
         <div className="space-y-6">
           {email && (
             <p>
-              <span className="block text-xs uppercase tracking-widest text-gold">{c.email}</span>
+              <span className="block font-display text-sm text-gold">{c.email}</span>
               <a href={`mailto:${email}`} className="text-lg hover:text-gold">{email}</a>
             </p>
           )}
           <div>
-            <span className="mb-3 block text-xs uppercase tracking-widest text-gold">{c.social}</span>
+            <span className="mb-3 block font-display text-sm text-gold">{c.social}</span>
             <div className="flex flex-wrap gap-3">
               <Button href={links.discord} external>{c.discord}</Button>
               <Button href={links.instagram} variant="ghost" external>Instagram</Button>

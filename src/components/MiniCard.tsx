@@ -1,23 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { dict, type Locale } from "@/lib/i18n";
-import { factions } from "@/content/factions";
-import { characterInfo, miniVisual, type WikiPage } from "@/lib/wiki";
+import { characterArt, characterInfo, type WikiPage } from "@/lib/wiki";
 
 /** A miniature of a faction: official photo (or a marked placeholder), name, race and a short official excerpt. */
 export function MiniCard({ page, locale, theme }: { page: WikiPage; locale: Locale; theme?: string }) {
   const t = dict[locale];
-  const visual = miniVisual(page);
-  const art = visual?.kind === "illustration";
+  const visual = characterArt(page.slug);
+  const art = visual?.bg === "light";
   const info = characterInfo(page);
-  const faction = factions.find((f) => f.theme === theme);
   return (
     <article data-faction={theme} className="tilt-card flex h-full flex-col overflow-hidden border border-accent/30 bg-coal">
-      <Link href={`/${locale}/wikisphere/${page.slug}`} className={`relative block aspect-[4/5] ${art ? "bg-ivory" : "bg-abyss"}`} aria-label={page.title}>
+      <Link href={`/${locale}/wikisphere/${page.slug}`} className={`relative block aspect-square ${art ? "bg-ivory" : "spot"}`} aria-label={page.title}>
         {visual ? (
           <>
-            <Image src={visual.src} alt={page.title} fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" loading="lazy" className={`object-contain ${art ? "mix-blend-multiply" : ""}`} />
-            {art && <span className="absolute bottom-2 left-2 bg-abyss/80 px-2 py-0.5 text-xs text-gold">{t.factions.illustration}</span>}
+            <Image src={visual.src} alt={page.title} fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" loading="lazy" className={`object-contain p-3 ${art ? "mix-blend-multiply" : ""}`} />
           </>
         ) : (
           <span className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_50%_40%,rgb(255_255_255/.08),transparent_60%)]">
@@ -33,13 +30,12 @@ export function MiniCard({ page, locale, theme }: { page: WikiPage; locale: Loca
           <Link href={`/${locale}/wikisphere/${page.slug}`} className="hover:text-accent">{page.title}</Link>
         </h3>
         {info.race && (
-          <p className="font-display mt-1 text-xs uppercase tracking-widest text-accent">
+          <p className="font-display mt-1 font-display text-sm text-accent">
             {t.factions.raceLabel}: <span lang="es">{info.race}</span>
           </p>
         )}
         {info.excerpt && <p lang="es" className="mt-3 hidden flex-1 text-sm sm:block sm:line-clamp-5 leading-relaxed text-ivory/80">{info.excerpt}</p>}
         <div className="mt-auto flex flex-col gap-1 pt-3 font-display text-sm font-semibold">
-          {faction && <Link href={`/${locale}/tienda/${faction.slug}/${page.slug.split("/").pop()}`} className="flex min-h-11 items-center text-gold hover:text-ivory">{t.minis.viewInShop}</Link>}
           <Link href={`/${locale}/wikisphere/${page.slug}`} className="flex min-h-11 items-center hover:text-gold">{t.factions.readProfile}</Link>
         </div>
       </div>

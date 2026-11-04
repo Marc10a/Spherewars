@@ -41,7 +41,7 @@ Web oficial de SphereWars: Otro Mundo, un juego de escaramuzas con miniaturas pa
 ## Brand Commitments
 
 - El nombre SphereWars se compone siempre en **Abaddon**.
-- Títulos y subtítulos en **Cinzel**.
+- Títulos y subtítulos en **Federo**.
 - Facciones y su identidad de color: Adeptos de Malesur (verde), Vástagos de Kurgan (azul hielo), Manadas de Urueh (rojo fuego), La Alianza (gris).
 - Dioses: Kurgan (hielo), Kazag (incineración, de quien nacen las Manadas), Malesur (viento, creador de la Alianza y los Adeptos), Mohed (arena y piedras), Salssa'el (vida).
 - Lemas: «¡¡Alza tu voz, dados y pinceles!!» y «Escaramuzas frenéticas en Otro Mundo».

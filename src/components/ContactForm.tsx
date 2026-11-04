@@ -59,7 +59,7 @@ export function ContactForm({ locale, t, turnstileSiteKey }: { locale: Locale; t
         <p role="alert" className="border border-ember bg-ember/20 p-3 text-sm">{state.error === "notReady" ? t.notReady : t.errors[state.error] ?? t.errors.generic}</p>
       )}
 
-      <button disabled={pending} className="justify-self-start bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss transition hover:bg-ivory disabled:opacity-50">
+      <button disabled={pending} className="justify-self-start bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss transition hover:bg-ivory disabled:opacity-50">
         {pending ? t.sending : t.send}
       </button>
     </form>

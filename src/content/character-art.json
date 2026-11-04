@@ -1,0 +1,428 @@
+{
+  "personajes/mandas-de-urueh/lanza-avernal": {
+    "src": "/personajes/manadas-de-urueh/lanza-avernal.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 893
+  },
+  "personajes/mandas-de-urueh/satanor": {
+    "src": "/personajes/manadas-de-urueh/satanor.webp",
+    "bg": "light",
+    "w": 717,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/igniis": {
+    "src": "/personajes/manadas-de-urueh/igniis.webp",
+    "bg": "light",
+    "w": 681,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/pyronus": {
+    "src": "/personajes/manadas-de-urueh/pyronus.webp",
+    "bg": "transparent",
+    "w": 534,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/ceniza": {
+    "src": "/personajes/manadas-de-urueh/ceniza.webp",
+    "bg": "light",
+    "w": 862,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/guardia-ignea": {
+    "src": "/personajes/manadas-de-urueh/guardia-ignea.webp",
+    "bg": "light",
+    "w": 533,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/hostigador-demontre": {
+    "src": "/personajes/manadas-de-urueh/hostigador-demontre.webp",
+    "bg": "light",
+    "w": 731,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/leva-demontre": {
+    "src": "/personajes/manadas-de-urueh/leva-demontre.webp",
+    "bg": "transparent",
+    "w": 686,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/sorkep": {
+    "src": "/personajes/manadas-de-urueh/sorkep.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 635
+  },
+  "personajes/mandas-de-urueh/kermeks": {
+    "src": "/personajes/manadas-de-urueh/kermeks.webp",
+    "bg": "light",
+    "w": 849,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/invocador": {
+    "src": "/personajes/manadas-de-urueh/invocador.webp",
+    "bg": "light",
+    "w": 870,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/abrasador": {
+    "src": "/personajes/manadas-de-urueh/abrasador.webp",
+    "bg": "light",
+    "w": 522,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/fundidor": {
+    "src": "/personajes/manadas-de-urueh/fundidor.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 855
+  },
+  "personajes/mandas-de-urueh/mizek": {
+    "src": "/personajes/manadas-de-urueh/mizek.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 714
+  },
+  "personajes/mandas-de-urueh/din-tusek": {
+    "src": "/personajes/manadas-de-urueh/din-tusek.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 796
+  },
+  "personajes/mandas-de-urueh/vol-tusek": {
+    "src": "/personajes/manadas-de-urueh/vol-tusek.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 659
+  },
+  "personajes/mandas-de-urueh/calcinador": {
+    "src": "/personajes/manadas-de-urueh/calcinador.webp",
+    "bg": "transparent",
+    "w": 383,
+    "h": 900
+  },
+  "personajes/mandas-de-urueh/lucio": {
+    "src": "/personajes/manadas-de-urueh/lucio.webp",
+    "bg": "transparent",
+    "w": 621,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+    "src": "/personajes/vastagos-de-kurgan/nek-org.webp",
+    "bg": "light",
+    "w": 754,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/tir-abe": {
+    "src": "/personajes/vastagos-de-kurgan/tir-abe.webp",
+    "bg": "light",
+    "w": 597,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/sull": {
+    "src": "/personajes/vastagos-de-kurgan/sull.webp",
+    "bg": "light",
+    "w": 561,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/raggarth": {
+    "src": "/personajes/vastagos-de-kurgan/raggarth.webp",
+    "bg": "transparent",
+    "w": 625,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/aberracion": {
+    "src": "/personajes/vastagos-de-kurgan/aberracion.webp",
+    "bg": "light",
+    "w": 663,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/regoretes": {
+    "src": "/personajes/vastagos-de-kurgan/regoretes.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 550
+  },
+  "personajes/vastagos-de-kurgan/siervo": {
+    "src": "/personajes/vastagos-de-kurgan/siervo.webp",
+    "bg": "transparent",
+    "w": 773,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/adorador": {
+    "src": "/personajes/vastagos-de-kurgan/adorador.webp",
+    "bg": "light",
+    "w": 558,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/desacrador": {
+    "src": "/personajes/vastagos-de-kurgan/desacrador.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 823
+  },
+  "personajes/vastagos-de-kurgan/asaltador": {
+    "src": "/personajes/vastagos-de-kurgan/asaltador.webp",
+    "bg": "light",
+    "w": 613,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/centinela": {
+    "src": "/personajes/vastagos-de-kurgan/centinela.webp",
+    "bg": "light",
+    "w": 644,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/zahori": {
+    "src": "/personajes/vastagos-de-kurgan/zahori.webp",
+    "bg": "light",
+    "w": 607,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/jorguin": {
+    "src": "/personajes/vastagos-de-kurgan/jorguin.webp",
+    "bg": "transparent",
+    "w": 698,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/acechador": {
+    "src": "/personajes/vastagos-de-kurgan/acechador.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 608
+  },
+  "personajes/vastagos-de-kurgan/chaman": {
+    "src": "/personajes/vastagos-de-kurgan/chaman.webp",
+    "bg": "light",
+    "w": 839,
+    "h": 900
+  },
+  "personajes/vastagos-de-kurgan/destripador": {
+    "src": "/personajes/vastagos-de-kurgan/destripador.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 677
+  },
+  "personajes/vastagos-de-kurgan/leviatan": {
+    "src": "/personajes/vastagos-de-kurgan/leviatan.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 611
+  },
+  "personajes/adeptos-de-malesur/shaogi": {
+    "src": "/personajes/adeptos-de-malesur/shaogi.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 777
+  },
+  "personajes/adeptos-de-malesur/liehhan": {
+    "src": "/personajes/adeptos-de-malesur/liehhan.webp",
+    "bg": "light",
+    "w": 692,
+    "h": 900
+  },
+  "personajes/adeptos-de-malesur/mihualo": {
+    "src": "/personajes/adeptos-de-malesur/mihualo.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 732
+  },
+  "personajes/adeptos-de-malesur/yenay": {
+    "src": "/personajes/adeptos-de-malesur/yenay.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 838
+  },
+  "personajes/adeptos-de-malesur/aguila": {
+    "src": "/personajes/adeptos-de-malesur/aguila.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 529
+  },
+  "personajes/adeptos-de-malesur/eriza": {
+    "src": "/personajes/adeptos-de-malesur/eriza.webp",
+    "bg": "light",
+    "w": 691,
+    "h": 900
+  },
+  "personajes/adeptos-de-malesur/topo": {
+    "src": "/personajes/adeptos-de-malesur/topo.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 808
+  },
+  "personajes/adeptos-de-malesur/serpiente": {
+    "src": "/personajes/adeptos-de-malesur/serpiente.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 709
+  },
+  "personajes/adeptos-de-malesur/cabra": {
+    "src": "/personajes/adeptos-de-malesur/cabra.webp",
+    "bg": "light",
+    "w": 681,
+    "h": 900
+  },
+  "personajes/adeptos-de-malesur/mangostas": {
+    "src": "/personajes/adeptos-de-malesur/mangostas.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 475
+  },
+  "personajes/adeptos-de-malesur/lince": {
+    "src": "/personajes/adeptos-de-malesur/lince.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 770
+  },
+  "personajes/adeptos-de-malesur/morena": {
+    "src": "/personajes/adeptos-de-malesur/morena.webp",
+    "bg": "light",
+    "w": 839,
+    "h": 900
+  },
+  "personajes/adeptos-de-malesur/cangrejo": {
+    "src": "/personajes/adeptos-de-malesur/cangrejo.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 774
+  },
+  "personajes/adeptos-de-malesur/toro": {
+    "src": "/personajes/adeptos-de-malesur/toro.webp",
+    "bg": "light",
+    "w": 900,
+    "h": 586
+  },
+  "personajes/adeptos-de-malesur/druida-lobo": {
+    "src": "/personajes/adeptos-de-malesur/druida-lobo.webp",
+    "bg": "transparent",
+    "w": 614,
+    "h": 900
+  },
+  "personajes/adeptos-de-malesur/valhery": {
+    "src": "/personajes/adeptos-de-malesur/valhery.webp",
+    "bg": "transparent",
+    "w": 564,
+    "h": 900
+  },
+  "personajes/alianza/nirlem": {
+    "src": "/personajes/alianza/nirlem.webp",
+    "bg": "transparent",
+    "w": 557,
+    "h": 900
+  },
+  "personajes/alianza/rodanes": {
+    "src": "/personajes/alianza/rodanes.webp",
+    "bg": "transparent",
+    "w": 687,
+    "h": 900
+  },
+  "personajes/alianza/laroc": {
+    "src": "/personajes/alianza/laroc.webp",
+    "bg": "transparent",
+    "w": 658,
+    "h": 900
+  },
+  "personajes/alianza/taem": {
+    "src": "/personajes/alianza/taem.webp",
+    "bg": "light",
+    "w": 673,
+    "h": 900
+  },
+  "personajes/alianza/saeta": {
+    "src": "/personajes/alianza/saeta.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 851
+  },
+  "personajes/alianza/explorador": {
+    "src": "/personajes/alianza/explorador.webp",
+    "bg": "transparent",
+    "w": 771,
+    "h": 900
+  },
+  "personajes/alianza/postulante-raso": {
+    "src": "/personajes/alianza/postulante-raso.webp",
+    "bg": "transparent",
+    "w": 658,
+    "h": 900
+  },
+  "personajes/alianza/corazon-postulante": {
+    "src": "/personajes/alianza/corazon-postulante.webp",
+    "bg": "transparent",
+    "w": 865,
+    "h": 900
+  },
+  "personajes/alianza/escudero": {
+    "src": "/personajes/alianza/escudero.webp",
+    "bg": "transparent",
+    "w": 748,
+    "h": 900
+  },
+  "personajes/alianza/corazon-proximo": {
+    "src": "/personajes/alianza/corazon-proximo.webp",
+    "bg": "transparent",
+    "w": 494,
+    "h": 900
+  },
+  "personajes/alianza/corazon-equite": {
+    "src": "/personajes/alianza/corazon-equite.webp",
+    "bg": "transparent",
+    "w": 644,
+    "h": 900
+  },
+  "personajes/alianza/corazon-explorador": {
+    "src": "/personajes/alianza/corazon-explorador.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 700
+  },
+  "personajes/alianza/roxter": {
+    "src": "/personajes/alianza/roxter.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 512
+  },
+  "personajes/alianza/oteadora": {
+    "src": "/personajes/alianza/oteadora.webp",
+    "bg": "light",
+    "w": 790,
+    "h": 900
+  },
+  "personajes/alianza/guardiana": {
+    "src": "/personajes/alianza/guardiana.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 606
+  },
+  "personajes/alianza/guardiana-superiora": {
+    "src": "/personajes/alianza/guardiana-superiora.webp",
+    "bg": "transparent",
+    "w": 469,
+    "h": 900
+  },
+  "personajes/alianza/recaudadora": {
+    "src": "/personajes/alianza/recaudadora.webp",
+    "bg": "transparent",
+    "w": 577,
+    "h": 900
+  },
+  "personajes/alianza/amazona": {
+    "src": "/personajes/alianza/amazona.webp",
+    "bg": "transparent",
+    "w": 807,
+    "h": 900
+  },
+  "personajes/alianza/cazadora": {
+    "src": "/personajes/alianza/cazadora.webp",
+    "bg": "transparent",
+    "w": 634,
+    "h": 900
+  },
+  "personajes/alianza/mayira": {
+    "src": "/personajes/alianza/mayira.webp",
+    "bg": "transparent",
+    "w": 900,
+    "h": 638
+  }
+}

@@ -1,6 +1,7 @@
 import raw from "@/content/wiki.json";
 import photoMap from "@/content/mini-photos.json";
 import mainOverride from "@/content/mini-main.json";
+import art from "@/content/character-art.json";
 import shopPhotos from "@/content/shop-photos.json";
 import shopDocs from "@/content/shop-products.json";
 
@@ -78,6 +79,10 @@ export type MiniVisual = { src: string; kind: "photo" | "illustration" } | null;
  *  3) an official illustration from the wiki asset library (scripts/mini-photo-sources.json).
  * null = no image yet: the card shows a "provisional image" placeholder.
  */
+/** Lore side of the site: the character's official illustration. Miniature photos belong to the shop only. */
+export const characterArt = (slug: string): { src: string; bg: "transparent" | "light" | "dark"; w: number; h: number } | null =>
+  (art as Record<string, { src: string; bg: "transparent" | "light" | "dark"; w: number; h: number }>)[slug] ?? null;
+
 export function miniVisual(p: WikiPage): MiniVisual {
   const mine = ownerPhotos(p.slug);
   if (mine) return { src: mine.tile, kind: "photo" };
@@ -120,10 +125,20 @@ export const factionWikiPage = (factionSlug: string) => getWikiPage(`facciones/$
 const plain = (h: string) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').trim();
 
 /** Adds anchor ids to h2/h3, gives empty-alt images a text alternative, and returns the table of contents. */
+/** Photos of the miniatures belong to the shop: articles keep only illustrations. */
+const withoutMiniPhotos = (html: string) =>
+  html
+    .replace(/<h2>(?:<span>¶<\/span> )?Miniaturas<\/h2>\s*(?:<p>\s*(?:<img [^>]*>\s*)+<\/p>\s*)*/g, "")
+    .replace(/<img [^>]*src="[^"]*-mini(?:atura)?(?:-v\d+)?\.webp"[^>]*>/g, "")
+    .replace(/<p>\s*<\/p>/g, "");
+
+/** Illustration of a wiki page for cards and sharing; never a photo of the miniature. */
+export const loreImage = (p: WikiPage) => characterArt(p.slug)?.src ?? pageImages(p).find((s) => !/mini/i.test(s)) ?? null;
+
 export function prepareArticle(p: WikiPage, locale: string) {
   const toc: { id: string; text: string; level: 2 | 3 }[] = [];
   const used = new Set<string>();
-  let html = p.html.replaceAll("/__LOCALE__/", `/${locale}/`).replaceAll("<span>¶</span> ", "").replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (_m, lvl: string, inner: string) => {
+  let html = withoutMiniPhotos(p.html).replaceAll("/__LOCALE__/", `/${locale}/`).replaceAll("<span>¶</span> ", "").replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (_m, lvl: string, inner: string) => {
     const text = plain(inner);
     let id = norm(text).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "seccion";
     while (used.has(id)) id += "-2";

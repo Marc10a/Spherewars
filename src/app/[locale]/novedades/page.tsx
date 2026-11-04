@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <PageHero title={t.news.title} lead={t.news.lead} />
+      <PageHero title={t.news.title} lead={t.news.lead} image="/wiki/images/legi_n_portada_concept.webp" imagePosition="center 20%" />
       <div className="mx-auto max-w-4xl px-4 py-12" data-wp-slot="news-list">
         {items.length === 0 ? (
           <Pending label={t.common.pendingLabel}>{t.news.empty}</Pending>
@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {items.map((n) => (
               <li key={n.id}>
                 <Link href={`/${locale}/novedades/${n.slug}`} className="block p-5 hover:bg-gold/5">
-                  <p className="font-display text-xs uppercase tracking-widest text-gold">{n.category}{n.publish_at ? ` · ${new Date(n.publish_at).toLocaleDateString(locale)}` : ""}</p>
+                  <p className="font-display text-sm text-gold">{n.category}{n.publish_at ? ` · ${new Date(n.publish_at).toLocaleDateString(locale)}` : ""}</p>
                   <h2 className="mt-1 font-display text-xl">{n.title}</h2>
                   {(n.excerpt || n.body?.md) && <p className="mt-2 line-clamp-2 text-sm text-stone">{(n.excerpt || n.body?.md || "").replace(/[#>*_-]/g, "").slice(0, 220)}</p>}
                 </Link>

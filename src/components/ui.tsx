@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Particles, particleKind } from "@/components/Particles";
+import { ElementCanvas } from "@/components/ElementCanvas";
+import { elementFor } from "@/lib/element";
 import type { ReactNode } from "react";
 
-/** Brand rule: the name "SphereWars" is always set in Abaddon; the rest of a title stays in Cinzel. */
+/** Brand rule: the name "SphereWars" is always set in Abaddon; the rest of a title stays in Federo. */
 export function BrandText({ text }: { text: string }) {
   return text.split(/(SphereWars)/i).map((part, i) => (i % 2 ? <span key={i} className="font-wordmark">SphereWars</span> : part));
 }
 
 export function Button({ href, children, variant = "solid", external }: { href: string; children: ReactNode; variant?: "solid" | "ghost"; external?: boolean }) {
-  const look = variant === "solid" ? "bg-gold text-abyss hover:bg-ivory" : "border border-gold/70 text-ivory hover:border-gold hover:bg-gold/15";
-  const cls = `btn inline-flex min-h-12 items-center px-6 py-3 font-display text-sm font-semibold tracking-[0.06em] ${look}`;
+  const look = variant === "solid" ? "btn-solid bg-gold text-abyss hover:bg-ivory" : "border border-gold/70 text-ivory hover:border-gold hover:bg-gold/15";
+  const cls = `btn inline-flex min-h-12 items-center px-6 py-3 font-display text-base tracking-[0.03em] ${look}`;
   return external ? <a href={href} className={cls} rel="noopener">{children}</a> : <Link href={href} className={cls}>{children}</Link>;
 }
 
@@ -25,16 +26,17 @@ export function Section({ title, lead, children, id, compact }: { title: string;
   );
 }
 
-export function PageHero({ title, lead, theme, image, emblem, children }: { title: string; lead?: string; theme?: string; image?: string; emblem?: string; children?: ReactNode }) {
+export const chipCls = (active: boolean) => `btn inline-flex min-h-11 items-center border px-4 font-display text-base ${active ? "border-gold bg-gold text-abyss" : "border-gold/50 text-ivory hover:border-gold hover:bg-gold/15"}`;
+
+export function PageHero({ title, lead, theme, image, imagePosition = "center", emblem, children }: { title: string; lead?: string; theme?: string; image?: string; imagePosition?: string; emblem?: string; children?: ReactNode }) {
   return (
-    <div data-faction={theme} className="relative overflow-hidden border-b border-gold/20 bg-coal">
-      {image && <Image src={image} alt="" fill priority sizes="100vw" className="object-cover object-center opacity-60" />}
-      {image && <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/60 to-abyss/30" aria-hidden />}
-      <div className="mist absolute inset-0" aria-hidden />
-      <Particles kind={particleKind(theme)} count={18} />
-      <div className="relative mx-auto max-w-7xl px-4 py-10 md:py-16">
-        {emblem && <Image src={emblem} alt="" width={96} height={96} className="mb-4 h-20 w-auto object-contain" />}
-        <h1 className="font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
+    <div data-faction={theme} className="relative isolate overflow-hidden border-b border-gold/25 bg-coal">
+      {image && <Image src={image} alt="" fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: imagePosition }} />}
+      {image && <div className="absolute inset-0 -z-10 bg-gradient-to-r from-abyss via-abyss/80 to-abyss/10 max-md:bg-abyss/70" aria-hidden />}
+      {image && elementFor(theme) && <ElementCanvas element={elementFor(theme)!} />}
+      <div className={`relative mx-auto flex max-w-7xl flex-col justify-end px-4 py-10 ${image ? "min-h-64 md:min-h-96 md:py-14" : "md:py-14"}`}>
+        {emblem && <Image src={emblem} alt="" width={96} height={96} className="mb-4 h-20 w-auto self-start object-contain" />}
+        <h1 className="max-w-3xl font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
         {lead && <p className="mt-4 max-w-2xl text-lg text-ivory/90"><BrandText text={lead} /></p>}
         {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
       </div>
@@ -44,10 +46,5 @@ export function PageHero({ title, lead, theme, image, emblem, children }: { titl
 
 /** Honest empty state: nothing is simulated while official content is missing. */
 export function Pending({ children, label = "Pendiente" }: { children: ReactNode; label?: string }) {
-  return (
-    <div role="note" className="border border-dashed border-gold/40 bg-coal/60 p-6 text-sm text-stone">
-      <span className="mb-2 block text-xs uppercase tracking-widest text-gold">{label}</span>
-      {children}
-    </div>
-  );
+  return <p role="note" aria-label={label} className="max-w-2xl border-t border-gold/30 pt-4 text-ivory/80">{children}</p>;
 }

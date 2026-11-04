@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 2,
+  "narrative": {
+    "northStar": "Portada de wargame: negro, oro y arte oficial.",
+    "rules": ["Abaddon solo para el nombre SphereWars", "Cinzel para títulos y etiquetas", "El oro es el único color de acción", "Solo imágenes oficiales"]
+  },
+  "extensions": {
+    "motion": { "easeOut": "cubic-bezier(0.23, 1, 0.32, 1)", "press": "scale(.97)", "maxDurationMs": 500 },
+    "focus": "outline 2px solid gold, offset 3px"
+  }
+}

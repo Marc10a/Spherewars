@@ -1,5 +1,5 @@
 import "./globals.css";
-import { cinzel, inter } from "@/lib/fonts";
+import { federo, inter } from "@/lib/fonts";
 import type { Metadata } from "next";
 import { dict, localeNames, locales } from "@/lib/i18n";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "404 · SphereWars", robots: { index:
 // Unmatched URLs bypass the layout, so this page names all three languages and links to each.
 export default function GlobalNotFound() {
   return (
-    <html lang="es" className={`${cinzel.variable} ${inter.variable}`}>
+    <html lang="es" className={`${federo.variable} ${inter.variable}`}>
       <body className="grid min-h-screen place-items-center px-4 text-center antialiased">
         <div>
           <p className="font-display text-7xl text-gold">404</p>

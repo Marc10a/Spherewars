@@ -3,7 +3,7 @@ import { staticMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { dict, isLocale } from "@/lib/i18n";
 import { searchAll, type SearchHit } from "@/lib/data";
-import { PageHero } from "@/components/ui";
+import { chipCls, PageHero } from "@/components/ui";
 
 export const generateMetadata = staticMeta({ title: (t) => t.search.title, path: "/buscar", noindex: true });
 
@@ -15,7 +15,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const hits = await searchAll(locale, q);
   const groups = t.groups as Record<SearchHit["type"], string>;
   const shown = tipo && tipo in groups ? hits.filter((h) => h.type === tipo) : hits;
-  const chip = (a: boolean) => `border px-3 py-1 text-xs uppercase tracking-widest ${a ? "border-gold bg-gold text-abyss" : "border-gold/40 text-ivory/80 hover:border-gold"}`;
+  const chip = chipCls;
   const url = (ty?: string) => `/${locale}/buscar?q=${encodeURIComponent(q)}${ty ? `&tipo=${ty}` : ""}`;
 
   return (
@@ -25,7 +25,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
         <form role="search" action={`/${locale}/buscar`} className="flex gap-2">
           <label htmlFor="q" className="sr-only">{t.label}</label>
           <input id="q" name="q" defaultValue={q} minLength={2} required className="flex-1 border border-gold/40 bg-coal px-3 py-3" placeholder={t.placeholder} />
-          <button className="bg-gold px-5 text-xs font-semibold uppercase tracking-widest text-abyss">{t.button}</button>
+          <button className="bg-gold px-5 font-display text-sm font-semibold text-abyss">{t.button}</button>
         </form>
 
         {q.trim().length >= 2 && (
@@ -41,7 +41,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
               {shown.map((h) => (
                 <li key={h.type + h.href + h.title}>
                   <Link href={h.href} className="block p-4 hover:bg-gold/5">
-                    <span className="font-display text-xs uppercase tracking-widest text-gold">{groups[h.type]}</span>
+                    <span className="font-display text-sm text-gold">{groups[h.type]}</span>
                     <span lang={h.type === "wiki" ? "es" : undefined} className="block">{h.title}</span>
                     {h.detail && <span className="text-xs text-stone">{h.detail}</span>}
                   </Link>

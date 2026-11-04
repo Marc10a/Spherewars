@@ -5,6 +5,7 @@ import { links, stats } from "@/content/site";
 import Image from "next/image";
 import official from "@/content/official-files.json";
 import { Lightbox } from "@/components/Lightbox";
+import { DiceDuel } from "@/components/fx/DiceDuel";
 import { Button, PageHero, Section } from "@/components/ui";
 
 export const generateMetadata = staticMeta({ title: (t) => t.game.title, description: (t) => t.game.description, path: "/juego" });
@@ -19,22 +20,42 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
   const g = t.game;
+  const h = t.home;
   const facts: [string, string][] = [
     [g.figMinis, stats.minis], [g.figTime, `${stats.minutes} ${t.common.unit.minutes}`], [g.figTable, `${stats.table} cm`], [g.figEdition, g.edition3],
   ];
 
   return (
     <>
-      <PageHero title={g.title} lead={g.lead}>
+      <PageHero title={g.title} lead={g.lead} image="/brand/hero-quinta.webp" imagePosition="center 88%">
         <Button href={links.rules} external>{g.downloadRules}</Button>
       </PageHero>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 md:py-24">
+        <h2 className="font-display text-4xl md:text-7xl">{h.startTitle}</h2>
+        <p className="mt-3 text-lg text-ivory/90">{h.startLead}</p>
+        <ol className="mt-10 grid gap-10 md:grid-cols-3">
+          {([
+            [h.step1Title, h.step1Text, <Button key="r" href={links.rules} external>{g.downloadRules}</Button>],
+            [h.step2Title, h.step2Text, <Button key="s" href={`/${locale}/tienda`} variant="ghost">{h.step2Cta}</Button>],
+            [h.step3Title, h.step3Text, <Button key="c" href={`/${locale}/tienda`} variant="ghost">{h.step3Cta}</Button>],
+          ] as const).map(([title, text, cta], i) => (
+            <li key={title} data-reveal data-delay={i}>
+              <span aria-hidden className="block font-display text-8xl leading-none text-gold/60">{i + 1}</span>
+              <h3 className="mt-3 font-display text-3xl">{title}</h3>
+              <p className="mt-2 text-lg text-ivory/90">{text}</p>
+              <div className="mt-5">{cta}</div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
       <Section title={g.figuresTitle}>
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map(([k, v], i) => (
             <div key={k} data-reveal data-delay={i} className="border border-gold/20 bg-coal p-6 text-center">
               <dd className="font-display text-3xl text-gold">{v}</dd>
-              <dt className="mt-2 text-xs uppercase tracking-widest text-stone">{k}</dt>
+              <dt className="mt-2 font-display text-sm text-stone">{k}</dt>
             </div>
           ))}
         </dl>
@@ -81,6 +102,21 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <Button href={links.rules} external>{g.downloadRules}</Button>
         </div>
       </Section>
+
+      <DiceDuel labels={g.duel} />
+
+      <section data-reveal className="mx-auto max-w-7xl px-4 py-6 md:py-8">
+        <div className="flex flex-col gap-5 border border-gold/25 bg-coal p-6 md:flex-row md:items-center md:justify-between md:p-8">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">{h.builderTitle}</h2>
+            <p className="mt-2 text-stone">{h.builderText}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button href={`/${locale}/genera-tu-banda`}>{h.builderCta}</Button>
+            <Button href={`/${locale}/genera-tu-banda`} variant="ghost">{h.builderPlay}</Button>
+          </div>
+        </div>
+      </section>
 
       <Section title={g.faqTitle}>
         <div className="divide-y divide-gold/10 border border-gold/20 bg-coal">
