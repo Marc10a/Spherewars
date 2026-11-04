@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --abyss: #080a0d;
-  --coal: #121820;
-  --ice: #426a89;
-  --gold: #c3a267;
-  --ivory: #e8e0cf;
-  --ember: #a63827;
-  --stone: #899199;
+  --abyss: #0b0b0d;
+  --coal: #17161a;
+  --ice: #8fbbe0;
+  --gold: #d8a84e;
+  --ivory: #f2e7cf;
+  --ember: #c8481f;
+  --stone: #b8b0a0;
   --accent: var(--gold);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @theme inline {
@@ -25,7 +26,8 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; scrollbar-color: var(--gold) var(--abyss); }
+::selection { background: var(--gold); color: var(--abyss); }
 /* Every heading uses Cinzel (utilities such as .font-sans can still override it). */
 @layer base {
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-cinzel), "Times New Roman", serif; font-weight: 500; letter-spacing: 0.02em; }
@@ -33,9 +35,9 @@ html { scroll-behavior: smooth; }
 body { background: var(--abyss); color: var(--ivory); font-family: var(--font-inter), system-ui, sans-serif; }
 
 [data-faction="malesur"] { --accent: #9fd3a8; }
-[data-faction="alianza"] { --accent: #c3a267; }
-[data-faction="urueh"] { --accent: #e0642f; }
-[data-faction="kurgan"] { --accent: #6fa8d6; }
+[data-faction="alianza"] { --accent: #cfc8ba; }
+[data-faction="urueh"] { --accent: #f07a55; }
+[data-faction="kurgan"] { --accent: #8fbbe0; }
 
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
@@ -56,8 +58,10 @@ body { background: var(--abyss); color: var(--ivory); font-family: var(--font-in
 .fade-up { animation: fadeUp 1.2s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-.tilt-card { transition: transform .35s ease, box-shadow .35s ease; }
-.tilt-card:hover { transform: perspective(900px) rotateX(2deg) translateY(-6px); box-shadow: 0 20px 50px -20px var(--accent); }
+.tilt-card { transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out); }
+@media (hover: hover) {
+  .tilt-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px var(--accent); }
+}
 
 /* Scroll reveal (hidden state only exists when JS is running) */
 .js-reveal [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(26px); }
@@ -90,4 +94,15 @@ body { background: var(--abyss); color: var(--ivory); font-family: var(--font-in
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+
+.btn { transition: background-color .15s var(--ease-out), color .15s var(--ease-out), border-color .15s var(--ease-out), transform .12s var(--ease-out); }
+.btn:active { transform: scale(.97); }
+.spot { background: radial-gradient(ellipse at 50% 72%, #3a2c1b 0%, var(--coal) 68%); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mist, .fade-up, .particles span { animation: none; }
+  .btn, .tilt-card, [data-reveal] { transition: none; }
+  .js-reveal [data-reveal]:not(.is-in) { opacity: 1; transform: none; }
 }

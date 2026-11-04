@@ -5,7 +5,7 @@ import { dict, isLocale } from "@/lib/i18n";
 import { factions } from "@/content/factions";
 import { links, stats } from "@/content/site";
 import { BrandText, Button, Pending, Section } from "@/components/ui";
-import { FactionSlide } from "@/components/FactionCard";
+import { FactionCard } from "@/components/FactionCard";
 import { Carousel } from "@/components/Carousel";
 import { ContactSection } from "@/components/ContactSection";
 import { Particles } from "@/components/Particles";
@@ -38,6 +38,13 @@ const gods = [
   { slug: "dioses/dios-malesur", name: "Malesur", epithet: "godMalesur", img: "/wiki/images/dios_malesur.webp", theme: "malesur" },
 ] as const;
 
+const legends = [
+  { name: "Toro", faction: "adeptos-de-malesur", slug: "toro", img: "/tienda/adeptos-de-malesur/toro-clean.webp" },
+  { name: "Raggarth, el Liberador", faction: "vastagos-de-kurgan", slug: "raggarth", img: "/tienda/vastagos-de-kurgan/raggarth-clean.webp" },
+  { name: "Fundidor", faction: "manadas-de-urueh", slug: "fundidor", img: "/tienda/mandas-de-urueh/fundidor-clean.webp" },
+  { name: "Róxter, el Piloto", faction: "alianza", slug: "roxter", img: "/tienda/alianza/roxter-clean.webp" },
+];
+
 const ages = [
   { slug: "historia/saphir", name: "Saphir", img: "/wiki/images/cronolog_a_de_saphir_horizontal.webp" },
   { slug: "historia/hijos-de-kazag", name: "Hijos de Kazag", img: "/wiki/images/cronolog_a_kazag_horizontal.webp" },
@@ -56,49 +63,97 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      {/* Hero: unchanged */}
-      <div className="relative isolate flex min-h-[72vh] items-center overflow-hidden bg-[radial-gradient(ellipse_at_top,#1b2a3a,#080a0d_70%)]">
-        <Image src="/wiki/images/hijos_de_malesur_concept.webp" alt="" fill priority sizes="100vw" className="-z-20 object-cover object-center opacity-50" />
-        <div className="mist absolute inset-0 -z-10" aria-hidden />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-abyss via-abyss/30 to-transparent" aria-hidden />
-        <Particles kind="dust" count={26} />
-        <div className="mx-auto max-w-7xl px-4 py-14 md:py-20">
-          <p className="fade-up font-display text-sm uppercase tracking-[0.3em] text-gold"><span className="font-wordmark normal-case tracking-[0.04em] text-lg">SphereWars</span>: Otro Mundo</p>
-          <h1 className="fade-up mt-4 max-w-4xl font-display text-4xl uppercase leading-tight tracking-wide md:text-7xl" style={{ animationDelay: ".2s" }}><BrandText text={hero.title} /></h1>
-          <p className="fade-up mt-4 font-display text-lg uppercase tracking-[0.25em] text-ice" style={{ animationDelay: ".5s" }}>{hero.subtitle}</p>
-          <p className="fade-up mt-6 max-w-xl text-lg text-ivory/80" style={{ animationDelay: ".8s" }}>{hero.text}</p>
-          <div className="fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: "1.1s" }}>
-            <Button href={`/${locale}/juego`}>{hero.cta1}</Button>
-            <Button href={`/${locale}/facciones`} variant="ghost">{hero.cta2}</Button>
-            <Button href={links.rules} variant="ghost" external>{hero.cta3}</Button>
-          </div>
+      <div className="relative isolate flex flex-col justify-end overflow-hidden md:min-h-[calc(100svh-4rem)]">
+        <div className="relative -z-20 aspect-[2000/1518] w-full md:absolute md:inset-0 md:aspect-auto">
+          <Image src="/brand/hero-quinta.webp" alt="SphereWars: Otro Mundo. Guerreros de las facciones enfrentados bajo la Esfera en llamas." fill priority sizes="100vw" className="object-cover object-[center_22%]" />
         </div>
-        <a href="#que-es" aria-label={t.a11y.scrollDown} className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-gold/70 md:block"><span className="block h-10 w-px animate-pulse bg-gold/60" /></a>
+        <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-abyss via-abyss/80 via-30% to-transparent to-60% md:block" aria-hidden />
+        <div className="mx-auto w-full max-w-5xl px-4 pb-8 pt-5 text-center md:pt-0">
+          <h1 className="fade-up font-display text-3xl font-bold leading-tight md:text-5xl"><BrandText text={hero.title} /></h1>
+          <p className="fade-up mt-2 font-display text-lg font-semibold text-gold md:text-2xl" style={{ animationDelay: ".15s" }}>{hero.subtitle}</p>
+          <p className="fade-up mx-auto mt-3 max-w-xl text-lg" style={{ animationDelay: ".3s" }}>{hero.text}</p>
+          <div className="fade-up mt-6 flex flex-wrap justify-center gap-3" style={{ animationDelay: ".45s" }}>
+            <Button href={links.rules} external>{hero.cta3}</Button>
+            <Button href={`/${locale}/juego`} variant="ghost">{hero.cta1}</Button>
+          </div>
+          <ul className="fade-up mt-7 flex flex-wrap items-center justify-center gap-6 md:gap-12" style={{ animationDelay: ".6s" }}>
+            {factions.map((f) => (
+              <li key={f.slug}>
+                <Link href={`/${locale}/facciones/${f.slug}`} className="block transition-transform duration-200 hover:-translate-y-1" aria-label={f.name} title={f.name}>
+                  <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={72} height={72} className="h-12 w-auto object-contain md:h-16" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* "What is SphereWars": unchanged */}
+      <section className="border-y border-gold/25 bg-coal">
+        <dl className="mx-auto grid max-w-7xl grid-cols-3 gap-4 px-4 py-7 text-center">
+          {[[stats.minis, h.statMinis], [stats.minutes, h.statTime], [stats.table, h.statTable]].map(([n, l]) => (
+            <div key={l}>
+              <dt className="font-display text-2xl font-bold text-gold md:text-4xl">{n}</dt>
+              <dd className="mt-1 text-sm md:text-base">{l}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <div id="que-es">
         <Section title={h.whatTitle} lead={h.whatText} compact>
-          <dl className="grid gap-6 sm:grid-cols-3">
-            {[[stats.minis, h.statMinis], [stats.minutes, h.statTime], [stats.table, h.statTable]].map(([n, l], i) => (
-              <div key={l} data-reveal data-delay={i + 1} className="border border-gold/20 bg-coal p-6 text-center">
-                <dt className="font-display text-4xl text-gold md:text-5xl">{n}</dt>
-                <dd className="mt-2 text-xs uppercase tracking-widest text-stone">{l}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className="mt-8"><Button href={`/${locale}/juego`}>{h.whatCta}</Button></div>
+          <h3 className="font-display text-3xl text-gold">{h.startTitle}</h3>
+          <p className="mt-2 text-stone">{h.startLead}</p>
+          <ol className="mt-8 grid gap-10 md:grid-cols-3">
+            <li>
+              <span aria-hidden className="block font-display text-6xl font-bold leading-none text-gold/70">1</span>
+              <h4 className="mt-3 font-display text-2xl">{h.step1Title}</h4>
+              <p className="mt-2 text-ivory/90">{h.step1Text}</p>
+              <div className="mt-5"><Button href={links.rules} external>{hero.cta3}</Button></div>
+            </li>
+            <li>
+              <span aria-hidden className="block font-display text-6xl font-bold leading-none text-gold/70">2</span>
+              <h4 className="mt-3 font-display text-2xl">{h.step2Title}</h4>
+              <p className="mt-2 text-ivory/90">{h.step2Text}</p>
+              <div className="mt-5"><Button href={`/${locale}/tienda`} variant="ghost">{h.step2Cta}</Button></div>
+            </li>
+            <li>
+              <span aria-hidden className="block font-display text-6xl font-bold leading-none text-gold/70">3</span>
+              <h4 className="mt-3 font-display text-2xl">{h.step3Title}</h4>
+              <p className="mt-2 text-ivory/90">{h.step3Text}</p>
+              <div className="mt-5"><Button href={`/${locale}/miniaturas`} variant="ghost">{h.step3Cta}</Button></div>
+            </li>
+          </ol>
+          <div className="mt-8"><Button href={`/${locale}/juego`} variant="ghost">{h.whatCta}</Button></div>
         </Section>
       </div>
 
-      {/* Factions: one at a time (was a 4-card grid) */}
       <Section title={h.factionsTitle} lead={h.factionsLead} compact>
-        <Carousel label={h.factionsTitle} size="one" showDots labels={carousel}>
-          {factions.map((f) => <FactionSlide key={f.slug} f={f} locale={locale} />)}
-        </Carousel>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {factions.map((f) => <FactionCard key={f.slug} f={f} locale={locale} />)}
+        </div>
       </Section>
 
-      {/* Three divine laws: unchanged */}
+      <Section title={h.legendsTitle} lead={h.legendsLead} compact>
+        <ul className="grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4">
+          {legends.map((m) => {
+            const f = factions.find((x) => x.slug === m.faction)!;
+            return (
+              <li key={m.name}>
+                <Link href={`/${locale}/tienda/${m.faction}/${m.slug}`} data-faction={f.theme} className="tilt-card group block">
+                  <span className="spot flex aspect-square items-center justify-center p-5">
+                    <Image src={m.img} alt={`Miniatura de ${m.name}`} width={480} height={480} loading="lazy" className="max-h-full w-auto object-contain" />
+                  </span>
+                  <span lang="es" className="mt-3 block font-display text-xl group-hover:text-gold">{m.name}</span>
+                  <span className="mt-1 block text-sm text-accent">{f.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="mt-8"><Button href={`/${locale}/miniaturas`} variant="ghost">{h.legendsCta}</Button></div>
+      </Section>
+
+      {/* Three divine laws */}
       <Section title={h.lawsTitle} lead={h.lawsLead} compact>
         <ol className="grid gap-5 pt-3 md:grid-cols-3">
           {laws.map((l, i) => (
@@ -112,7 +167,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <p className="mt-6 text-xs text-stone">{h.lawsNote}</p>
       </Section>
 
-      {/* Primordial gods: unchanged */}
+      {/* Primordial gods */}
       <div className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#080a0d,#1b2a3a_50%,#080a0d)]">
         <Image src="/wiki/images/pante_n_celestial.webp" alt="" fill sizes="100vw" loading="lazy" className="-z-10 object-cover opacity-25" />
         <Section title={h.godsTitle} lead={h.godsLead} compact>
@@ -139,7 +194,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </Section>
       </div>
 
-      {/* World of Saphir: unchanged */}
+      {/* World of Saphir */}
       <div className="relative isolate overflow-hidden">
         <Image src="/wiki/images/esfera_de_saphir.webp" alt="" fill sizes="100vw" loading="lazy" className="-z-10 object-cover opacity-30" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-abyss via-abyss/40 to-abyss" aria-hidden />
@@ -231,7 +286,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Final call to action: unchanged */}
+      {/* Final call to action */}
       <div className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_center,#3a1510,#080a0d_70%)] py-28 text-center">
         <Image src="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" alt="" fill sizes="100vw" loading="lazy" className="-z-10 object-cover object-center opacity-40" />
         <Particles kind="embers" count={22} />

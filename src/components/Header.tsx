@@ -13,6 +13,8 @@ const items = [
   ["builder", "/genera-tu-banda"], ["events", "/eventos"], ["community", "/comunidad"], ["shop", "/tienda"],
 ] as const;
 
+const quick = [["game", "/juego"], ["factions", "/facciones"], ["minis", "/miniaturas"], ["wiki", "/wikisphere"], ["events", "/eventos"], ["shop", "/tienda"]] as const;
+
 export function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -42,7 +44,7 @@ export function Header({ locale }: { locale: Locale }) {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/20 bg-abyss/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-gold/25 bg-abyss">
       <nav aria-label={a.mainNav} className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
         <Link href={`/${locale}`} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60" />
@@ -50,11 +52,17 @@ export function Header({ locale }: { locale: Locale }) {
           <span className="sr-only">{a.home}</span>
         </Link>
 
+        <ul className="hidden items-center gap-6 font-display text-sm tracking-wide xl:flex">
+          {quick.map(([k, href]) => (
+            <li key={k}><Link href={`/${locale}${href}`} aria-current={rest === href ? "page" : undefined} className="hover:text-gold aria-[current=page]:text-gold">{t[k]}</Link></li>
+          ))}
+        </ul>
+
         <div className="flex items-center gap-4">
           {switcher("hidden items-center gap-3 text-xs sm:flex")}
           <CartLink locale={locale} label={a.cart} />
           <Link href={`/${locale}/buscar`} aria-label={a.search} className="text-ivory/80 hover:text-gold"><Search size={20} /></Link>
-          <Link href={`/${locale}/juega-gratis`} className="hidden border border-gold bg-gold px-4 py-2 text-xs font-semibold uppercase tracking-widest text-abyss transition hover:bg-transparent hover:text-gold md:block">
+          <Link href={`/${locale}/juega-gratis`} className="btn hidden min-h-10 items-center bg-gold px-4 font-display text-sm font-semibold text-abyss hover:bg-ivory md:inline-flex">
             {t.playFree}
           </Link>
           <button
@@ -81,7 +89,7 @@ export function Header({ locale }: { locale: Locale }) {
               </li>
             ))}
             <li className="sm:col-span-2 lg:col-span-3">
-              <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="mt-3 block bg-gold py-3 text-center text-sm font-semibold uppercase tracking-widest text-abyss">{t.playFree}</Link>
+              <Link onClick={() => setOpen(false)} href={`/${locale}/juega-gratis`} className="btn mt-3 block bg-gold py-3 text-center font-display text-sm font-semibold text-abyss">{t.playFree}</Link>
             </li>
             <li className="pt-4 text-sm sm:col-span-2 lg:col-span-3">
               {switcher("flex gap-5")}

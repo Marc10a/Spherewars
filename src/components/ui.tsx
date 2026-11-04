@@ -9,9 +9,8 @@ export function BrandText({ text }: { text: string }) {
 }
 
 export function Button({ href, children, variant = "solid", external }: { href: string; children: ReactNode; variant?: "solid" | "ghost"; external?: boolean }) {
-  const cls = `inline-block px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${
-    variant === "solid" ? "bg-gold text-abyss hover:bg-ivory" : "border border-gold/60 text-gold hover:bg-gold/10"
-  }`;
+  const look = variant === "solid" ? "bg-gold text-abyss hover:bg-ivory" : "border border-gold/70 text-ivory hover:border-gold hover:bg-gold/15";
+  const cls = `btn inline-flex min-h-12 items-center px-6 py-3 font-display text-sm font-semibold tracking-[0.06em] ${look}`;
   return external ? <a href={href} className={cls} rel="noopener">{children}</a> : <Link href={href} className={cls}>{children}</Link>;
 }
 

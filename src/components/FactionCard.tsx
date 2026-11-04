@@ -14,13 +14,14 @@ export function FactionCard({ f, locale }: { f: Faction; locale: Locale }) {
       style={{ background: f.gradient }}
     >
       <Image src={f.image} alt="" fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover object-top transition duration-700 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/50 to-transparent" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/75 via-35% to-transparent to-75%" aria-hidden />
       {count > 0 && (
         <span className="absolute right-3 top-3 border border-accent/60 bg-abyss/80 px-2 py-1 text-[10px] uppercase tracking-widest text-accent">
           {count} {dict[locale].factions.minisCount}
         </span>
       )}
       <div className="relative">
+        <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={72} height={72} className="mb-3 h-14 w-auto object-contain" />
         <h3 className="font-display text-2xl text-ivory">{f.name}</h3>
         <p className="mt-2 text-sm text-ivory/85">{f.blurb[locale]}</p>
         <p className="font-display mt-2 text-xs uppercase tracking-wider text-accent">{f.style[locale]}</p>
