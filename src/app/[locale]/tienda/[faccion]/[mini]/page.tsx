@@ -71,7 +71,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   return (
     <div data-faction={f.theme}>
       <div className="mx-auto max-w-6xl px-4 pt-8">
-        <nav aria-label="breadcrumb" className="text-xs uppercase tracking-widest text-stone">
+        <nav aria-label="breadcrumb" className="text-sm text-stone">
           <Link href={`/${locale}/tienda`} className="hover:text-gold">{t.shop.title}</Link> / <Link href={`/${locale}/tienda/${f.slug}`} className="hover:text-gold">{f.name}</Link>
         </nav>
       </div>
@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
 
         <div className="lg:pt-4">
-          <p className="font-display text-xs uppercase tracking-[0.3em] text-accent">{f.name}</p>
+          <p className="font-display text-base font-semibold text-accent">{f.name}</p>
           <h1 lang="es" className="mt-2 font-display text-3xl leading-tight md:text-5xl">{title}</h1>
           {doc ? <p lang="es" className="mt-4 text-base leading-relaxed text-ivory/80">{doc.intro}</p>
             : info?.excerpt && <p lang="es" className="mt-4 line-clamp-4 text-base leading-relaxed text-ivory/80">{info.excerpt}</p>}
@@ -109,9 +109,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             </>
           ) : (
             <div role="status">
-              <p className="inline-block border border-dashed border-stone/50 px-4 py-2 text-xs uppercase tracking-[0.2em] text-stone">{t.shop.unavailable}</p>
+              <p className="inline-block border border-dashed border-stone/50 px-4 py-2 font-display text-sm text-stone">{t.shop.unavailable}</p>
               <p className="mt-3 text-sm text-stone">{t.shop.unavailableNote} {t.shop.pricePending}.</p>
-              <button type="button" disabled className="mt-6 w-full cursor-not-allowed bg-gold/30 px-6 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-abyss/70">{t.shop.buyNow}</button>
+              <button type="button" disabled className="mt-6 w-full cursor-not-allowed bg-gold/30 px-6 py-4 font-display text-sm font-semibold text-abyss/70">{t.shop.buyNow}</button>
             </div>
           )}
           </div>
@@ -120,13 +120,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <div className="mt-10 space-y-6">
               {doc.items.length > 0 && (
                 <div>
-                  <h2 className="text-xs uppercase tracking-widest text-gold">{t.shop.contents}</h2>
-                  <ul lang="es" className="mt-2 list-disc space-y-1 pl-5 text-sm text-ivory/85">{doc.items.map((i) => <li key={i}>{i}</li>)}</ul>
+                  <h2 className="font-display text-lg text-gold">{t.shop.contents}</h2>
+                  <ul lang="es" className="mt-2 list-disc space-y-1 pl-5 text-base text-ivory/90">{doc.items.map((i) => <li key={i}>{i}</li>)}</ul>
                 </div>
               )}
               <div>
-                <h2 className="text-xs uppercase tracking-widest text-gold">{t.shop.specs}</h2>
-                <dl className="mt-2 grid gap-2 text-sm">
+                <h2 className="font-display text-lg text-gold">{t.shop.specs}</h2>
+                <dl className="mt-2 grid gap-2 text-base">
                   {doc.specs.map(([k, v]) => (
                     <div key={k} className="grid grid-cols-[9rem_1fr] gap-2 border-b border-gold/10 pb-2"><dt lang="es" className="text-stone">{k}</dt><dd lang="es">{v}</dd></div>
                   ))}
@@ -134,8 +134,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               </div>
               {doc.lore.length > 0 && (
                 <details className="border border-gold/20 bg-coal p-4">
-                  <summary className="cursor-pointer text-xs uppercase tracking-widest text-gold">{t.shop.lore}</summary>
-                  <div lang="es" className="mt-3 space-y-3 text-sm leading-relaxed text-ivory/80">{doc.lore.map((p, i) => <p key={i}>{p}</p>)}</div>
+                  <summary className="cursor-pointer font-display text-lg text-gold">{t.shop.lore}</summary>
+                  <div lang="es" className="mt-3 space-y-3 text-base leading-relaxed text-ivory/85">{doc.lore.map((p, i) => <p key={i}>{p}</p>)}</div>
                 </details>
               )}
             </div>

@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       return (data as string | null) ?? null;
     },
     async cancelBySession(session) {
-      const { error } = await sb.from("orders").update({ status: "cancelled" }).eq("stripe_session_id", session).eq("status", "pending");
+      const { error } = await sb.rpc("release_order_stock", { p_session: session });
       if (error) throw error;
     },
     async refundByPaymentIntent(pi) {

@@ -13,7 +13,7 @@ export function ShopTile({ page, href, theme, locale, priority = false }: { page
       <span className={`relative block aspect-[2/3] ${art ? "bg-ivory" : "bg-abyss"}`}>
         {visual ? (
           <Image src={visual.src} alt={page.title} fill sizes="(min-width:1280px) 22vw, (min-width:768px) 30vw, 50vw" priority={priority} loading={priority ? undefined : "lazy"}
-            className={`object-contain transition duration-700 group-hover:scale-105 ${art ? "mix-blend-multiply" : ""}`} />
+            className={`object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03] ${art ? "mix-blend-multiply" : ""}`} />
         ) : (
           <span className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_50%_40%,rgb(255_255_255/.08),transparent_60%)]">
             <span className="text-center">
@@ -23,7 +23,7 @@ export function ShopTile({ page, href, theme, locale, priority = false }: { page
           </span>
         )}
       </span>
-      <span lang="es" className="block px-3 py-3 text-center font-display text-sm leading-tight group-hover:text-accent sm:text-base">{page.title}</span>
+      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight group-hover:text-accent sm:text-base">{page.title}</span>
     </Link>
   );
 }

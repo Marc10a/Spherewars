@@ -35,7 +35,10 @@ export default async function FactionPage({ params }: { params: Promise<{ locale
 
   return (
     <div data-faction={f.theme}>
-      <PageHero title={f.name} lead={f.blurb[locale]} theme={f.theme} image={f.image} />
+      <PageHero title={f.name} lead={f.blurb[locale]} theme={f.theme} image={f.image} emblem={`/brand/factions/${f.slug}.webp`}>
+        <Button href={`/${locale}/tienda/${f.slug}`}>{t.home.factionShop}</Button>
+        <Button href={links.rules} variant="ghost" external>{t.hero.cta3}</Button>
+      </PageHero>
 
       <Section title={ft.playstyle} lead={f.style[locale]}>
         <div className="grid items-center gap-8 sm:grid-cols-[1fr_auto]">

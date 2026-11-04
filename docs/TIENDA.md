@@ -16,12 +16,12 @@ muestra el catálogo pero **no ofrece pagar**.
 - El filtro «Solo a la venta» de cada facción oculta las que aún no se pueden comprar.
 
 ## Cómo funciona un pedido
-1. El cliente paga en Stripe → 2. Stripe avisa a `/api/stripe/webhook` (firmado) → 3. el pedido pasa a **Pagado** y baja el stock (una sola vez, aunque Stripe repita el aviso) → 4. tú lo ves en `/admin/pedidos`, lo preparas y lo marcas **Enviado** con el número de seguimiento.
+1. El cliente paga en Stripe → 2. Stripe avisa a `/api/stripe/webhook` (firmado) → 3. el pedido pasa a **Pagado** (una sola vez, aunque Stripe repita el aviso). El stock se reserva al iniciar el pago y se devuelve si el pago caduca o falla → 4. tú lo ves en `/admin/pedidos`, lo preparas y lo marcas **Enviado** con el número de seguimiento.
 
 Seguridad: el navegador solo envía qué productos y cuántos. Precios, stock, disponibilidad y envío se leen de la base de datos en el servidor. Un pedido solo se da por pagado si llega un aviso con la firma correcta de Stripe.
 
 ## Puesta en marcha (en este orden)
-1. **Base de datos** lista (ver `BASE-DE-DATOS.md`); `supabase/setup.sql` ya incluye las tablas de la tienda (migraciones 0004 y 0005).
+1. **Base de datos** lista (ver `BASE-DE-DATOS.md`); `supabase/setup.sql` ya incluye las tablas de la tienda (migraciones 0004, 0005 y 0007).
    - Si ya habías ejecutado el SQL anterior, ejecuta solo `supabase/migrations/0004_shop.sql` y `0005_product_wiki_link.sql`. Esa migración también **cierra permisos que faltaban** en 5 tablas; no te la saltes.
 2. **Cuenta de Stripe** (stripe.com, gratis). Empieza en **modo de prueba** (interruptor «Test mode»).
 3. **Claves.** Stripe → Developers → API keys → copia la *Secret key* (`sk_test_…`).

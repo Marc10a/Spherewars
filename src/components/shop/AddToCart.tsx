@@ -14,14 +14,14 @@ type Props = {
 export function AddToCart({ item, locale, labels }: Props) {
   const [done, setDone] = useState(false);
   if (item.stock === 0) {
-    return <p className="inline-block border border-stone/40 px-5 py-3 text-xs uppercase tracking-[0.2em] text-stone">{labels.soldOut}</p>;
+    return <p className="inline-block border border-stone/40 px-5 py-3 font-display text-sm text-stone">{labels.soldOut}</p>;
   }
   return (
     <div className="flex flex-wrap items-center gap-4">
       <button
         type="button"
         onClick={() => { cartActions.add(item, 1); setDone(true); window.setTimeout(() => setDone(false), 2500); }}
-        className="inline-flex items-center gap-2 bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss transition hover:bg-ivory"
+        className="inline-flex items-center gap-2 bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss transition hover:bg-ivory"
       >
         <ShoppingBag size={16} aria-hidden /> {labels.add}
       </button>

@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <div data-faction={f.theme}>
-      <PageHero title={f.name} theme={f.theme} image={f.image} />
+      <PageHero title={f.name} theme={f.theme} image={f.image} emblem={`/brand/factions/${f.slug}.webp`} />
       <div className="mx-auto max-w-7xl px-4 pt-8">
         {!ready.canCheckout && <p role="note" className="border border-dashed border-gold/40 bg-coal/60 p-4 text-sm text-stone">{t.shop.closed}</p>}
         <ShopFilters locale={locale} active={f.slug} />

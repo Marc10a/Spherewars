@@ -18,14 +18,14 @@ export function Section({ title, lead, children, id, compact }: { title: string;
   return (
     <section id={id} data-reveal className={`mx-auto max-w-7xl px-4 ${compact ? "py-10 md:py-14" : "py-16 md:py-24"}`}>
       <h2 className="font-display text-3xl tracking-wide text-ivory md:text-5xl"><BrandText text={title} /></h2>
-      {lead && <p className="mt-3 max-w-2xl text-stone">{lead}</p>}
+      {lead && <p className="mt-3 max-w-2xl text-ivory/85">{lead}</p>}
       <hr className={`rune-divider ${compact ? "my-6" : "my-8"}`} />
       {children}
     </section>
   );
 }
 
-export function PageHero({ title, lead, theme, image }: { title: string; lead?: string; theme?: string; image?: string }) {
+export function PageHero({ title, lead, theme, image, emblem, children }: { title: string; lead?: string; theme?: string; image?: string; emblem?: string; children?: ReactNode }) {
   return (
     <div data-faction={theme} className="relative overflow-hidden border-b border-gold/20 bg-coal">
       {image && <Image src={image} alt="" fill priority sizes="100vw" className="object-cover object-center opacity-60" />}
@@ -33,8 +33,10 @@ export function PageHero({ title, lead, theme, image }: { title: string; lead?: 
       <div className="mist absolute inset-0" aria-hidden />
       <Particles kind={particleKind(theme)} count={18} />
       <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28">
+        {emblem && <Image src={emblem} alt="" width={96} height={96} className="fade-up mb-4 h-20 w-auto object-contain" />}
         <h1 className="fade-up font-display text-4xl tracking-wide text-ivory md:text-6xl"><BrandText text={title} /></h1>
-        {lead && <p className="fade-up mt-4 max-w-2xl text-lg text-stone">{lead}</p>}
+        {lead && <p className="fade-up mt-4 max-w-2xl text-lg text-ivory/90">{lead}</p>}
+        {children && <div className="fade-up mt-6 flex flex-wrap gap-3">{children}</div>}
       </div>
     </div>
   );

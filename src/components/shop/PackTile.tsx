@@ -9,10 +9,10 @@ export function PackTile({ pack, href, theme, priority = false }: { pack: Pack; 
       <span className="relative block aspect-[2/3] bg-abyss">
         {pack.image && (
           <Image src={pack.image} alt={pack.title} fill sizes="(min-width:1280px) 22vw, (min-width:768px) 30vw, 50vw" priority={priority} loading={priority ? undefined : "lazy"}
-            className="object-contain transition duration-700 group-hover:scale-105" />
+            className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         )}
       </span>
-      <span lang="es" className="block px-3 py-3 text-center font-display text-sm leading-tight text-accent group-hover:text-ivory sm:text-base">{pack.title}</span>
+      <span lang="es" className="block px-3 py-3 text-center font-display text-base font-semibold leading-tight text-accent group-hover:text-ivory sm:text-base">{pack.title}</span>
     </Link>
   );
 }

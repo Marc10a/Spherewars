@@ -27,9 +27,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         {!ready.canCheckout && <p role="note" className="border border-dashed border-gold/40 bg-coal/60 p-4 text-sm text-stone">{t.shop.closed}</p>}
         <ShopFilters locale={locale} active={null} />
       </div>
-      <Section title={t.shop.allProducts} compact>
+      <Section title={t.home.step2Title} lead={t.home.step2Text} compact>
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {factions.flatMap((f) => { const pk = packFor(f.slug); return pk ? [<li key={pk.key}><PackTile pack={pk} theme={f.theme} href={`/${locale}/tienda/${f.slug}/starter-pack`} /></li>] : []; })}
+        </ul>
+      </Section>
+      <Section title={t.shop.allProducts} compact>
+        <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {items.map(({ f, page }, i) => (
             <li key={page.slug}><ShopTile page={page} theme={f.theme} locale={locale} priority={i < 4} href={`/${locale}/tienda/${f.slug}/${page.slug.split("/").pop()}`} /></li>
           ))}

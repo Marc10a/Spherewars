@@ -37,7 +37,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice }: P
       <div className="space-y-6">
         {notice && <p role="alert" className="border border-ember bg-ember/20 p-3 text-sm">{notice}</p>}
         <p className="text-stone">{t.cartEmpty}</p>
-        <Link href={`/${locale}/tienda`} className="inline-block bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss">{t.continue}</Link>
+        <Link href={`/${locale}/tienda`} className="inline-block bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss">{t.continue}</Link>
       </div>
     );
   }
@@ -103,7 +103,7 @@ export function CartView({ locale, settings, canCheckout, labels: t, notice }: P
 
             {canCheckout ? (
               <>
-                <button disabled={!preview.ok} className="bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-abyss transition hover:bg-ivory disabled:opacity-40">{t.checkout}</button>
+                <button disabled={!preview.ok} className="bg-gold px-6 py-3 font-display text-sm font-semibold text-abyss transition hover:bg-ivory disabled:opacity-40">{t.checkout}</button>
                 <p className="text-xs text-stone">{t.checkoutNote}</p>
                 <p className="text-xs text-stone">
                   {t.termsPre} <Link href={`/${locale}/legal/condiciones`} className="underline">{t.terms}</Link> · <Link href={`/${locale}/legal/devoluciones`} className="underline">{t.returns}</Link>

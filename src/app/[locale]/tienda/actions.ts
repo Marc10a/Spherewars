@@ -71,6 +71,13 @@ export async function startCheckout(formData: FormData) {
   );
   if (itemsError) { await sb.from("orders").delete().eq("id", order.id); return back("generic"); }
 
+  // Reserve the stock now, atomically: the last unit cannot be sold twice while two customers are paying.
+  const { data: reserved, error: reserveError } = await sb.rpc("reserve_order_stock", { p_order: order.id });
+  if (reserveError || !reserved) {
+    await sb.from("orders").delete().eq("id", order.id); // nothing was reserved, so there is nothing to give back
+    return back(reserveError ? "generic" : "out_of_stock");
+  }
+
   // 2) Stripe Checkout Session
   let url: string | null = null;
   try {
@@ -94,15 +101,22 @@ export async function startCheckout(formData: FormData) {
       custom_text: { submit: { message: fmt(dict[locale].shop.stripeNote, { url: `${siteUrl}/${locale}/legal/condiciones` }) } },
       // Prices are final consumer prices (VAT included). Set STRIPE_AUTOMATIC_TAX=1 only if Stripe Tax is configured.
       ...(process.env.STRIPE_AUTOMATIC_TAX === "1" ? { automatic_tax: { enabled: true } } : {}),
-      expires_at: Math.floor(Date.now() / 1000) + 31 * 60, // frees the reservation if the customer abandons
+      expires_at: Math.floor(Date.now() / 1000) + 31 * 60, // the webhook releases the reserved stock when the session expires
       success_url: `${siteUrl}/${locale}/tienda/gracias?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/${locale}/tienda/carrito?e=cancelled`,
     });
     url = session.url;
-    await sb.from("orders").update({ stripe_session_id: session.id }).eq("id", order.id);
+    // The webhook finds the order by this id. If it cannot be saved the customer must not reach Stripe: the payment could never be confirmed.
+    const { error: linkError } = await sb.from("orders").update({ stripe_session_id: session.id }).eq("id", order.id);
+    if (linkError) {
+      await stripe.checkout.sessions.expire(session.id).catch(() => null);
+      throw linkError;
+    }
   } catch (e) {
     console.error("stripe checkout failed", e);
-    await sb.from("orders").delete().eq("id", order.id);
+    const { error: releaseError } = await sb.rpc("release_order_stock", { p_order: order.id });
+    if (releaseError) console.error("stock release failed", order.id, releaseError); // keep the order so the reservation stays traceable
+    else await sb.from("orders").delete().eq("id", order.id);
     return back("stripe");
   }
   if (!url) return back("stripe");
