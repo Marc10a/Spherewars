@@ -73,6 +73,14 @@ await t("cart rules work on WooCommerce data (stock, availability, quantities)",
   assert.equal(checkLines([{ id: "11", qty: 0 }], map).error, "bad_qty");
 });
 
+await t("money: no ,00 on whole euros, cents kept when there are any; shipping text comes from one place", async () => {
+  const { formatMoney } = await import("../src/lib/shop/pricing.ts");
+  const { shippingInfoText } = await import("../src/lib/shop/shipping-info.ts");
+  const nb = (x) => x.replace(/\s/g, " ");
+  assert.equal(nb(formatMoney(3900, "es")), "39 €"); assert.equal(nb(formatMoney(3990, "es")), "39,90 €"); assert.equal(formatMoney(3900, "en"), "€39");
+  assert.equal(nb(shippingInfoText("{spain} {spainFree} {abroad} {abroadFree}", "es")), "5 € 50 € 15 € 100 €");
+});
+
 await t("checkout link: ids and quantities only, never a price; the language goes with it; a path in the base URL cannot move it", () => {
   assert.equal(checkoutLink("https://cms.x.es/", [{ id: "11", qty: 2 }, { id: "15", qty: 1 }], "ca"), "https://cms.x.es/checkout-link/?products=11:2,15:1&sw_lang=ca");
   assert.equal(checkoutLink("https://cms.x.es", [{ id: "11", qty: 1 }], "es"), "https://cms.x.es/checkout-link/?products=11:1&sw_lang=es");

@@ -6,8 +6,9 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { links } from "@/content/site";
+import { shippingInfoText } from "@/lib/shop/shipping-info";
 import { cartActions, useCart } from "./cart-store";
-import { checkLines, computeCart, MAX_QTY_PER_LINE, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
+import { checkLines, computeCart, formatMoney, MAX_QTY_PER_LINE, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
 import type { Dict } from "@/lib/i18n";
 import { startCheckout } from "@/app/[locale]/tienda/actions";
 
@@ -37,7 +38,7 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
   const hydrated = useSyncExternalStore(noSubscribe, () => true, () => false); // the cart lives in the browser: don't flash "empty" before reading it
   const countries = useMemo(() => shippableCountries(settings), [settings]);
   const [country, setCountry] = useState(countries.includes("ES") ? "ES" : countries[0] ?? "");
-  const money = useMemo(() => new Intl.NumberFormat(locale, { style: "currency", currency: settings.currency }), [locale, settings.currency]);
+  const money = useMemo(() => ({ format: (euros: number) => formatMoney(Math.round(euros * 100), locale, settings.currency) }), [locale, settings.currency]);
   const names = useMemo(() => new Intl.DisplayNames([locale], { type: "region" }), [locale]);
 
   // Each line against the current catalogue. The browser's copy of price and stock is only display data, and it can be old.
@@ -169,7 +170,8 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
                 <div className="flex items-baseline justify-between gap-4 border-t border-gold/20 pt-3 font-display text-2xl text-gold"><dt>{t.total}</dt><dd className="tabular-nums">{money.format(total / 100)}</dd></div>
               </dl>
             )}
-            <p className={`-mt-2 ${small}`}>{t.taxIncluded}{addressAtCheckout && <> · {t.shippingAtCheckout}</>}</p>
+            <p className={`-mt-2 ${small}`}>{t.taxIncluded}</p>
+            {addressAtCheckout && <p className={`-mt-2 ${small}`}>{shippingInfoText(t.shippingInfo, locale)} {t.shippingAtCheckout}</p>}
 
             {!preview.ok && !blocked && <p role="alert" className="text-base text-ivory">{t.errors[preview.error] ?? t.errors.generic}</p>}
             {blocked && <p className="text-base text-ivory">{t.cartBlocked}</p>}

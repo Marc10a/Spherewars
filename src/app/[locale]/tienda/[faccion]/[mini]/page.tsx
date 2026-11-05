@@ -16,6 +16,7 @@ import { characterInfo, factionCharacters, miniPhotos, miniVisual, ownerPhotos, 
 import { jsonLd, pageMeta, siteUrl } from "@/lib/seo";
 import { ProductGallery } from "@/components/shop/ProductGallery";
 import { BuyBox } from "@/components/shop/BuyBox";
+import { shippingInfoText } from "@/lib/shop/shipping-info";
 import type { RelatedItem } from "@/components/shop/add-confirm-store";
 
 const last = (slug: string) => slug.split("/").pop()!;
@@ -145,6 +146,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <span aria-hidden className={`size-2 ${canBuy ? "bg-gold" : "border border-stone"}`} />{status}
             </p>
             {!priced && <p className="mt-1 text-sm text-stone">{s.pricePending}</p>}
+            {canBuy && ready.addressAtCheckout && <p className="mt-1 text-sm text-stone">{shippingInfoText(s.shippingInfo, locale)}</p>}
 
             <div className="mt-4 lg:mt-6">
               {canBuy && product ? (

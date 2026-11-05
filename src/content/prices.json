@@ -1,145 +1,153 @@
 {
- "_note": "Precios de venta (EUR, IVA incluido): columna «Propuesta» de 'Catalogo Sphere Wars 2025.xlsx', unida a cada producto por su código (SW-XX-nn = SWOM-XXnn de las descripciones). Starter Packs: «STARTER … 2025» = 39,99. Lo que no está aquí no tiene precio.",
+ "_note": "Precios de venta (EUR, IVA incluido): Guía Rápida 2026, comprobados visualmente, con la confirmación de Jordi de que van sin céntimos (salvo el reglamento, 39,90, que no está aquí por no tener ficha). Los SKU salen de las descripciones de artículos; Regoretes no tiene descripción ni SKU. Lo que no está aquí no tiene precio.",
  "prices": {
   "packs/alianza": {
-   "cents": 3999,
+   "cents": 3900,
    "sku": null
   },
   "personajes/alianza/rodanes": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-AL01"
   },
   "personajes/alianza/laroc": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-AL04"
   },
   "personajes/alianza/corazon-postulante": {
-   "cents": 1699,
+   "cents": 1700,
    "sku": "SWOM-AL11"
   },
   "personajes/alianza/explorador": {
-   "cents": 1099,
+   "cents": 1100,
    "sku": "SWOM-AL13"
   },
   "personajes/alianza/recaudadora": {
-   "cents": 1099,
+   "cents": 1100,
    "sku": "SWOM-AL24"
   },
   "personajes/alianza/corazon-equite": {
-   "cents": 2499,
+   "cents": 2000,
    "sku": "SWOM-AL31A"
   },
   "personajes/alianza/roxter": {
-   "cents": 2999,
+   "cents": 4500,
    "sku": "SWOM-AL41"
   },
   "packs/adeptos-de-malesur": {
-   "cents": 3999,
+   "cents": 3900,
    "sku": null
   },
   "personajes/adeptos-de-malesur/liehhan": {
-   "cents": 2199,
+   "cents": 2000,
    "sku": "SWOM-AD01"
   },
   "personajes/adeptos-de-malesur/yenay": {
-   "cents": 1499,
+   "cents": 2000,
    "sku": "SWOM-AD03"
   },
   "personajes/adeptos-de-malesur/serpiente": {
-   "cents": 1099,
+   "cents": 1100,
    "sku": "SWOM-AD11A"
   },
   "personajes/adeptos-de-malesur/mangostas": {
-   "cents": 1499,
+   "cents": 2000,
    "sku": "SWOM-AD22"
   },
   "personajes/adeptos-de-malesur/cangrejo": {
-   "cents": 4499,
+   "cents": 4500,
    "sku": "SWOM-AD31"
   },
   "personajes/adeptos-de-malesur/morena": {
-   "cents": 1999,
+   "cents": 1700,
    "sku": "SWOM-AD32"
   },
   "personajes/adeptos-de-malesur/toro": {
-   "cents": 4499,
+   "cents": 4500,
    "sku": "SWOM-AD41"
   },
   "personajes/adeptos-de-malesur/aguila": {
-   "cents": 1099,
+   "cents": 1100,
    "sku": "SWOM-AD51"
   },
   "packs/manadas-de-urueh": {
-   "cents": 3999,
+   "cents": 3900,
    "sku": null
   },
   "personajes/mandas-de-urueh/pyronus": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-MA03"
   },
   "personajes/mandas-de-urueh/satanor": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-MA04"
   },
   "personajes/mandas-de-urueh/leva-demontre": {
-   "cents": 1799,
+   "cents": 2000,
    "sku": "SWOM-MA11"
   },
   "personajes/mandas-de-urueh/sorkep": {
-   "cents": 999,
+   "cents": 1100,
    "sku": "SWOM-MA13"
   },
   "personajes/mandas-de-urueh/abrasador": {
-   "cents": 1999,
+   "cents": 1700,
    "sku": "SWOM-MA22"
   },
   "personajes/mandas-de-urueh/calcinador": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-MA24"
   },
   "personajes/mandas-de-urueh/fundidor": {
-   "cents": 1599,
+   "cents": 1700,
    "sku": "SWOM-MA31"
   },
   "personajes/mandas-de-urueh/lucio": {
-   "cents": 1099,
+   "cents": 1100,
    "sku": "SWOM-MA62"
   },
   "packs/vastagos-de-kurgan": {
-   "cents": 3999,
+   "cents": 3900,
    "sku": null
   },
   "personajes/vastagos-de-kurgan/raggarth": {
-   "cents": 1699,
+   "cents": 2000,
    "sku": "SWOM-VA04"
   },
   "personajes/vastagos-de-kurgan/acechador": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-VA12"
   },
   "personajes/vastagos-de-kurgan/destripador": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-VA23"
   },
   "personajes/vastagos-de-kurgan/desacrador": {
-   "cents": 1499,
+   "cents": 1700,
    "sku": "SWOM-VA32"
   },
   "personajes/vastagos-de-kurgan/chaman": {
-   "cents": 1299,
+   "cents": 1400,
    "sku": "SWOM-VA33"
   },
   "personajes/vastagos-de-kurgan/jorguin": {
-   "cents": 1499,
+   "cents": 1700,
    "sku": "SWOM-VA34"
   },
   "personajes/vastagos-de-kurgan/leviatan": {
-   "cents": 6999,
+   "cents": 5900,
    "sku": "SWOM-VA41"
   },
   "personajes/alianza/postulante-raso": {
-   "cents": 1699,
+   "cents": 1700,
    "sku": "SWOM-AL11"
+  },
+  "personajes/alianza/oteadora": {
+   "cents": 1100,
+   "sku": "SWOM-AL14"
+  },
+  "personajes/vastagos-de-kurgan/regoretes": {
+   "cents": 1400,
+   "sku": null
   }
  }
 }

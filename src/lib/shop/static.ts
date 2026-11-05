@@ -5,7 +5,7 @@ import { factionCharacters, shopKey } from "@/lib/wiki";
 import type { Product } from "@/lib/data";
 
 /**
- * Prices of the owner's own price list (src/content/prices.json, column «Propuesta» of the 2025 catalogue), used while the shop has
+ * Prices of the owner's own price list (src/content/prices.json, from the 2026 quick guide), used while the shop has
  * no database or WooCommerce. A miniature that is not in the list has no price and stays "not available": nothing is invented.
  * Once WooCommerce (or the database) is connected, their products replace this list.
  */

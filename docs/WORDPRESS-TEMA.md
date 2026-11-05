@@ -20,7 +20,7 @@ El panel de WordPress (`/wp-admin`) sigue funcionando como siempre.
 ## Material de tu carpeta SphereWars USB ya integrado
 - **Fotos oficiales de 34 miniaturas y 4 Starter Packs:** en el catálogo sale la foto con el fondo de su facción; en la ficha, la galería en este orden: foto con fondo, foto limpia, foto con su tamaño y tarjeta SphereWars.
 - **Descripciones oficiales** (los Word de «Descripciones Artículos»): texto de presentación, características (referencia, puntos de banda, peana, altura, material), contenido de los packs e historia desplegable.
-- **Precios:** la columna «Propuesta» del Excel, unida a cada producto por su código (SW-XX-nn del Excel = SWOM-XXnn de las descripciones). Los 4 Starter Packs a 39,99 €. Sin precio: Oteadora, Nirlem y el resto de miniaturas sin «Propuesta».
+- **Precios:** los de la Guía Rápida 2026, sin céntimos. Los 4 Starter Packs a 39 €. Sin precio: Nirlem y las miniaturas que no están en la guía.
 - **Tipografías:** «SphereWars» en Abaddon (cabecera y pie) y el resto de títulos en Federo, como indica tu documento de fuentes.
 - **Logos de facción** en cada página de facción, y el logo de las Mercenarias de Isha en su subfacción.
 - **Descargas oficiales:** las 2 guías rápidas (A4 y A5), 7 carteles y flyers y 15 mapas de Saphir (con vista previa).
@@ -32,7 +32,7 @@ El panel de WordPress (`/wp-admin`) sigue funcionando como siempre.
 - Redirección de `/` al idioma guardado o al del navegador (temporal, como la web actual).
 - Buscador de la wiki y buscador global en el servidor (mismos resultados que la web original: comparado en 10 búsquedas).
 - Formulario de contacto: antispam (campo trampa, tiempo mínimo), validación, máximo 3 mensajes por persona y hora, envío con `wp_mail`.
-- Tienda: catálogo con foto y nombre, ficha con galería y zoom, cantidad, «Añadir al carrito» y «Comprar ahora», carrito. Precios de tu columna «Propuesta» (`prices.json`). **El pago sigue cerrado**, igual que en la web actual, hasta conectar una pasarela (siguiente fase).
+- Tienda: catálogo con foto y nombre, ficha con galería y zoom, cantidad, «Añadir al carrito» y «Comprar ahora», carrito. Precios de la Guía Rápida 2026 (`prices.json`). **El pago sigue cerrado**, igual que en la web actual, hasta conectar una pasarela (siguiente fase).
 
 ## Lo que está probado y lo que no (versión con WooCommerce)
 **Probado en un WordPress 7.1.3 real** (instalación local con SQLite, PHP 8.4, enlaces permanentes «Nombre de la entrada»): activación del tema, las 831 páginas (todas 200, ninguna con avisos de PHP), 1.214 enlaces e imágenes sin ninguno roto, redirección de `/`, `robots.txt`/`sitemap.xml`, buscadores (mismos resultados que la web original), formulario de contacto (válido, errores, antispam, límite de 3 por hora, destinatario del ajuste), página Ajustes > SphereWars (guarda el correo), y en el navegador menú, carruseles, galería con zoom, carrito y «Comprar ahora».
@@ -53,7 +53,7 @@ En el panel aparecen **Noticias SphereWars** y **Eventos SphereWars**. Cada uno 
 ### Tienda con WooCommerce
 1. Instala y activa **WooCommerce**. En **WooCommerce > Ajustes > Visibilidad del sitio** elige **Activo** (con «Próximamente» la tienda no se ve).
 2. Configura moneda (EUR), los **envíos** (zona con tarifa plana y/o envío gratis desde X; las tarifas con fórmula o clases no se admiten y no se muestran) y una **pasarela de pago** real (Stripe, PayPal, Redsys…).
-3. **Productos > Importar** y elige `productos-woocommerce.csv` (24 miniaturas con tu precio «Propuesta», SKU y facción). Después añade las fotos en cada producto (imagen + galería) y el stock.
+3. **Productos > Importar** y elige `productos-woocommerce.csv` (36 productos con los precios de la Guía Rápida 2026, SKU y facción). Después añade las fotos en cada producto (imagen + galería) y el stock.
 4. En cada producto, campo **Miniatura de la wiki** (pestaña General): a qué ficha de la web corresponde. Si lo dejas vacío se enlaza por el nombre (el final de la dirección de la ficha).
 5. Listo: la ficha de la miniatura muestra el precio, el stock y las fotos de WooCommerce (primero) y las oficiales; «Añadir al carrito» y «Comprar ahora» funcionan; al «Finalizar compra» se crea el pedido en WooCommerce con los precios y el envío que tú configuraste y el cliente paga en la página de pago de WooCommerce. Pedidos, clientes, reembolsos y facturas se gestionan en WooCommerce. Un producto sin precio, en borrador o agotado aparece como «No disponible» / «Agotado» y no se puede comprar.
 

@@ -1,8 +1,9 @@
 "use client";
 
+import { formatMoney } from "@/lib/shop/pricing";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { useCart } from "./cart-store";
 import { hideConfirmation, useConfirmation } from "./add-confirm-store";
@@ -16,7 +17,6 @@ export function AddConfirm({ locale, labels }: { locale: string; labels: AddConf
   const dialog = useRef<HTMLDialogElement>(null);
   const primary = useRef<HTMLAnchorElement>(null);
   const open = c?.open ?? false;
-  const money = useMemo(() => new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }), [locale]);
 
   useEffect(() => {
     const d = dialog.current;
@@ -49,13 +49,13 @@ export function AddConfirm({ locale, labels }: { locale: string; labels: AddConf
           </div>
           <div>
             <p lang="es" className="font-display text-lg leading-snug">{c.item.name}</p>
-            <p className="mt-1 text-sm text-stone tabular-nums">{c.qty} × {money.format(c.item.price_cents / 100)}</p>
+            <p className="mt-1 text-sm text-stone tabular-nums">{c.qty} × {formatMoney(c.item.price_cents, locale)}</p>
           </div>
         </div>
 
         <p className="flex items-baseline justify-between gap-4 border-t border-gold/25 pt-4">
           <span className="text-base text-stone">{labels.subtotal} ({count})</span>
-          <span className="font-display text-2xl text-gold tabular-nums">{money.format(subtotal / 100)}</span>
+          <span className="font-display text-2xl text-gold tabular-nums">{formatMoney(subtotal, locale)}</span>
         </p>
 
         <div className="grid gap-3">

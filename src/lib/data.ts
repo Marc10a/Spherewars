@@ -5,6 +5,7 @@ import { dict, type Locale } from "@/lib/i18n";
 import { searchWiki } from "@/lib/wiki";
 import { staticProducts } from "@/lib/shop/static";
 import { wooEnabled, wooProducts } from "@/lib/woo";
+import { formatMoney } from "@/lib/shop/pricing";
 
 // Public read layer. RLS already restricts anonymous reads to status = 'published';
 // the explicit filters below keep intent visible and handle embargoes. Returns [] when Supabase is not configured.
@@ -207,4 +208,4 @@ export async function searchAll(locale: Locale, raw: string): Promise<SearchHit[
 }
 
 export const formatPrice = (cents: number | null, currency: string | null, locale = "es") =>
-  cents == null ? null : new Intl.NumberFormat(locale, { style: "currency", currency: currency ?? "EUR" }).format(cents / 100);
+  cents == null ? null : formatMoney(cents, locale, currency ?? "EUR");

@@ -15,6 +15,10 @@ export type CartResult =
   | { ok: true; lines: CartLine[]; subtotal_cents: number; shipping_cents: number; total_cents: number; zone: ShippingZone }
   | { ok: false; error: CartError; productId?: string };
 
+/** A price for people: "39 €" when it has no cents, "39,90 €" when it has. Display only; no calculation uses it. */
+export const formatMoney = (cents: number, locale = "es", currency = "EUR") =>
+  new Intl.NumberFormat(locale, { style: "currency", currency, minimumFractionDigits: cents % 100 === 0 ? 0 : 2, maximumFractionDigits: 2 }).format(cents / 100);
+
 export const MAX_QTY_PER_LINE = 20;
 export const MAX_LINES = 30;
 

@@ -84,7 +84,7 @@ Web (Vercel): catálogo y carrito ── /checkout-link/?products=ID:cant,...&sw
 
 ### Qué se ha comprobado y dónde
 **En un WooCommerce real** (11.2.1, WordPress 7.1.1 y 7.1.4, PHP 8.5.9, SQLite, HTTPS local, solo en este equipo; invitado, escritorio y tamaño iPhone 13 en Chromium; contra reembolso y transferencia como pasarelas de prueba). La segunda instalación se montó solo con el paquete, desde wp-admin::
-- Catálogo: se leen los 34 productos del CSV, Starter Packs incluidos, y se venden.
+- Catálogo: se leen los 36 productos del CSV, Starter Packs incluidos, y se venden.
 - Compra completa con datos ficticios: el pedido contiene email, dirección de envío y facturación, líneas, IVA y envío. Queda en `processing` (contra reembolso) u `on-hold` (transferencia). El comprador vuelve a `/tienda/gracias` en su idioma y el carrito se vacía. Baja el stock gestionado.
 - Hasta entrar a pagar no se crea ningún pedido. Un checkout abandonado no deja pedidos.
 - Compatibilidad: sin errores fatales ni avisos «Deprecated» de WooCommerce en PHP 8.5.9 con `WP_DEBUG`, en los recorridos anteriores. Solo se ha ejercitado lo que se ha usado. WooCommerce declara «Tested up to 7.1» y no declara PHP 8.5.
@@ -100,20 +100,38 @@ Web (Vercel): catálogo y carrito ── /checkout-link/?products=ID:cant,...&sw
 
 ### Decisión sobre los datos del cliente
 Comprobado: `order-pay` no pide dirección ni email, y un pedido creado por API se pagaba con ambos vacíos. Había dos caminos, y se eligió el enlace de checkout:
-- Funciona para invitados, y el mismo checkout decide envío e IVA con la dirección real. Por eso Canarias o Baleares se resuelven en WooCommerce y la web ya no cierra países.
+- Funciona para invitados, y el mismo checkout decide envío e IVA con la dirección real. Por eso las zonas por provincia o país se resuelven en WooCommerce y la web ya no cierra países.
 - Sobran la escritura de pedidos, la idempotencia, los límites por pedidos, la cookie `sw_checkout` y la fuente de IP: **ya no hace falta `WC_CLIENT_IP_HEADER` ni `WC_TRUSTED_PROXY_HOPS`**.
 - Un formulario propio habría duplicado validación, consentimiento, provincias e impuestos. `order-pay` también exige verificar el email a los invitados pasados 10 minutos.
 - El enlace vacía el carrito de WooCommerce de ese navegador antes de llenarlo, así que un carrito anterior no se mezcla.
 
 **Inconvenientes:**
 - El pago tiene el aspecto de WordPress. El plugin pone los colores de la marca, pero la cabecera, el tipo de letra y la maquetación son del tema activo. No coincide del todo con la web.
-- El envío no se ve en el carrito de la web, solo en el paso siguiente («Envío calculado en el siguiente paso»). El importe está a la vista antes de confirmar.
+- El carrito de la web informa de las tarifas, pero el importe exacto se ve en el paso siguiente, antes de confirmar.
 - El checkout sale en el idioma de WordPress (español) aunque el comprador venga de `/en` o `/ca`. La vuelta sí respeta su idioma.
 
-### IVA y envío: lo que se ha corregido con la prueba
-- **WooCommerce guarda la tarifa plana SIN IVA, aunque los precios incluyan IVA.** Con 5,00 € de tarifa, el carrito antiguo decía 57,98 € y el pedido cobraba 59,03 € (envío 6,05 €). El asistente pide el precio **con** IVA y guarda la cifra sin él (5,00 € → 4,1322 €; se cobra 5,00 €). Si cambias la tarifa a mano, recuerda dividirla entre 1,21.
-- Los productos sí incluyen el IVA: 52,98 € de productos + 5,00 € de envío = 57,98 €, de los que 10,06 € son IVA.
-- Canarias, Ceuta y Melilla quedan fuera del IVA: con la zona única se les cobraría IVA y la misma tarifa. Consúltalo con tu asesor y añade zonas y tasas en WooCommerce; la web no necesita cambios.
+### Envío e IVA (decidido por Jordi; comprobado en un WooCommerce real)
+**Envío:** España 5 €, gratis desde 50 €. Resto del mundo 15 €, gratis desde 100 €. Se vende a todos los países. La web lo enseña desde `src/lib/shop/shipping-info.ts`; lo que se cobra lo decide WooCommerce. Si cambia, cámbialo en los dos sitios.
+- El plugin crea tres zonas: España, Unión Europea y Resto del mundo (zona 0). La UE va aparte porque **WooCommerce guarda la tarifa plana SIN IVA y suma el impuesto**: 4,1322 → 5 €; 12,3967 → 15 € en la UE; 15 sin impuesto fuera de ella. Con una sola zona «extranjero», un país pagaría 15 € y el otro 12,40 € o 18,15 €.
+- Con envío gratis disponible, la tarifa plana no se ofrece.
+- El umbral compara el subtotal que ve el cliente: 49 € y 49,99 € pagan envío, 50 € no.
+
+**IVA:** 21 % para España y los 26 países de la UE, también sobre el envío. Sin tasa para un país, WooCommerce quita el IVA del precio. Lo que paga cada comprador por un Starter Pack de 39 €:
+
+| Destino | Productos | Envío | Total | IVA en el pedido |
+|---|---|---|---|---|
+| España peninsular | 39,00 | 5,00 | 44,00 | 7,64 |
+| Francia (UE) | 39,00 | 15,00 | 54,00 | 9,37 |
+| Reino Unido / EE. UU. | 32,23 | 15,00 | 47,23 | 0 |
+| Canarias, Ceuta, Melilla | 39,00 | 5,00 | 44,00 | 7,64 |
+
+**A decidir con el asesor (no se ha concluido nada legal):**
+1. **Canarias, Ceuta y Melilla** pagan hoy IVA ordinario, y es probable que no deba ser así. Para cambiarlo: WooCommerce > Ajustes > Impuestos > Tarifa estándar, una fila por provincia con país `ES`, estado `TF`, `GC`, `CE` o `ML` y tasa `0`. Probado con `TF`: 32,23 € + 4,13 € = 36,36 €, y el resto de España no cambia. Ojo: el envío baja a 4,13 €, y no resuelve aduanas ni IGIC.
+2. **UE:** se aplica 21 % a todos, lo que solo vale bajo el umbral de ventas a distancia (OSS).
+3. **Fuera de la UE:** paga el precio sin IVA, sin gestión de aranceles. La web sigue diciendo «IVA incluido» y muestra 39 € hasta llegar al checkout.
+4. **Umbral fuera de la UE:** el subtotal ya no lleva IVA, así que «gratis desde 100 €» exige unos 121 € de catálogo (101 € de catálogo pagan envío; 135 € no).
+
+Si en la tienda ya existe una zona o una tasa con otro valor, «Aplicar ajustes» no la cambia: la muestra como «Pendiente».
 
 ### Otros hallazgos de la prueba
 - **El modo «Próximamente» de WooCommerce (activo al instalar) bloquea el pago a los invitados** con una página de aviso. Quítalo al final. La web no puede detectarlo.
@@ -128,7 +146,7 @@ Comprobado: `order-pay` no pide dirección ni email, y un pedido creado por API 
 Todo se hace desde wp-admin, sin FTP, SSH ni WP-CLI. La lista completa y el plugin están fuera del repositorio, en `woo-local/deploy/` (`README.md`, `spherewars-tienda.zip`). Resumen:
 1. **Copia de seguridad** si el sitio tiene contenido. Mejor una instalación nueva en un subdominio, con certificado https y WordPress en español.
 2. Enlaces permanentes «Nombre de la entrada». Instala y activa WooCommerce. Sube y activa `spherewars-tienda.zip`.
-3. Herramientas > SphereWars tienda: dirección de la web y envío con IVA > Aplicar ajustes > Crear productos > Copiar fotos. No toca páginas ni productos existentes.
+3. Herramientas > SphereWars tienda: dirección de la web > Aplicar ajustes (IVA, zonas y tarifas) > Crear productos > Copiar fotos. En una tienda que ya tiene productos con precios antiguos: revisa la lista en «Estado» y pulsa **Actualizar precios**, que solo cambia el precio normal. No toca páginas ni el resto de los productos.
 4. Existencias reales en cada producto. Pasarela real en modo prueba.
 5. WooCommerce > Ajustes > Avanzado > API REST: clave de **lectura**. Webhooks: `product.created`, `product.updated`, `product.deleted`, a `https://<web>/api/woo/webhook`, con un secreto.
 6. En Vercel: `WC_API_URL`, `WC_CONSUMER_KEY`, `WC_CONSUMER_SECRET`, `WC_WEBHOOK_SECRET`, `NEXT_PUBLIC_SITE_URL`, y vuelve a desplegar (el dominio de las fotos se fija al compilar).
@@ -142,4 +160,7 @@ Añade a la política de cookies y privacidad las cookies de WooCommerce en su d
 - Lista de `/admin/tienda`, que aún habla de Supabase y Stripe: con WooCommerce, «Clave de Stripe» = pasarela lista; «Secreto del webhook» = `WC_WEBHOOK_SECRET` puesto; «Dirección pública» = `NEXT_PUBLIC_SITE_URL` con https. «Clave de servidor» y «Base de datos» salen en verde porque no hacen falta.
 - Errores del carrito: `?e=<código>&line=<id>`.
 
-**Productos:** `wordpress/productos-woocommerce.csv` (34 productos con el precio «Propuesta», SKU del Excel, categoría = facción y `sw_wiki_slug`; 4 son Starter Packs). También se puede importar en Productos > Importar: la asignación de columnas sale sola. Sin datos de stock: no existen todavía.
+**Productos:** `wordpress/productos-woocommerce.csv` (36 productos con el precio de la Guía Rápida 2026, sin céntimos según confirmó Jordi; SKU de las descripciones, categoría = facción y `sw_wiki_slug`; 4 son Starter Packs). También se puede importar en Productos > Importar: la asignación de columnas sale sola. Sin datos de stock: no existen todavía. **Regoretes** sale con el nombre de la wiki, sin descripción ni SKU, porque no tiene documento de producto. El reglamento (39,90), dados (9), tarjetas (9) y marcadores (6-9) están en la guía pero no tienen documento ni fotos: no se han creado.
+
+### Vendedor
+El vendedor es Estudi Llefià SL (CIF que figura en el panel del hosting: B62184890; confírmalo). Hará falta en los textos legales de la web, aún sin redactar (`/legal/aviso-legal`, condiciones, privacidad, devoluciones, cookies), y en WooCommerce: dirección de la tienda (Ajustes > General), remitente y pie de los correos (Ajustes > Correos electrónicos) y facturas.

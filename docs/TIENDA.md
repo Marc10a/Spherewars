@@ -48,11 +48,11 @@ Seguridad: el navegador solo envía qué productos y cuántos. Precios, stock, d
 Solo euros. Sin códigos de descuento. Sin cuentas de cliente ni historial de pedidos para el cliente. Los correos propios (aviso de envío) no están: Stripe envía el recibo; el aviso de envío es manual por ahora. Otras pasarelas (Redsys, PayPal) no están integradas; el cobro está aislado en `src/app/[locale]/tienda/actions.ts` y `src/app/api/stripe/webhook/route.ts`.
 
 ## WooCommerce
-Es la vía elegida. Con las variables `WC_*`, WooCommerce sustituye a este flujo: productos, stock, envíos, dirección, pedidos y pago, en su propio checkout. El carrito de la web muestra el subtotal con IVA, y el envío se ve en el paso siguiente. Esta guía de Stripe no aplica entonces. Pasos y resultados de la prueba real: `WORDPRESS.md`.
+Es la vía elegida. Con las variables `WC_*`, WooCommerce sustituye a este flujo: productos, stock, envíos, dirección, pedidos y pago, en su propio checkout. El carrito de la web muestra el subtotal con IVA y las tarifas (España 5 €, gratis desde 50 €; resto del mundo 15 €, gratis desde 100 €); el importe exacto se confirma en el paso siguiente. Esta guía de Stripe no aplica entonces. Pasos y resultados de la prueba real: `WORDPRESS.md`.
 
 ## Pruebas
 `npm run test:shop` (precios, envío, stock, webhook y firma de Stripe; sin red ni base de datos).
 `npm run test:woo` (capa de WooCommerce contra el simulador, que arranca solo). La compra completa se probó aparte en un WooCommerce real local: ver `WORDPRESS.md`.
 
 ## Precios actuales (sin base de datos ni WooCommerce)
-Mientras no haya base de datos ni WooCommerce, los precios salen de `src/content/prices.json` (columna «Propuesta» de tu Excel `Catalogo Sphere Wars 2025.xlsx`, IVA incluido). Las miniaturas que no están en ese archivo no tienen precio y muestran «No disponible». Con WooCommerce o la base de datos conectados, sus productos sustituyen a esta lista. El pago real sigue cerrado hasta configurar la pasarela.
+Mientras no haya base de datos ni WooCommerce, los precios salen de `src/content/prices.json` (Guía Rápida 2026, IVA incluido, sin céntimos). Las miniaturas que no están en ese archivo no tienen precio y muestran «No disponible». Con WooCommerce o la base de datos conectados, sus productos sustituyen a esta lista. El pago real sigue cerrado hasta configurar la pasarela.

@@ -39,7 +39,7 @@ for (const [slug, v] of Object.entries(shopPhotos)) {
   for (const g of v.gallery) if (!fs.existsSync(pub(g.src))) problems.push(`shop-photos: missing file ${g.src}`);
 }
 for (const slug of Object.keys(shopDocs.products)) if (!slug.startsWith("packs/") && !slugs.has(slug)) problems.push(`shop-products: unknown wiki slug ${slug}`);
-for (const slug of Object.keys(prices)) if (!shopDocs.products[slug] && !shopDocs.aliases[slug]) problems.push(`prices: ${slug} has no product document`);
+for (const slug of Object.keys(prices)) if (!shopDocs.products[slug] && !shopDocs.aliases[slug] && !slugs.has(slug)) problems.push(`prices: ${slug} has neither a product document nor a wiki page`);
 const official = JSON.parse(fs.readFileSync(path.join(ROOT, "src/content/official-files.json"), "utf8"));
 for (const f of [...official.guides, ...official.posters, ...official.maps]) {
   if (!fs.existsSync(pub(f.file))) problems.push(`official file missing ${f.file}`);

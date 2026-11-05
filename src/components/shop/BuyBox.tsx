@@ -1,5 +1,6 @@
 "use client";
 
+import { formatMoney } from "@/lib/shop/pricing";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
@@ -83,7 +84,7 @@ export function BuyBox({ item, locale, labels, related = [] }: { item: Omit<Cart
 
       {stuck !== null && (
         <div data-show={stuck} inert={!stuck} className="sw-buybar lg:hidden">
-          <p className="font-display text-2xl text-gold tabular-nums">{new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(item.price_cents / 100)}{qty > 1 && <span className="ml-2 text-base text-stone">× {qty}</span>}</p>
+          <p className="font-display text-2xl text-gold tabular-nums">{formatMoney(item.price_cents, locale)}{qty > 1 && <span className="ml-2 text-base text-stone">× {qty}</span>}</p>
           <button type="button" onClick={(e) => add(e.currentTarget)} className="btn btn-solid inline-flex min-h-12 items-center justify-center gap-2 bg-gold px-5 font-display text-base tracking-[0.02em] text-abyss hover:bg-ivory">
             <ShoppingBag size={18} aria-hidden className="shrink-0" /> {labels.add}
           </button>
