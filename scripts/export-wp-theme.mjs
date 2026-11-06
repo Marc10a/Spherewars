@@ -31,6 +31,11 @@ for (const l of LOCALES) {
   for (const f of factions) urls.add(`/${l}/miniaturas?faccion=${f}`);
   for (const c of cats) urls.add(`/${l}/miniaturas?categoria=${c}`);
   for (const c of wikiCats) urls.add(`/${l}/wikisphere?categoria=${c}`);
+  // to-scale view: ?faccion= and ?orden=altura, in the order of scaleHref (src/lib/shop/scale.ts)
+  for (const f of ["", ...factions]) for (const orden of ["", "altura"]) {
+    const qs = [f && `faccion=${f}`, orden && `orden=${orden}`].filter(Boolean).join("&");
+    if (qs) urls.add(`/${l}/tienda/a-escala?${qs}`);
+  }
   // shop filters: parameters in the order of shopHref (src/lib/shop/catalogue.ts) and of ksort in the theme's router
   for (const base of [`/${l}/tienda`, ...factions.map((f) => `/${l}/tienda/${f}`)]) {
     for (const orden of ["", "precio", "puntos"]) for (const tipo of ["", "starter", "sueltas"]) {

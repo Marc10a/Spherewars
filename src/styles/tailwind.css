@@ -494,6 +494,24 @@ html:has(dialog.sw-sheet[open], dialog.sw-viewer[open]) { overflow: hidden; }
 @media (hover: hover) { a.pdp-fig:hover img { opacity: 1; filter: none; } }
 a.pdp-fig:focus-visible img { opacity: 1; filter: none; }
 
+/* To-scale view (/tienda/a-escala): every column is the tallest miniature of the shop high (--scale-h), so the scale never changes between rows,
+   groups or filters. --scale-h must match WALL_REM in components/shop/ScaleLineup.tsx. Phones: one swipeable lane; from 640 px the columns wrap. */
+.scale-wall { --scale-h: 11.5rem; display: flex; align-items: flex-start; margin-inline: -1rem; padding: 0 1rem .75rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: 1rem; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--gold) 45%, transparent) transparent; }
+@media (min-width: 40rem) { .scale-wall { --scale-h: 14rem; flex-wrap: wrap; row-gap: 2rem; margin-inline: 0; padding: 0; overflow: visible; } }
+@media (min-width: 64rem) { .scale-wall { --scale-h: 17rem; } }
+.scale-col { flex: none; width: calc(var(--scale-h) * var(--col)); scroll-snap-align: start; scroll-margin-top: 8.5rem; }
+.scale-col-draw { height: var(--scale-h); }
+/* The height sits right under the ground line (first visually, after the name for screen readers), so heights line up along a row. */
+.scale-col-label { display: flex; flex-direction: column-reverse; align-items: center; padding: .375rem .25rem 0; text-align: center; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; }
+.scale-col-name { display: inline-flex; align-items: flex-start; justify-content: center; min-height: 2.75rem; padding-top: .25rem; max-width: 100%; font-size: .9375rem; color: var(--accent); text-underline-offset: 4px; }
+@media (hover: hover) { .scale-col-name:hover { text-decoration-line: underline; } }
+.scale-wall .pdp-fig img { opacity: 1; filter: drop-shadow(0 10px 12px rgb(0 0 0 / .65)); }
+.scale-col:target .scale-col-draw { background-color: color-mix(in srgb, var(--accent) 9%, transparent); }
+.scale-col:target .pdp-fig::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: -6px; height: 12px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 65%, transparent), transparent); z-index: -1; }
+.scale-col:target .scale-col-name { text-decoration-line: underline; }
+.scale-thumb { position: relative; display: flex; align-items: center; justify-content: center; flex: none; height: 4rem; min-width: 3rem; border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); }
+.scale-thumb.is-empty { width: 4rem; border-bottom-style: dashed; }
+
 @media (prefers-reduced-motion: no-preference) {
   /* The one authored moment: the miniature kindles on its light when the page opens. Visible from the first frame. */
   .pdp-kindle { animation: pdpKindle .9s var(--ease-out) both; }

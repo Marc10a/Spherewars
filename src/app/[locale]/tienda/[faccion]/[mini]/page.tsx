@@ -19,7 +19,7 @@ import { ProductGallery, type GalleryPhoto } from "@/components/shop/ProductGall
 import { BuyBox } from "@/components/shop/BuyBox";
 import { AmbientVideo } from "@/components/shop/AmbientVideo";
 import { ScaleLineup, type Figure } from "@/components/shop/ScaleLineup";
-import { cutoutOf, localNum, scaleFigure } from "@/lib/shop/scale";
+import { cutoutOf, localNum, scaleAnchor, scaleFigure, scaleHref } from "@/lib/shop/scale";
 import { itemText } from "@/components/shop/facts-ui";
 import { ElementCanvas } from "@/components/ElementCanvas";
 import { shippingInfoText } from "@/lib/shop/shipping-info";
@@ -31,7 +31,7 @@ const bare = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").replace(/\
 /** Specs shown in the facts strip or next to the buy button; the rest go under the description. */
 const SHOWN = new Set(["Facción", "Puntos de Banda", "Peana", "Altura", "Número de miniaturas", "Estado", "Dado de Vida", "Dados de Vida", "Subfacción"]);
 /** Gallery order on the product page: the cut-out first (it stands on the stage), then the scene, the size shot and the card. */
-const ORDER = ["clean", "bg", "size", "card"];
+const ORDER = ["group", "clean", "bg", "size", "card"];
 const kindOf = (k: string) => (k.startsWith("bg") ? "bg" : k);
 
 export const generateStaticParams = () =>
@@ -304,6 +304,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <h2 id="pdp-scale" className={h2}>{d.scaleTitle}</h2>
               <p className="mt-3 max-w-[46ch] text-base text-ivory/85">{d.scaleLead.replace("{faction}", f.name)}</p>
               <p className="mt-2 text-sm text-stone">{d.scaleGrid}</p>
+              {/* A plain link (full load), so the miniature is the :target there and stands highlighted in the lineup. */}
+              <a href={`${scaleHref(locale, null)}#${scaleAnchor(key)}`} className="shop-arrow-link mt-3">{t.scale.entry}<ArrowRight size={18} aria-hidden /></a>
             </div>
             <ScaleLineup figures={figures} label={d.scaleLabel.replace("{list}", figures.map((x) => `${x.name} ${x.heightText}`).join(", "))} />
           </section>

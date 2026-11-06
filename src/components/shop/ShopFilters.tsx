@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check, X } from "lucide-react";
+import { ArrowRight, Check, Ruler, X } from "lucide-react";
 import { factions } from "@/content/factions";
 import { dict, type Locale } from "@/lib/i18n";
+import { scaleHref } from "@/lib/shop/scale";
 import { countFor, shopHref, type CatalogueCounts, type ShopQuery, type ShopSort, type ShopType } from "@/lib/shop/catalogue";
 import { ShopRail } from "./ShopRail";
 import { SortMenu } from "./SortMenu";
@@ -50,34 +51,17 @@ export function ShopFilters({ locale, active, query, counts }: { locale: Locale;
 
   return (
     <>
-      <nav aria-label={t.shop.factionsTitle} className="mx-auto max-w-7xl px-4 pt-5 md:pt-7">
-        <ShopRail className="shop-picks">
-          <li>
-            <Link href={shopHref(locale, null, query)} scroll={false} aria-current={active === null ? "page" : undefined} className="shop-pick">
-              <span className="shop-pick-crest" aria-hidden>
-                {factions.map((f) => <Image key={f.slug} src={emblem(f.slug)} alt="" width={40} height={40} className="h-8 w-auto object-contain md:h-9" />)}
-              </span>
-              <span className="shop-pick-name">{t.shop.allShop}</span>
-              <span className="shop-pick-n shop-num">{unit(countFor(counts.all, query.tipo))}</span>
-              <Check size={18} aria-hidden className="shop-pick-check" />
-            </Link>
-          </li>
-          {factions.map((f) => {
-            const n = countFor(counts.byFaction[f.slug] ?? { starter: 0, sueltas: 0 }, query.tipo);
-            return (
-              <li key={f.slug}>
-                <Link href={shopHref(locale, f.slug, query)} scroll={false} aria-current={active === f.slug ? "page" : undefined} data-faction={f.theme} data-empty={n === 0 ? "" : undefined} className="shop-pick">
-                  <Image src={f.image} alt="" fill sizes="(min-width:768px) 20vw, 10rem" loading="lazy" className="shop-pick-art" />
-                  <Image src={emblem(f.slug)} alt="" width={64} height={64} className="shop-pick-emblem" />
-                  <span className="shop-pick-name">{f.name}</span>
-                  <span className="shop-pick-n shop-num">{unit(n)}</span>
-                  <Check size={18} aria-hidden className="shop-pick-check" />
-                </Link>
-              </li>
-            );
-          })}
-        </ShopRail>
-      </nav>
+      <FactionPicks
+        label={t.shop.factionsTitle}
+        allLabel={t.shop.allShop}
+        active={active}
+        href={(slug) => shopHref(locale, slug, query)}
+        count={(slug) => countFor(slug ? counts.byFaction[slug] ?? { starter: 0, sueltas: 0 } : counts.all, query.tipo)}
+        unit={unit}
+      />
+      <div className="mx-auto flex max-w-7xl justify-end px-4 pt-2">
+        <Link href={scaleHref(locale, active)} className="shop-arrow-link"><Ruler size={18} aria-hidden className="shrink-0" />{t.scale.entryCatalogue}<ArrowRight size={18} aria-hidden /></Link>
+      </div>
 
       <div className="shop-bar" data-faction={current?.theme}>
         <div className="mx-auto flex max-w-7xl items-center gap-x-3 px-4 py-2.5 md:gap-x-4">
@@ -99,5 +83,42 @@ export function ShopFilters({ locale, active, query, counts }: { locale: Locale;
       </div>
       {summary("mx-auto flex max-w-7xl px-4 pt-3 md:hidden")}
     </>
+  );
+}
+
+/**
+ * The faction cards (emblem, art and accent of each bando, plus "everything"). Shared by the catalogue and the to-scale view:
+ * each page says where a card leads and what it counts.
+ */
+export function FactionPicks({ label, allLabel, active, href, count, unit }: { label: string; allLabel: string; active: string | null; href: (slug: string | null) => string; count: (slug: string | null) => number; unit: (n: number) => string }) {
+  return (
+    <nav aria-label={label} className="mx-auto max-w-7xl px-4 pt-5 md:pt-7">
+      <ShopRail className="shop-picks">
+        <li>
+          <Link href={href(null)} scroll={false} aria-current={active === null ? "page" : undefined} className="shop-pick">
+            <span className="shop-pick-crest" aria-hidden>
+              {factions.map((f) => <Image key={f.slug} src={emblem(f.slug)} alt="" width={40} height={40} className="h-8 w-auto object-contain md:h-9" />)}
+            </span>
+            <span className="shop-pick-name">{allLabel}</span>
+            <span className="shop-pick-n shop-num">{unit(count(null))}</span>
+            <Check size={18} aria-hidden className="shop-pick-check" />
+          </Link>
+        </li>
+        {factions.map((f) => {
+          const n = count(f.slug);
+          return (
+            <li key={f.slug}>
+              <Link href={href(f.slug)} scroll={false} aria-current={active === f.slug ? "page" : undefined} data-faction={f.theme} data-empty={n === 0 ? "" : undefined} className="shop-pick">
+                <Image src={f.image} alt="" fill sizes="(min-width:768px) 20vw, 10rem" loading="lazy" className="shop-pick-art" />
+                <Image src={emblem(f.slug)} alt="" width={64} height={64} className="shop-pick-emblem" />
+                <span className="shop-pick-name">{f.name}</span>
+                <span className="shop-pick-n shop-num">{unit(n)}</span>
+                <Check size={18} aria-hidden className="shop-pick-check" />
+              </Link>
+            </li>
+          );
+        })}
+      </ShopRail>
+    </nav>
   );
 }

@@ -177,6 +177,10 @@
      "kind": "bg"
     },
     {
+     "src": "/tienda/alianza/corazon-postulante-clean.webp",
+     "kind": "clean"
+    },
+    {
      "src": "/tienda/alianza/corazon-postulante-bg2.webp",
      "kind": "bg2"
     },
@@ -191,11 +195,11 @@
    ]
   },
   "packs/alianza": {
-   "tile": "/tienda/alianza/starter-pack.webp",
+   "tile": "/tienda/alianza/starter-pack-grupo.webp",
    "gallery": [
     {
-     "src": "/tienda/alianza/starter-pack.webp",
-     "kind": "card"
+     "src": "/tienda/alianza/starter-pack-grupo.webp",
+     "kind": "group"
     }
    ]
   },
@@ -368,11 +372,11 @@
    ]
   },
   "packs/adeptos-de-malesur": {
-   "tile": "/tienda/adeptos-de-malesur/starter-pack.webp",
+   "tile": "/tienda/adeptos-de-malesur/starter-pack-grupo.webp",
    "gallery": [
     {
-     "src": "/tienda/adeptos-de-malesur/starter-pack.webp",
-     "kind": "card"
+     "src": "/tienda/adeptos-de-malesur/starter-pack-grupo.webp",
+     "kind": "group"
     }
    ]
   },
@@ -549,11 +553,11 @@
    ]
   },
   "packs/manadas-de-urueh": {
-   "tile": "/tienda/mandas-de-urueh/starter-pack.webp",
+   "tile": "/tienda/mandas-de-urueh/starter-pack-grupo.webp",
    "gallery": [
     {
-     "src": "/tienda/mandas-de-urueh/starter-pack.webp",
-     "kind": "card"
+     "src": "/tienda/mandas-de-urueh/starter-pack-grupo.webp",
+     "kind": "group"
     }
    ]
   },
@@ -743,11 +747,11 @@
    ]
   },
   "packs/vastagos-de-kurgan": {
-   "tile": "/tienda/vastagos-de-kurgan/starter-pack.webp",
+   "tile": "/tienda/vastagos-de-kurgan/starter-pack-grupo.webp",
    "gallery": [
     {
-     "src": "/tienda/vastagos-de-kurgan/starter-pack.webp",
-     "kind": "card"
+     "src": "/tienda/vastagos-de-kurgan/starter-pack-grupo.webp",
+     "kind": "group"
     }
    ]
   }
