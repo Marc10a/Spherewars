@@ -51,11 +51,11 @@ export function ProductGallery({ photos, labels }: { photos: GalleryPhoto[]; lab
           {photos.map((p, i) => {
             const cut = kindOf(p) === "clean";
             return (
-              <li key={p.src} className="relative aspect-[4/5] w-full shrink-0 snap-center max-lg:aspect-auto max-lg:h-[36svh] max-lg:min-h-52 lg:aspect-auto lg:h-[min(56svh,36rem)]" aria-label={say(i)}>
+              <li key={p.src} className="relative aspect-[4/5] w-full shrink-0 snap-center max-lg:aspect-auto max-lg:h-[46svh] max-lg:min-h-64 lg:aspect-auto lg:h-[min(72svh,48rem)]" aria-label={say(i)}>
                 {cut && <span aria-hidden className="pdp-pool" />}
                 <button type="button" tabIndex={i === index ? undefined : -1} onClick={(e) => { opener.current = e.currentTarget; setOpen(i); }} aria-label={`${labels.zoom}: ${p.alt}`} className="absolute inset-0 cursor-zoom-in">
-                  <Image src={p.src} alt={p.alt} fill sizes={cut ? "(min-width:1024px) 40vw, 80vw" : "(min-width:1024px) 50vw, 100vw"} priority={i === 0} loading={i === 0 ? undefined : "lazy"}
-                    className={`object-contain ${cut ? `pdp-cut object-bottom px-[6%] pb-[5%] pt-[3%] ${i === 0 ? "pdp-kindle" : ""}` : p.art ? "p-6 lg:p-10" : "p-2 lg:p-4"}`} />
+                  <Image src={p.src} alt={p.alt} fill sizes={cut ? "(min-width:1024px) 58vw, 100vw" : "(min-width:1024px) 60vw, 100vw"} priority={i === 0} loading={i === 0 ? undefined : "lazy"}
+                    className={`object-contain ${cut ? `pdp-cut object-bottom px-[1%] pb-[3%] pt-0 ${i === 0 ? "pdp-kindle" : ""}` : p.art ? "p-6 lg:p-10" : "p-2 lg:p-4"}`} />
                 </button>
               </li>
             );

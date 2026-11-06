@@ -212,7 +212,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <Link href={`/${locale}/tienda`} className="hover:text-gold">{s.title}</Link> / <Link href={`/${locale}/tienda/${f.slug}`} className="hover:text-gold">{f.name}</Link>
           </nav>
 
-          <div className="grid grid-cols-[minmax(0,1fr)] gap-x-12 gap-y-3 pb-6 pt-2 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)] lg:items-center lg:pb-8 lg:pt-2">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-x-12 gap-y-3 pb-6 pt-2 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:items-center lg:pb-8 lg:pt-2">
             <div data-wp-slot="gallery" className="-mx-4 sm:mx-0">
               {photos.length > 0 ? (
                 <ProductGallery photos={photos} labels={{ prev: s.prevPhoto, next: s.nextPhoto, zoom: s.zoomIn, zoomToggle: s.zoomToggle, close: t.a11y.close, photoOf: s.photoOf, gallery: s.gallery, kinds: d.kinds }} />
