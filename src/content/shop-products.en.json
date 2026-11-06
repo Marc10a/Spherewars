@@ -1,0 +1,294 @@
+{
+ "_note": "Machine-assisted English translation of shop-products.json (the owner's official Spanish product texts). Pending validation by the owner. Spanish stays the source: edit Spanish first, then this file. Names stay as written.",
+ "status": "machine-assisted-pending-validation",
+ "specs": {
+  "labels": {
+   "Facción": "Faction",
+   "Subfacción": "Subfaction",
+   "Puntos de Banda": "Band Points",
+   "Número de miniaturas": "Number of miniatures",
+   "Dados de Vida": "Life Dice",
+   "Dado de Vida": "Life Die",
+   "Material": "Material",
+   "Estado": "Condition",
+   "Referencia": "Reference",
+   "Peana": "Base",
+   "Altura": "Height"
+  },
+  "values": {
+   "Resina termoplástica flexible de alta resistencia y gran nivel de detalle.": "High-strength flexible thermoplastic resin with a high level of detail.",
+   "Miniatura sin montar y sin pintar.": "Unassembled and unpainted miniature.",
+   "Miniaturas sin montar y sin pintar.": "Unassembled and unpainted miniatures."
+  }
+ },
+ "products": {
+  "packs/alianza": {
+   "intro": "Defensores de Caldara is a SphereWars Starter Pack belonging to the Alianza. It includes four miniatures (Ródanes, Brazo de Metal; a Cohorte de Postulantes made up of two miniatures; and the Recaudadora de Isha) that form a versatile band combining leadership, resilience, magic and offensive power. Made from high-strength flexible thermoplastic resin with a high level of detail, they are ideal for getting started in SphereWars, expanding an Alianza band, painting and collecting.",
+   "lore": [
+    "Defensores de Caldara offers a balanced band that combines leadership, battlefield presence and different ways of answering enemy threats. Ródanes, Brazo de Metal acts as the core of the band and lets you make the most of his command abilities, while the Cohorte de Postulantes brings presence and fighting power, and the Recaudadora de Isha adds the power of the Hebrado and ranged attacks.",
+    "Together, these miniatures let you build a strategy based on coordination and making the most of different resources. Ródanes leads the group and helps you get the best out of the other pieces; the Postulantes can hold positions, fight and increase the band's presence on the table; and the Recaudadora brings a different kind of threat thanks to her ability to master the threads and fight both with magic and at range.",
+    "On the tabletop, Defensores de Caldara lets you discover some of the Alianza's most defining traits: discipline, coordination, versatility and the ability to respond to very different situations. It is a band especially well suited to players who enjoy combining different tactical tools and making their miniatures work together to control the course of the battle."
+   ],
+   "closing": "Start your Alianza band with Defensores de Caldara and step into the battles of SphereWars. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/rodanes": {
+   "intro": "Rodanes, Brazo de Metal is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the Corazón Supremo of the Legión de los Cien Corazones, a legendary strategist capable of turning the tide of any battle. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Rodanes, Brazo de Metal did not inherit his legend: he forged it. Corazón Supremo of the Legión de los Cien Corazones, he is feared beyond the borders of Darlime and revered by his own. A master of war, his tactical genius and clear sight in combat change the course of battles in the heat of the fight. His rise was unique: chosen unanimously without even standing as a candidate, proof that both the man and the threat he faces are extraordinary. His only oath is clear: to defend Darlime to the death."
+   ],
+   "closing": "Add Ródanes, Brazo de Metal to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/laroc": {
+   "intro": "Laroc, la Seductora is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts one of the most powerful sorceresses of the Mercenarias de Isha, able to devastate her enemies or protect her allies through magic. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Rejected at birth and branded La Loca, the nameless girl learned to survive amid blows and mockery, seeing threads no one else could understand. Where others saw weakness, she forged mastery. Handed over as payment and torn from her past, she found a new destiny in Alquézar. There, the Tutoras revealed the truth: Laroc was not a curse, but one of the most powerful sorceresses ever seen. Fragile with steel, devastating with magic, able to destroy the enemy or save her own, Laroc turned pain into power."
+   ],
+   "closing": "Add Laroc, la Seductora to your Alianza or Mercenarias de Isha band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/corazon-postulante": {
+   "intro": "The Cohorte de Postulantes are SphereWars miniatures belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, they depict a young soldier setting out on the hard road of military life and his officer from the Legión de los Cien Corazones. Ideal for playing, painting and collecting.",
+   "lore": [
+    "In the Legión de los Cien Corazones, not even the lowest rank escapes discipline. The Postulantes Rasos, still young, temper their steel through five years of relentless service, between escort duty and real battles. Only those who endure the trial rise to Corazón Postulante, earning their place in the Legion through sweat and honor.",
+    "As a Corazón Postulante, the trial is no longer just to endure, but to command. For five years, they guide the Postulantes Rasos and decide their fate: the comfort of the middle rank… or the path of merit. Only those who lead with excellence and ambition rise, forging themselves as Corazones Próximos within the Legión de los Cien Corazones."
+   ],
+   "closing": "Add the Cohorte de Postulantes to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/explorador": {
+   "intro": "The Explorador is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts an expert tracker and infiltrator tasked with protecting the borders of Darlime and uncovering threats before it is too late. Ideal for playing, painting and collecting.",
+   "lore": [
+    "The Explorador does not fight for pay or for glory: he fights out of calling. Born to go where others dare not, he watches over the borders of Darlime, venturing into the unknown to detect threats before they emerge. In war, his worth is decisive: infiltration, tracking and precise shooting, the shadow that protects the realm before the battle begins."
+   ],
+   "closing": "Add the Explorador to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/oteadora": {
+   "intro": "The Oteadora de Isha is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a strategist of the Mercenarias de Isha, specialized in reconnaissance, tactical support and ranged combat. Ideal for playing, painting and collecting.",
+   "lore": [
+    "The Oteadora walks a different path from the rest of the Mercenarias. Although her beginnings are the same, on becoming a Novicia she does not prepare for the trial of the Voluntad de Isha, because her Tutora has seen in her an uncommon gift for tactics. She is therefore trained in the art of strategy so she can help her leaders in battle. This clever fighter trains to hold forward positions and give orders where her leader cannot. She is also trained to fight efficiently at range."
+   ],
+   "closing": "Add the Oteadora de Isha to your Alianza or Mercenarias de Isha band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/recaudadora": {
+   "intro": "The Recaudadora de Isha is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a sorceress and archer of the Mercenarias de Isha, charged with mastering the threads and ensuring that every debt is settled. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Out of fear or caution, many hide their gift for seeing the threads, but none escapes the Voluntad de Isha. Discovered and guided by the Tutoras, the future Recaudadoras master the power of threading and are forged in close and ranged combat. For a sacred duty rests in their hands: to collect the debt for the service requested and ensure that every Mercenaria de Isha receives what she is owed."
+   ],
+   "closing": "Add the Recaudadora de Isha to your Alianza or Mercenarias de Isha band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/corazon-equite": {
+   "intro": "The Corazón Équite is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a member of the elite of the Legión de los Cien Corazones, responsible for breaking through enemy lines and deciding the fate of the battle. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Being a Corazón Équite is not just a rank; it is an ascent to the elite. After climbing through the Latires and winning the favor of the high command of the Legión de los Cien Corazones, one gains honor, power and privilege. The gates of the Ciudadela de los Latires open, and in war the Équite becomes a key piece, forging strategies and deciding the fate of the battlefield."
+   ],
+   "closing": "Add the Corazón Équite to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/roxter": {
+   "intro": "Róxter, el Piloto is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the legendary pilot of a unique war suit, built to rule the skies and fight the greatest threats to Darlime. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Róxter is not a name: it is a legacy. The first Piloto, chosen by Bolban, bonded with a contraption impossible to replicate, a machine of gears and gunpowder able to make a man fly and turn him into a weapon against the coming doom. Many long to be Róxter for glory and power, but only one bears the title. When the Piloto falls, the choice of the next one rests in the hands of the Corazón Supremo of the Legión de los Cien Corazones."
+   ],
+   "closing": "Add Róxter, el Piloto to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "packs/adeptos-de-malesur": {
+   "intro": "Vientos de Guerra is a SphereWars Starter Pack belonging to the Adeptos de Malesur. It includes three miniatures (Liehhan, el Oso; the Manada de Mangostas; and the Águila) that form a versatile band combining resilience, support and mobility. Made from high-strength flexible thermoplastic resin with a high level of detail, they are ideal for getting started in SphereWars, expanding an Adeptos de Malesur band, painting and collecting.",
+   "lore": [
+    "Vientos de Guerra offers a balanced, versatile band that combines control, support and a great ability to adapt to different battle situations. Liehhan, el Oso acts as the group's resilient core, advancing on key positions and pinning enemies in combat, while the Manada de Mangostas keeps its allies in better shape and the Águila uses its extraordinary mobility to step in wherever it is needed most.",
+    "Together, the three miniatures let you build a strategy based on cooperation. Liehhan puts pressure on enemy pieces and makes it hard for them to leave combat; the Mangostas provide protection and recovery to prolong the band's resilience; and the Águila can reposition quickly, support magic and extend the group's influence to hard-to-reach areas of the table.",
+    "On the tabletop, Vientos de Guerra lets you discover some of the most defining traits of the Adeptos de Malesur: resilience, mobility, support and synergy among their members. It is a band especially well suited to players who enjoy combining their miniatures' abilities and adapting their strategy as the battle unfolds."
+   ],
+   "closing": "Start your Adeptos de Malesur band with Vientos de Guerra and step into the battles of SphereWars. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/liehhan": {
+   "intro": "Liehhan, el Oso is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a mighty warrior chosen by the Espíritu del Oso, ready to lead the first strike against his enemies. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Heir to the lineage of Lilean and chosen by the Oso, Liehhan forged his legend as one of the most feared warriors of the forest. When dark omens heralded war, he did not wait for a weak council: he gathered his faithful and marched first. Darlime would be the opening blow, brutal and decisive, with which Liehhan would prove that peace can only be won through strength."
+   ],
+   "closing": "Add Liehhan, el Oso to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/yenay": {
+   "intro": "Yenay, la Mantis is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts an expert assassin blessed by the Espíritu de la Mantis, specialized in striking from the shadows. Ideal for playing, painting and collecting.",
+   "lore": [
+    "From shadow smuggler to chosen of the spirits, Yenay was marked by the Mantis of Malesur. She rejected her destiny… until she understood that it was not a curse, but a calling. When the mists returned and Mihualo brought words of war, Yenay accepted her role: to be the dagger in the dark, guiding her people to victory."
+   ],
+   "closing": "Add Yenay, la Mantis to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/serpiente": {
+   "intro": "The Serpiente is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a deadly huntress specialized in ambushes, poisons and precise strikes. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Feared in the forests of Lilean, the Espíritu de la Serpiente chooses the cunning… or the damned. Patient and silent, its blessed ones wait in the undergrowth for the perfect moment. Then they strike: paralyzing venom, a sure blow and a retreat without a trace. Because when the Serpiente catches you, there is no escape."
+   ],
+   "closing": "Add the Serpiente to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/mangostas": {
+   "intro": "The Manada de Mangostas is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a group bound by ancient spiritual ties, able to protect and support its allies during battle. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Chosen in childhood by the Espíritu de la Mangosta, its blessed ones do not seek individual power, but the strength of the bond. United as a pack, they raise their voices in ancestral chants that, even in the thick of combat, weave protection and healing, keeping alive the melody that sustains their allies."
+   ],
+   "closing": "Add the Manada de Mangostas to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/cangrejo": {
+   "intro": "The Cangrejo is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts an imposing armored creature able to withstand the hardest blows and crush even the toughest armor. Ideal for playing, painting and collecting.",
+   "lore": [
+    "In Lilean, only the most violent draw the gaze of the Espíritu del Cangrejo. Blessed by Malesur with nearly indestructible shells and colossal pincers, they advance unhurried but unafraid. From the second line, they withstand the impossible and crush the enemy, shattering even the toughest armor when their pincers close."
+   ],
+   "closing": "Add the Cangrejo to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/morena": {
+   "intro": "The Morena is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a fierce creature blessed by Malesur, able to slip between its enemies and finish them off with a single attack. Ideal for playing, painting and collecting.",
+   "lore": [
+    "When Malesur calls upon the sea, the Espíritu de la Morena rises. Chosen for their courage and loyalty to home, these creatures move across land with unnatural grace. They slip unchecked between bodies and steel, and with a single bite of their jaws they unleash a brutal, inevitable death."
+   ],
+   "closing": "Add the Morena to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/toro": {
+   "intro": "The Toro is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts one of the most powerful creatures of Lilean, designed to lead the most devastating charges of Malesur's army. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Chosen by the Espíritu del Toro, only the most exceptional Adeptos receive this honor. Strength, agility and perfection embodied in the most colossal creature of Lilean. In battle, the Toros are the heart of the clash, advancing unstoppably and sowing chaos with charges and stomps. Their horns, blessed by Malesur, pierce metal and bone, reducing armor and shields to dust."
+   ],
+   "closing": "Add the Toro to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/aguila": {
+   "intro": "The Águila is a SphereWars miniature belonging to the Adeptos de Malesur. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a winged scout able to rule the skies and support its allies with the power of the wind. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Chosen by the Espíritu del Águila, the lords of the skies command the winds of Malesur. From on high they fly, scout and guide the troops, beating their wings to unleash currents of power. They do not fight with brute strength, but with vision and leadership, amplifying magic and carrying their leaders' will wherever the wind can reach."
+   ],
+   "closing": "Add the Águila to your Adeptos de Malesur band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "packs/manadas-de-urueh": {
+   "intro": "Primeras Ascuas is a SphereWars Starter Pack belonging to the Manadas de Urueh. It includes six miniatures (Sátanor, el Volcán; a Leva Demontre made up of three miniatures; a Sorkep; and an Abrasador) that form an aggressive band combining magic, numerical superiority, mobility and brute force. Made from high-strength flexible thermoplastic resin with a high level of detail, they are ideal for getting started in SphereWars, expanding a Manadas de Urueh band, painting and collecting.",
+   "lore": [
+    "Primeras Ascuas offers an offensive, varied band that lets you attack the enemy through very different threats. Sátanor, el Volcán brings leadership and the destructive power of the Hebrado, while the Leva Demontre provides numerical superiority and lets you pressure different areas of the battlefield. The Sorkep adds a fast, aggressive threat, and the Abrasador brings the toughness and strength needed to take on the hardest targets.",
+    "Together, its miniatures let you build a strategy based on keeping constant pressure on your opponent. The Demontres can hurl themselves at the enemy and use their numbers to create opportunities, while the Sorkep harasses weak points and the Abrasador focuses a far greater threat on the toughest positions. From a more protected position, Sátanor can use his magic to support the band's advance and further increase its destructive power.",
+    "On the tabletop, Primeras Ascuas lets you discover some of the most defining traits of the Manadas de Urueh: aggression, numbers, strength and destructive power. It is a band especially well suited to players who enjoy seizing the initiative, keeping the pressure on the enemy and combining numerous threats until the opposing lines finally break."
+   ],
+   "closing": "Start your Manadas de Urueh band with Primeras Ascuas and step into the battles of SphereWars. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/pyronus": {
+   "intro": "Pyronus, el Heraldo is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a powerful demontre leader who defied his destiny to become one of the greatest threats in the service of Kazag. Ideal for playing, painting and collecting.",
+   "lore": [
+    "By killing a Primigenio, Pyronus sealed his fate. He stole the fire of Pyrokan and, using the knowledge of Satanor, transcended his form to become something beyond a Demontre. Hated by some and admired by others, he advances amid intrigue while the hosts follow him with blind fervor. In the war for the Quinta Esencia he is a fearsome weapon… but he knows that the reckoning with his former master is inevitable. Only one will burn to the end."
+   ],
+   "closing": "Add Pyronus, el Heraldo to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/satanor": {
+   "intro": "Satanor, el Volcán is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the second Primigenio of Kazag and the first sorcerer of Urueh, able to command fire and lead destruction. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Through visions of fire and ruin, Satanor, second Primigenio and first sorcerer of Kazag, beholds the fate of Urueh: burning citadels and armies reduced to ash. Chosen to make those prophecies come true, he forges packs and armies born of rock, while the red threads pulse around him, hungry for destruction. Soon, the fire of Kazag will fall upon Caldara, and the world will burn beneath his will."
+   ],
+   "closing": "Add Sátanor, el Volcán to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/leva-demontre": {
+   "intro": "The Leva Demontre are SphereWars miniatures belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, they depict the countless hordes of demontres that overwhelm the enemy through sheer numbers and ferocity. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Savage and reckless, the Demontres lack wit but overflow with violence. Undisciplined and unreliable, they advance without fear or order… but never alone. Hurled forward in countless Levas, their chaotic tide floods the battlefield, sacrificing themselves to sow confusion and drown the enemy beneath the weight of their numbers."
+   ],
+   "closing": "Add the Leva Demontre to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/sorkep": {
+   "intro": "The Sorkep is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a ferocious beast of Urueh used as a weapon of war for its aggression and resistance to fire. Ideal for playing, painting and collecting.",
+   "lore": [
+    "A brutal reflection of the Demontres, the Sorkep are aggressive beasts with fireproof hides that thrive amid the fire and blood of Urueh. Voracious scavengers, they follow the hosts to devour the fallen and the wounded, fighting even their allies over the remains. It was Lanza Avernal who saw a weapon in their ferocity and dragged them from the margins to the heart of battle."
+   ],
+   "closing": "Add the Sorkep to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/abrasador": {
+   "intro": "The Abrasador is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a colossal Hijo de Kazag born of magma, able to sow destruction with its strength and the power of lava. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Born in the depths of the magma, the Abrasadores, Hijos de Kazag, emerge with lava in their veins and a thirst for destruction. Forged for war, they advance hurling incandescent torrents and smashing armor with burning fists. Indifferent to steel and pain, they wait by the fire… eager to turn the world to ash."
+   ],
+   "closing": "Add the Abrasador to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/calcinador": {
+   "intro": "The Calcinador is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts one of the elite warriors of Urueh, trained to fight in formation and keep order among the armies of Kazag. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Forged in the volcano's unfinished fire, the Calcinadores do not command the flame… they wield it. Armed with volcanic spears, they fight from birth until death. More lucid than their kin, they fight in formation and stand as the elite of Urueh, so valuable that the Primigenios compete for their loyalty. In war and in camp, they uphold order and the advance, for everyone knows that, without divine guides, they would command the armies."
+   ],
+   "closing": "Add the Calcinador to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/fundidor": {
+   "intro": "The Fundidor is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a gigantic Hijo de Kazag specialized in breaking enemy lines through unstoppable strength. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Huge and primal, the Fundidores, Hijos de Kazag, were born to haul and destroy. In the depths they dig and move mountains; in war they advance like living battering rams, tough and lethal. Slow of mind but unstoppable in strength, they bear the weight of Urueh… and when battle comes, they break lines as if they were stone."
+   ],
+   "closing": "Add the Fundidor to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/lucio": {
+   "intro": "Lucio, Capataz Demontre is a SphereWars miniature belonging to the Manadas de Urueh. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a ruthless demontre overseer who rules through terror and the power of fire. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Among the riffraff of Urueh, Lucio, el Capataz stands out for his cruelty. Born a Demontre, his sharp mind raised him above his kin, manipulating them to work, kill… or die for him. Pyronus, el Heraldo made him an overseer and granted him a whip of fire threads, able to make other Demontres explode from within. Feared by his subordinates and hated by Satanor, Lucio rules through terror and flame."
+   ],
+   "closing": "Add Lucio, Capataz Demontre to your Manadas de Urueh band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "packs/vastagos-de-kurgan": {
+   "intro": "Furia Helada is a SphereWars Starter Pack belonging to the Vástagos de Kurgan. It includes three miniatures (Raggarth, el Liberador; an Acechador; and a Desacrador Gélido) that form an aggressive band combining leadership, infiltration and offensive power. Made from high-strength flexible thermoplastic resin with a high level of detail, they are ideal for getting started in SphereWars, expanding a Vástagos de Kurgan band, painting and collecting.",
+   "lore": [
+    "Furia Helada offers an offensive, versatile band able to put pressure on the enemy from different positions on the battlefield. Raggarth, el Liberador acts as the core of the group, bringing leadership and fighting power, while the Acechador uses infiltration and ambushes to threaten vulnerable positions, and the Desacrador Gélido brings the hitting power needed to take on your opponent's most important pieces.",
+    "Together, the three miniatures let you build a strategy based on creating constant threats and forcing the enemy to split its attention. Raggarth can advance into the decisive clashes, while the Acechador uses its ability to act from unexpected positions and harass the opponent. The Desacrador Gélido completes the band as an especially dangerous threat to leaders and sorcerers, turning the enemy's key pieces into priority targets.",
+    "On the tabletop, Furia Helada lets you discover some of the most defining traits of the Vástagos de Kurgan: aggression, infiltration, ferocity and the ability to punish the enemy's weak points. It is a band especially well suited to players who enjoy seizing the initiative, creating threats from different areas of the table and concentrating their strength on the opponent's most important targets."
+   ],
+   "closing": "Start your Vástagos de Kurgan band with Furia Helada and step into the battles of SphereWars. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/raggarth": {
+   "intro": "Raggarth, el Liberador is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the leader of the regor rebellion, a warrior fighting for his people's freedom against soimi oppression. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Silent and patient, Raggarth watched his master's cruelty for years, until he decided to end it with a single lightning blow. By rising up against slavery, he became the leader of the regors, who now fight at his side for freedom. Nek’Org accepted his revolt as part of the fragile union to conquer Saphir, though Raggarth does not trust soimi promises. He knows the war will end… and that then he will have to decide whether his people's destiny is forged through alliances or through blood."
+   ],
+   "closing": "Add Raggarth, el Liberador of the Culto Regor to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/acechador": {
+   "intro": "The Acechador is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a cunning regor specialized in ambushes, infiltration and surprise attacks from the shadows. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Small and underestimated, the regor Acechadores live for the shadows. Weak in strength but cunning and coordinated, they camouflage themselves in the undergrowth to harass relentlessly. Although the soimi despise them as slaves, their deadly ambushes proved their worth during Raggarth's revolt, where many fell for ignoring them. Feared and despised at once, the regor hunt when the enemy has grown too confident."
+   ],
+   "closing": "Add the Acechador of the Culto Regor to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/destripador": {
+   "intro": "The Destripador is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a ferocious regor warrior consumed by violence, ready to throw himself at the enemy without fear of death. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Though small, the regors share the predatory ferocity of Kurgan. Forced from childhood, the Destripadores were used as beasts and cannon fodder. After the revolt, many were left consumed by blood and despair. Raggarth el Liberador sends them to the vanguard, so they may fight one last time… and die as children of Kurgan, not as slaves."
+   ],
+   "closing": "Add the Destripador of the Culto Regor to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/desacrador": {
+   "intro": "The Desacrador Gélido is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts one of the most feared champions of Tur’Na’Kurg, charged with destroying the faith and morale of his enemies. Ideal for playing, painting and collecting.",
+   "lore": [
+    "For Nek’Org, winning is not enough: the enemy's spirit must be broken. The Desacradores of Tur’Na’Kurg are his instruments of ruin, feared champions charged with desecrating the sacred and erasing every rival faith. Wherever leaders, champions or sorcerers fall, the Desacradores make it clear that Kurgan's victory begins in the soul of the defeated."
+   ],
+   "closing": "Add the Desacrador Gélido of the Culto Tur’Na’Kurg to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/chaman": {
+   "intro": "The Chamán is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a powerful regor sorcerer able to master the threads of ice and spiritually guide his people. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Although the soimi of Huram’Koll mock them, the regor Chamanes master the threads with true power. Weavers of ice spells and forgers of ritual staves, they are fearsome mages. Among their own, they do not merely cast spells: they preach and guide, raising Raggarth el Liberador as a mythic figure and kindling the faith that sustains the revolt."
+   ],
+   "closing": "Add the Chamán of the Culto Regor to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/jorguin": {
+   "intro": "The Jorguín de la Escarcha is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts one of the most powerful mages of Kurgan, master of ice and guardian of the ancient prophecies. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Only the greatest sorcerers of Kurgan reach the rank of jorguín in Huram’Koll. Their rite demands forging the Llamaventiscas staff, braiding magic into crystals born in the Colmillos del Sol. In battle they unleash the power of ice, and in the stillness of trance they interpret Kurgan's rare visions, guiding the cult's destiny amid mist and omens."
+   ],
+   "closing": "Add the Jorguín de la Escarcha of the Culto Huram’Koll to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/leviatan": {
+   "intro": "El Leviatán is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the most colossal creature ever created by Kurgan, a titan able to wipe out entire armies and change the fate of any battle. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Forged in the Prophecy of Kurgan, the Leviatán is a titan of legend, summoned after centuries of sacrifices and prayers. With the Ciclo Evolutivo, the god of ice gave shape to the long-awaited monster. In battle, the Leviatán not only annihilates armies in an instant, but withstands what would kill any other. When it marches alongside the Vástagos de Kurgan, the war tips… and the world trembles."
+   ],
+   "closing": "Add El Leviatán to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo! Regoretes Agitadores The Regoretes Agitadores are a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts a pack of small, violent regor creatures that attack as a group, sowing chaos among their enemies. Ideal for playing, painting and collecting. Small but rabid, the Regoretes always attack as a pack, unleashing a contagious frenzy in battle. Lacking the deadly tails of the regor, they prefer to capture their prey alive to devour it later. Considered a failed experiment of Kurgan, they are despised and kept at a distance by the soimi… yet in the chaos of war, these vermin remain pure, uncontrolled violence. Features Reference: SWOM-VA52 Faction: Vástagos de Kurgan Subfaction: Culto Regor Band Points: 4 Base: 4 cm Height: 3.3 cm Life Die: 1 Material: High-strength flexible thermoplastic resin with a high level of detail. Condition: Unassembled and unpainted miniature. Add the Regoretes Agitadores of the Culto Regor to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/alianza/nirlem": {
+   "intro": "Nirlem, el Paladín is a SphereWars miniature belonging to the Alianza. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the Corazón Supremo Bélico of the Legión de los Cien Corazones, an aggressive fighter capable of turning the tide of any battle. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Nirlem, el Paladín, marked by fire and loss, watched his family die beneath the burning arrows of Urueh and swore vengeance before the flames of Suria. Taken in by Drewan, he was forged in Caldara between sword and shield, learning honor without forgetting the hatred that burned in his heart. From that boy rose a warrior tempered by pain and discipline, until he became Corazón Supremo Bélico of the Legión de los Cien Corazones, determined to fulfill his oath with steel and justice."
+   ],
+   "closing": "Add Nirlem, el Paladín to your Alianza or Legión de los Cien Corazones band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+   "intro": "Nek’Org, el Profeta is a SphereWars miniature belonging to the Vástagos de Kurgan. Made from high-strength flexible thermoplastic resin with a high level of detail, it depicts the leader of the Culto de Tur’Na’Kurg, a warrior fighting for the fulfillment of the Prophecy and for power over the other Cults. Ideal for playing, painting and collecting.",
+   "lore": [
+    "Nek’Org, supreme voice of Tur’Na’Kurg, embodies the Prophecy that promises the conquest of Saphir. Determined to unite the children of Kurgan, he draws many soimi with his vision of power… while others fear his ambition will destroy their cults. Fervent, cunning and brutal, Nek’Org leads with the fury of Kurgan, never hesitating or retreating, advancing toward a destiny that could subjugate the entire sphere."
+   ],
+   "closing": "Add Nek’Org, el Profeta of the Culto Tur’Na’Kurg to your Vástagos de Kurgan band and expand your collection of SphereWars miniatures. Raise your voice, dice and brushes in Otro Mundo!"
+  }
+ }
+}

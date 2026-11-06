@@ -1,6 +1,6 @@
 "use client";
 
-import { playWithTouchFallback } from "@/lib/video";
+import { playWithTouchFallback, videoSrcFor } from "@/lib/video";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -44,6 +44,8 @@ function PanelVideo({ slug, live }: { slug: string; live: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  // Phones get the light `-m.mp4` encode. Chosen once on mount: the panel only mounts in the browser, after it has been live.
+  const [src] = useState(() => videoSrcFor(`/facciones/${slug}.mp4`));
 
   useEffect(() => {
     const v = ref.current;
@@ -58,7 +60,7 @@ function PanelVideo({ slug, live }: { slug: string; live: boolean }) {
   return (
     <video
       ref={ref}
-      src={`/facciones/${slug}.mp4`}
+      src={src}
       className="fc-media fc-video"
       data-ready={ready || undefined}
       muted

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { dict, isLocale, locales, ogLocale, type Dict, type Locale } from "@/lib/i18n";
 
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://spherewars.com";
 export const defaultOg = "/og.jpg";
 
 /** Canonical + hreflang alternates for a locale-less path ("" = home). */

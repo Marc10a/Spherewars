@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <PageHero title={t.downloads.title} lead={t.downloads.lead} image="/wiki/images/mapa_saphir_2026.webp" />
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-12">
         {([["rulesFiles", official.rules], ["guides", official.guides], ["posters", official.posters], ["maps", official.maps]] as ["rulesFiles" | "guides" | "posters" | "maps", OfficialFile[]][]).map(([key, list]) => (
-          <section key={key}>
+          <section key={key} id={key} className="scroll-mt-24">
             <h2 className="font-display text-2xl text-gold">{t.downloads[key]}</h2>
             <ul className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {list.map((f) => (

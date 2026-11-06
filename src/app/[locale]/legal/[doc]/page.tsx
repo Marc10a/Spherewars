@@ -11,7 +11,7 @@ export const generateStaticParams = () => locales.flatMap((locale) => LEGAL_DOCS
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; doc: string }> }) {
   const { locale, doc } = await params;
   // noindex while the texts are a draft pending legal review.
-  return pageMeta({ title: isLocale(locale) ? dict[locale].legal.titles[doc] : undefined, path: `/legal/${doc}`, noindex: true }, locale);
+  return pageMeta({ title: isLocale(locale) ? dict[locale].legal.titles[doc] : undefined, description: isLocale(locale) ? dict[locale].pageMeta.legal[doc] : undefined, path: `/legal/${doc}`, noindex: true }, locale);
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string; doc: string }> }) {

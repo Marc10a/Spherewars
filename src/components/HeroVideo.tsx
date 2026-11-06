@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import { muteForAutoplay, playWithTouchFallback } from "@/lib/video";
+import { decorativeVideoAllowed, muteForAutoplay, playWithTouchFallback, videoSrcFor } from "@/lib/video";
 
 /**
- * Home hero background. The poster image underneath stays as the fallback: the video only loads on wide screens,
- * never with reduced motion or data saver, and fades in once it can play.
+ * Hero background (home and faction landings). The poster image underneath stays as the fallback: phones get the light `-m` encode,
+ * nothing loads with reduced motion or data saver, and the video fades in once it can play.
  */
 export function HeroVideo({ src, mobileSrc, pauseLabel, playLabel, anyScreen = false, position = "center 22%" }: { src: string; /** Lighter file for phones. The video then fills only the 16:9 band above the text there. */ mobileSrc?: string; pauseLabel: string; playLabel: string; anyScreen?: boolean; position?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -16,21 +16,19 @@ export function HeroVideo({ src, mobileSrc, pauseLabel, playLabel, anyScreen = f
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
-    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const wide = anyScreen || Boolean(mobileSrc) || window.matchMedia("(min-width: 768px)").matches;
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!wide || calm || conn?.saveData) return;
+    const shown = anyScreen || Boolean(mobileSrc) || window.matchMedia("(min-width: 768px)").matches;
+    if (!shown || !decorativeVideoAllowed()) return;
     muteForAutoplay(video);
-    const wanted = wide && window.matchMedia("(min-width: 768px)").matches ? src : mobileSrc ?? src;
-    // Assigning the source again would restart the load.
-    if (video.getAttribute("src") !== wanted) video.src = wanted;
+    // Phones get the light encode: the explicit mobile file, or the `-m.mp4` sibling.
+    const wanted = videoSrcFor(src, mobileSrc);
     const start = () => { if (!userPaused.current) playWithTouchFallback(video, () => !userPaused.current, () => setState("refused")); };
     video.addEventListener("canplay", start, { once: true });
-    start();
+    // The file is only requested once the hero is (nearly) on screen; assigning the source again would restart the load.
     const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) video.pause();
-      else start();
-    });
+      if (!e.isIntersecting) { video.pause(); return; }
+      if (video.getAttribute("src") !== wanted) video.src = wanted;
+      start();
+    }, { rootMargin: "200px 0px" });
     io.observe(video);
     return () => { io.disconnect(); video.removeEventListener("canplay", start); };
   }, [src, mobileSrc, anyScreen]);

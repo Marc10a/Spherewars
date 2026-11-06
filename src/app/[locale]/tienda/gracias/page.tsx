@@ -11,7 +11,7 @@ import { CheckoutSteps } from "@/components/shop/CheckoutSteps";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return pageMeta({ title: (t) => t.shop.thanksTitle, path: "/tienda/gracias", noindex: true }, locale);
+  return pageMeta({ title: (t) => t.shop.thanksTitle, description: (t) => t.pageMeta.thanks, path: "/tienda/gracias", noindex: true }, locale);
 }
 
 export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ session_id?: string | string[]; wc_order?: string | string[]; wc_key?: string | string[] }> }) {

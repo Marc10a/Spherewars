@@ -4,7 +4,7 @@ import { factions } from "@/content/factions";
 import { factionCharacters, wikiPages } from "@/lib/wiki";
 import { packFor } from "@/lib/shop/packs";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { siteUrl as base } from "@/lib/seo";
 const paths = ["", "/juego", "/facciones", "/wikisphere", "/miniaturas", "/genera-tu-banda", "/eventos", "/comunidad", "/tienda", "/tienda/a-escala", "/juega-gratis", "/descargas", ...factions.map((f) => `/tienda/${f.slug}`),...factions.map((f) => `/facciones/${f.slug}`),
   ...factions.flatMap((f) => (packFor(f.slug) ? [`/tienda/${f.slug}/starter-pack`] : [])),
   ...factions.flatMap((f) => factionCharacters(f.slug).map((m) => `/tienda/${f.slug}/${m.slug.split("/").pop()}`))];

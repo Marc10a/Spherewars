@@ -55,10 +55,13 @@ export function LegalText({ text, locale, pendingLabel }: { text: string; locale
         if (lines.every((l) => l.startsWith("| "))) {
           const rows = lines.map((l) => l.replace(/^\|\s*|\s*\|\s*$/g, "").split(/\s*\|\s*/));
           return (
+            // Phones stack each row as a card (see .legal-table in tailwind.css); the roles keep the table semantics once cells are display: block.
             <div key={i} className="table-container">
-              <table>
-                <thead><tr>{rows[0].map((c, j) => <th key={j} scope="col">{c}</th>)}</tr></thead>
-                <tbody>{rows.slice(1).map((r, j) => <tr key={j}>{r.map((c, n) => (n ? <td key={n}>{md(c)}</td> : <th key={n} scope="row" className="font-normal">{md(c)}</th>))}</tr>)}</tbody>
+              <table className="legal-table" role="table">
+                <thead role="rowgroup"><tr role="row">{rows[0].map((c, j) => <th key={j} scope="col" role="columnheader">{c}</th>)}</tr></thead>
+                <tbody role="rowgroup">{rows.slice(1).map((r, j) => <tr key={j} role="row">{r.map((c, n) => (n
+                  ? <td key={n} role="cell" data-label={rows[0][n]}>{md(c)}</td>
+                  : <th key={n} scope="row" role="rowheader" data-label={rows[0][n]} className="font-normal">{md(c)}</th>))}</tr>)}</tbody>
               </table>
             </div>
           );

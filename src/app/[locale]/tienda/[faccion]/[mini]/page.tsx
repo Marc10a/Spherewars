@@ -4,12 +4,11 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Dice6, FileText, Layers, Mountain, Ruler } from "lucide-react";
 import { dict, isLocale, locales, type Dict } from "@/lib/i18n";
 import { factions, getFaction, type Faction } from "@/content/factions";
-import docs from "@/content/shop-products.json";
 import { Button } from "@/components/ui";
 import { links } from "@/content/site";
 import { formatPrice, listSellableProducts, mediaUrl, type Product } from "@/lib/data";
 import { shopReadiness } from "@/lib/shop/settings";
-import { productFacts } from "@/lib/shop/facts";
+import { productCopy, productFacts, specText } from "@/lib/shop/facts";
 import { productForMiniature } from "@/lib/shop/match";
 import { packFor } from "@/lib/shop/packs";
 import { characterArt, characterInfo, factionCharacters, miniPhotos, miniVisual, ownerPhotos, shopKey } from "@/lib/wiki";
@@ -26,7 +25,6 @@ import { shippingInfoText } from "@/lib/shop/shipping-info";
 import type { RelatedItem } from "@/components/shop/add-confirm-store";
 
 const last = (slug: string) => slug.split("/").pop()!;
-const docOf = (key: string) => (docs.products as unknown as Record<string, { lore?: string[] }>)[key] ?? null;
 const bare = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").replace(/\s*\([^)]*\)\s*$/, "").trim().toLowerCase();
 /** Specs shown in the facts strip or next to the buy button; the rest go under the description. */
 const SHOWN = new Set(["Facción", "Puntos de Banda", "Peana", "Altura", "Número de miniaturas", "Estado", "Dado de Vida", "Dados de Vida", "Subfacción"]);
@@ -103,9 +101,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const hit = find(faccion, mini);
   if (!hit) return {};
   const facts = productFacts(hit.key);
+  const copy = productCopy(hit.key, locale);
   const photo = hit.page ? miniPhotos(hit.page)[0]?.src : ownerPhotos(hit.key)?.tile;
   // SEO text: the official product description (or the wiki text), never invented.
-  return pageMeta({ title: `${hit.title} · ${dict[isLocale(locale) ? locale : "es"].shop.title}`, description: facts?.intro ?? hit.page?.description ?? undefined, path: `/tienda/${faccion}/${mini}`, image: photo }, locale);
+  // Same official name as the H1 ("Ródanes, Brazo de Metal"), in the visitor's language when a translation exists.
+  return pageMeta({ title: `${facts?.title ?? hit.title} · ${dict[isLocale(locale) ? locale : "es"].shop.title}`, description: copy?.intro ?? hit.page?.description ?? undefined, path: `/tienda/${faccion}/${mini}`, image: photo }, locale);
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string; faccion: string; mini: string }> }) {
@@ -117,7 +117,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const s = t.shop;
   const d = t.pdp;
   const facts = productFacts(key);
-  const lore = docOf(shopKey(key))?.lore ?? [];
+  const copy = productCopy(key, locale); // official Spanish, or its machine-assisted en/ca version
+  const lore = copy?.lore ?? [];
   const title = facts?.title ?? hit.title; // the official name, model count included: "Leva Demontre (3)"
   const info = page ? characterInfo(page) : null; // short official wiki text, never invented
   const isPack = key.startsWith("packs/");
@@ -190,7 +191,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <div data-faction={f.theme}>
       <section className="pdp-hero">
         <div className="pdp-atmo" aria-hidden>
-          <Image src={`/facciones/${f.slug}.webp`} alt="" fill priority sizes="(min-width:1024px) 60vw, 50vw" className="pdp-atmo-img" />
+          {/* Blurred backdrop: low priority, so the product photo (first gallery image, priority) is fetched first. */}
+          <Image src={`/facciones/${f.slug}.webp`} alt="" fill fetchPriority="low" loading="eager" sizes="(min-width:1024px) 60vw, 50vw" className="pdp-atmo-img" />
         </div>
         {/* Its pause button must stay reachable, so the video sits between the still frame and the veil, outside the hidden layers. */}
         <AmbientVideo src={`/facciones/${f.slug}.mp4`} pauseLabel={t.a11y.pauseVideo} playLabel={t.a11y.playVideo} />
@@ -315,17 +317,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <section aria-labelledby="pdp-lore" className={`grid gap-8 ${art ? "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-14" : ""}`}>
             <div>
               <h2 id="pdp-lore" className={h2}>{d.loreTitle}</h2>
-              <div lang="es" className="mt-4 max-w-[68ch] space-y-4 text-base leading-relaxed text-ivory/85">
-                <p>{facts?.intro ?? info?.excerpt}</p>
+              <div lang={copy?.lang ?? "es"} className="mt-4 max-w-[68ch] space-y-4 text-base leading-relaxed text-ivory/85">
+                <p>{copy?.intro ?? info?.excerpt}</p>
                 {excerpt && <p className="border-l border-accent/50 pl-4 font-display text-lg leading-relaxed text-ivory">{excerpt}</p>}
-                {!facts && info?.race && <p className="text-accent">{t.factions.raceLabel}: {info.race}</p>}
+                {!facts && info?.race && <p lang={locale} className="text-accent">{t.factions.raceLabel}: <span lang="es">{info.race}</span></p>}
               </div>
               {page && <p className="mt-5"><Link href={`/${locale}/wikisphere/${page.slug}`} className="shop-arrow-link text-lg">{d.readWiki}<ArrowRight size={18} aria-hidden /></Link></p>}
               {extraSpecs.length > 0 && (
-                <dl lang="es" className="mt-6 max-w-[68ch] divide-y divide-gold/15 border-y border-gold/15 text-base">
-                  {extraSpecs.map(({ label, value }) => (
-                    <div key={label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5"><dt className="text-stone">{label}</dt><dd>{value}</dd></div>
-                  ))}
+                <dl className="mt-6 max-w-[68ch] divide-y divide-gold/15 border-y border-gold/15 text-base">
+                  {extraSpecs.map((x) => { const sp = specText(x, locale); return (
+                    <div key={x.label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5"><dt lang={sp.labelLang} className="text-stone">{sp.label}</dt><dd lang={sp.valueLang}>{sp.value}</dd></div>
+                  ); })}
                 </dl>
               )}
             </div>

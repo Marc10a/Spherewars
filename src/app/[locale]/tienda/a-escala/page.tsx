@@ -16,7 +16,7 @@ import { CatalogueEmpty } from "@/components/shop/CatalogueEmpty";
 import { QuickAdd } from "@/components/shop/QuickAdd";
 import { EntryStatus } from "@/components/shop/facts-ui";
 
-export const generateMetadata = staticMeta({ title: (t) => t.scale.title, description: (t) => t.scale.lead, path: "/tienda/a-escala" });
+export const generateMetadata = staticMeta({ title: (t) => t.pageMeta.scaleTitle, description: (t) => t.scale.lead, path: "/tienda/a-escala" });
 
 type Row = { e: ShopEntry; fig: Figure | null };
 

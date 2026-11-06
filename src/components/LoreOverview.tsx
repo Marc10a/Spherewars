@@ -44,7 +44,8 @@ export function LoreOverview({ locale }: { locale: Locale }) {
   return (
     <>
       <div className="relative isolate overflow-hidden">
-        <Image src="/wiki/images/esfera_de_saphir.webp" alt="" fill sizes="100vw" loading="lazy" className="-z-10 object-cover opacity-30" />
+        {/* Starts right under the hero, so it is above the fold on phones (often the largest paint there): not lazy. */}
+        <Image src="/wiki/images/esfera_de_saphir.webp" alt="" fill sizes="100vw" loading="eager" className="-z-10 object-cover opacity-30" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-abyss via-abyss/40 to-abyss" aria-hidden />
         <section data-reveal className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 md:py-16 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-12">
           <div>

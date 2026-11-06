@@ -11,7 +11,7 @@ import { CheckoutSteps } from "@/components/shop/CheckoutSteps";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return pageMeta({ title: (t) => t.shop.cart, path: "/tienda/carrito", noindex: true }, locale);
+  return pageMeta({ title: (t) => t.shop.cart, description: (t) => t.pageMeta.cart, path: "/tienda/carrito", noindex: true }, locale);
 }
 
 /** The product's /tienda page: its wiki miniature or Starter Pack if it has one, otherwise its faction's shop or the shop itself. */

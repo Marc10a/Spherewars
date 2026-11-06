@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { playWithTouchFallback } from "@/lib/video";
+import { decorativeVideoAllowed, playWithTouchFallback, videoSrcFor } from "@/lib/video";
 
-/** Decorative looping video that only loads near the screen, and never with reduced motion or data saver. */
+/** Decorative looping video that only loads near the screen (the light `-m.mp4` on phones), and never with reduced motion or data saver. */
 export function LoopVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const v = ref.current;
-    const saver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-    if (!v || saver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!v || !decorativeVideoAllowed()) return;
+    const wanted = videoSrcFor(src); // phones get the light `-m.mp4` encode
     let inView = false;
     const io = new IntersectionObserver(([e]) => {
       inView = e.isIntersecting;
-      if (inView) { if (!v.src) v.src = src; playWithTouchFallback(v, () => inView); } else v.pause();
+      if (inView) { if (!v.src) v.src = wanted; playWithTouchFallback(v, () => inView); } else v.pause();
     }, { threshold: 0.2 });
     io.observe(v);
     return () => io.disconnect();

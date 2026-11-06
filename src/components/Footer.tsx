@@ -21,7 +21,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <li><a href={links.instagram} rel="noopener" className="inline-block py-1.5 hover:text-gold">Instagram</a></li>
           <li><a href={links.youtube} rel="noopener" className="inline-block py-1.5 hover:text-gold">YouTube</a></li>
           <li><a href={links.discord} rel="noopener" className="inline-block py-1.5 hover:text-gold">Discord</a></li>
-          <li><a href={links.wiki} rel="noopener" className="inline-block py-1.5 hover:text-gold">WikiSphere</a></li>
+          <li><Link href={`/${locale}/wikisphere`} className="inline-block py-1.5 hover:text-gold">WikiSphere</Link></li>
           <li><Link href={`/${locale}/descargas`} className="inline-block py-1.5 hover:text-gold">{t.footer.downloads}</Link></li>
         </ul>
         <ul className="grid gap-2 text-sm text-stone">

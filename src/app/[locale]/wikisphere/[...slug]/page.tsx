@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { dict, isLocale, locales } from "@/lib/i18n";
 import { getArticle } from "@/lib/data";
-import { getWikiPage, loreImage, prepareArticle, relatedPages, siblings, wikiCategories, wikiPages, wikiSource } from "@/lib/wiki";
+import { getWikiPage, loreImage, wikiMetaTitle, prepareArticle, relatedPages, siblings, wikiCategories, wikiPages, wikiSource } from "@/lib/wiki";
 import { jsonLd, pageMeta, siteUrl } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 import { RichText } from "@/components/RichText";
@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<P> }) {
   if (!w) return {};
   const img = loreImage(w) ?? w.image ?? undefined;
   const original = locale === "es";
-  return pageMeta({ title: w.title, description: w.description || `${w.title} · ${w.categoryName}`, path: `/wikisphere/${w.slug}`, image: img, canonicalLocale: original ? undefined : "es", noindex: !original }, locale);
+  const title = wikiMetaTitle(w);
+  return pageMeta({ title, description: w.description || `${title} · ${w.categoryName}`, path: `/wikisphere/${w.slug}`, image: img, canonicalLocale: original ? undefined : "es", noindex: !original }, locale);
 }
 
 export default async function Page({ params }: { params: Promise<P> }) {
@@ -61,7 +62,7 @@ export default async function Page({ params }: { params: Promise<P> }) {
             {locale !== "es" && <p role="note" className="mb-6 border border-gold/30 bg-coal p-3 text-sm text-stone">{t.common.spanishOnly}</p>}
             <Lightbox locale={locale}><article lang="es" className="wiki-prose" dangerouslySetInnerHTML={{ __html: html }} /></Lightbox>
 
-            <p className="mt-10 text-xs text-stone">
+            <p className="mt-10 text-sm text-stone">
               {t.wiki.official}: <a className="underline" rel="noopener" href={`${wikiSource}/es/${w.path}`}>{t.wiki.officialWiki}</a> · {t.common.updated} {new Date(w.updatedAt).toLocaleDateString(locale)}
             </p>
 
@@ -114,7 +115,7 @@ export default async function Page({ params }: { params: Promise<P> }) {
       <PageHero title={a.title} lead={a.article_categories?.name[locale] ?? a.article_categories?.name.es} />
       <article className="mx-auto max-w-3xl px-4 py-12">
         <RichText md={a.body?.md} />
-        <p className="mt-10 text-xs text-stone">Actualizado {new Date(a.updated_at).toLocaleDateString(locale)}</p>
+        <p className="mt-10 text-sm text-stone">Actualizado {new Date(a.updated_at).toLocaleDateString(locale)}</p>
       </article>
     </>
   );

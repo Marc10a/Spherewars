@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ElementShader } from "@/components/faction/ElementShader";
 import type { Element } from "@/lib/element";
-import { playWithTouchFallback } from "@/lib/video";
+import { decorativeVideoAllowed, playWithTouchFallback, videoSrcFor } from "@/lib/video";
 
-export type PanFaction = { slug: string; name: string; theme: string; hook: string; href: string; element: Element };
+export type PanFaction = { slug: string; name: string; theme: string; hook: string; hookLang: string; href: string; element: Element };
 
 /** The four factions at full screen. On wide screens scrolling down travels sideways through them; on phones they stack. Only the visible video plays. */
 export function FactionPan({ factions, title, cta }: { factions: PanFaction[]; title: string; cta: string }) {
@@ -18,15 +18,14 @@ export function FactionPan({ factions, title, cta }: { factions: PanFaction[]; t
     const sec = section.current, tr = track.current;
     if (!sec || !tr) return;
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const saver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     const videos = [...tr.querySelectorAll<HTMLVideoElement>("video")];
-    const playable = !calm && !saver;
+    const playable = decorativeVideoAllowed();
     const visible = new WeakMap<HTMLVideoElement, boolean>();
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const v = e.target as HTMLVideoElement;
       if (!playable) return;
       visible.set(v, e.isIntersecting);
-      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src!; playWithTouchFallback(v, () => visible.get(v) === true); } else v.pause();
+      if (e.isIntersecting) { if (!v.src) v.src = videoSrcFor(v.dataset.src!); playWithTouchFallback(v, () => visible.get(v) === true); } else v.pause();
     }), { threshold: 0.55 });
     videos.forEach((v) => io.observe(v));
     const wide = window.matchMedia("(min-width: 1024px)");
@@ -85,7 +84,7 @@ export function FactionPan({ factions, title, cta }: { factions: PanFaction[]; t
               <div data-depth className="relative mx-auto w-full max-w-7xl px-4 pb-12 md:pb-16">
                 <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={110} height={110} className="sigil-glow h-20 w-auto object-contain md:h-24" />
                 <h3 className="land-name mt-3 font-display">{f.name}</h3>
-                <p lang="es" className="mt-3 max-w-3xl font-display text-2xl text-accent md:text-3xl">{f.hook}</p>
+                <p lang={f.hookLang} className="mt-3 max-w-3xl font-display text-2xl text-accent md:text-3xl">{f.hook}</p>
                 <Link href={f.href} className="btn btn-solid mt-6 inline-flex min-h-12 items-center bg-accent px-6 font-display text-base text-abyss hover:bg-ivory">{cta}</Link>
               </div>
             </article>

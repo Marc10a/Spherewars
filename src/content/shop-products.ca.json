@@ -1,0 +1,294 @@
+{
+ "_note": "Traducció al català assistida per màquina de shop-products.json (textos oficials en castellà del propietari). Pendent de validació pel propietari. El castellà continua sent la font: edita primer el castellà i després aquest fitxer. Els noms es mantenen tal com estan escrits.",
+ "status": "machine-assisted-pending-validation",
+ "specs": {
+  "labels": {
+   "Facción": "Facció",
+   "Puntos de Banda": "Punts de Banda",
+   "Número de miniaturas": "Nombre de miniatures",
+   "Dados de Vida": "Daus de Vida",
+   "Dado de Vida": "Dau de Vida",
+   "Material": "Material",
+   "Estado": "Estat",
+   "Referencia": "Referència",
+   "Subfacción": "Subfacció",
+   "Peana": "Peanya",
+   "Altura": "Alçada"
+  },
+  "values": {
+   "Resina termoplástica flexible de alta resistencia y gran nivel de detalle.": "Resina termoplàstica flexible d'alta resistència i gran nivell de detall.",
+   "Miniatura sin montar y sin pintar.": "Miniatura sense muntar i sense pintar.",
+   "Miniaturas sin montar y sin pintar.": "Miniatures sense muntar i sense pintar."
+  }
+ },
+ "products": {
+  "packs/alianza": {
+   "intro": "Defensores de Caldara és un Starter Pack de SphereWars que pertany a la Alianza. Inclou quatre miniatures —Ródanes, Brazo de Metal, una Cohorte de Postulantes formada per dues miniatures i la Recaudadora de Isha— que formen una banda versàtil en què es combinen lideratge, resistència, màgia i capacitat ofensiva. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, són ideals per iniciar-se a SphereWars, ampliar una banda de la Alianza, pintar i col·leccionar.",
+   "lore": [
+    "Defensores de Caldara ofereix una banda equilibrada que combina lideratge, presència al camp de batalla i diferents maneres de respondre a les amenaces de l'enemic. Ródanes, Brazo de Metal actua com el nucli de la banda i permet aprofitar la seva capacitat de comandament, mentre que la Cohorte de Postulantes aporta presència i capacitat de combat i la Recaudadora de Isha incorpora el poder del Hebrado i l'atac a distància.",
+    "La combinació de les seves miniatures permet desenvolupar una estratègia basada en la coordinació i l'aprofitament de diferents recursos. Ródanes dirigeix el grup i ajuda a treure partit de les altres peces; els Postulantes permeten ocupar posicions, combatre i augmentar la presència de la banda sobre la taula; i la Recaudadora aporta una amenaça diferent gràcies a la seva capacitat per dominar les hebres i combatre tant amb la màgia com a distància.",
+    "En partida, Defensores de Caldara permet descobrir algunes de les característiques més representatives de la Alianza: disciplina, coordinació, versatilitat i capacitat per respondre a situacions molt diferents. És una banda especialment adequada per a jugadors que gaudeixen combinant diferents eines tàctiques i fent que les seves miniatures treballin juntes per controlar el desenvolupament de la batalla."
+   ],
+   "closing": "Comença la teva banda de la Alianza amb Defensores de Caldara i endinsa't en les batalles de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/rodanes": {
+   "intro": "Rodanes, Brazo de Metal és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el Corazón Supremo de la Legión de los Cien Corazones, un estrateg llegendari capaç de canviar el rumb de qualsevol batalla. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Rodanes, Brazo de Metal, no va heretar la seva llegenda: la va forjar. Corazón Supremo de la Legión de los Cien Corazones, és temut més enllà de les fronteres de Darlime i venerat pels seus. Mestre de la guerra, el seu geni tàctic i la seva clarividència en combat canvien el curs de les batalles en plena lluita. El seu ascens va ser únic: escollit per unanimitat sense ni tan sols presentar-s'hi, prova que tant l'home com l'amenaça a què s'enfronta són extraordinaris. El seu únic jurament és clar: defensar Darlime fins a la mort."
+   ],
+   "closing": "Afegeix Ródanes, Brazo de Metal a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/laroc": {
+   "intro": "Laroc, la Seductora és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una de les fetilleres més poderoses de les Mercenarias de Isha, capaç de devastar els seus enemics o protegir els seus aliats mitjançant la màgia. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Rebutjada en néixer i marcada com La Loca, la nena sense nom va aprendre a sobreviure entre cops i burles, veient hebres que ningú més podia comprendre. On altres van veure feblesa, ella va forjar domini. Lliurada com a pagament i arrencada del seu passat, va trobar a Alquézar un nou destí. Allà, les Tutoras van revelar la veritat: Laroc no era una maledicció, sinó una de les fetilleres més poderoses que mai s'havien vist. Fràgil amb l'acer, devastadora amb la màgia, capaç de destruir l'enemic o salvar els seus, Laroc va convertir el dolor en poder."
+   ],
+   "closing": "Afegeix Laroc, la Seductora a la teva banda de la Alianza o de les Mercenarias de Isha i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/corazon-postulante": {
+   "intro": "La Cohorte de Postulantes són unes miniatures de SphereWars que pertanyen a la Alianza. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representen un jove soldat que inicia el seu dur camí militar i el seu oficial de la Legión de los Cien Corazones. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "A la Legión de los Cien Corazones, ni el rang més baix escapa a la disciplina. Els Postulantes Rasos, encara joves, forgen el seu acer durant cinc anys de servei implacable entre escortes i batalles reals. Només els qui superen la prova ascendeixen a Corazón Postulante, guanyant-se amb suor i honor el seu lloc a la Legión.",
+    "Com a Corazón Postulante, la prova ja no és només resistir, sinó comandar. Durant cinc anys, guien els Postulantes Rasos i decideixen el seu destí: la comoditat del rang intermedi… o el camí del mèrit. Només els qui lideren amb excel·lència i ambició ascendeixen, i es forgen com a Corazones Próximos dins de la Legión de los Cien Corazones."
+   ],
+   "closing": "Afegeix la Cohorte de Postulantes a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/explorador": {
+   "intro": "El Explorador és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un rastrejador i infiltrador expert encarregat de protegir les fronteres de Darlime i descobrir les amenaces abans que sigui massa tard. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "El Explorador no lluita per la paga ni per la glòria: lluita per vocació. Nascut per avançar on altres no s'atreveixen, vigila les fronteres de Darlime i s'endinsa en la incertesa per detectar amenaces abans que emergeixin. A la guerra, el seu valor és decisiu: infiltració, rastreig i tret precís, l'ombra que protegeix el regne abans que soni la batalla."
+   ],
+   "closing": "Afegeix el Explorador a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/oteadora": {
+   "intro": "La Oteadora de Isha és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una estratega de les Mercenarias de Isha, especialitzada en reconeixement, suport tàctic i combat a distància. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "La Oteadora segueix un camí diferent del de la resta de Mercenarias. Tot i que els seus inicis són iguals, quan es converteix en Novicia no es prepara per a la prova de la Voluntad de Isha, ja que la seva Tutora hi ha vist unes dots tàctiques fora del comú. Per això és ensinistrada en l'art de l'estratègia per poder ajudar els seus líders a la batalla. Aquesta lluitadora intel·ligent s'entrena per estar en posicions avançades i així donar ordres allà on la seva líder no pot. A més, és entrenada per lluitar a distància amb eficiència."
+   ],
+   "closing": "Afegeix la Oteadora de Isha a la teva banda de la Alianza o de les Mercenarias de Isha i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/recaudadora": {
+   "intro": "La Recaudadora de Isha és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una fetillera i arquera de les Mercenarias de Isha, encarregada de dominar les hebres i garantir que tot deute sigui saldat. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Per por o per cautela, moltes amaguen el seu do per veure les hebres, però cap no escapa a la Voluntad de Isha. Descobertes i guiades per les Tutoras, les futures Recaudadoras dominen el poder d'hebrar i es forgen en el combat cos a cos i a distància. Perquè sobre les seves mans recau un deure sagrat: cobrar el deute del servei sol·licitat i assegurar que tota Mercenaria de Isha rebi allò que li és degut."
+   ],
+   "closing": "Afegeix la Recaudadora de Isha a la teva banda de la Alianza o de les Mercenarias de Isha i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/corazon-equite": {
+   "intro": "El Corazón Équite és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un membre de l'elit de la Legión de los Cien Corazones, responsable d'obrir bretxes enemigues i decidir el destí de la batalla. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Ser Corazón Équite no és només un rang, és un ascens a l'elit. Després d'escalar en els Latires i guanyar-se el favor dels alts comandaments de la Legión de los Cien Corazones, s'accedeix a l'honor, el poder i el privilegi. Les portes de la Ciudadela de los Latires s'obren, i a la guerra l'Équite es converteix en una peça clau, que forja estratègies i decideix el destí del camp de batalla."
+   ],
+   "closing": "Afegeix el Corazón Équite a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/roxter": {
+   "intro": "Róxter, el Piloto és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el llegendari pilot d'un vestit de guerra únic, creat per dominar els cels i combatre les amenaces més grans de Darlime. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Róxter no és un nom: és un llegat. El primer Piloto, escollit per Bolban, es va unir a un giny impossible de replicar, una màquina d'engranatges i pólvora capaç de fer volar un home i convertir-lo en arma contra la fatalitat que s'acosta. Molts anhelen ser Róxter per glòria i poder, però només un porta el títol. Quan el Piloto cau, el destí del següent queda en mans del Corazón Supremo de la Legión de los Cien Corazones."
+   ],
+   "closing": "Afegeix Róxter, el Piloto a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "packs/adeptos-de-malesur": {
+   "intro": "Vientos de Guerra és un Starter Pack de SphereWars que pertany als Adeptos de Malesur. Inclou tres miniatures —Liehhan, el Oso, la Manada de Mangostas i el Águila— que formen una banda versàtil en què es combinen resistència, suport i mobilitat. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, són ideals per iniciar-se a SphereWars, ampliar una banda dels Adeptos de Malesur, pintar i col·leccionar.",
+   "lore": [
+    "Vientos de Guerra ofereix una banda equilibrada i versàtil que combina control, suport i una gran capacitat per adaptar-se a diferents situacions de batalla. Liehhan, el Oso actua com el nucli resistent del grup, avançant cap a les posicions importants i fixant els enemics en combat, mentre que la Manada de Mangostas manté els seus aliats en millors condicions i el Águila aprofita la seva extraordinària mobilitat per intervenir allà on és més necessària.",
+    "La combinació de les tres miniatures permet desenvolupar una estratègia basada en la cooperació. Liehhan exerceix pressió sobre les peces enemigues i dificulta que puguin abandonar el combat; les Mangostas aporten protecció i recuperació per allargar la resistència de la banda; i el Águila pot reposicionar-se ràpidament, donar suport a la màgia i estendre la influència del grup cap a zones de la taula difícils d'abastar.",
+    "En partida, Vientos de Guerra permet descobrir algunes de les característiques més representatives dels Adeptos de Malesur: resistència, mobilitat, suport i sinergia entre els seus integrants. És una banda especialment adequada per a jugadors que gaudeixen combinant les capacitats de les seves miniatures i adaptant la seva estratègia a mesura que evoluciona la batalla."
+   ],
+   "closing": "Comença la teva banda dels Adeptos de Malesur amb Vientos de Guerra i endinsa't en les batalles de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/liehhan": {
+   "intro": "Liehhan, el Oso és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un poderós guerrer escollit per l'Espíritu del Oso, disposat a liderar el primer cop contra els seus enemics. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Hereu del llinatge de Lilean i escollit per l'Oso, Liehhan va forjar la seva llegenda com un dels guerrers més temuts del bosc. Quan els presagis foscos van anunciar la guerra, no va esperar un consell feble: va reunir els seus fidels i va marxar primer. Darlime seria el cop inicial, brutal i decisiu, amb què Liehhan demostraria que la pau només es conquereix amb força."
+   ],
+   "closing": "Afegeix Liehhan, el Oso a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/yenay": {
+   "intro": "Yenay, la Mantis és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una assassina experta beneïda per l'Espíritu de la Mantis, especialitzada a actuar des de les ombres. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "De contrabandista d'ombres a escollida pels esperits, Yenay va ser marcada per la Mantis de Malesur. Va rebutjar el seu destí… fins que va comprendre que no era una maledicció, sinó una crida. Quan van tornar les boires i Mihualo va portar paraules de guerra, Yenay va acceptar el seu paper: ser la daga en la foscor, guiant els seus cap a la victòria."
+   ],
+   "closing": "Afegeix Yenay, la Mantis a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/serpiente": {
+   "intro": "La Serpiente és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una caçadora letal especialitzada en emboscades, verins i atacs precisos. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Temut als boscos de Lilean, l'Espíritu de la Serpiente escull els astuts… o els condemnats. Pacients i silencioses, les seves beneïdes esperen a la espessor fins a l'instant perfecte. Llavors ataquen: verí paralitzant, cop precís i retirada sense rastre. Perquè quan la Serpiente t'atrapa, no hi ha escapatòria."
+   ],
+   "closing": "Afegeix la Serpiente a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/mangostas": {
+   "intro": "La Manada de Mangostas és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un grup unit per antics vincles espirituals capaç de protegir i donar suport als seus aliats durant la batalla. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Escollides des de la infància per l'Espíritu de la Mangosta, les seves beneïdes no busquen el poder individual, sinó la força del vincle. Unides en manada, alcen les veus en càntics ancestrals que, fins i tot en ple combat, teixeixen protecció i guariment, i mantenen viva la melodia que sosté els seus aliats."
+   ],
+   "closing": "Afegeix la Manada de Mangostas a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/cangrejo": {
+   "intro": "El Cangrejo és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una imponent criatura cuirassada capaç de resistir els cops més durs i aixafar fins i tot les armadures més resistents. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "A Lilean, només els més violents atreuen la mirada de l'Espíritu del Cangrejo. Beneïts per Malesur amb closques gairebé indestructibles i pinces colossals, avancen sense pressa però sense por. Des de la segona línia, resisteixen l'impossible i aixafen l'enemic, destrossant fins i tot les armadures més resistents quan les seves pinces es tanquen."
+   ],
+   "closing": "Afegeix el Cangrejo a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/morena": {
+   "intro": "La Morena és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una criatura ferotge beneïda per Malesur capaç de lliscar entre els seus enemics per acabar amb ells d'un sol atac. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Quan Malesur crida el mar, sorgeix l'Espíritu de la Morena. Escollides pel seu coratge i la seva lleialtat a la llar, aquestes criatures avancen per terra amb una gràcia antinatural. Entre cossos i acer llisquen sense fre, i amb una sola mossegada de les seves mandíbules desfermen una mort brutal i inevitable."
+   ],
+   "closing": "Afegeix la Morena a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/toro": {
+   "intro": "El Toro és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una de les criatures més poderoses de Lilean, dissenyada per liderar les càrregues més devastadores de l'exèrcit de Malesur. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Escollits per l'Espíritu del Toro, només els Adeptos més excepcionals reben aquest honor. Força, agilitat i perfecció encarnades en la criatura més colossal de Lilean. En batalla, els Toros són el cor de l'embat: avancen sense fre i sembren el caos amb envestides i trepitjades. Les seves banyes beneïdes per Malesur travessen metall i os, i redueixen armadures i escuts a pols."
+   ],
+   "closing": "Afegeix el Toro a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/adeptos-de-malesur/aguila": {
+   "intro": "El Águila és una miniatura de SphereWars que pertany als Adeptos de Malesur. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una exploradora alada capaç de dominar els cels i donar suport als seus aliats amb el poder del vent. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Escollits per l'Espíritu del Águila, els senyors dels cels dominen els vents de Malesur. Des de les altures volen, exploren i guien les tropes, agitant les ales per desfermar corrents de poder. No lluiten per força bruta, sinó per visió i lideratge, amplificant la màgia i portant la voluntat dels seus líders allà on arriba el vent."
+   ],
+   "closing": "Afegeix el Águila a la teva banda dels Adeptos de Malesur i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "packs/manadas-de-urueh": {
+   "intro": "Primeras Ascuas és un Starter Pack de SphereWars que pertany a les Manadas de Urueh. Inclou sis miniatures —Sátanor, el Volcán, una Leva Demontre formada per tres miniatures, un Sorkep i un Abrasador— que formen una banda agressiva en què es combinen màgia, superioritat numèrica, mobilitat i força bruta. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, són ideals per iniciar-se a SphereWars, ampliar una banda de les Manadas de Urueh, pintar i col·leccionar.",
+   "lore": [
+    "Primeras Ascuas ofereix una banda ofensiva i variada que permet atacar l'enemic mitjançant amenaces molt diferents. Sátanor, el Volcán aporta lideratge i el poder destructiu del Hebrado, mentre que la Leva Demontre proporciona superioritat numèrica i permet pressionar diferents zones del camp de batalla. El Sorkep afegeix una amenaça ràpida i agressiva, i el Abrasador aporta la resistència i la força necessàries per enfrontar-se als objectius més difícils.",
+    "La combinació de les seves miniatures permet desenvolupar una estratègia basada a mantenir una pressió constant sobre el rival. Els Demontres poden llançar-se contra l'enemic i aprofitar el seu nombre per generar oportunitats, mentre que el Sorkep fustiga els punts vulnerables i el Abrasador concentra una amenaça molt més gran sobre les posicions més resistents. Des d'una posició més protegida, Sátanor pot utilitzar la seva màgia per donar suport a l'avanç de la banda i augmentar encara més la seva capacitat destructiva.",
+    "En partida, Primeras Ascuas permet descobrir algunes de les característiques més representatives de les Manadas de Urueh: agressivitat, nombre, força i poder destructiu. És una banda especialment adequada per a jugadors que gaudeixen prenent la iniciativa, mantenint la pressió sobre l'enemic i combinant nombroses amenaces fins a aconseguir que les línies rivals acabin trencant-se."
+   ],
+   "closing": "Comença la teva banda de les Manadas de Urueh amb Primeras Ascuas i endinsa't en les batalles de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/pyronus": {
+   "intro": "Pyronus, el Heraldo és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un poderós líder demontre que va desafiar el seu destí per convertir-se en una de les amenaces més grans al servei de Kazag. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "En matar un Primigenio, Pyronus va segellar el seu destí. Va robar el foc de Pyrokan i, fent servir el saber de Satanor, va transcendir la seva forma per convertir-se en alguna cosa més enllà d'un Demontre. Odiat per uns i admirat per altres, avança entre intrigues mentre les hosts el segueixen amb un fervor cec. En la guerra per la Quinta Esencia és una arma temible… però sap que el retiment de comptes amb el seu antic mestre és inevitable. Només un cremarà fins al final."
+   ],
+   "closing": "Afegeix Pyronus, el Heraldo a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/satanor": {
+   "intro": "Satanor, el Volcán és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el segon Primigenio de Kazag i el primer fetiller d'Urueh, capaç de dominar el foc i liderar la destrucció. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "A través de visions de foc i ruïna, Satanor, segon Primigenio i primer fetiller de Kazag, contempla el destí d'Urueh: ciutadelles en flames i exèrcits reduïts a cendra. Escollit per fer realitat aquestes profecies, forja manades i exèrcits nascuts de la roca, mentre les hebres vermelles bateguen al seu voltant, deleroses de destrucció. Aviat, el foc de Kazag caurà sobre Caldara, i el món cremarà sota la seva voluntat."
+   ],
+   "closing": "Afegeix Sátanor, el Volcán a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/leva-demontre": {
+   "intro": "La Leva Demontre són unes miniatures de SphereWars que pertanyen a les Manadas de Urueh. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representen les innombrables hordes de demontres que aclaparen l'enemic amb el seu nombre i la seva ferocitat. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Salvatges i temeraris, els Demontres no tenen enginy però vessen violència. Indisciplinats i poc fiables, avancen sense por ni ordre… però mai sols. Llançats en Levas innombrables, la seva marea caòtica inunda el camp de batalla i se sacrifiquen per sembrar confusió i ofegar l'enemic sota el pes del seu nombre."
+   ],
+   "closing": "Afegeix la Leva Demontre a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/sorkep": {
+   "intro": "El Sorkep és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una bèstia ferotge d'Urueh emprada com a arma de guerra per la seva agressivitat i la seva resistència al foc. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Reflex brutal dels Demontres, els Sorkep són bèsties agressives de pell ignífuga que prosperen entre el foc i la sang d'Urueh. Carronyaires voraços, segueixen les hosts per devorar caiguts i ferits, i es disputen les restes fins i tot amb els seus aliats. Va ser Lanza Avernal qui va veure en la seva ferocitat una arma i els va arrossegar del marge al cor de la batalla."
+   ],
+   "closing": "Afegeix el Sorkep a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/abrasador": {
+   "intro": "El Abrasador és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un colossal Hijo de Kazag nascut del magma, capaç de sembrar destrucció amb la seva força i el poder de la lava. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Nascuts a les profunditats del magma, els Abrasadores, Hijos de Kazag, emergeixen amb lava a les venes i set de destrucció. Forjats per a la guerra, avancen llançant torrents incandescents i destrossant armadures amb punys ardents. Insensibles a l'acer i al dolor, esperen al costat del foc… delerosos de convertir el món en cendra."
+   ],
+   "closing": "Afegeix el Abrasador a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/calcinador": {
+   "intro": "El Calcinador és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un dels guerrers d'elit d'Urueh, entrenat per combatre en formació i mantenir l'ordre entre els exèrcits de Kazag. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Forjats en el foc incomplet del volcà, els Calcinadores no dominen la flama… l'empunyen. Armats amb llances volcàniques, lluiten des del seu naixement fins a la mort. Més lúcids que els seus, combaten en formació i s'alcen com l'elit d'Urueh, tan valuosos que els Primigenios rivalitzen per la seva lleialtat. A la guerra i al campament, sostenen l'ordre i l'avanç, perquè tothom sap que, sense guies divins, ells comandarien els exèrcits."
+   ],
+   "closing": "Afegeix el Calcinador a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/fundidor": {
+   "intro": "El Fundidor és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un gegantesc Hijo de Kazag especialitzat a trencar les línies enemigues mitjançant una força imparable. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Grans i primaris, els Fundidores, Hijos de Kazag, van néixer per a la càrrega i la destrucció. A les profunditats excaven i mouen muntanyes; a la guerra avancen com a ariets vivents, resistents i letals. Lents de ment però imparables en força, sostenen el pes d'Urueh… i quan arriba la batalla, trenquen línies com si fossin pedra."
+   ],
+   "closing": "Afegeix el Fundidor a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/mandas-de-urueh/lucio": {
+   "intro": "Lucio, Capataz Demontre és una miniatura de SphereWars que pertany a les Manadas de Urueh. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un capatàs demontre despietat que governa mitjançant el terror i el poder del foc. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Entre la mala gentola d'Urueh, Lucio, el Capataz destaca per la seva crueltat. Nascut Demontre, la seva ment esmolada el va elevar per sobre dels seus, i els va manipular per treballar, matar… o morir per ell. Pyronus, el Heraldo el va alçar a capatàs i li va atorgar un fuet d'hebres de foc, capaç de fer esclatar altres Demontres des de dins. Temut pels seus subordinats i odiat per Satanor, Lucio governa mitjançant el terror i les flames."
+   ],
+   "closing": "Afegeix Lucio, Capataz Demontre a la teva banda de les Manadas de Urueh i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "packs/vastagos-de-kurgan": {
+   "intro": "Furia Helada és un Starter Pack de SphereWars que pertany als Vástagos de Kurgan. Inclou tres miniatures —Raggarth, el Liberador, un Acechador i un Desacrador Gélido— que formen una banda agressiva en què es combinen lideratge, infiltració i poder ofensiu. Fabricades en resina termoplàstica flexible d'alta resistència i gran nivell de detall, són ideals per iniciar-se a SphereWars, ampliar una banda dels Vástagos de Kurgan, pintar i col·leccionar.",
+   "lore": [
+    "Furia Helada ofereix una banda ofensiva i versàtil capaç d'exercir pressió sobre l'enemic des de diferents posicions del camp de batalla. Raggarth, el Liberador actua com el nucli del grup i aporta lideratge i capacitat de combat, mentre que el Acechador fa servir la infiltració i les emboscades per amenaçar posicions vulnerables i el Desacrador Gélido aporta la contundència necessària per enfrontar-se a les peces més importants del rival.",
+    "La combinació de les tres miniatures permet desenvolupar una estratègia basada a crear amenaces constants i obligar l'enemic a dividir la seva atenció. Raggarth pot avançar cap als enfrontaments decisius, mentre que el Acechador aprofita la seva capacitat per actuar des de posicions inesperades i fustigar el rival. El Desacrador Gélido completa la banda com una amenaça especialment perillosa contra líders i fetillers, i converteix les peces clau de l'enemic en objectius prioritaris.",
+    "En partida, Furia Helada permet descobrir algunes de les característiques més representatives dels Vástagos de Kurgan: agressivitat, infiltració, ferocitat i capacitat per castigar els punts febles de l'enemic. És una banda especialment adequada per a jugadors que gaudeixen prenent la iniciativa, creant amenaces des de diferents zones de la taula i concentrant la seva força sobre els objectius més importants del rival."
+   ],
+   "closing": "Comença la teva banda dels Vástagos de Kurgan amb Furia Helada i endinsa't en les batalles de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/raggarth": {
+   "intro": "Raggarth, el Liberador és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el líder de la rebel·lió regor, un guerrer que lluita per la llibertat del seu poble davant l'opressió soimi. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Silenciós i pacient, Raggarth va observar durant anys la crueltat del seu amo, fins que va decidir posar-hi fi amb un sol cop fulminant. En alçar-se contra l'esclavitud, es va convertir en líder dels regors, que ara lluiten al seu costat per la llibertat. Nek’Org va acceptar la seva revolta com a part de la fràgil unió per conquerir Saphir, tot i que Raggarth no confia en les promeses soimi. Sap que la guerra acabarà… i que llavors haurà de decidir si el destí del seu poble es forja amb aliances o amb sang."
+   ],
+   "closing": "Afegeix Raggarth, el Liberador del Culto Regor a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/acechador": {
+   "intro": "El Acechador és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un regor astut especialitzat en emboscades, infiltració i atacs per sorpresa des de les ombres. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Petits i subestimats, els Acechadores regor viuen per a l'ombra. Febles en força, però astuts i coordinats, es camuflen entre la brossa per fustigar sense descans. Tot i que els soimi els menyspreen com a esclaus, les seves emboscades letals van demostrar la seva vàlua durant la revolta de Raggarth, en què molts van caure per ignorar-los. Temuts i menyspreats alhora, els regor cacen quan l'enemic ja és massa confiat."
+   ],
+   "closing": "Afegeix el Acechador del Culto Regor a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/destripador": {
+   "intro": "El Destripador és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un guerrer regor ferotge consumit per la violència, preparat per llançar-se sobre l'enemic sense por de la mort. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Tot i ser petits, els regors comparteixen la ferocitat depredadora de Kurgan. Forçats des de la infància, els Destripadores van ser utilitzats com a bèsties i carn de guerra. Després de la revolta, molts van quedar consumits per la sang i la desesperació. Raggarth el Liberador els envia a l'avantguarda, perquè lluitin una última vegada… i morin com a fills de Kurgan, no com a esclaus."
+   ],
+   "closing": "Afegeix el Destripador del Culto Regor a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/desacrador": {
+   "intro": "El Desacrador Gélido és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un dels campions més temuts de Tur’Na’Kurg, encarregat de destruir la fe i la moral dels seus enemics. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Per a Nek’Org, vèncer no és suficient: cal trencar l'esperit de l'enemic. Els Desacradores de Tur’Na’Kurg són els seus instruments de ruïna, campions temuts encarregats de profanar allò sagrat i esborrar tota fe rival. Allà on cauen líders, campions o fetillers, els Desacradores deixen clar que la victòria de Kurgan comença en l'ànima del derrotat."
+   ],
+   "closing": "Afegeix el Desacrador Gélido del Culto Tur’Na’Kurg a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/chaman": {
+   "intro": "El Chamán és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un poderós fetiller regor capaç de dominar les hebres del gel i guiar espiritualment el seu poble. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Encara que els soimi de Huram’Koll se'n burlin, els Chamanes regor dominen les hebres amb un poder veritable. Teixidors d'encanteris de gel i forjadors de bàculs rituals, són mags temibles. Entre els seus, no només llancen conjurs: prediquen i guien, i eleven Raggarth el Liberador com a figura mítica i encenen la fe que sosté la revolta."
+   ],
+   "closing": "Afegeix el Chamán del Culto Regor a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/jorguin": {
+   "intro": "El Jorguín de la Escarcha és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa un dels mags més poderosos de Kurgan, mestre del gel i guardià de les antigues profecies. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Només els fetillers més grans de Kurgan arriben al rang de jorguín a Huram’Koll. El seu ritu exigeix forjar el bàcul Llamaventiscas, trenant màgia en cristalls nascuts als Colmillos del Sol. En batalla desfermen el poder del gel, i en la calma del trànsit interpreten les escasses visions de Kurgan, guiant el destí del culte entre boira i presagis."
+   ],
+   "closing": "Afegeix el Jorguín de la Escarcha del Culto Huram’Koll a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/leviatan": {
+   "intro": "El Leviatán és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa la criatura més colossal creada per Kurgan, un tità capaç d'arrasar exèrcits sencers i canviar el destí de qualsevol batalla. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Forjat en la Profecía de Kurgan, el Leviatán és un tità de llegenda, invocat després de segles de sacrificis i pregàries. Amb el Ciclo Evolutivo, el déu del gel va donar forma al monstre anhelat. En batalla, el Leviatán no només aniquila exèrcits en un instant, sinó que resisteix allò que mataria qualsevol altre. Quan marxa al costat dels Vástagos de Kurgan, la guerra s'inclina… i el món tremola."
+   ],
+   "closing": "Afegeix El Leviatán a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo! Regoretes Agitadores Els Regoretes Agitadores són una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa una gossada de petites i violentes criatures regor que ataquen en grup i sembren el caos entre els seus enemics. Ideal per jugar, pintar i col·leccionar. Petits però rabiosos, els Regoretes ataquen sempre en gossada i desfermen un frenesí contagiós a la batalla. Privats de les cues mortals dels regor, prefereixen capturar les seves preses vives per devorar-les després. Considerats un experiment fallit de Kurgan, els soimi els menyspreen i els mantenen a distància… tot i que en el caos de la guerra, aquestes alimanyes continuen sent violència pura i descontrolada. Característiques Referència: SWOM-VA52 Facció: Vástagos de Kurgan Subfacció: Culto Regor Punts de Banda: 4 Peanya: 4 cm Alçada: 3,3 cm Dau de Vida: 1 Material: Resina termoplàstica flexible d'alta resistència i gran nivell de detall. Estat: Miniatura sense muntar i sense pintar. Afegeix els Regoretes Agitadores del Culto Regor a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/alianza/nirlem": {
+   "intro": "Nirlem, el Paladín és una miniatura de SphereWars que pertany a la Alianza. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el Corazón Supremo Bélico de la Legión de los Cien Corazones, un combatent agressiu capaç de canviar el rumb de qualsevol batalla. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Nirlem, el Paladín, marcat pel foc i la pèrdua, va veure morir la seva família sota les fletxes ardents d'Urueh i va jurar venjança davant les flames de Suria. Acollit per Drewan, va ser forjat a Caldara entre espasa i escut, i va aprendre l'honor sense oblidar l'odi que cremava al seu cor. D'aquell nen en va néixer un guerrer temprat pel dolor i la disciplina, fins a alçar-se com a Corazón Supremo Bélico de la Legión de los Cien Corazones, decidit a complir el seu jurament amb acer i justícia."
+   ],
+   "closing": "Afegeix Nirlem, el Paladín a la teva banda de la Alianza o de la Legión de los Cien Corazones i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+   "intro": "Nek’Org, el Profeta és una miniatura de SphereWars que pertany als Vástagos de Kurgan. Fabricada en resina termoplàstica flexible d'alta resistència i gran nivell de detall, representa el líder del Culto de Tur’Na’Kurg, un guerrer que lluita pel compliment de la Profecía i pel poder sobre la resta de Cultos. Ideal per jugar, pintar i col·leccionar.",
+   "lore": [
+    "Nek’Org, veu suprema de Tur’Na’Kurg, encarna la Profecía que promet la conquesta de Saphir. Decidit a unificar els fills de Kurgan, atrau molts soimi amb la seva visió de poder… mentre altres temen que la seva ambició destrueixi els seus cultes. Fervorós, astut i brutal, Nek’Org lidera amb la fúria de Kurgan, sense dubtar ni retrocedir, avançant cap a un destí que podria sotmetre tota l'esfera."
+   ],
+   "closing": "Afegeix Nek’Org, el Profeta del Culto Tur’Na’Kurg a la teva banda dels Vástagos de Kurgan i amplia la teva col·lecció de miniatures de SphereWars. Alça la veu, els daus i els pinzells a Otro Mundo!"
+  }
+ }
+}

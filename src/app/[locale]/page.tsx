@@ -9,7 +9,7 @@ import { EssenceOrb } from "@/components/fx/EssenceOrb";
 import { FactionPan } from "@/components/fx/FactionPan";
 import { LoopVideo } from "@/components/fx/LoopVideo";
 import { ScrollWords } from "@/components/faction/ScrollWords";
-import landings from "@/content/faction-landings.json";
+import { landingHook } from "@/lib/landing-hook";
 import { HeroVideo } from "@/components/HeroVideo";
 import { EssenceThreads } from "@/components/EssenceThreads";
 import { ElementCanvas } from "@/components/ElementCanvas";
@@ -70,7 +70,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       <EssenceThreads title={h.essenceTitle} hint={h.essenceHint} lead={h.essenceLead} />
 
-      <FactionPan title={h.factionsTitle} cta={h.factionEnter} factions={factions.map((f) => ({ slug: f.slug, name: f.name, theme: f.theme, hook: (landings as Record<string, { hook: string }>)[f.slug].hook, href: `/${locale}/facciones/${f.slug}`, element: elementFor(f.theme)! }))} />
+      <FactionPan title={h.factionsTitle} cta={h.factionEnter} factions={factions.map((f) => ({ slug: f.slug, name: f.name, theme: f.theme, ...landingHook(f.slug, locale), href: `/${locale}/facciones/${f.slug}`, element: elementFor(f.theme)! }))} />
 
       <div className="relative isolate flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 text-center">
         <Image src="/brand/sphere-outro.webp" alt="" fill sizes="100vw" loading="lazy" className="-z-30 object-cover" />

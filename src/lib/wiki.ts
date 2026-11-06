@@ -24,6 +24,24 @@ const haystack = new Map(data.pages.map((p) => [p.slug, norm(`${p.title} ${p.des
 
 export const getWikiPage = (slug: string) => index.get(slug) ?? null;
 
+// Section pages repeat titles across peoples ("Aspecto físico"…): their meta title names the people they belong to.
+const titleUses = new Map<string, number>();
+for (const p of data.pages) titleUses.set(p.title.toLowerCase(), (titleUses.get(p.title.toLowerCase()) ?? 0) + 1);
+function parentTitle(p: WikiPage) {
+  const segs = p.slug.split("/");
+  for (let i = segs.length - 1; i > 0; i--) {
+    const pre = segs.slice(0, i).join("/");
+    const parent = index.get(pre) ?? index.get(`${pre}/${segs[i - 1]}-faccion`);
+    if (parent) return parent.title.replace(/\s+Facción$/, "");
+  }
+  return null;
+}
+/** Title for <title>/OG: the page title, plus its parent page when another article has the same title. */
+export function wikiMetaTitle(p: WikiPage) {
+  const parent = (titleUses.get(p.title.toLowerCase()) ?? 0) > 1 ? parentTitle(p) : null;
+  return parent ? `${p.title} · ${parent}` : p.title;
+}
+
 export const wikiCategories = (() => {
   const map = new Map<string, { slug: string; name: string; count: number }>();
   for (const p of data.pages) {
@@ -147,6 +165,11 @@ export function prepareArticle(p: WikiPage, locale: string) {
     return `<h${lvl} id="${id}">${inner}</h${lvl}>`;
   });
   html = html.replace(/<img src="([^"]+)" alt="" ?\/?>/g, (_m, src: string) => `<img src="${src}" alt="${p.title.replace(/"/g, "&quot;")}" loading="lazy" decoding="async">`);
+  // The first image, when it comes before the second section, is usually the article's largest paint above the fold: load it at once.
+  const first = html.search(/<img\b/);
+  if (first >= 0 && (html.slice(0, first).match(/<h[23]\b/g) ?? []).length <= 1) {
+    html = html.slice(0, first) + html.slice(first).replace(/^<img\b([^>]*?)\s+loading="lazy"/, '<img$1 fetchpriority="high"');
+  }
   return { html, toc };
 }
 

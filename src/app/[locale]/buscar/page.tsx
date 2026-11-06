@@ -10,7 +10,7 @@ import { shopReadiness } from "@/lib/shop/settings";
 import { EntryStatus } from "@/components/shop/facts-ui";
 import { chipCls, PageHero } from "@/components/ui";
 
-export const generateMetadata = staticMeta({ title: (t) => t.search.title, path: "/buscar", noindex: true });
+export const generateMetadata = staticMeta({ title: (t) => t.search.title, description: (t) => t.pageMeta.search, path: "/buscar", noindex: true });
 
 type HitType = SearchHit["type"] | "shop";
 
@@ -73,7 +73,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                 <li key={h.type + h.href + h.title}>
                   <Link href={h.href} className="block p-4 hover:bg-gold/5">
                     <span className="font-display text-sm text-gold">{groups[h.type]}</span>
-                    <span lang={h.type === "wiki" ? "es" : undefined} className="block">{h.title}</span>
+                    <span lang={h.lang ?? (h.type === "wiki" ? "es" : undefined)} className="block">{h.title}</span>
                     {h.detail && <span className="text-sm text-stone">{h.detail}</span>}
                   </Link>
                 </li>

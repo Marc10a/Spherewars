@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { dict, isLocale, locales } from "@/lib/i18n";
 import { factions, getFaction } from "@/content/factions";
 import landings from "@/content/faction-landings.json";
+import { landingHook } from "@/lib/landing-hook";
 import { links } from "@/content/site";
 import { elementFor } from "@/lib/element";
 import { characterArt, factionCharacters, factionSubpages, factionWikiPage } from "@/lib/wiki";
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const f = getFaction(slug);
   const l = isLocale(locale) ? locale : "es";
-  return f ? pageMeta({ title: f.name, description: `${f.blurb[l]} ${f.style[l]}`, path: `/facciones/${f.slug}`, image: f.image }, locale) : {};
+  return f ? pageMeta({ title: `${f.name} · ${dict[l].pageMeta.factionLanding}`, description: `${f.blurb[l]} ${f.style[l]}`, path: `/facciones/${f.slug}`, image: f.image }, locale) : {};
 }
 
 export default async function FactionPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -44,6 +45,7 @@ export default async function FactionPage({ params }: { params: Promise<{ locale
   const ft = t.factions;
   const land = (landings as Record<string, Landing>)[f.slug];
   const element = elementFor(f.theme)!;
+  const { hook, hookLang } = landingHook(f.slug, locale);
 
   const wiki = factionWikiPage(f.slug);
   const characters = factionCharacters(f.slug);
@@ -66,7 +68,7 @@ export default async function FactionPage({ params }: { params: Promise<{ locale
         <div className="land-hero-out relative mx-auto w-full max-w-7xl px-4 pb-10 md:pb-14">
           <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={120} height={120} className="land-rise sigil-glow h-20 w-auto object-contain md:h-28" />
           <h1 className="land-rise land-name mt-4 font-display text-ivory" style={{ "--d": 1 } as React.CSSProperties}>{f.name}</h1>
-          <p lang="es" className="land-rise mt-4 max-w-3xl font-display text-2xl text-accent md:text-3xl" style={{ "--d": 2 } as React.CSSProperties}>{land.hook}</p>
+          <p lang={hookLang} className="land-rise mt-4 max-w-3xl font-display text-2xl text-accent md:text-3xl" style={{ "--d": 2 } as React.CSSProperties}>{hook}</p>
           <div className="land-rise mt-6 flex flex-wrap gap-3" style={{ "--d": 3 } as React.CSSProperties}>
             <Button href="#historia">{ft.landStory}</Button>
             <Button href={links.rules} variant="ghost" external>{t.hero.cta3}</Button>

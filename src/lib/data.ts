@@ -6,6 +6,7 @@ import { searchWiki } from "@/lib/wiki";
 import { staticProducts } from "@/lib/shop/static";
 import { wooEnabled, wooProducts } from "@/lib/woo";
 import { formatMoney } from "@/lib/shop/pricing";
+import official from "@/content/official-files.json";
 
 // Public read layer. RLS already restricts anonymous reads to status = 'published';
 // the explicit filters below keep intent visible and handle embargoes. Returns [] when Supabase is not configured.
@@ -182,14 +183,34 @@ export async function listDownloads(): Promise<Download[]> {
 export const formatBytes = (n: number | null) =>
   n == null ? "" : n < 1024 * 1024 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`;
 
-export type SearchHit = { type: "wiki" | "minis" | "events" | "resources"; title: string; href: string; detail?: string };
+export type SearchHit = { type: "wiki" | "minis" | "events" | "resources"; title: string; href: string; detail?: string; /** Language of the title when it differs from the page (official titles are Spanish). */ lang?: string };
+
+const fold = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+// Words people type for each kind of official download, in es/en/ca (accents are folded away before matching).
+const RULE_WORDS = "reglas reglamento rules rulebook regles reglament";
+const OFFICIAL_SECTIONS = [
+  { key: "rulesFiles", files: official.rules, words: (id: string) => (id.startsWith("perfiles") ? `${RULE_WORDS} perfiles profiles perfils cartas cards` : RULE_WORDS) },
+  { key: "guides", files: official.guides, words: () => `${RULE_WORDS} guia guias guide guides quick rapida rapid resumen summary` },
+  { key: "posters", files: official.posters, words: () => "poster posters carteles cartells flyer" },
+  { key: "maps", files: official.maps, words: () => "mapa mapas map maps mapes" },
+] as const;
+
+/** The official downloads (static files, always available) whose title or kind matches every word typed. */
+function searchOfficialFiles(locale: Locale, term: string): SearchHit[] {
+  const words = fold(term).split(/\s+/).filter(Boolean);
+  const t = dict[locale].downloads;
+  return OFFICIAL_SECTIONS.flatMap(({ key, files, words: kind }) => (files as { id: string; title: string; type: string; size: string }[])
+    .filter((f) => { const hay = fold(`${f.title} ${f.type} ${kind(f.id)}`); return words.every((w) => hay.includes(w)); })
+    .map((f) => ({ type: "resources" as const, title: f.title, href: `/${locale}/descargas#${key}`, detail: `${t[key]} · ${f.type} · ${f.size}`, lang: "es" })));
+}
 
 /** Global search over published content. Title/name match only (no full-text index yet). */
 export async function searchAll(locale: Locale, raw: string): Promise<SearchHit[]> {
   const term = raw.replace(/[%_,()\\]/g, " ").trim().slice(0, 80);
   if (term.length < 2) return [];
   const wikiHits: SearchHit[] = searchWiki(term).slice(0, 40).map((p) => ({ type: "wiki", title: p.title, href: `/${locale}/wikisphere/${p.slug}`, detail: dict[locale].wiki.cat[p.category] ?? p.categoryName }));
-  if (!isConfigured()) return wikiHits;
+  const fileHits = searchOfficialFiles(locale, term);
+  if (!isConfigured()) return [...fileHits, ...wikiHits];
   const sb = await supabaseServer();
   const like = `%${term}%`;
   const nowIso = new Date().toISOString();
@@ -200,6 +221,7 @@ export async function searchAll(locale: Locale, raw: string): Promise<SearchHit[
     sb.from("downloadable_resources").select("name, category, storage_path").eq("status", "published").ilike("name", like).limit(20),
   ]);
   return [
+    ...fileHits,
     ...wikiHits,
     ...(a.data ?? []).map((r) => ({ type: "wiki" as const, title: r.title, href: `/${locale}/wikisphere/${r.slug}` })),
     ...(p.data ?? []).map((r) => ({ type: "minis" as const, title: r.name, href: `/${locale}/miniaturas/${r.slug}` })),

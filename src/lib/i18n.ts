@@ -215,7 +215,21 @@ const es = {
       rate: "Has enviado varios mensajes seguidos. Espera un rato e inténtalo de nuevo.", generic: "No se pudo enviar el mensaje. Inténtalo de nuevo más tarde.",
     } as Record<string, string>,
   },
-  notFound: { title: "Esta senda no existe en Saphir", text: "La página que buscas no está o ha cambiado de lugar.", home: "Volver al inicio" },
+  notFound: { title: "Esta senda no existe en Saphir", text: "La página que buscas no está o ha cambiado de lugar.", home: "Volver al inicio", short: "Página no encontrada" },
+  pageMeta: {
+    legal: {
+      "aviso-legal": "Titular de la web de SphereWars, condiciones de uso y propiedad intelectual.",
+      privacidad: "Cómo trata SphereWars los datos personales de quienes visitan la web, compran o escriben.",
+      cookies: "Qué cookies y almacenamiento local usa la web de SphereWars y cómo gestionarlos.",
+      condiciones: "Condiciones de venta de la tienda oficial de SphereWars: pedidos, precios, pago y envío.",
+      devoluciones: "Derecho de desistimiento y devoluciones de los pedidos de la tienda oficial de SphereWars.",
+    } as Record<string, string>,
+    cart: "Revisa las miniaturas de tu carrito antes de pagar en la tienda oficial de SphereWars.",
+    thanks: "Confirmación de tu pedido en la tienda oficial de SphereWars.",
+    search: "Busca en la web de SphereWars: tienda, WikiSphere, descargas y eventos.",
+    scaleTitle: "Miniaturas a escala",
+    factionLanding: "Facción",
+  },
   error: { title: "Algo ha fallado", text: "No hemos podido cargar esta página. Inténtalo de nuevo.", retry: "Reintentar" },
 };
 
@@ -425,7 +439,21 @@ const en: Dict = {
       rate: "You have sent several messages in a row. Please wait a while and try again.", generic: "The message could not be sent. Please try again later.",
     },
   },
-  notFound: { title: "This path does not exist in Saphir", text: "The page you are looking for is gone or has moved.", home: "Back to home" },
+  notFound: { title: "This path does not exist in Saphir", text: "The page you are looking for is gone or has moved.", home: "Back to home", short: "Page not found" },
+  pageMeta: {
+    legal: {
+      "aviso-legal": "Owner of the SphereWars website, terms of use and intellectual property.",
+      privacidad: "How SphereWars handles the personal data of people who visit the site, buy or get in touch.",
+      cookies: "Which cookies and local storage the SphereWars website uses and how to manage them.",
+      condiciones: "Terms of sale of the official SphereWars shop: orders, prices, payment and shipping.",
+      devoluciones: "Right of withdrawal and returns for orders from the official SphereWars shop.",
+    },
+    cart: "Review the miniatures in your cart before paying in the official SphereWars shop.",
+    thanks: "Confirmation of your order in the official SphereWars shop.",
+    search: "Search the SphereWars website: shop, WikiSphere, downloads and events.",
+    scaleTitle: "Miniatures to scale",
+    factionLanding: "Faction",
+  },
   error: { title: "Something went wrong", text: "We could not load this page. Please try again.", retry: "Try again" },
 };
 
@@ -633,7 +661,21 @@ const ca: Dict = {
       rate: "Has enviat diversos missatges seguits. Espera una estona i torna-ho a provar.", generic: "No s'ha pogut enviar el missatge. Torna-ho a provar més tard.",
     },
   },
-  notFound: { title: "Aquest sender no existeix a Saphir", text: "La pàgina que busques no hi és o ha canviat de lloc.", home: "Tornar a l'inici" },
+  notFound: { title: "Aquest sender no existeix a Saphir", text: "La pàgina que busques no hi és o ha canviat de lloc.", home: "Tornar a l'inici", short: "Pàgina no trobada" },
+  pageMeta: {
+    legal: {
+      "aviso-legal": "Titular del web de SphereWars, condicions d'ús i propietat intel·lectual.",
+      privacidad: "Com tracta SphereWars les dades personals de qui visita el web, compra o escriu.",
+      cookies: "Quines galetes i emmagatzematge local fa servir el web de SphereWars i com gestionar-los.",
+      condiciones: "Condicions de venda de la botiga oficial de SphereWars: comandes, preus, pagament i enviament.",
+      devoluciones: "Dret de desistiment i devolucions de les comandes de la botiga oficial de SphereWars.",
+    },
+    cart: "Revisa les miniatures del teu carretó abans de pagar a la botiga oficial de SphereWars.",
+    thanks: "Confirmació de la teva comanda a la botiga oficial de SphereWars.",
+    search: "Cerca al web de SphereWars: botiga, WikiSphere, descàrregues i esdeveniments.",
+    scaleTitle: "Miniatures a escala",
+    factionLanding: "Facció",
+  },
   error: { title: "Alguna cosa ha fallat", text: "No hem pogut carregar aquesta pàgina. Torna-ho a provar.", retry: "Reintentar" },
 };
 

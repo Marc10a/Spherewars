@@ -47,6 +47,8 @@ El HTML se sanea con lista de etiquetas permitidas al sincronizar. Los enlaces i
 - Idioma de entrada: cookie `sw_locale` (se guarda al visitar `/{idioma}`) > idioma del navegador > español. La redirección es 307 (no permanente).
 - Fechas, precios y nombres de mes siguen el idioma de la página.
 - Las traducciones EN/CA las escribió Claude y **están pendientes de validación**. El panel `/admin` está solo en español (uso interno).
+- Textos de producto en inglés y catalán: `src/content/shop-products.en.json` y `.ca.json` (intro, historia, cierre, etiquetas y valores de ficha), traducción asistida por máquina **pendiente de validación** (`"status": "machine-assisted-pending-validation"`). El castellano (`shop-products.json`) sigue siendo la fuente: si cambia un texto, actualiza primero el castellano y luego los dos ficheros. Los nombres de producto, personajes y lugares no se traducen. Si falta una traducción, la ficha muestra el castellano con `lang="es"`.
+- Frase de cada facción en la portada y en su página (`hookI18n` en `src/content/faction-landings.json`): misma condición, asistida por máquina y pendiente de validación.
 
 ## Estilos (Tailwind) y compilación
 

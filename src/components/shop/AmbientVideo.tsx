@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import { muteForAutoplay, playWithTouchFallback } from "@/lib/video";
+import { decorativeVideoAllowed, muteForAutoplay, playWithTouchFallback, videoSrcFor } from "@/lib/video";
 
 type Conn = { saveData?: boolean; effectiveType?: string };
 
@@ -21,13 +21,16 @@ export function AmbientVideo({ src, pauseLabel, playLabel }: { src: string; paus
     if (!video) return;
     const conn = (navigator as Navigator & { connection?: Conn }).connection;
     const wide = window.matchMedia("(min-width: 1024px)").matches;
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!wide || calm || conn?.saveData || /(^|-)2g|3g/.test(conn?.effectiveType ?? "")) return;
+    if (!wide || !decorativeVideoAllowed() || /(^|-)2g|3g/.test(conn?.effectiveType ?? "")) return;
     muteForAutoplay(video);
-    if (video.getAttribute("src") !== src) video.src = src;
+    const wanted = videoSrcFor(src); // only wide screens get here today; the phone file is ready if that changes
     const start = () => { if (!userPaused.current) playWithTouchFallback(video, () => !userPaused.current); };
     video.addEventListener("canplay", start, { once: true });
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) start(); else video.pause(); });
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) { video.pause(); return; }
+      if (video.getAttribute("src") !== wanted) video.src = wanted;
+      start();
+    }, { rootMargin: "200px 0px" });
     io.observe(video);
     return () => { io.disconnect(); video.removeEventListener("canplay", start); video.pause(); };
   }, [src]);

@@ -11,14 +11,12 @@ import { RevealObserver } from "@/components/Reveal";
 import { jsonLd, siteUrl } from "@/lib/seo";
 
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
 export const generateStaticParams = () => locales.map((locale) => ({ locale }));
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    metadataBase: new URL(base),
+    metadataBase: new URL(siteUrl),
     title: { default: "SphereWars: Otro Mundo", template: "%s · SphereWars" },
     description: dict[isLocale(locale) ? locale : "es"].meta.description,
     openGraph: { title: "SphereWars: Otro Mundo", siteName: "SphereWars", type: "website", locale: ogLocale[isLocale(locale) ? locale : "es"], images: [{ url: "/og.jpg", width: 1200, height: 630 }] },

@@ -5,6 +5,10 @@
    "line": "Dios de la incineración, creó a sus Hijos con un propósito sencillo y absoluto: incinerar."
   },
   "hook": "No buscan conquistar Saphir. Buscan incinerarlo.",
+  "hookI18n": {
+   "en": "They do not seek to conquer Saphir. They seek to incinerate it.",
+   "ca": "No volen conquerir Saphir. Volen incinerar-lo."
+  },
   "intro": "Las Manadas de Urueh reúnen a los Hijos de Kazag y a las Bestias Autóctonas de las regiones volcánicas bajo una misma lógica: avanzar, destruir y reducir cuanto encuentran a cenizas. Bajo su caos violento existe un orden funcional.",
   "chapters": [
    {
@@ -97,6 +101,10 @@
    "line": "Dios del hielo, uno de los cuatro dioses primordiales del Panteón Celestial: la fuerza fría que avanza, domina y permanece."
   },
   "hook": "Hijos de Kurgan unidos por la Profecía, divididos por heridas antiguas.",
+  "hookI18n": {
+   "en": "Hijos de Kurgan united by the Prophecy, divided by ancient wounds.",
+   "ca": "Hijos de Kurgan units per la Profecia, dividits per ferides antigues."
+  },
   "intro": "Los Vástagos de Kurgan son una coalición de soimi y regors nacidos bajo el dios del hielo. Huram’Koll, Enur’Anar, Tur’Na’Kurg y los Liberados conservan gobierno propio, pero han abandonado los Picos de Kurgan en busca de la Quinta Esencia.",
   "chapters": [
    {
@@ -193,6 +201,10 @@
    "line": "Dios del viento, uno de los cuatro dioses primordiales del Panteón Celestial."
   },
   "hook": "Encontraron la paz y están dispuestos a convertirse en bestias para defenderla.",
+  "hookI18n": {
+   "en": "They found peace and are ready to become beasts to defend it.",
+   "ca": "Van trobar la pau i estan disposats a convertir-se en bèsties per defensar-la."
+  },
   "intro": "Humanos que hallaron en el Bosque de Lilean un refugio lejos de las persecuciones de Darlime: sin gobernantes, moneda ni ejército. Unidos a los Espíritus del Bosque, viven en paz hasta que alguien la amenaza; entonces convierten sus cuerpos en armas.",
   "chapters": [
    {
@@ -285,6 +297,10 @@
    "line": "Hijos de Malesur sin favor divino: la Legión es oficialmente atea y las Mercenarias veneran a Isha, ajena al Panteón Celestial."
   },
   "hook": "Acero, hebras y una alianza nacida de la necesidad.",
+  "hookI18n": {
+   "en": "Steel, threads and an alliance born of necessity.",
+   "ca": "Acer, fils i una aliança nascuda de la necessitat."
+  },
   "intro": "La Legión de los Cien Corazones y las Mercenarias de Isha, dos fuerzas muy distintas de Darlime, marchan juntas. Sin favor de los dioses, se unieron para controlar y explotar la Quinta Esencia y enfrentarse a quien pretenda arrebatársela.",
   "chapters": [
    {
