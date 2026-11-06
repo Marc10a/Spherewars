@@ -18,8 +18,8 @@ import { jsonLd, pageMeta, siteUrl } from "@/lib/seo";
 import { ProductGallery, type GalleryPhoto } from "@/components/shop/ProductGallery";
 import { BuyBox } from "@/components/shop/BuyBox";
 import { AmbientVideo } from "@/components/shop/AmbientVideo";
-import { ScaleLineup, toMm, type Figure } from "@/components/shop/ScaleLineup";
-import { cutoutSizes } from "@/components/shop/cutout-sizes";
+import { ScaleLineup, type Figure } from "@/components/shop/ScaleLineup";
+import { cutoutOf, localNum, scaleFigure } from "@/lib/shop/scale";
 import { itemText } from "@/components/shop/facts-ui";
 import { ElementCanvas } from "@/components/ElementCanvas";
 import { shippingInfoText } from "@/lib/shop/shipping-info";
@@ -33,8 +33,6 @@ const SHOWN = new Set(["Facción", "Puntos de Banda", "Peana", "Altura", "Númer
 /** Gallery order on the product page: the cut-out first (it stands on the stage), then the scene, the size shot and the card. */
 const ORDER = ["clean", "bg", "size", "card"];
 const kindOf = (k: string) => (k.startsWith("bg") ? "bg" : k);
-/** Official figures in the reader's language: "3,9 cm" -> "3.9 cm" in English, "13 u 11" -> "13 or 11". Names stay as written. */
-const localNum = (v: string, locale: string, t: Dict) => (locale === "en" ? v.replace(/(\d),(\d)/g, "$1.$2") : v).replace(/^(\d+) [ou] (\d+)$/, `$1 ${t.catalogue.or} $2`);
 
 export const generateStaticParams = () =>
   locales.flatMap((locale) => factions.flatMap((f) => [
@@ -53,8 +51,6 @@ function find(faccion: string, mini: string) {
   const page = factionCharacters(f.slug).find((m) => last(m.slug) === mini);
   return page ? { f, page, key: page.slug, title: page.title } : null;
 }
-
-const cutoutOf = (key: string) => ownerPhotos(key)?.gallery.find((g) => g.kind === "clean")?.src ?? null;
 
 /** Same-faction singles on sale that are not in the faction's Starter Pack, in the official order. */
 function relatedSingles(factionSlug: string, ownKey: string, products: Product[], locale: string): RelatedItem[] {
@@ -87,15 +83,7 @@ function packItem(factionSlug: string, item: string, locale: string, t: Dict) {
 
 /** This miniature beside up to three of its faction (shortest, tallest and one in between), all with an official height and a cut-out photo. */
 function lineup(f: Faction, key: string, locale: string, t: Dict): Figure[] {
-  const fig = (slug: string, title: string): Figure | null => {
-    const facts = productFacts(slug);
-    const heightText = facts?.specs.find((x) => x.label === "Altura")?.value ?? null;
-    const heightMm = toMm(heightText);
-    const src = cutoutOf(slug);
-    const size = src ? cutoutSizes[src] : null;
-    if (!facts || !heightMm || !heightText || !src || !size) return null;
-    return { key: shopKey(slug), name: facts.name ?? title, heightMm, heightText: localNum(heightText, locale, t), src, size, href: `/${locale}/tienda/${f.slug}/${last(slug)}` };
-  };
+  const fig = (slug: string, title: string) => scaleFigure(slug, `/${locale}/tienda/${f.slug}/${last(slug)}`, locale, t, title);
   const self = fig(key, "");
   if (!self) return [];
   const seen = new Set([self.key]);
@@ -149,8 +137,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   // WooCommerce gallery first (only images hosted on the WooCommerce domain, which next/image is configured for), then the official ones.
   const wcHost = process.env.WC_API_URL ? new URL(process.env.WC_API_URL).hostname : null;
   const wooPhotos = (product?.images ?? []).filter((i) => { try { return i.src.startsWith("https://") && new URL(i.src).hostname === wcHost; } catch { return false; } });
-  // With a WooCommerce gallery the owner manages the photos there: only the illustrations are added, or the same photo would show twice.
-  const photos: GalleryPhoto[] = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos, ...(wooPhotos.length ? official.filter((p) => p.art) : official)];
+  // The transparent cut-out always opens the gallery: it is the largest, cleanest view of the miniature. Then the WooCommerce photos
+  // (the owner manages them there; the same file uploaded again is dropped), then the rest of the official set.
+  const cutout = official.find((p) => p.kind === "clean");
+  const base = (src: string) => src.split("/").pop()!.replace(/(-\d+x\d+|-scaled)?\.(webp|png|jpe?g)$/i, "").replace(/-\d+$/, "");
+  const woo = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos].filter((p, i, all) => (!cutout || base(p.src) !== base(cutout.src)) && all.findIndex((q) => base(q.src) === base(p.src)) === i);
+  const photos: GalleryPhoto[] = [...(cutout ? [cutout] : []), ...woo, ...(woo.length ? official.filter((p) => p.art) : official.filter((p) => p !== cutout))];
 
   const priced = Boolean(product?.sellable && product.price_cents && product.price_cents > 0);
   const price = priced && product ? formatPrice(product.price_cents, product.currency, locale) : null;
