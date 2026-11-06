@@ -178,7 +178,10 @@ const es = {
   },
   legal: {
     titles: { "aviso-legal": "Aviso legal", privacidad: "Política de privacidad", cookies: "Política de cookies", condiciones: "Condiciones de venta", devoluciones: "Desistimiento y devoluciones" } as Record<string, string>,
-    pendingTitle: "Pendiente de revisión jurídica", pending: "Texto legal pendiente de redacción y revisión por el titular.",
+    draftTitle: "Borrador pendiente de revisión jurídica",
+    draftBody: "Este texto es un borrador del {date}. Aún no lo ha revisado un asesor jurídico y puede cambiar. Los datos que faltan aparecen marcados como «Pendiente».",
+    translation: "", translationLink: "",
+    placeholder: "Pendiente", otherDocs: "Otros textos legales",
   },
   news: { title: "Novedades", lead: "Lo último de SphereWars.", empty: "Todavía no hay novedades publicadas.", back: "← Todas las novedades", published: "Publicado el" },
   contact: {
@@ -368,7 +371,10 @@ const en: Dict = {
   },
   legal: {
     titles: { "aviso-legal": "Legal notice", privacidad: "Privacy policy", cookies: "Cookie policy", condiciones: "Terms of sale", devoluciones: "Withdrawal and returns" },
-    pendingTitle: "Pending legal review", pending: "Legal text pending drafting and review by the owner.",
+    draftTitle: "Draft pending legal review",
+    draftBody: "This text is a draft dated {date}. It has not yet been reviewed by a legal adviser and may change. Missing details are marked “Pending”.",
+    translation: "This is an English translation of the Spanish draft, for information only. If they differ, the Spanish version applies.", translationLink: "Read the Spanish version",
+    placeholder: "Pending", otherDocs: "Other legal texts",
   },
   news: { title: "News", lead: "The latest from SphereWars.", empty: "No news published yet.", back: "← All news", published: "Published on" },
   contact: {
@@ -556,7 +562,10 @@ const ca: Dict = {
   },
   legal: {
     titles: { "aviso-legal": "Avís legal", privacidad: "Política de privacitat", cookies: "Política de galetes", condiciones: "Condicions de venda", devoluciones: "Desistiment i devolucions" },
-    pendingTitle: "Pendent de revisió jurídica", pending: "Text legal pendent de redacció i revisió pel titular.",
+    draftTitle: "Esborrany pendent de revisió jurídica",
+    draftBody: "Aquest text és un esborrany del {date}. Encara no l'ha revisat cap assessor jurídic i pot canviar. Les dades que falten apareixen marcades com a «Pendent».",
+    translation: "Aquesta és una traducció al català de l'esborrany en castellà, a títol informatiu. Si hi ha diferències, preval la versió en castellà.", translationLink: "Llegeix la versió en castellà",
+    placeholder: "Pendent", otherDocs: "Altres textos legals",
   },
   news: { title: "Novetats", lead: "Les últimes notícies de SphereWars.", empty: "Encara no hi ha novetats publicades.", back: "← Totes les novetats", published: "Publicat el" },
   contact: {

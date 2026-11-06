@@ -1342,7 +1342,7 @@
     ],
     [
      "Subfacción",
-     "Culto de los Liberados"
+     "Culto Regor"
     ],
     [
      "Puntos de Banda",
@@ -1391,7 +1391,7 @@
     ],
     [
      "Subfacción",
-     "Culto de los Liberados"
+     "Culto Regor"
     ],
     [
      "Puntos de Banda",
@@ -1440,7 +1440,7 @@
     ],
     [
      "Subfacción",
-     "Culto de los Liberados"
+     "Culto Regor"
     ],
     [
      "Puntos de Banda",
@@ -1538,7 +1538,7 @@
     ],
     [
      "Subfacción",
-     "Culto de los Liberados"
+     "Culto Regor"
     ],
     [
      "Puntos de Banda",
@@ -1660,6 +1660,104 @@
     ]
    ],
    "closing": "Añade a El Leviatán a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo! Regoretes Agitadores Los Regoretes Agitadores son una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una jauría de pequeñas y violentas criaturas regor que atacan en grupo sembrando el caos entre sus enemigos. Ideal para jugar, pintar y coleccionar. Pequeños pero rabiosos, los Regoretes atacan siempre en jauría, desatando un frenesí contagioso en la batalla. Privados de las colas mortales de los regor, prefieren capturar a sus presas vivas para devorarlas después. Considerados un experimento fallido de Kurgan, los soimi los desprecian y mantienen a distancia… aunque en el caos de la guerra, estas alimañas siguen siendo violencia pura y descontrolada. Características Referencia: SWOM-VA52 Facción: Vástagos de Kurgan Subfacción: Culto Regor Puntos de Banda: 4 Peana: 4 cm Altura: 3,3 cm Dado de Vida: 1 Material: Resina termoplástica flexible de alta resistencia y gran nivel de detalle. Estado: Miniatura sin montar y sin pintar. Añade a los Regoretes Agitadores del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/alianza/nirlem": {
+   "faction": "alianza",
+   "title": "Nirlem, el Paladín",
+   "ref": "SWOM-AL02",
+   "intro": "Nirlem, el Paladín es una miniatura de SphereWars perteneciente a la Alianza. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al Corazón Supremo Bélico de la Legión de los Cien Corazones, un combatiente agresivo capaz de cambiar el rumbo de cualquier batalla. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Nirlem, el Paladín marcado por el fuego y la pérdida, vio morir a su familia bajo las flechas ardientes de Urueh y juró venganza ante las llamas de Suria. Acogido por Drewan, fue forjado en Caldara entre espada y escudo, aprendiendo honor sin olvidar el odio que ardía en su corazón. De aquel niño nació un guerrero templado por el dolor y la disciplina, hasta alzarse como Corazón Supremo Bélico de la Legión de los Cien Corazones, decidido a saldar su juramento con acero y justicia."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-AL02"
+    ],
+    [
+     "Facción",
+     "Alianza"
+    ],
+    [
+     "Subfacción",
+     "Legión de los Cien Corazones"
+    ],
+    [
+     "Puntos de Banda",
+     "15"
+    ],
+    [
+     "Peana",
+     "30 mm"
+    ],
+    [
+     "Altura",
+     "67 mm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Nirlem, el Paladín a tu banda de la Alianza o la Legión de los Cien Corazones y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Nek’Org, el Profeta",
+   "ref": "SWOM-VA02",
+   "intro": "Nek’Org, el Profeta es una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa al líder del Culto de Tur’Na’Kurg, un guerrero que lucha por el cumplimiento de la Profecía y el poder sobre el resto de Cultos. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Nek’Org, voz suprema de Tur’Na’Kurg, encarna la Profecía que promete la conquista de Saphir. Decidido a unificar a los hijos de Kurgan, atrae a muchos soimi con su visión de poder… mientras otros temen que su ambición destruya sus cultos. Fervoroso, astuto y brutal, Nek’Org lidera con la furia de Kurgan, sin dudar ni retroceder, avanzando hacia un destino que podría someter toda la esfera."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA02"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto Tur’Na’Kurg"
+    ],
+    [
+     "Puntos de Banda",
+     "17"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "6,9 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a Nek’Org, el Profeta del Culto Tur’Na’Kurg a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
   }
  }
 }

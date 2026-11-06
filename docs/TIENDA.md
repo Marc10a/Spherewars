@@ -39,7 +39,7 @@ Seguridad: el navegador solo envía qué productos y cuántos. Precios, stock, d
 9. **Pasar a real:** activa tu cuenta de Stripe (datos de empresa/autónomo y banco), cambia a las claves `sk_live_…`, crea de nuevo el webhook en modo real con su propio `whsec_…`, actualiza las variables y vuelve a desplegar.
 
 ## Antes de vender de verdad (revisión de tu asesor)
-- **Textos legales:** `/legal/condiciones` (condiciones de venta) y `/legal/devoluciones` (desistimiento de 14 días en venta a distancia en la UE) están **pendientes de redacción**. Además hacen falta aviso legal y política de privacidad con tus datos reales. El enlace a las condiciones aparece en el carrito y en la página de pago.
+- **Textos legales:** `/legal/condiciones` (condiciones de venta) y `/legal/devoluciones` (desistimiento de 14 días en venta a distancia en la UE) y el resto de textos legales tienen un **borrador pendiente de revisión jurídica** (ver `LEGAL.md`). El enlace a las condiciones aparece en el carrito y en la página de pago.
 - **IVA:** los precios se muestran con IVA incluido. Si vendes a otros países de la UE, el IVA puede depender del destino: valora activar Stripe Tax (`STRIPE_AUTOMATIC_TAX=1`) con tu asesor.
 - **Facturas:** Stripe envía recibo de pago; la factura fiscal la emites tú.
 - **Reembolsos:** se hacen en el panel de Stripe. Un reembolso **total** marca el pedido como *Reembolsado*; los parciales no cambian el estado. El stock no se repone solo.
