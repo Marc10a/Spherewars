@@ -1,0 +1,38 @@
+/**
+ * Pixel size of each cut-out photo and the box its opaque pixels fill ([width, height, left, top, right, bottom]) (public/tienda/<faction>/<name>-clean.webp), so the real-size comparison can draw them in proportion
+ * without reading files at request time. A cut-out missing here is left out of the comparison: add a line when a new cut-out is added.
+ */
+export const cutoutSizes: Record<string, [number, number, number, number, number, number]> = {
+  "/tienda/adeptos-de-malesur/aguila-clean.webp": [1342, 1086, 1, 2, 1341, 1085],
+  "/tienda/adeptos-de-malesur/cangrejo-clean.webp": [524, 609, 0, 1, 524, 607],
+  "/tienda/adeptos-de-malesur/liehhan-clean.webp": [1142, 1535, 2, 1, 1142, 1535],
+  "/tienda/adeptos-de-malesur/mangostas-clean.webp": [1085, 941, 1, 2, 1083, 940],
+  "/tienda/adeptos-de-malesur/morena-clean.webp": [969, 1339, 0, 1, 969, 1338],
+  "/tienda/adeptos-de-malesur/serpiente-clean.webp": [381, 542, 0, 1, 381, 542],
+  "/tienda/adeptos-de-malesur/toro-clean.webp": [1400, 933, 0, 4, 1399, 932],
+  "/tienda/adeptos-de-malesur/yenay-clean.webp": [766, 958, 1, 0, 764, 956],
+  "/tienda/alianza/corazon-equite-clean.webp": [1070, 1279, 27, 80, 885, 1279],
+  "/tienda/alianza/corazon-postulante-clean.webp": [302, 539, 0, 3, 302, 539],
+  "/tienda/alianza/explorador-clean.webp": [351, 406, 0, 2, 351, 406],
+  "/tienda/alianza/laroc-clean.webp": [698, 967, 1, 2, 696, 966],
+  "/tienda/alianza/nirlem-clean.webp": [727, 1319, 1, 1, 726, 1319],
+  "/tienda/alianza/oteadora-clean.webp": [1286, 1536, 1, 1, 1285, 1536],
+  "/tienda/alianza/recaudadora-clean.webp": [770, 1132, 1, 3, 768, 1130],
+  "/tienda/alianza/rodanes-clean.webp": [705, 957, 0, 1, 704, 957],
+  "/tienda/alianza/roxter-clean.webp": [884, 1040, 1, 2, 884, 1038],
+  "/tienda/mandas-de-urueh/abrasador-clean.webp": [545, 1265, 2, 2, 543, 1264],
+  "/tienda/mandas-de-urueh/calcinador-clean.webp": [374, 732, 0, 0, 374, 732],
+  "/tienda/mandas-de-urueh/fundidor-clean.webp": [1105, 1087, 3, 2, 1105, 1087],
+  "/tienda/mandas-de-urueh/lucio-clean.webp": [450, 671, 2, 2, 449, 671],
+  "/tienda/mandas-de-urueh/pyronus-clean.webp": [774, 1192, 17, 14, 710, 1184],
+  "/tienda/mandas-de-urueh/satanor-clean.webp": [643, 832, 1, 1, 642, 831],
+  "/tienda/mandas-de-urueh/sorkep-clean.webp": [546, 457, 5, 152, 364, 453],
+  "/tienda/vastagos-de-kurgan/acechador-clean.webp": [865, 1184, 0, 0, 864, 1184],
+  "/tienda/vastagos-de-kurgan/desacrador-clean.webp": [1384, 1309, 1, 1, 1382, 1309],
+  "/tienda/vastagos-de-kurgan/destripador-clean.webp": [869, 1205, 0, 0, 868, 1203],
+  "/tienda/vastagos-de-kurgan/jorguin-clean.webp": [459, 544, 6, 11, 433, 544],
+  "/tienda/vastagos-de-kurgan/leviatan-clean.webp": [505, 461, 1, 1, 504, 461],
+  "/tienda/vastagos-de-kurgan/nek-org-clean.webp": [974, 1536, 37, 0, 933, 1528],
+  "/tienda/vastagos-de-kurgan/raggarth-clean.webp": [1131, 1195, 1, 1, 1131, 1195],
+  "/tienda/vastagos-de-kurgan/regoretes-clean.webp": [874, 877, 1, 2, 874, 876],
+};

@@ -15,7 +15,7 @@ colors:
   faction-kurgan: "#8fbbe0"
 typography:
   wordmark:
-    fontFamily: "Abaddon, Federo, serif"
+    fontFamily: "Abaddon (solo como imagen: public/brand/wordmark.svg)"
     letterSpacing: "0.04em"
   display:
     fontFamily: "Federo, Trebuchet MS, sans-serif"
@@ -79,7 +79,7 @@ La web parece una portada de wargame: negro profundo, oro y arte oficial a gran 
 
 ## Typography
 
-- **Abaddon:** solo para el nombre SphereWars. En títulos y entradillas se aplica con `BrandText`. No sirve para otros textos, porque no tiene letras acentuadas.
+- **Abaddon:** solo como imagen del nombre SphereWars; la fuente no tiene licencia web y no se carga. La clase `.wordmark` pinta `public/brand/wordmark.svg` (trazos sacados de la fuente) con el color del texto o con el degradado `.ember-text`; `.wordmark-wide` es la versión espaciada de la cabecera y el pie. En títulos y entradillas se aplica con `BrandText`, que deja el nombre como texto para lectores de pantalla y buscadores.
 - **Federo:** títulos, subtítulos, botones y etiquetas. Solo tiene un grosor: la jerarquía se marca con el tamaño y el color, nunca con negrita falsa.
 - **Inter:** texto de lectura e información de interfaz.
 
@@ -111,7 +111,7 @@ Esquinas rectas y bordes finos en oro o en el acento de facción.
 ## Do's and Don'ts
 
 - Usa ilustraciones y fotos oficiales de `../material/`, nunca imágenes genéricas.
-- Muestra el nombre SphereWars en Abaddon y los títulos en Federo.
+- Muestra el nombre SphereWars con la imagen de Abaddon (`.wordmark`, nunca la fuente) y los títulos en Federo.
 - Escribe etiquetas en Federo a 14 px como mínimo, sin versales pequeñas con mucho espaciado.
 - Las animaciones de interfaz (botones, menús, tarjetas) duran menos de 0,5 s. Las escenas ligadas al lore pueden durar más, nunca bloquean la lectura y todas respetan `prefers-reduced-motion`.
 - La portada solo explica qué es SphereWars y su mundo. El resto vive en su sección: empezar a jugar en `/juego`, el mundo en WikiSphere, el contacto en Comunidad.

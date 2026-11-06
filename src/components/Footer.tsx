@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { dict, localeNames, locales, type Locale } from "@/lib/i18n";
 import { links } from "@/content/site";
+import { Wordmark } from "@/components/Wordmark";
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = dict[locale];
@@ -8,7 +9,7 @@ export function Footer({ locale }: { locale: Locale }) {
     <footer className="mt-24 border-t border-gold/20 bg-coal">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="ember-text font-wordmark text-3xl tracking-[0.04em] text-gold">SphereWars</p>
+          <p className="text-3xl text-gold"><Wordmark className="wordmark-wide ember-text" /></p>
           <p className="mt-2 text-sm text-stone">{t.footer.tagline}</p>
           <p className="mt-4 flex gap-3 text-sm text-stone">
             {locales.map((l) => (

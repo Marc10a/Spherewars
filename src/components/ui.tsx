@@ -3,10 +3,14 @@ import Link from "next/link";
 import { ElementCanvas } from "@/components/ElementCanvas";
 import { elementFor } from "@/lib/element";
 import type { ReactNode } from "react";
+import { Wordmark } from "@/components/Wordmark";
 
-/** Brand rule: the name "SphereWars" is always set in Abaddon; the rest of a title stays in Federo. */
+/**
+ * Brand rule: the name "SphereWars" is always the Abaddon wordmark, drawn as an image (.wordmark: the font has no web licence);
+ * the rest of a title stays in Federo. See Wordmark: the name stays readable for screen readers and search.
+ */
 export function BrandText({ text }: { text: string }) {
-  return text.split(/(SphereWars)/i).map((part, i) => (i % 2 ? <span key={i} className="font-wordmark">SphereWars</span> : part));
+  return text.split(/(SphereWars)/i).map((part, i) => (i % 2 ? <Wordmark key={i} /> : part));
 }
 
 export function Button({ href, children, variant = "solid", external }: { href: string; children: ReactNode; variant?: "solid" | "ghost"; external?: boolean }) {

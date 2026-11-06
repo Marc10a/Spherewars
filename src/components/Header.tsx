@@ -1,5 +1,6 @@
 "use client";
 
+import { Wordmark } from "@/components/Wordmark";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,7 +55,7 @@ export function Header({ locale }: { locale: Locale }) {
       <nav aria-label={a.mainNav} className="mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-4 py-2">
         <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>
           <Image src="/brand/logo.jpeg" alt="" width={44} height={44} priority className="rounded-full ring-1 ring-gold/60 max-sm:size-9" />
-          <span className="font-wordmark text-xl tracking-[0.04em] text-gold sm:text-2xl">SphereWars</span>
+          <span className="text-xl text-gold sm:text-2xl"><Wordmark className="wordmark-wide" /></span>
           <span className="sr-only">{a.home}</span>
         </Link>
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { abaddon, federo, inter } from "@/lib/fonts";
+import { federo, inter } from "@/lib/fonts";
 import { FxLayer } from "@/components/fx/FxLayer";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -33,7 +33,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   if (!isLocale(locale)) notFound();
   const t = dict[locale];
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`${federo.variable} ${inter.variable} ${abaddon.variable}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${federo.variable} ${inter.variable}`}>
       <body className="min-h-screen antialiased">
         <FxLayer />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:text-abyss">

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Dice6, FileText, Layers, Mountain, Ruler } from "lucide-react";
-import { dict, isLocale, locales } from "@/lib/i18n";
-import { factions, getFaction } from "@/content/factions";
+import { ArrowRight, Dice6, FileText, Layers, Mountain, Ruler } from "lucide-react";
+import { dict, isLocale, locales, type Dict } from "@/lib/i18n";
+import { factions, getFaction, type Faction } from "@/content/factions";
 import docs from "@/content/shop-products.json";
 import { Button } from "@/components/ui";
 import { links } from "@/content/site";
@@ -12,18 +12,29 @@ import { shopReadiness } from "@/lib/shop/settings";
 import { productFacts } from "@/lib/shop/facts";
 import { productForMiniature } from "@/lib/shop/match";
 import { packFor } from "@/lib/shop/packs";
-import { characterInfo, factionCharacters, miniPhotos, miniVisual, ownerPhotos, shopKey } from "@/lib/wiki";
+import { characterArt, characterInfo, factionCharacters, miniPhotos, miniVisual, ownerPhotos, shopKey } from "@/lib/wiki";
+import { elementFor } from "@/lib/element";
 import { jsonLd, pageMeta, siteUrl } from "@/lib/seo";
-import { ProductGallery } from "@/components/shop/ProductGallery";
+import { ProductGallery, type GalleryPhoto } from "@/components/shop/ProductGallery";
 import { BuyBox } from "@/components/shop/BuyBox";
+import { AmbientVideo } from "@/components/shop/AmbientVideo";
+import { ScaleLineup, toMm, type Figure } from "@/components/shop/ScaleLineup";
+import { cutoutSizes } from "@/components/shop/cutout-sizes";
+import { itemText } from "@/components/shop/facts-ui";
+import { ElementCanvas } from "@/components/ElementCanvas";
 import { shippingInfoText } from "@/lib/shop/shipping-info";
 import type { RelatedItem } from "@/components/shop/add-confirm-store";
 
 const last = (slug: string) => slug.split("/").pop()!;
 const docOf = (key: string) => (docs.products as unknown as Record<string, { lore?: string[] }>)[key] ?? null;
 const bare = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").replace(/\s*\([^)]*\)\s*$/, "").trim().toLowerCase();
-/** Specs already shown in the facts block or next to the buy button. */
-const FACT_LABELS = new Set(["Facción", "Puntos de Banda", "Peana", "Altura", "Número de miniaturas", "Estado"]);
+/** Specs shown in the facts strip or next to the buy button; the rest go under the description. */
+const SHOWN = new Set(["Facción", "Puntos de Banda", "Peana", "Altura", "Número de miniaturas", "Estado", "Dado de Vida", "Dados de Vida", "Subfacción"]);
+/** Gallery order on the product page: the cut-out first (it stands on the stage), then the scene, the size shot and the card. */
+const ORDER = ["clean", "bg", "size", "card"];
+const kindOf = (k: string) => (k.startsWith("bg") ? "bg" : k);
+/** Official figures in the reader's language: "3,9 cm" -> "3.9 cm" in English, "13 u 11" -> "13 or 11". Names stay as written. */
+const localNum = (v: string, locale: string, t: Dict) => (locale === "en" ? v.replace(/(\d),(\d)/g, "$1.$2") : v).replace(/^(\d+) [ou] (\d+)$/, `$1 ${t.catalogue.or} $2`);
 
 export const generateStaticParams = () =>
   locales.flatMap((locale) => factions.flatMap((f) => [
@@ -43,6 +54,8 @@ function find(faccion: string, mini: string) {
   return page ? { f, page, key: page.slug, title: page.title } : null;
 }
 
+const cutoutOf = (key: string) => ownerPhotos(key)?.gallery.find((g) => g.kind === "clean")?.src ?? null;
+
 /** Same-faction singles on sale that are not in the faction's Starter Pack, in the official order. */
 function relatedSingles(factionSlug: string, ownKey: string, products: Product[], locale: string): RelatedItem[] {
   const inPack = new Set((productFacts(`packs/${factionSlug}`)?.items ?? []).map(bare));
@@ -51,11 +64,50 @@ function relatedSingles(factionSlug: string, ownKey: string, products: Product[]
     const name = facts?.title ?? m.title;
     const p = productForMiniature(products, m.slug);
     const price = p?.sellable && p.stock !== 0 ? formatPrice(p.price_cents, p.currency, locale) : null;
-    if (!p || !price || m.slug === ownKey || inPack.has(bare(name))) return [];
-    const clean = ownerPhotos(m.slug)?.gallery.find((g) => g.kind === "clean");
-    const visual = clean ?? miniVisual(m);
-    return [{ id: p.id, name, href: `/${locale}/tienda/${factionSlug}/${last(m.slug)}`, image: visual?.src ?? null, price }];
+    if (!p || !price || shopKey(m.slug) === shopKey(ownKey) || inPack.has(bare(name))) return [];
+    const visual = cutoutOf(m.slug) ?? miniVisual(m)?.src ?? null;
+    return [{ id: p.id, name, href: `/${locale}/tienda/${factionSlug}/${last(m.slug)}`, image: visual, price }];
   });
+}
+
+/** A Starter Pack line ("Leva Demontre (3 miniaturas)") matched to the faction's miniature, when one has that name. */
+function packItem(factionSlug: string, item: string, locale: string, t: Dict) {
+  const want = bare(item);
+  const m = factionCharacters(factionSlug).find((c) => {
+    const names = [productFacts(c.slug)?.title, c.title].filter(Boolean).map((n) => bare(n!));
+    return names.some((n) => n === want || n.startsWith(`${want},`) || want.startsWith(`${n} `) || n.startsWith(`${want} `));
+  });
+  const facts = m ? productFacts(m.slug) : null;
+  const raw = facts?.specs.find((x) => x.label === "Altura")?.value ?? null;
+  const height = raw ? localNum(raw, locale, t) : null;
+  const tile = m ? ownerPhotos(m.slug)?.tile ?? null : null;
+  const image = m ? cutoutOf(m.slug) ?? tile ?? miniVisual(m)?.src ?? null : null;
+  return { label: itemText(item, t), href: m ? `/${locale}/tienda/${factionSlug}/${last(m.slug)}` : null, image, cut: Boolean(m && cutoutOf(m.slug)), height };
+}
+
+/** This miniature beside up to three of its faction (shortest, tallest and one in between), all with an official height and a cut-out photo. */
+function lineup(f: Faction, key: string, locale: string, t: Dict): Figure[] {
+  const fig = (slug: string, title: string): Figure | null => {
+    const facts = productFacts(slug);
+    const heightText = facts?.specs.find((x) => x.label === "Altura")?.value ?? null;
+    const heightMm = toMm(heightText);
+    const src = cutoutOf(slug);
+    const size = src ? cutoutSizes[src] : null;
+    if (!facts || !heightMm || !heightText || !src || !size) return null;
+    return { key: shopKey(slug), name: facts.name ?? title, heightMm, heightText: localNum(heightText, locale, t), src, size, href: `/${locale}/tienda/${f.slug}/${last(slug)}` };
+  };
+  const self = fig(key, "");
+  if (!self) return [];
+  const seen = new Set([self.key]);
+  const others = factionCharacters(f.slug).flatMap((m) => {
+    const x = fig(m.slug, m.title);
+    if (!x || seen.has(x.key)) return [];
+    seen.add(x.key);
+    return [x];
+  }).sort((a, b) => a.heightMm - b.heightMm);
+  if (!others.length) return [];
+  const pick = [...new Set([others[0], others[others.length - 1], others[Math.floor(others.length / 2)]])];
+  return [{ ...self, current: true }, ...pick].sort((a, b) => a.heightMm - b.heightMm);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; faccion: string; mini: string }> }) {
@@ -75,21 +127,30 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const { f, page, key } = hit;
   const t = dict[locale];
   const s = t.shop;
+  const d = t.pdp;
   const facts = productFacts(key);
   const lore = docOf(shopKey(key))?.lore ?? [];
   const title = facts?.title ?? hit.title; // the official name, model count included: "Leva Demontre (3)"
   const info = page ? characterInfo(page) : null; // short official wiki text, never invented
+  const isPack = key.startsWith("packs/");
+  const element = elementFor(f.theme);
 
   const [products, ready] = await Promise.all([listSellableProducts(), shopReadiness()]);
   const product = productForMiniature(products, key);
   const own = product ? mediaUrl(product.image_path) : null;
-  const ownerShots = ownerPhotos(key)?.gallery.map((g) => ({ src: g.src, alt: title })) ?? [];
-  const wikiPhotos = page ? miniPhotos(page).map((p) => ({ src: p.src, alt: title, art: p.kind === "illustration" })) : ownerShots;
+
+  // Official photos with what each one shows, the cut-out first; then the wiki's own images (illustrations, renders) not already there.
+  const owner = (ownerPhotos(key)?.gallery ?? []).map((g): GalleryPhoto => ({ src: g.src, alt: title, kind: kindOf(g.kind) }))
+    .sort((a, b) => (ORDER.indexOf(a.kind!) + 9) % 9 - (ORDER.indexOf(b.kind!) + 9) % 9);
+  // The wiki's own miniature renders are the same photo as the owner's cut-out: with one, only its illustrations are added.
+  const hasCut = owner.some((o) => o.kind === "clean");
+  const wikiExtra = page ? miniPhotos(page).filter((p) => !owner.some((o) => o.src === p.src) && (!hasCut || p.kind === "illustration")).map((p): GalleryPhoto => ({ src: p.src, alt: title, art: p.kind === "illustration", kind: p.kind === "illustration" ? "art" : "photo" })) : [];
+  const official = [...owner, ...wikiExtra];
   // WooCommerce gallery first (only images hosted on the WooCommerce domain, which next/image is configured for), then the official ones.
   const wcHost = process.env.WC_API_URL ? new URL(process.env.WC_API_URL).hostname : null;
   const wooPhotos = (product?.images ?? []).filter((i) => { try { return i.src.startsWith("https://") && new URL(i.src).hostname === wcHost; } catch { return false; } });
   // With a WooCommerce gallery the owner manages the photos there: only the illustrations are added, or the same photo would show twice.
-  const photos = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos, ...(wooPhotos.length ? wikiPhotos.filter((p) => "art" in p && p.art) : wikiPhotos)];
+  const photos: GalleryPhoto[] = [...(own ? [{ src: own, alt: product?.image_alt ?? title }] : []), ...wooPhotos, ...(wooPhotos.length ? official.filter((p) => p.art) : official)];
 
   const priced = Boolean(product?.sellable && product.price_cents && product.price_cents > 0);
   const price = priced && product ? formatPrice(product.price_cents, product.currency, locale) : null;
@@ -101,158 +162,223 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const status = !priced || !ready.canCheckout ? s.statusNotOnSale : soldOut ? s.soldOut : s.statusAvailable;
   const url = `${siteUrl}/${locale}/tienda/${f.slug}/${mini}`;
   const related = canBuy ? relatedSingles(f.slug, key, products, locale) : [];
-  const isPack = key.startsWith("packs/");
 
-  const spec = (label: string) => facts?.specs.find((x) => x.label === label)?.value ?? null;
+  // The Starter Pack is offered on a single's page when it is on sale.
+  const pack = !isPack ? packFor(f.slug) : null;
+  const packProduct = pack ? productForMiniature(products, pack.key) : null;
+  const packPrice = pack && packProduct?.sellable && packProduct.stock !== 0 && ready.canCheckout ? formatPrice(packProduct.price_cents, packProduct.currency, locale) : null;
+  const more = [
+    ...(pack && packPrice ? [{ id: `pack-${pack.key}`, name: pack.title, href: `/${locale}/tienda/${f.slug}/starter-pack`, image: pack.image, price: packPrice, pack: true }] : []),
+    ...related.map((r) => ({ ...r, pack: false })),
+  ].slice(0, 4);
+
+  const spec = (...labels: string[]) => facts?.specs.find((x) => labels.includes(x.label))?.value ?? null;
   const models = spec("Número de miniaturas") ?? (facts?.models ? String(facts.models) : null);
-  const statCells = ([[s.factPoints, spec("Puntos de Banda")], [s.factBase, spec("Peana")], [s.factHeight, spec("Altura")], ...(isPack ? [[s.factModels, models]] : [])] as [string, string | null][]).filter((c): c is [string, string] => Boolean(c[1]));
+  const life = spec("Dado de Vida", "Dados de Vida");
+  const num = (v: string | null) => (v ? localNum(v, locale, t) : null);
+  const strip = ([
+    [s.factPoints, num(spec("Puntos de Banda"))],
+    [s.factHeight, num(spec("Altura"))],
+    [s.factBase, num(spec("Peana"))],
+    [life && Number(life) > 1 ? d.lives : d.life, life],
+    [s.factModels, isPack || (facts?.models ?? 0) > 1 ? models : null],
+    [d.sub, spec("Subfacción"), "es"],
+  ] as [string, string | null, string?][]).filter((c): c is [string, string, string?] => Boolean(c[1]));
   const estado = spec("Estado");
-  const extraSpecs = (facts?.specs ?? []).filter((x) => !FACT_LABELS.has(x.label));
+  const extraSpecs = (facts?.specs ?? []).filter((x) => !SHOWN.has(x.label));
   const need = [[Dice6, s.needDice], [Ruler, s.needTape], [Layers, s.needCounters], [Mountain, s.needScenery]] as const;
-  const h2 = "font-display text-2xl text-ivory md:text-3xl";
+  const figures = isPack ? [] : lineup(f, key, locale, t);
+  const items = isPack ? (facts?.items ?? []).map((i) => packItem(f.slug, i, locale, t)) : [];
+  const art = page ? characterArt(page.slug) : null;
+  const cut = photos[0]?.kind === "clean" ? photos[0].src : null;
+  const excerpt = lore[0] ?? null;
+  const h2 = "font-display text-3xl text-ivory md:text-4xl";
 
   return (
-    <div data-faction={f.theme} className="bg-[linear-gradient(180deg,var(--land-tint),var(--abyss)_32rem)]">
-      <div className="mx-auto max-w-7xl px-4 pt-6 max-lg:hidden">
-        <nav aria-label="breadcrumb" className="text-sm text-stone">
-          <Link href={`/${locale}/tienda`} className="hover:text-gold">{s.title}</Link> / <Link href={`/${locale}/tienda/${f.slug}`} className="hover:text-gold">{f.name}</Link>
-        </nav>
-      </div>
-
-      <section className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-4 px-4 pb-12 pt-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14 lg:pb-20 lg:pt-6">
-        <div data-wp-slot="gallery" className="lg:sticky lg:top-20 lg:self-start">
-          {photos.length > 0 ? (
-            <ProductGallery photos={photos} labels={{ prev: s.prevPhoto, next: s.nextPhoto, zoom: s.zoomIn, zoomToggle: s.zoomToggle, close: t.a11y.close, photoOf: s.photoOf, gallery: s.gallery }} />
-          ) : (
-            <div className="spot grid place-items-center border border-accent/30 text-center max-lg:h-[31svh] max-lg:min-h-40 lg:h-[min(72svh,46rem)]">
-              <div><span className="block font-display text-8xl text-accent/40" aria-hidden>{title.charAt(0)}</span><span className="mt-2 block font-display text-base text-stone">{t.common.provisional}</span></div>
-            </div>
-          )}
+    <div data-faction={f.theme}>
+      <section className="pdp-hero">
+        <div className="pdp-atmo" aria-hidden>
+          <Image src={`/facciones/${f.slug}.webp`} alt="" fill priority sizes="(min-width:1024px) 60vw, 50vw" className="pdp-atmo-img" />
+        </div>
+        {/* Its pause button must stay reachable, so the video sits between the still frame and the veil, outside the hidden layers. */}
+        <AmbientVideo src={`/facciones/${f.slug}.mp4`} pauseLabel={t.a11y.pauseVideo} playLabel={t.a11y.playVideo} />
+        <div className="pdp-atmo" aria-hidden>
+          <div className="pdp-veil" />
+          {element && <ElementCanvas element={element} density={0.45} />}
         </div>
 
-        <div>
-          <h1 lang="es" className="font-display text-3xl leading-tight md:text-5xl">{title}</h1>
-          <p className="mt-1 font-display text-lg lg:mt-2"><Link href={`/${locale}/tienda/${f.slug}`} className="text-accent underline-offset-4 hover:underline">{f.name}</Link></p>
+        <div className="relative mx-auto max-w-7xl px-4">
+          <nav aria-label="breadcrumb" className="pt-5 text-sm text-stone max-lg:hidden">
+            <Link href={`/${locale}/tienda`} className="hover:text-gold">{s.title}</Link> / <Link href={`/${locale}/tienda/${f.slug}`} className="hover:text-gold">{f.name}</Link>
+          </nav>
 
-          <div data-wp-slot="buy" className="mt-3 lg:mt-6">
-            {price && (
-              <p className="flex flex-wrap items-baseline gap-x-3">
-                <span className="font-display text-4xl text-gold tabular-nums">{price}</span>
-                {regular && <span className="text-lg text-stone tabular-nums"><span className="sr-only">{s.regularPrice}: </span><s>{regular}</s></span>}
-                <span className="text-sm text-stone">{s.taxIncluded}</span>
-              </p>
-            )}
-            <p className={`mt-1 flex items-center gap-2 text-base ${canBuy ? "text-ivory" : "text-stone"}`}>
-              <span aria-hidden className={`size-2 ${canBuy ? "bg-gold" : "border border-stone"}`} />{status}
-            </p>
-            {!priced && <p className="mt-1 text-sm text-stone">{s.pricePending}</p>}
-            {canBuy && ready.addressAtCheckout && <p className="mt-1 text-sm text-stone">{shippingInfoText(s.shippingInfo, locale)}</p>}
-
-            <div className="mt-4 lg:mt-6">
-              {canBuy && product ? (
-                <BuyBox locale={locale} related={related}
-                  item={{ id: product.id, slug: product.slug, name: title, price_cents: product.price_cents!, image: photos[0]?.src ?? null, stock: product.stock }}
-                  labels={{ qty: s.qty, add: s.add, added: s.added, buyNow: s.buyNow, viewCart: s.viewCart, soldOut: s.soldOut, qtyLess: s.qtyLess, qtyMore: s.qtyMore }} />
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-x-12 gap-y-3 pb-6 pt-2 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)] lg:items-center lg:pb-8 lg:pt-2">
+            <div data-wp-slot="gallery" className="-mx-4 sm:mx-0">
+              {photos.length > 0 ? (
+                <ProductGallery photos={photos} labels={{ prev: s.prevPhoto, next: s.nextPhoto, zoom: s.zoomIn, zoomToggle: s.zoomToggle, close: t.a11y.close, photoOf: s.photoOf, gallery: s.gallery, kinds: d.kinds }} />
               ) : (
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-1 max-sm:[&>a:first-child]:w-full max-sm:[&>a:first-child]:justify-center">
-                  <Button href={links.rules} external>{s.downloadRules}</Button>
-                  <Link href={`/${locale}/tienda/${f.slug}`} className="inline-flex min-h-11 items-center font-display text-base text-gold underline-offset-4 hover:underline">{s.moreOfFaction.replace("{faction}", f.name)}</Link>
+                <div className="grid place-items-center text-center max-lg:h-[36svh] max-lg:min-h-52 lg:h-[min(56svh,36rem)]">
+                  <div><span className="block font-display text-8xl text-accent/40" aria-hidden>{title.charAt(0)}</span><span className="mt-2 block font-display text-base text-stone">{t.common.provisional}</span></div>
                 </div>
               )}
             </div>
-          </div>
-          {estado && <p className="mt-3 text-sm text-stone">{/sin montar/i.test(estado) ? s.unassembled : <span lang="es">{estado}</span>}</p>}
 
-          <div className="mt-10 space-y-10 lg:mt-12">
-            {(facts?.items.length || (!isPack && facts?.models)) ? (
-              <section>
-                <h2 className={h2}>{s.contents}</h2>
-                {facts.items.length > 0 ? (
-                  <ul lang="es" className="mt-3 divide-y divide-gold/15 border-y border-gold/15 text-base">{facts.items.map((i) => <li key={i} className="py-2.5">{i}</li>)}</ul>
-                ) : (
-                  <p className="mt-3 text-base">{s.modelsCount.replace("{n}", String(facts.models))}</p>
-                )}
-              </section>
-            ) : null}
+            <div className="lg:py-6">
+              <h1 lang="es" className="font-display text-[2rem] leading-[1.08] text-ivory md:text-5xl lg:text-6xl">{title}</h1>
+              <p className="mt-2 lg:mt-3">
+                <Link href={`/${locale}/tienda/${f.slug}`} className="inline-flex min-h-8 items-center gap-2 font-display text-lg text-accent underline-offset-4 hover:underline">
+                  <Image src={`/brand/factions/${f.slug}.webp`} alt="" width={28} height={30} className="h-7 w-auto" />{f.name}
+                </Link>
+              </p>
 
-            {(statCells.length > 0 || estado) && (
-              <section>
-                <h2 className={h2}>{s.factsTitle}</h2>
-                <dl className="mt-3 border border-gold/25 bg-coal/60">
-                  {statCells.length > 0 && (
-                    <div className="grid grid-flow-col auto-cols-fr divide-x divide-gold/25">
-                      {statCells.map(([label, value]) => (
-                        <div key={label} className="flex flex-col-reverse justify-end gap-1 p-3 md:p-4">
-                          <dt className="text-sm text-stone">{label}</dt>
-                          <dd lang="es" className="font-display text-2xl leading-tight text-gold tabular-nums md:text-3xl">{value}</dd>
-                        </div>
-                      ))}
-                    </div>
+              <div data-wp-slot="buy" className="mt-3 lg:mt-7">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  {price && (
+                    <p className="flex flex-wrap items-baseline gap-x-3">
+                      <span className="font-display text-4xl leading-none text-gold tabular-nums lg:text-5xl">{price}</span>
+                      {regular && <span className="text-lg text-stone tabular-nums"><span className="sr-only">{s.regularPrice}: </span><s>{regular}</s></span>}
+                      <span className="text-sm text-stone">{s.taxIncluded}</span>
+                    </p>
                   )}
-                  {estado && (
-                    <div className={`flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-3 md:p-4 ${statCells.length > 0 ? "border-t border-gold/25" : ""}`}>
-                      <dt className="text-sm text-stone">{s.factAssembly}</dt>
-                      <dd className="font-display text-lg">{/sin montar/i.test(estado) ? s.unassembled : <span lang="es">{estado}</span>}</dd>
-                    </div>
-                  )}
-                </dl>
-              </section>
-            )}
-
-            <section>
-              <h2 className={h2}>{s.needTitle}</h2>
-              <ul className="mt-3 divide-y divide-gold/15 border-y border-gold/15 text-base">
-                {need.map(([Icon, label]) => (
-                  <li key={label} className="flex items-center gap-3 py-2.5"><Icon size={20} aria-hidden className="shrink-0 text-gold" />{label}</li>
-                ))}
-                <li className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2.5">
-                  <span className="flex items-center gap-3"><FileText size={20} aria-hidden className="shrink-0 text-gold" />{s.needRules}</span>
-                  <a href={links.rules} rel="noopener" className="ml-8 inline-flex min-h-6 items-center text-gold underline underline-offset-4 hover:text-ivory sm:ml-auto">{s.needRulesLink}</a>
-                </li>
-              </ul>
-            </section>
-
-            {(facts || info?.excerpt) && (
-              <section>
-                <h2 className={h2}>{s.officialDescription}</h2>
-                <div lang="es" className="mt-3 max-w-[68ch] space-y-4 text-base leading-relaxed text-ivory/85">
-                  <p>{facts?.intro ?? info?.excerpt}</p>
-                  {lore.map((para) => <p key={para}>{para}</p>)}
-                  {!facts && info?.race && <p className="text-accent">{t.factions.raceLabel}: {info.race}</p>}
+                  <p className={`flex items-center gap-2 text-base ${canBuy ? "text-ivory" : "text-stone"}`}>
+                    <span aria-hidden className={`size-2 ${canBuy ? "bg-gold shadow-[0_0_10px_var(--gold)]" : "border border-stone"}`} />{status}
+                  </p>
                 </div>
-                {extraSpecs.length > 0 && (
-                  <dl lang="es" className="mt-5 divide-y divide-gold/15 border-y border-gold/15 text-base">
-                    {extraSpecs.map(({ label, value }) => (
-                      <div key={label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5"><dt className="text-stone">{label}</dt><dd>{value}</dd></div>
-                    ))}
-                  </dl>
-                )}
-              </section>
-            )}
+                {!priced && <p className="mt-1 text-sm text-stone">{s.pricePending}</p>}
 
-            {page && <p><Link href={`/${locale}/wikisphere/${page.slug}`} className="font-display text-lg text-gold underline underline-offset-4 hover:text-ivory">{t.factions.readFull}</Link></p>}
+                <div className="mt-4 lg:mt-6">
+                  {canBuy && product ? (
+                    <BuyBox locale={locale} related={related}
+                      item={{ id: product.id, slug: product.slug, name: title, price_cents: product.price_cents!, image: cut ?? photos[0]?.src ?? null, stock: product.stock }}
+                      labels={{ qty: s.qty, add: s.add, added: s.added, buyNow: s.buyNow, viewCart: s.viewCart, soldOut: s.soldOut, qtyLess: s.qtyLess, qtyMore: s.qtyMore }} />
+                  ) : (
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-1 max-sm:[&>a:first-child]:w-full max-sm:[&>a:first-child]:justify-center">
+                      <Button href={links.rules} external>{s.downloadRules}</Button>
+                      <Link href={`/${locale}/tienda/${f.slug}`} className="inline-flex min-h-11 items-center font-display text-base text-gold underline-offset-4 hover:underline">{s.moreOfFaction.replace("{faction}", f.name)}</Link>
+                    </div>
+                  )}
+                </div>
+                {canBuy && ready.addressAtCheckout && <p className="mt-4 text-sm text-stone">{shippingInfoText(s.shippingInfo, locale)}</p>}
+              </div>
+              {estado && <p className="mt-1 text-sm text-stone">{/sin montar/i.test(estado) ? s.unassembled : <span lang="es">{estado}</span>}</p>}
+            </div>
           </div>
         </div>
+
+        {strip.length > 0 && (
+          <div className="relative mx-auto max-w-7xl px-4 pb-2 max-sm:px-0">
+            <dl className="pdp-facts">
+              {strip.map(([label, value, lang]) => (
+                <div key={label}>
+                  <dt className="text-sm text-stone">{label}</dt>
+                  <dd lang={lang} className="font-display text-2xl leading-tight text-gold tabular-nums">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
       </section>
 
-      {isPack && related.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-16 lg:pb-24">
-          <h2 className={h2}>{s.crossTitle}</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 max-sm:[&>li:nth-child(3)]:hidden">
-            {related.slice(0, 3).map((r) => (
-              <li key={r.id}>
-                <Link href={r.href} className="tilt-card group block border border-accent/25 bg-coal">
-                  <span className="spot relative block aspect-square">
-                    {r.image && <Image src={r.image} alt="" fill sizes="(min-width:640px) 30vw, 50vw" loading="lazy" className="object-contain p-3" />}
-                  </span>
-                  <span lang="es" className="block px-3 pt-3 font-display text-lg leading-tight group-hover:text-accent">{r.name}</span>
-                  <span className="block px-3 pb-3 pt-1 text-base text-stone tabular-nums">{r.price}</span>
-                </Link>
-              </li>
+      <div className="mx-auto max-w-7xl space-y-16 px-4 pb-16 pt-12 lg:space-y-24 lg:pb-24 lg:pt-16">
+        {isPack && items.length > 0 && (
+          <section aria-labelledby="pdp-box">
+            <h2 id="pdp-box" className={h2}>{d.packTitle}</h2>
+            <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+              {items.map((i) => {
+                const body = (
+                  <>
+                    <span className={`relative block aspect-square ${i.cut ? "spot" : "bg-coal"}`}>
+                      {i.image && <Image src={i.image} alt="" fill sizes="(min-width:1024px) 22vw, 45vw" loading="lazy" className={`object-contain ${i.cut ? "p-4 pdp-cut" : ""}`} />}
+                    </span>
+                    <span lang="es" className="block px-3 pt-3 font-display text-lg leading-tight group-hover:text-accent">{i.label}</span>
+                    {i.height && <span className="block px-3 pb-3 pt-1 text-sm text-stone">{s.factHeight}: <span className="tabular-nums">{i.height}</span></span>}
+                  </>
+                );
+                return (
+                  <li key={i.label}>
+                    {i.href
+                      ? <Link href={i.href} className="tilt-card group block h-full border border-accent/25 bg-coal">{body}</Link>
+                      : <div className="h-full border border-accent/25 bg-coal">{body}</div>}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
+        {figures.length > 1 && (
+          <section aria-labelledby="pdp-scale" className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:items-start">
+            <div>
+              <h2 id="pdp-scale" className={h2}>{d.scaleTitle}</h2>
+              <p className="mt-3 max-w-[46ch] text-base text-ivory/85">{d.scaleLead.replace("{faction}", f.name)}</p>
+              <p className="mt-2 text-sm text-stone">{d.scaleGrid}</p>
+            </div>
+            <ScaleLineup figures={figures} label={d.scaleLabel.replace("{list}", figures.map((x) => `${x.name} ${x.heightText}`).join(", "))} />
+          </section>
+        )}
+
+        {(facts || info?.excerpt) && (
+          <section aria-labelledby="pdp-lore" className={`grid gap-8 ${art ? "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-14" : ""}`}>
+            <div>
+              <h2 id="pdp-lore" className={h2}>{d.loreTitle}</h2>
+              <div lang="es" className="mt-4 max-w-[68ch] space-y-4 text-base leading-relaxed text-ivory/85">
+                <p>{facts?.intro ?? info?.excerpt}</p>
+                {excerpt && <p className="border-l border-accent/50 pl-4 font-display text-lg leading-relaxed text-ivory">{excerpt}</p>}
+                {!facts && info?.race && <p className="text-accent">{t.factions.raceLabel}: {info.race}</p>}
+              </div>
+              {page && <p className="mt-5"><Link href={`/${locale}/wikisphere/${page.slug}`} className="shop-arrow-link text-lg">{d.readWiki}<ArrowRight size={18} aria-hidden /></Link></p>}
+              {extraSpecs.length > 0 && (
+                <dl lang="es" className="mt-6 max-w-[68ch] divide-y divide-gold/15 border-y border-gold/15 text-base">
+                  {extraSpecs.map(({ label, value }) => (
+                    <div key={label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5"><dt className="text-stone">{label}</dt><dd>{value}</dd></div>
+                  ))}
+                </dl>
+              )}
+            </div>
+            {art && (
+              <div className={`relative mx-auto w-full max-w-md self-start border border-accent/25 ${art.bg === "light" ? "bg-ivory" : "spot"}`}>
+                <Image src={art.src} alt={title} width={art.w} height={art.h} sizes="(min-width:1024px) 28rem, 90vw" loading="lazy" className={`h-auto w-full ${art.bg === "light" ? "mix-blend-multiply" : ""}`} />
+              </div>
+            )}
+          </section>
+        )}
+
+        <section aria-labelledby="pdp-need">
+          <h2 id="pdp-need" className={h2}>{s.needTitle}</h2>
+          <ul className="mt-6 grid grid-cols-1 border-y border-gold/20 sm:grid-cols-2 lg:grid-cols-5">
+            {need.map(([Icon, label]) => (
+              <li key={label} className="flex items-center gap-3 border-gold/15 py-3 max-sm:border-b sm:px-4 sm:py-5 lg:border-l lg:first:border-l-0 lg:first:pl-0"><Icon size={22} aria-hidden className="shrink-0 text-gold" />{label}</li>
             ))}
+            <li className="flex flex-wrap items-center gap-x-3 gap-y-1 py-3 sm:px-4 sm:py-5 lg:border-l lg:border-gold/15">
+              <span className="flex items-center gap-3"><FileText size={22} aria-hidden className="shrink-0 text-gold" />{s.needRules}</span>
+              <a href={links.rules} rel="noopener" className="ml-[2.125rem] inline-flex min-h-6 items-center text-gold underline underline-offset-4 hover:text-ivory">{s.needRulesLink}</a>
+            </li>
           </ul>
         </section>
-      )}
+
+        {more.length > 0 && (
+          <section aria-labelledby="pdp-more">
+            <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+              <h2 id="pdp-more" className={h2}>{s.crossTitle}</h2>
+              <Link href={`/${locale}/tienda/${f.slug}`} className="shop-arrow-link">{d.seeAll.replace("{faction}", f.name)}<ArrowRight size={18} aria-hidden /></Link>
+            </div>
+            <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+              {more.map((r) => (
+                <li key={r.id}>
+                  <Link href={r.href} className="tilt-card group flex h-full flex-col border border-accent/25 bg-coal">
+                    <span className="spot relative block aspect-square">
+                      {r.image && <Image src={r.image} alt="" fill sizes="(min-width:1024px) 22vw, 45vw" loading="lazy" className={`object-contain ${r.pack ? "p-2" : "p-4 pdp-cut"}`} />}
+                    </span>
+                    <span lang="es" className="block px-3 pt-3 font-display text-lg leading-tight group-hover:text-accent">{r.name}</span>
+                    {r.pack && <span className="block px-3 pt-1 text-sm text-stone">{d.starterLead.replace("{faction}", f.name)}</span>}
+                    <span className="mt-auto block px-3 pb-3 pt-2 font-display text-lg text-gold tabular-nums">{r.price}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
 
       {priced && product && price && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({

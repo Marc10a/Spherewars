@@ -21,7 +21,7 @@ El panel de WordPress (`/wp-admin`) sigue funcionando como siempre.
 - **Fotos oficiales de 34 miniaturas y 4 Starter Packs:** en el catálogo sale la foto con el fondo de su facción; en la ficha, la galería en este orden: foto con fondo, foto limpia, foto con su tamaño y tarjeta SphereWars.
 - **Descripciones oficiales** (los Word de «Descripciones Artículos»): texto de presentación, características (referencia, puntos de banda, peana, altura, material), contenido de los packs e historia desplegable.
 - **Precios:** los de la Guía Rápida 2026, sin céntimos. Los 4 Starter Packs a 39 €. Sin precio: Nirlem y las miniaturas que no están en la guía.
-- **Tipografías:** «SphereWars» en Abaddon (cabecera y pie) y el resto de títulos en Federo, como indica tu documento de fuentes.
+- **Tipografías:** «SphereWars» como imagen de Abaddon (cabecera y pie; la fuente no tiene licencia web y no se instala) y el resto de títulos en Federo, como indica tu documento de fuentes.
 - **Logos de facción** en cada página de facción, y el logo de las Mercenarias de Isha en su subfacción.
 - **Descargas oficiales:** las 2 guías rápidas (A4 y A5), 7 carteles y flyers y 15 mapas de Saphir (con vista previa).
 - **«El juego»:** tus dos imágenes resumen (características y progresión de puntos de banda), ampliables.

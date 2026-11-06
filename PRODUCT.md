@@ -37,11 +37,11 @@ Web oficial de SphereWars: Otro Mundo, un juego de escaramuzas con miniaturas pa
 - Rigen los límites de `docs/`: CSS de Tailwind precompilado (`npm run css`) y compilación apta para Hostinger o Vercel.
 - Terminología que no se traduce: Saphir, WikiSphere, SphereEvents y nombres de facciones, personajes y dioses.
 - **Decidido:** web en `spherewars.com` (Vercel) y tienda en `tienda.spherewars.com` (WooCommerce en cdmon). `spherewars.es` queda fuera del proyecto.
-- **Sin decidir:** pasarela de pago, precio del starter (39 € en el material impreso; 39,99 € en el catálogo) y licencia web de la fuente Abaddon.
+- **Sin decidir:** pasarela de pago, precio del starter (39 € en el material impreso; 39,99 € en el catálogo) . La fuente Abaddon no tiene licencia web: solo se usa como imagen del nombre.
 
 ## Brand Commitments
 
-- El nombre SphereWars se compone siempre en **Abaddon**.
+- El nombre SphereWars se muestra siempre con la tipografía **Abaddon**, pero como imagen (la fuente no tiene licencia web y no se instala en la web).
 - Títulos y subtítulos en **Federo**.
 - Facciones y su identidad de color: Adeptos de Malesur (verde), Vástagos de Kurgan (azul hielo), Manadas de Urueh (rojo fuego), La Alianza (gris).
 - Dioses: Kurgan (hielo), Kazag (incineración, de quien nacen las Manadas), Malesur (viento, creador de la Alianza y los Adeptos), Mohed (arena y piedras), Salssa'el (vida).

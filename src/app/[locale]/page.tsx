@@ -4,6 +4,7 @@ import { dict, isLocale } from "@/lib/i18n";
 import { factions } from "@/content/factions";
 import { links, stats } from "@/content/site";
 import { BrandText, Button } from "@/components/ui";
+import { Wordmark } from "@/components/Wordmark";
 import { EssenceOrb } from "@/components/fx/EssenceOrb";
 import { FactionPan } from "@/components/fx/FactionPan";
 import { LoopVideo } from "@/components/fx/LoopVideo";
@@ -39,7 +40,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <HeroVideo src="/brand/sphere-hero.mp4" mobileSrc="/brand/sphere-hero-m.mp4" position="center" pauseLabel={t.a11y.pauseVideo} playLabel={t.a11y.playVideo} />
         <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-abyss via-abyss/50 via-30% to-transparent to-65% md:block" aria-hidden />
         <div className="land-hero-out mx-auto w-full max-w-7xl px-4 pb-10 pt-6 md:pb-14 md:pt-0">
-          <p className="ember-text land-rise font-wordmark leading-none" style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}>SphereWars</p>
+          <p className="land-rise flex leading-none text-gold" style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}><Wordmark className="ember-text" /></p>
           <h1 className="land-rise mt-3 font-display text-3xl leading-tight md:text-5xl" style={{ "--d": 1 } as React.CSSProperties}><BrandText text={hero.title} /></h1>
           <p className="land-rise mt-2 max-w-2xl text-lg text-ivory/90 md:text-xl" style={{ "--d": 2 } as React.CSSProperties}>{hero.subtitle}. {hero.text}</p>
           <div className="land-rise mt-6 flex flex-wrap gap-3" style={{ "--d": 3 } as React.CSSProperties}>
