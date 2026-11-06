@@ -9,7 +9,7 @@ import { Button, chipCls, Pending } from "@/components/ui";
 import { ElementCanvas } from "@/components/ElementCanvas";
 import { muteForAutoplay, playWithTouchFallback } from "@/lib/video";
 
-export type AgendaItem = { id: string; date: string; venue: string; city: string | null; kind: string; slot?: string; note?: string | null; still?: string; logo?: string; href?: string };
+export type AgendaItem = { id: string; date: string; venue: string; city: string | null; kind: string; slot?: string; note?: string | null; still?: string; logo?: string; address?: string | null; href?: string };
 /** Date text is formatted once on the server: browsers and Node do not format every locale alike. */
 export type AgendaDates = { monthName: string; weekdays: string[]; days: Record<string, { long: string }> };
 type Filters = { city?: string; kind?: string; past: boolean };
@@ -40,7 +40,7 @@ function FilterSelect({ label, value, options, onChange }: { label: string; valu
 }
 
 /** The month's promo video, in the page header: it plays only while on screen. */
-function PromoVideo({ src, poster, label, soundOn, soundOff, pause, play }: { src: string; poster: string; label: string; soundOn: string; soundOff: string; pause: string; play: string }) {
+function PromoVideo({ src, poster, label, soundOn, soundOff, pause, play }: { src: string; poster?: string; label: string; soundOn: string; soundOff: string; pause: string; play: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const userPaused = useRef(false);
   const [state, setState] = useState<"paused" | "playing">("paused");
@@ -92,7 +92,7 @@ function PromoVideo({ src, poster, label, soundOn, soundOff, pause, play }: { sr
 }
 
 /** Agenda of SphereEvents. Filters live in the URL so a filtered agenda can be shared. */
-export function EventsAgenda({ locale, items, today, video, poster, month, initial, dates }: { locale: Locale; items: AgendaItem[]; today: string; month: string; video: string; poster: string; initial: Filters; dates: AgendaDates }) {
+export function EventsAgenda({ locale, items, today, video, poster, month, initial, dates }: { locale: Locale; items: AgendaItem[]; today: string; month: string; video: string | null; poster: string | null; initial: Filters; dates: AgendaDates }) {
   const t = dict[locale].events;
   const a = dict[locale].a11y;
   const [filters, setFilters] = useState<Filters>(initial);
@@ -129,12 +129,15 @@ export function EventsAgenda({ locale, items, today, video, poster, month, initi
   const until = next ? daysBetween(today, next.date) : 0;
   const untilLabel = until === 0 ? t.todayLabel : until === 1 ? t.tomorrowLabel : fmt(t.inDays, { n: until });
   const slotLabel = (i: AgendaItem) => (i.slot ? (t.slots as Record<string, string>)[i.slot] : i.note || t.kinds[i.kind]);
-  const videoEl = <PromoVideo src={video} poster={poster} label={t.videoLabel} soundOn={t.soundOn} soundOff={t.soundOff} pause={a.pauseVideo} play={a.playVideo} />;
+  // A month without video yet shows its poster in the same frame.
+  const videoEl = video ? <PromoVideo src={video} poster={poster ?? undefined} label={t.videoLabel} soundOn={t.soundOn} soundOff={t.soundOff} pause={a.pauseVideo} play={a.playVideo} />
+    : poster ? <figure className="mx-auto w-full max-w-sm lg:w-[min(24rem,calc((100svh-10rem)*.5625))]"><Image src={poster} alt="" width={576} height={1024} className="aspect-[9/16] w-full border border-gold/50 bg-abyss object-cover shadow-[0_0_70px_rgba(200,72,31,.35)]" /></figure>
+    : null;
 
   return (
     <div className="relative isolate flex flex-col">
       <div className="absolute inset-x-0 top-0 -z-10 h-[52rem] overflow-hidden [mask-image:linear-gradient(black_65%,transparent)]" aria-hidden>
-        <Image src={poster} alt="" fill priority sizes="100vw" className="scale-110 object-cover opacity-30 blur-2xl" />
+        {poster && <Image src={poster} alt="" fill priority sizes="100vw" className="scale-110 object-cover opacity-30 blur-2xl" />}
         <div className="absolute inset-0 bg-gradient-to-b from-abyss/40 to-abyss" />
         <ElementCanvas element="fire" density={0.3} />
       </div>
@@ -161,7 +164,7 @@ export function EventsAgenda({ locale, items, today, video, poster, month, initi
           )}
           <div className="mt-6 hidden lg:block"><Button href="#agenda">{t.agendaCta}</Button></div>
         </header>
-        <div className="order-3 px-4 pb-16 lg:px-0 lg:pb-0">{videoEl}</div>
+        {videoEl && <div className="order-3 px-4 pb-16 lg:px-0 lg:pb-0">{videoEl}</div>}
       </div>
 
       <section id="agenda" aria-label={t.calendar} className="order-2 mx-auto w-full max-w-7xl px-4 pb-16 pt-4 lg:pt-10" data-wp-slot="events-list">
@@ -229,7 +232,7 @@ export function EventsAgenda({ locale, items, today, video, poster, month, initi
                         <p className="text-ivory/90">{slotLabel(i)}</p>
                         <div className="mt-1 flex flex-wrap gap-x-4">
                           {i.still && <button type="button" onClick={() => setOpen(i)} className="min-h-11 font-display text-lg text-ivory underline underline-offset-4 hover:text-gold">{t.showPoster}</button>}
-                          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([i.venue, i.city].filter(Boolean).join(", "))}`} rel="noopener" className="inline-flex min-h-11 items-center gap-1 font-display text-lg text-ivory underline underline-offset-4 hover:text-gold"><MapPin size={16} aria-hidden />{t.map}</a>
+                          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([i.venue, i.address, i.city].filter(Boolean).join(", "))}`} rel="noopener" className="inline-flex min-h-11 items-center gap-1 font-display text-lg text-ivory underline underline-offset-4 hover:text-gold"><MapPin size={16} aria-hidden />{t.map}</a>
                         </div>
                       </div>
                     </li>

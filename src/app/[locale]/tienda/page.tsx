@@ -7,7 +7,8 @@ import { staticMeta } from "@/lib/seo";
 import { factions } from "@/content/factions";
 import { shopReadiness } from "@/lib/shop/settings";
 import { listSellableProducts } from "@/lib/data";
-import { buildCatalogue, parseShopQuery, shopHref, sortEntries } from "@/lib/shop/catalogue";
+import { buildCatalogue, catalogueCounts, parseShopQuery, shopHref, sortEntries } from "@/lib/shop/catalogue";
+import { CatalogueEmpty } from "@/components/shop/CatalogueEmpty";
 import { NotForSale } from "@/components/shop/NotForSale";
 import { ProductGrid } from "@/components/shop/ProductGrid";
 import { ShopFilters } from "@/components/shop/ShopFilters";
@@ -25,19 +26,23 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const query = parseShopQuery(await searchParams);
   const [ready, products] = await Promise.all([shopReadiness(), listSellableProducts()]);
   const open = ready.canCheckout;
-  const { packs, singles, unlisted } = buildCatalogue(products, locale);
+  const catalogue = buildCatalogue(products, locale);
+  const { packs, singles, unlisted } = catalogue;
+  const counts = catalogueCounts(catalogue);
   const onSale = packs.filter((p) => p.status !== "unlisted").length + singles.length;
   const showSingles = query.tipo !== "starter";
 
   return (
     <>
-      <ShopHero t={t} title={t.shop.title} image="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" count={onSale} open={open} />
-      <ShopFilters locale={locale} active={null} query={query} />
+      <ShopHero t={t} title={t.shop.title} image="/wiki/images/portada_manadas_retrato_infernal_bajo_el_volc_n.webp" count={onSale} open={open} locale={locale} />
+      <ShopFilters locale={locale} active={null} query={query} counts={counts} />
+      {/* Keyed by the filters: the results swap in with a short entrance (none with reduced motion). */}
+      <div key={`${query.tipo}-${query.orden}`} className="shop-results">
       {query.tipo !== "sueltas" && <StarterCompare packs={packs} t={t} open={open} locale={locale} orden={query.orden} />}
       {showSingles && (query.orden ? (
         <section aria-labelledby="all-singles" className="mx-auto max-w-7xl px-4 pt-12 md:pt-16">
           <h2 id="all-singles" className="mb-5 font-display text-3xl tracking-wide md:text-4xl">{c.singles} <span className="shop-num text-stone">({singles.length})</span></h2>
-          <ProductGrid entries={sortEntries(singles, query.orden)} t={t} open={open} showFaction />
+          <ProductGrid entries={sortEntries(singles, query.orden)} t={t} locale={locale} open={open} showFaction />
         </section>
       ) : factions.map((f) => {
         const list = singles.filter((e) => e.faction.slug === f.slug);
@@ -52,11 +57,16 @@ export default async function Page({ params, searchParams }: { params: Promise<{
                 <Link href={shopHref(locale, f.slug, query)} className="shop-arrow-link">{c.viewFaction}<span className="sr-only">: {f.name}</span><ArrowRight size={18} aria-hidden /></Link>
               </div>
             </div>
-            <ProductGrid entries={list} t={t} open={open} />
+            <ProductGrid entries={list} t={t} locale={locale} open={open} />
           </section>
         );
       }))}
-      {showSingles && !singles.length && <p className="mx-auto max-w-7xl px-4 pt-12 text-stone">{c.noSingles}</p>}
+      {showSingles && !singles.length && (
+        <div className="mx-auto max-w-7xl px-4 pt-12">
+          <CatalogueEmpty text={c.noSingles} actions={[{ href: shopHref(locale, null, { ...query, tipo: "starter" }), label: c.startHere, solid: true }]} />
+        </div>
+      )}
+      </div>
       {showSingles ? <NotForSale entries={unlisted} t={t} /> : <div className="pb-16" />}
     </>
   );

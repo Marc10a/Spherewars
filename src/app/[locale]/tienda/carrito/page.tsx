@@ -6,8 +6,8 @@ import { shopReadiness } from "@/lib/shop/settings";
 import { cancelAbandonedCheckout } from "@/lib/shop/cancel";
 import { listSellableProducts, type Product } from "@/lib/data";
 import { factionCharacters } from "@/lib/wiki";
-import { PageHero } from "@/components/ui";
 import { CartView, type LiveProduct } from "@/components/shop/CartView";
+import { CheckoutSteps } from "@/components/shop/CheckoutSteps";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -38,11 +38,20 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     p.sellable && p.price_cents && p.price_cents > 0 ? [[p.id, { price_cents: p.price_cents, stock: p.stock, href: shopHref(p, locale) }]] : []
   )));
 
+  // The shop's own address, said before the buyer is sent there (tienda.spherewars.com in production).
+  let checkoutHost: string | null = null;
+  try { checkoutHost = ready.addressAtCheckout && process.env.WC_API_URL ? new URL(process.env.WC_API_URL).host : null; } catch { /* no address: the generic note is shown */ }
+
   return (
     <>
-      <PageHero title={t.cart} />
-      <div className="mx-auto max-w-6xl px-4 py-8 md:py-12 lg:max-w-7xl">
-        <CartView locale={locale} settings={ready.settings} canCheckout={ready.canCheckout} addressAtCheckout={ready.addressAtCheckout} labels={t} notice={notice} live={live} failedLine={e && e !== "cancelled" && line && /^[0-9]{1,12}$/.test(line) ? line : null} />
+      <div className="border-b border-gold/25 bg-coal">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-x-8 gap-y-5 px-4 py-6 md:py-8">
+          <h1 className="font-display text-4xl tracking-wide text-ivory md:text-5xl">{t.cart}</h1>
+          {ready.canCheckout && <CheckoutSteps current={1} labels={{ label: t.stepsLabel, cart: t.stepCart, pay: t.stepPay, done: t.stepDone }} />}
+        </div>
+      </div>
+      <div className="mx-auto max-w-6xl px-4 py-8 md:py-10 lg:max-w-7xl">
+        <CartView locale={locale} settings={ready.settings} canCheckout={ready.canCheckout} addressAtCheckout={ready.addressAtCheckout} checkoutHost={checkoutHost} labels={t} notice={notice} live={live} failedLine={e && e !== "cancelled" && line && /^[0-9]{1,12}$/.test(line) ? line : null} />
       </div>
     </>
   );

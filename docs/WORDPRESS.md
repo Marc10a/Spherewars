@@ -1,6 +1,6 @@
 # WordPress headless para SphereWars
 
-Estado: **capa de la web (Next.js) terminada y probada con un WordPress simulado. El plugin de WordPress y la migración NO están hechos** (ver "Pendiente"). Nada de esto se ha publicado en producción.
+Estado: **capa de la web (Next.js) terminada y probada con un WordPress simulado. Eventos y campaña del mes: plugin «SphereWars Contenido» hecho y probado de extremo a extremo con un WordPress local** (`woo-local/deploy/`, ver «Eventos»). Noticias, miniaturas destacadas, vista previa y migración NO están hechos. Nada de esto se ha publicado en producción.
 
 ## Arquitectura
 
@@ -23,7 +23,8 @@ Endpoints que debe ofrecer el plugin, namespace `/wp-json/sphere/v1`, solo conte
 | Endpoint | Parámetros | Devuelve |
 |---|---|---|
 | `news` | `lang`, `limit`, `slug`, `preview=1` | `{items:[{id,slug,title,category,published_at,excerpt,content_html,image{url,alt},seo{title,description}}]}` |
-| `events` | `lang`, `when=upcoming\|past`, `slug`, `limit` | `{items:[{id,slug,kind,title,starts_at,ends_at,organizer,city,address,format,requirements,description,prizes,fee_cents,capacity,registration_url,image,seo}]}` |
+| `events` | `when=upcoming\|past\|all`, `slug`, `limit` (≤200) | `{items:[{id,slug,kind,title,starts_at,ends_at,organizer,city,address,format,requirements,description,prizes,fee_cents,capacity,registration_url,image,logo,time_note,seo}]}`: un elemento por fecha |
+| `campaign` | — | `{month:"2026-11",video:{url}\|null,poster:{url,alt}\|null}`; sin mes = sin campaña |
 | `featured-minis` | — | `{slugs:["personajes/<faccion>/<mini>", ...]}` (miniaturas destacadas de la home) |
 
 Ejemplos reales en `wordpress/fixtures/`. Todo se valida con zod: lo que no cumple el contrato se descarta. URLs de imagen/enlaces: solo `https`.
@@ -61,7 +62,7 @@ Ejemplos reales en `wordpress/fixtures/`. Todo se valida con zod: lo que no cump
 
 ```bash
 npm run mock:wp          # WordPress simulado en http://localhost:4020 (usa wordpress/fixtures)
-npm run test:cms         # 12 pruebas: contrato, cliente, sanitizado, secretos
+npm run test:cms         # 17 pruebas: contrato, cliente, agenda, sanitizado, secretos
 ```
 Después compilar con `WP_API_URL=http://localhost:4020`, `WP_PREVIEW_TOKEN=secret-preview-token`, `PREVIEW_SECRET`, `REVALIDATE_SECRET`.
 
@@ -69,8 +70,17 @@ Resultado de la prueba de extremo a extremo hecha: noticias, eventos y miniatura
 
 ## Lo que NO está verificado / pendiente
 
-- El plugin de contenido (`sphere/v1`, login de Google) no existe todavía. El plugin de la tienda es otro y está en `woo-local/deploy/`.
+- El plugin de contenido completo (noticias, miniaturas destacadas, vista previa, login de Google) no existe todavía; «SphereWars Contenido» solo sirve eventos y campaña. El plugin de la tienda es otro y está en `woo-local/deploy/`.
 - El contenido real de WordPress no se ha importado.
+
+## Eventos (plugin «SphereWars Contenido»)
+
+`/[locale]/eventos` lee de WordPress la campaña del mes (`campaign`) y todas las fechas (`events?when=all`) cuando `WP_API_URL` está puesto y hay campaña guardada; si no, o si WordPress falla, usa `src/content/events-campaign.json` (y los eventos de Supabase, como antes). Mismo tipo de contenido `sw_event` que `wordpress/theme-src/inc/content.php`, reducido a lo que usa la agenda.
+- Un evento de WordPress = una tienda con uno o varios días del mismo mes («7, 14 y 21»); el plugin devuelve un elemento por fecha (`slug` = `<tienda>-<AAAA-MM-DD>`).
+- `time_note` igual a un texto de `events.slots` en español se muestra traducido (`slotKey` en `src/lib/cms/map.ts`); otro texto sale tal cual. Solo los eventos con descripción, dirección o inscripción enlazan a `/eventos/<slug>`.
+- Vídeo, cartel, logos y carteles de evento: solo si están en el mismo dominio que `WP_API_URL`; lo demás se descarta.
+- Caché de 5 minutos con la etiqueta `wp`. Al guardar o enviar a la papelera, el plugin llama a `POST /api/revalidate` con `x-revalidate-secret` (`REVALIDATE_SECRET`), que expira la etiqueta al momento.
+- Instalación, importación de noviembre y uso mensual: `woo-local/deploy/README.md`.
 
 ## Tienda con WooCommerce (headless)
 

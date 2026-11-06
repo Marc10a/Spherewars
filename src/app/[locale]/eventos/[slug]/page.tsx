@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { dict, fmt, isLocale } from "@/lib/i18n";
 import { formatPrice, getEvent, isUpcoming, registrationCount } from "@/lib/data";
 import { pageMeta } from "@/lib/seo";
+import { slotKey } from "@/lib/cms/map";
 import { Button, PageHero } from "@/components/ui";
 import { RichText } from "@/components/RichText";
 import { registerForEvent } from "../../actions";
@@ -22,12 +23,17 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   if (!e) notFound();
 
   const when = new Date(e.starts_at);
-  const upcoming = isUpcoming(e.starts_at);
+  const upcoming = isUpcoming(e.ends_at ?? e.starts_at);
+  // WordPress events have a day and a time note («A la apertura de la tienda»), not a start time.
+  const slot = slotKey(e.time_note, dict.es.events.slots);
+  const date = e.time_note
+    ? `${when.toLocaleDateString(locale, { dateStyle: "full", timeZone: "Europe/Madrid" })} · ${slot ? t.slots[slot as keyof typeof t.slots] : e.time_note}`
+    : when.toLocaleString(locale, { dateStyle: "full", timeStyle: "short" });
   const taken = e.registration_open ? await registrationCount(e.id) : 0;
   const full = e.capacity != null && taken >= e.capacity;
   const fee = formatPrice(e.fee_cents, "EUR", locale);
   const rows: [string, string | null][] = [
-    [t.f.type, t.kinds[e.kind]], [t.f.date, when.toLocaleString(locale, { dateStyle: "full", timeStyle: "short" })],
+    [t.f.type, t.kinds[e.kind]], [t.f.date, date],
     [t.f.organizer, e.organizer], [t.f.address, [e.address, e.city].filter(Boolean).join(", ") || null],
     [t.f.format, e.format], [t.f.requirements, e.requirements], [t.f.fee, fee], [t.f.prizes, e.prizes],
     [t.f.spots, e.registration_open && e.capacity != null ? fmt(t.spotsOf, { n: Math.max(0, e.capacity - taken), max: e.capacity }) : null],

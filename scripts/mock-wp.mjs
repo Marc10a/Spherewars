@@ -36,10 +36,11 @@ http.createServer((req, res) => {
     let items = load("events").items;
     const now = Date.now();
     if (q.get("when") === "upcoming") items = items.filter((e) => Date.parse(e.starts_at) >= now);
-    if (q.get("when") === "past") items = items.filter((e) => Date.parse(e.starts_at) < now);
+    if (q.get("when") === "past") items = items.filter((e) => Date.parse(e.starts_at) < now); // "all": no filter
     if (q.get("slug")) items = items.filter((e) => e.slug === q.get("slug"));
     return send(200, { items: limit ? items.slice(0, limit) : items });
   }
+  if (m[1] === "campaign") return send(200, load("campaign"));
   if (m[1] === "featured-minis") return send(200, load("featured-minis"));
   return send(404, { error: "unknown" });
 }).listen(PORT, () => console.log(`mock WordPress on http://localhost:${PORT}`));

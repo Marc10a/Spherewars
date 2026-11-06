@@ -1,0 +1,11 @@
+{
+  "month": "2030-05",
+  "video": {
+    "url": "https://cms.example.com/wp-content/uploads/promo.mp4",
+    "alt": ""
+  },
+  "poster": {
+    "url": "https://cms.example.com/wp-content/uploads/cartel.webp",
+    "alt": ""
+  }
+}

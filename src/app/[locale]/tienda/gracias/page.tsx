@@ -5,8 +5,9 @@ import { oneParam } from "@/lib/params";
 import { pageMeta } from "@/lib/seo";
 import { isConfigured, supabaseServer } from "@/lib/supabase/server";
 import { wooOrderReturn } from "@/lib/woo";
-import { PageHero } from "@/components/ui";
+import { links } from "@/content/site";
 import { ClearCart } from "@/components/shop/ClearCart";
+import { CheckoutSteps } from "@/components/shop/CheckoutSteps";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -39,16 +40,34 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const title = paid ? t.thanksTitle : pending ? t.thanksPendingTitle : t.thanksNeutralTitle;
   const text = paid ? t.thanksText : pending ? t.thanksPendingText : dead ? t.cancelled : t.thanksNeutralText;
 
+  const found = paid || Boolean(woo && pending); // an order of this buyer exists: it is step 3 of the purchase
+  const btn = "btn inline-flex min-h-12 items-center justify-center px-6 py-3 font-display text-base tracking-[0.03em]";
+
   return (
     <>
-      <PageHero title={title} />
-      <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+      <div className="border-b border-gold/25 bg-coal">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-x-8 gap-y-5 px-4 py-6 md:py-8">
+          <h1 className="font-display text-4xl tracking-wide text-ivory md:text-5xl">{title}</h1>
+          {found && <CheckoutSteps current={3} labels={{ label: t.stepsLabel, cart: t.stepCart, pay: t.stepPay, done: t.stepDone }} />}
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
         {/* The order exists, so this cart has been bought even if its payment is still confirming (bank transfer, a delayed gateway). */}
-        {(paid || (woo && pending)) && <ClearCart order={woo ? `woo-${wc_order}` : `order-${number}`} />}
-        <p role={paid ? undefined : "status"} className="max-w-[60ch] text-lg text-ivory/90">{text}</p>
-        {(paid || (woo && pending)) && <p className="mt-6 font-display text-3xl text-gold">{t.thanksOrder} {number}</p>}
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={`/${locale}/tienda`} className="btn inline-flex min-h-12 items-center bg-gold px-6 py-3 font-display text-base tracking-[0.03em] text-abyss hover:bg-ivory">{t.backToShop}</Link>
+        {found && <ClearCart order={woo ? `woo-${wc_order}` : `order-${number}`} />}
+        <div className="max-w-2xl">
+          {found && (
+            <p className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-y border-gold/30 py-4">
+              <span className="font-display text-lg text-stone">{t.thanksOrder}</span>
+              <span className="font-display text-4xl text-gold tabular-nums">{number}</span>
+            </p>
+          )}
+          <p role={paid ? undefined : "status"} className={`max-w-[60ch] text-lg text-ivory/90 ${found ? "mt-6" : ""}`}>{text}</p>
+          {paid && <p className="mt-2 max-w-[60ch] text-base text-ivory/80">{t.thanksEmail}</p>}
+          {found && <p className="mt-2 max-w-[60ch] text-base text-ivory/80">{t.thanksHelp} <Link href={`/${locale}/comunidad#contacto`} className="text-gold underline underline-offset-4 hover:text-ivory">{t.thanksContact}</Link></p>}
+          <div className="mt-8 flex flex-wrap gap-3 max-sm:[&>a]:w-full">
+            <Link href={`/${locale}/tienda`} className={`${btn} bg-gold text-abyss hover:bg-ivory`}>{t.backToShop}</Link>
+            {paid && <a href={links.rules} rel="noopener" className={`${btn} border border-gold/70 text-ivory hover:border-gold hover:bg-gold/15`}>{t.downloadRules}</a>}
+          </div>
         </div>
       </div>
     </>

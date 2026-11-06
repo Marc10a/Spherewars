@@ -3,9 +3,10 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { newsList, eventList, featuredMinis } from "../src/lib/cms/contract.ts";
-import { wpGet, wpUrl } from "../src/lib/cms/client.ts";
-import { toEventRow, toNewsRow } from "../src/lib/cms/map.ts";
+import { newsList, eventList, featuredMinis, campaign } from "../src/lib/cms/contract.ts";
+import { wpGet, wpUrl, WP_TAG } from "../src/lib/cms/client.ts";
+import { toEventRow, toNewsRow, toAgendaItem, slotKey } from "../src/lib/cms/map.ts";
+import { cmsImageUrl } from "../src/lib/cms/images.ts";
 import { safeEqual, revalidatablePath } from "../src/lib/cms/secret.ts";
 import { cleanCmsHtml } from "../src/lib/cms/sanitize.ts";
 
@@ -19,6 +20,7 @@ await t("contract: the fixtures are valid", () => {
   assert.equal(newsList.parse(fx("news")).items.length, 2);
   assert.equal(eventList.parse(fx("events")).items.length, 2);
   assert.equal(featuredMinis.parse(fx("featured-minis")).slugs.length, 3);
+  assert.equal(campaign.parse(fx("campaign")).month, "2030-05");
 });
 await t("contract: numeric ids become strings; optional fields get defaults", () => {
   const n = newsList.parse(fx("news")).items[1];
@@ -71,7 +73,63 @@ await t("map: WordPress items become the shapes the pages use", () => {
   const n = toNewsRow(newsList.parse(fx("news")).items[0]);
   assert.equal(n.publish_at, "2026-10-20T10:00:00Z"); assert.ok(n.body.html.includes("<strong>"));
   const e = toEventRow(eventList.parse(fx("events")).items[0]);
-  assert.equal(e.registration_open, false); assert.equal(e.registration_url, "https://example.com/inscripcion"); assert.equal(e.fee_cents, 1000);
+  assert.equal(e.registration_open, false); assert.equal(e.registration_url, "https://example.com/inscripcion"); assert.equal(e.fee_cents, 1000); assert.equal(e.time_note, "Torneo por la mañana");
+});
+
+// ---- events page (plugin "SphereWars Contenido") ----------------------------
+const slots = { opening: "A la apertura de la tienda", demoAfternoon: "Demos por la tarde", tournamentMorning: "Torneo por la mañana" };
+const plugEvent = (o = {}) => ({ id: "12-2026-11-07", slug: "bgame-2026-11-07", kind: "demo", title: "BGame", starts_at: "2026-11-07T00:00:00+01:00", ends_at: "2026-11-07T23:59:00+01:00", city: "Andorra la Vella", ...o });
+await t("contract: the campaign fixture is valid; no month, bad month or a non-https video are rejected", () => {
+  const c = campaign.parse(fx("campaign"));
+  assert.equal(c.month, "2030-05"); assert.ok(c.video.url.endsWith(".mp4"));
+  assert.equal(campaign.parse({ month: "2026-12" }).video, null);
+  const bad = (v) => assert.equal(campaign.safeParse(v).success, false, JSON.stringify(v));
+  bad({ month: null, video: null, poster: null });
+  bad({ month: "2026-13" }); bad({ month: "2026-1" }); bad({ month: "2026-11-01" });
+  bad({ month: "2026-11", video: { url: "http://cms.example.com/a.mp4" } });
+  bad({ month: "2026-11", video: { url: "javascript:alert(1)" } });
+  bad({ month: "2026-11", poster: { url: "data:image/png;base64,AAAA" } });
+});
+await t("contract: event logo and time note; unsafe logo or oversized note rejected", () => {
+  const e = eventList.parse(fx("events")).items[0];
+  assert.equal(e.time_note, "Torneo por la mañana"); assert.ok(e.logo.url.startsWith("https://"));
+  assert.equal(eventList.parse({ items: [plugEvent()] }).items[0].logo, null);
+  const bad = (o) => assert.equal(eventList.safeParse({ items: [plugEvent(o)] }).success, false, JSON.stringify(o));
+  bad({ logo: { url: "javascript:alert(1)" } }); bad({ image: { url: "http://x/a.webp" } }); bad({ time_note: "x".repeat(201) });
+  bad({ slug: "BGame 7" }); bad({ kind: "party" });
+});
+await t("client: WordPress reads are cached 5 minutes under the tag that /api/revalidate expires", async () => {
+  let seen;
+  await wpGet("campaign", campaign, { baseUrl: "https://cms.x.es", fetchImpl: async (_u, init) => { seen = init; return jsonRes(fx("campaign")); } });
+  assert.deepEqual(seen.next, { revalidate: 300, tags: [WP_TAG] });
+});
+await t("map: known time notes become translatable slots; other text stays as written", () => {
+  assert.equal(slotKey(" a la apertura de la TIENDA ", slots), "opening");
+  assert.equal(slotKey("Demos por la tarde", slots), "demoAfternoon");
+  assert.equal(slotKey("De 17 a 20 h", slots), undefined);
+  assert.equal(slotKey(null, slots), undefined);
+  const media = (u) => u ?? undefined;
+  const a = toAgendaItem(eventList.parse({ items: [plugEvent({ time_note: "A la apertura de la tienda" })] }).items[0], { slots, media, href: (s) => `/es/eventos/${s}` });
+  assert.equal(a.slot, "opening"); assert.equal(a.note, undefined); assert.equal(a.date, "2026-11-07"); assert.equal(a.venue, "BGame");
+  const b = toAgendaItem(eventList.parse({ items: [plugEvent({ time_note: "De 17 a 20 h" })] }).items[0], { slots, media, href: (s) => s });
+  assert.equal(b.slot, undefined); assert.equal(b.note, "De 17 a 20 h");
+});
+await t("map: only events with details link to their page; media outside WordPress is dropped", () => {
+  const prev = process.env.WP_API_URL;
+  process.env.WP_API_URL = "https://tienda.example.com";
+  try {
+    const o = { slots, media: cmsImageUrl, href: (s) => `/es/eventos/${s}` };
+    const up = "https://tienda.example.com/wp-content/uploads/2026/11/";
+    const plain = toAgendaItem(eventList.parse({ items: [plugEvent({ logo: { url: up + "logo.webp" }, image: { url: "https://evil.example/x.webp" } })] }).items[0], o);
+    assert.equal(plain.href, undefined); assert.equal(plain.logo, up + "logo.webp"); assert.equal(plain.still, undefined);
+    for (const extra of [{ description: "Trae tu banda" }, { address: "Carrer Major 1" }, { registration_url: "https://forms.example/x" }]) {
+      assert.equal(toAgendaItem(eventList.parse({ items: [plugEvent(extra)] }).items[0], o).href, "/es/eventos/bgame-2026-11-07", JSON.stringify(extra));
+    }
+    assert.equal(cmsImageUrl("https://tienda.example.com.evil.net/a.mp4"), undefined);
+    assert.equal(cmsImageUrl("not a url"), undefined);
+  } finally {
+    if (prev === undefined) delete process.env.WP_API_URL; else process.env.WP_API_URL = prev;
+  }
 });
 
 // ---- secrets & paths ------------------------------------------------------

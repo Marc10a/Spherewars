@@ -10,6 +10,9 @@ export type WpOptions = {
   revalidate?: number | false;     // ISR hint passed to fetch (seconds); false = no cache
 };
 
+/** Cache tag of every WordPress read: /api/revalidate expires it, so a change saved in WordPress shows on the next visit. */
+export const WP_TAG = "wp";
+
 export function wpUrl(baseUrl: string, path: string, params: Record<string, string | number | undefined> = {}) {
   const u = new URL(`/wp-json/sphere/v1/${path.replace(/^\/+/, "")}`, baseUrl.replace(/\/+$/, "") + "/");
   for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== "") u.searchParams.set(k, String(v));
@@ -24,7 +27,7 @@ export async function wpGet<T>(path: string, schema: ZodType<T>, opts: WpOptions
     const res = await f(wpUrl(opts.baseUrl, path, params), {
       signal: ctrl.signal,
       headers: { Accept: "application/json", ...(opts.previewToken ? { Authorization: `Bearer ${opts.previewToken}` } : {}) },
-      ...(opts.previewToken ? { cache: "no-store" as const } : opts.revalidate === false ? { cache: "no-store" as const } : { next: { revalidate: opts.revalidate ?? 300 } }),
+      ...(opts.previewToken ? { cache: "no-store" as const } : opts.revalidate === false ? { cache: "no-store" as const } : { next: { revalidate: opts.revalidate ?? 300, tags: [WP_TAG] } }),
     } as RequestInit);
     if (!res.ok) return null;
     const parsed = schema.safeParse(await res.json());

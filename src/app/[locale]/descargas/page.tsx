@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { staticMeta } from "@/lib/seo";
 import { dict, isLocale } from "@/lib/i18n";
-import { links } from "@/content/site";
 import { formatBytes, listDownloads, mediaUrl } from "@/lib/data";
 import Image from "next/image";
 import official from "@/content/official-files.json";
@@ -21,7 +20,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <>
       <PageHero title={t.downloads.title} lead={t.downloads.lead} image="/wiki/images/mapa_saphir_2026.webp" />
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-12">
-        {([["guides", official.guides], ["posters", official.posters], ["maps", official.maps]] as ["guides" | "posters" | "maps", OfficialFile[]][]).map(([key, list]) => (
+        {([["rulesFiles", official.rules], ["guides", official.guides], ["posters", official.posters], ["maps", official.maps]] as ["rulesFiles" | "guides" | "posters" | "maps", OfficialFile[]][]).map(([key, list]) => (
           <section key={key}>
             <h2 className="font-display text-2xl text-gold">{t.downloads[key]}</h2>
             <ul className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -35,14 +34,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <div className="flex flex-1 flex-col gap-3 p-4">
                     <p lang="es" className="font-medium">{f.title}</p>
                     <p className="text-sm text-stone">{f.type}, {f.size}</p>
-                    <div className="mt-auto"><Button href={f.file} external>{t.downloads.download}</Button></div>
+                    <div className="mt-auto"><a href={f.file} download className="btn btn-solid inline-flex min-h-12 items-center bg-gold px-6 py-3 font-display text-base tracking-[0.03em] text-abyss hover:bg-ivory">{t.downloads.download}</a></div>
                   </div>
                 </li>
               ))}
             </ul>
           </section>
         ))}
-        <div><Button href={links.rules} external variant="ghost">{t.downloads.officialLink}</Button></div>
         {Object.entries(t.downloads.categories).map(([key, label]) => {
           const list = items.filter((i) => i.category === key);
           if (!list.length) return null;

@@ -1,4 +1,38 @@
 {
+ "rules": [
+  {
+   "id": "reglas-v3-1",
+   "title": "Reglamento SphereWars v3.1 · Descarga gratuita",
+   "file": "/descargas/sphere-wars-reglas-v3-1.pdf",
+   "size": "2.0 MB",
+   "type": "PDF",
+   "preview": null
+  },
+  {
+   "id": "perfiles-adeptos-v3-1",
+   "title": "Perfiles v3.1 · Adeptos de Malesur",
+   "file": "/descargas/perfiles-adeptos-de-malesur-v3-1.pdf",
+   "size": "2.6 MB",
+   "type": "PDF",
+   "preview": null
+  },
+  {
+   "id": "perfiles-alianza-v3-1",
+   "title": "Perfiles v3.1 · La Alianza",
+   "file": "/descargas/perfiles-alianza-v3-1.pdf",
+   "size": "2.6 MB",
+   "type": "PDF",
+   "preview": null
+  },
+  {
+   "id": "perfiles-manadas-v3-1",
+   "title": "Perfiles v3.1 · Manadas de Urueh",
+   "file": "/descargas/perfiles-manadas-de-urueh-v3-1.pdf",
+   "size": "2.1 MB",
+   "type": "PDF",
+   "preview": null
+  }
+ ],
  "guides": [
   {
    "id": "guia-rapida-a4",

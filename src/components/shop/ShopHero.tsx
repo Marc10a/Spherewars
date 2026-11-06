@@ -4,9 +4,10 @@ import { Button } from "@/components/ui";
 import { links } from "@/content/site";
 import { elementFor } from "@/lib/element";
 import type { Dict } from "@/lib/i18n";
+import { shippingInfoText } from "@/lib/shop/shipping-info";
 
 /** Slim shop header: title and one status line, so the products start high on the page. A closed shop adds the free rules. */
-export function ShopHero({ t, title, image, imagePosition = "center", theme, emblem, lead, count, open }: { t: Dict; title: string; image: string; imagePosition?: string; theme?: string; emblem?: string; lead?: string; count: number; open: boolean }) {
+export function ShopHero({ t, title, image, imagePosition = "center", theme, emblem, lead, count, open, locale }: { t: Dict; title: string; image: string; imagePosition?: string; theme?: string; emblem?: string; lead?: string; count: number; open: boolean; locale: string }) {
   const c = t.catalogue;
   const products = `${count} ${c.count[count === 1 ? 0 : 1]}`;
   const element = elementFor(theme);
@@ -24,6 +25,7 @@ export function ShopHero({ t, title, image, imagePosition = "center", theme, emb
             <p role={open ? undefined : "note"} className="mt-2 max-w-2xl text-base text-ivory/85">
               {count > 0 ? (open ? `${products}. ${t.shop.taxIncluded}.` : `${products}. ${t.shop.taxIncluded}. ${t.shop.closed}`) : t.shop.empty}
             </p>
+            {open && count > 0 && <p className="mt-1 max-w-2xl text-sm text-ivory/75">{shippingInfoText(t.shop.shippingInfo, locale)}</p>}
           </div>
         </div>
         {!open && <Button href={links.rules} external>{t.hero.cta3}</Button>}

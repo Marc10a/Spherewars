@@ -123,6 +123,7 @@ export type EventRow = {
   id: string; slug: string; kind: string; title: string; starts_at: string; ends_at: string | null; organizer: string | null;
   city: string | null; address: string | null; format: string | null; requirements: string | null; description: string | null;
   prizes: string | null; fee_cents: number | null; capacity: number | null; registration_url: string | null; registration_open: boolean;
+  time_note?: string | null; // WordPress events: «A la apertura de la tienda» instead of a start time
 };
 export const eventKinds: Record<string, string> = {
   demo: "Demostración", tournament: "Torneo", special: "Evento especial", community: "Encuentro de comunidad", fair: "Feria",

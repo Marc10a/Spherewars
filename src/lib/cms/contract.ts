@@ -1,4 +1,4 @@
-// The data contract between WordPress (plugin "SphereWars Core", namespace /wp-json/sphere/v1) and this website.
+// The data contract between WordPress (namespace /wp-json/sphere/v1; events and campaign: plugin "SphereWars Contenido") and this website.
 // WordPress returns ONLY published content here (drafts need the preview token). Everything is validated with zod, so a
 // malformed or tampered response can never reach the pages: it is rejected and the site falls back to its static content.
 import { z } from "zod";
@@ -40,13 +40,23 @@ export const eventItem = z.object({
   fee_cents: z.number().int().min(0).nullable().default(null),
   capacity: z.number().int().min(1).nullable().default(null),
   registration_url: httpsUrl.nullable().default(null),
-  image: img.default(null),
+  image: img.default(null), // the event's poster
+  logo: img.default(null),  // the shop's logo
+  time_note: z.string().max(200).nullable().default(null), // e.g. «A la apertura de la tienda»; known texts are translated (map.ts)
   seo,
 });
 export const eventList = z.object({ items: z.array(eventItem).max(200) });
+
+// The month's campaign of the events page (plugin "SphereWars Contenido", Eventos web > Campaña del mes). No month = not set up yet.
+export const campaign = z.object({
+  month: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/),
+  video: z.object({ url: httpsUrl }).nullable().default(null),
+  poster: img.default(null),
+});
 
 // Miniatures featured on the home (slugs of wiki character pages) — chosen in WordPress, no code change needed.
 export const featuredMinis = z.object({ slugs: z.array(z.string().regex(/^personajes\/[a-z0-9-]+\/[a-z0-9-]+$/)).max(24) });
 
 export type NewsItem = z.infer<typeof newsItem>;
 export type EventItem = z.infer<typeof eventItem>;
+export type Campaign = z.infer<typeof campaign>;

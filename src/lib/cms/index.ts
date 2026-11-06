@@ -1,5 +1,6 @@
 import { draftMode } from "next/headers";
-import { eventList, featuredMinis, newsList } from "./contract";
+import { campaign, eventList, featuredMinis, newsList } from "./contract";
+import { cmsImageUrl } from "./images";
 import { wpGet, type WpOptions } from "./client";
 import { toEventRow, toNewsRow } from "./map";
 import type { Locale } from "@/lib/i18n";
@@ -47,4 +48,17 @@ export async function wpFeaturedSlugs() {
   if (!wpEnabled()) return null;
   const r = await wpGet("featured-minis", featuredMinis, await opts());
   return r ? r.slugs : null;
+}
+
+/**
+ * The events page from WordPress: the month's campaign and every event date (past and upcoming). null when WordPress is not set up,
+ * fails, or has no campaign yet: the page then keeps its built-in campaign (src/content/events-campaign.json).
+ * Video and poster are kept only when hosted on WordPress itself.
+ */
+export async function wpAgenda() {
+  if (!wpEnabled()) return null;
+  const o = await opts();
+  const [c, ev] = await Promise.all([wpGet("campaign", campaign, o), wpGet("events", eventList, o, { when: "all", limit: 200 })]);
+  if (!c || !ev) return null;
+  return { month: c.month, video: cmsImageUrl(c.video?.url) ?? null, poster: cmsImageUrl(c.poster?.url) ?? null, events: ev.items };
 }

@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Lock, Minus, Plus, Trash2 } from "lucide-react";
 import { links } from "@/content/site";
-import { shippingInfoText } from "@/lib/shop/shipping-info";
+import { SHIPPING_INFO, shippingInfoText } from "@/lib/shop/shipping-info";
 import { cartActions, useCart } from "./cart-store";
 import { checkLines, computeCart, formatMoney, MAX_QTY_PER_LINE, shippableCountries, zoneFor, type ShopProduct, type ShopSettings } from "@/lib/shop/pricing";
 import type { Dict } from "@/lib/i18n";
@@ -29,11 +29,12 @@ type Props = {
   notice: string | null; // already-localized message coming from the server (?e=...)
   live?: Record<string, LiveProduct> | null;
   failedLine?: string | null; // product id from ?line=, when the checkout said which line failed (WooCommerce only)
+  checkoutHost?: string | null; // where the payment happens (tienda.spherewars.com), said before the buyer goes there
 };
 
 const noSubscribe = () => () => {};
 
-export function CartView({ locale, settings, canCheckout, addressAtCheckout = false, labels: t, notice, live = null, failedLine = null }: Props) {
+export function CartView({ locale, settings, canCheckout, addressAtCheckout = false, labels: t, notice, live = null, failedLine = null, checkoutHost = null }: Props) {
   const { items: stored, change, remove } = useCart();
   const hydrated = useSyncExternalStore(noSubscribe, () => true, () => false); // the cart lives in the browser: don't flash "empty" before reading it
   const countries = useMemo(() => shippableCountries(settings), [settings]);
@@ -64,6 +65,9 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
   const subtotal = buyable.reduce((n, i) => n + i.price_cents * i.qty, 0);
   const total = (preview.ok && preview.total_cents) || subtotal;
   const failedName = stored.find((i) => i.id === failedLine)?.name ?? null;
+  // WooCommerce settles shipping with the address. Spain is shown as the likely case, from the published rates; the checkout has the last word.
+  const spainShip = subtotal >= SHIPPING_INFO.spain.freeOver ? 0 : SHIPPING_INFO.spain.cents;
+  const toFree = SHIPPING_INFO.spain.freeOver - subtotal;
   const alert = "border border-ember bg-ember/20 p-3 text-base";
   const small = "text-sm text-stone";
 
@@ -161,7 +165,9 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
 
             {addressAtCheckout ? (
               <dl className="space-y-2 text-base">
-                <div className="flex items-baseline justify-between gap-4 font-display text-2xl text-gold"><dt>{t.subtotal}</dt><dd className="tabular-nums">{money.format(subtotal / 100)}</dd></div>
+                <div className="flex justify-between gap-4"><dt>{t.subtotal}</dt><dd className="tabular-nums">{money.format(subtotal / 100)}</dd></div>
+                <div className="flex justify-between gap-4"><dt>{t.shipSpain}</dt><dd className="tabular-nums">{spainShip === 0 ? t.free : money.format(spainShip / 100)}</dd></div>
+                <div className="flex items-baseline justify-between gap-4 border-t border-gold/20 pt-3 font-display text-2xl text-gold"><dt className="text-xl leading-tight">{t.totalSpain}</dt><dd className="tabular-nums">{money.format((subtotal + spainShip) / 100)}</dd></div>
               </dl>
             ) : (
               <dl className="space-y-2 border-t border-gold/20 pt-4 text-base">
@@ -171,7 +177,8 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
               </dl>
             )}
             <p className={`-mt-2 ${small}`}>{t.taxIncluded}</p>
-            {addressAtCheckout && <p className={`-mt-2 ${small}`}>{shippingInfoText(t.shippingInfo, locale)} {t.shippingAtCheckout}</p>}
+            {addressAtCheckout && toFree > 0 && <p className="-mt-1 text-base text-ivory">{t.freeShipLeft.replace("{amount}", money.format(toFree / 100))}</p>}
+            {addressAtCheckout && <p className={`-mt-1 ${small}`}>{shippingInfoText(t.shipAbroad, locale)} {t.shippingAtCheckout}</p>}
 
             {!preview.ok && !blocked && <p role="alert" className="text-base text-ivory">{t.errors[preview.error] ?? t.errors.generic}</p>}
             {blocked && <p className="text-base text-ivory">{t.cartBlocked}</p>}
@@ -179,7 +186,9 @@ export function CartView({ locale, settings, canCheckout, addressAtCheckout = fa
             {canCheckout ? (
               <>
                 <CheckoutButton disabled={!preview.ok || blocked} label={t.checkout} />
-                <p className={small}>{addressAtCheckout ? t.checkoutNoteAddress : t.checkoutNote}</p>
+                {addressAtCheckout && checkoutHost
+                  ? <p className="flex gap-2 text-sm text-ivory/85"><Lock size={16} aria-hidden className="mt-0.5 shrink-0 text-gold" /><span>{t.handoff.replace("{host}", checkoutHost)}</span></p>
+                  : <p className={small}>{addressAtCheckout ? t.checkoutNoteAddress : t.checkoutNote}</p>}
                 <p className={small}>
                   {t.termsPre} <Link href={`/${locale}/legal/condiciones`} className="underline underline-offset-2 hover:text-gold">{t.terms}</Link> · <Link href={`/${locale}/legal/devoluciones`} className="underline underline-offset-2 hover:text-gold">{t.returns}</Link>
                 </p>

@@ -145,3 +145,19 @@ export function searchCatalogue(c: Catalogue, raw: string): ShopEntry[] {
   const inName = (e: ShopEntry) => words.some((w) => norm(`${e.name} ${e.aliases.join(" ")}`).includes(w));
   return [...hits.filter(inName), ...hits.filter((e) => !inName(e))];
 }
+
+/** Products on sale in one slice of the catalogue, split by type: what the filters count next to each option. */
+export type TypeCounts = { starter: number; sueltas: number };
+export type CatalogueCounts = { all: TypeCounts; byFaction: Record<string, TypeCounts> };
+
+/** Counts as the shop shows them everywhere: Starter Packs that are listed plus singles with a price. */
+export function catalogueCounts(c: Catalogue): CatalogueCounts {
+  const byFaction: Record<string, TypeCounts> = Object.fromEntries(factions.map((f) => [f.slug, { starter: 0, sueltas: 0 }]));
+  for (const p of c.packs) if (p.status !== "unlisted" && byFaction[p.faction.slug]) byFaction[p.faction.slug].starter++;
+  for (const s of c.singles) if (byFaction[s.faction.slug]) byFaction[s.faction.slug].sueltas++;
+  const all = Object.values(byFaction).reduce((a, n) => ({ starter: a.starter + n.starter, sueltas: a.sueltas + n.sueltas }), { starter: 0, sueltas: 0 });
+  return { all, byFaction };
+}
+
+/** How many products one option leaves on screen, given the type filter. */
+export const countFor = (n: TypeCounts, tipo: ShopType | null) => (tipo === "starter" ? n.starter : tipo === "sueltas" ? n.sueltas : n.starter + n.sueltas);

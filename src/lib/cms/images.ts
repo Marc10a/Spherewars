@@ -1,4 +1,4 @@
-/** next/image throws for hosts it was not configured with, so only WordPress-hosted images (same host as WP_API_URL) are used as page images. */
+/** next/image throws for hosts it was not configured with, so only WordPress-hosted images and videos (same host as WP_API_URL) are used on pages. */
 export function cmsImageUrl(url: string | null | undefined): string | undefined {
   if (!url || !process.env.WP_API_URL) return undefined;
   try {
