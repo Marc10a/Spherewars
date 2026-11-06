@@ -64,7 +64,7 @@ for (const [folder, prefixes] of Object.entries(NAMES)) {
   // starter pack card
   const pf = find(dir, PACKS[folder]);
   if (pf) {
-    const src = await save(dir, pf, "starter-pack.webp", 1500, 82);
+    const src = await save(dir, pf, "starter-pack-grupo.webp", 1500, 82);
     const key = `packs/${folder === "Manadas" ? "manadas-de-urueh" : FACTION}`;
     result[key] = { tile: src, gallery: [{ src, kind: "card" }] };
   }
