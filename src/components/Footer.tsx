@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { dict, localeNames, locales, type Locale } from "@/lib/i18n";
+import { activeLocales, dict, localeNames, type Locale } from "@/lib/i18n";
 import { links } from "@/content/site";
 import { Wordmark } from "@/components/Wordmark";
 
@@ -11,11 +11,11 @@ export function Footer({ locale }: { locale: Locale }) {
         <div>
           <p className="text-3xl text-gold"><Wordmark className="wordmark-wide ember-text" /></p>
           <p className="mt-2 text-sm text-stone">{t.footer.tagline}</p>
-          <p className="mt-4 flex gap-3 text-sm text-stone">
-            {locales.map((l) => (
+          {activeLocales.length > 1 && <p className="mt-4 flex gap-3 text-sm text-stone">
+            {activeLocales.map((l) => (
               <Link key={l} href={`/${l}`} hrefLang={l} lang={l} aria-current={l === locale ? "true" : undefined} className={l === locale ? "text-gold" : "hover:text-ivory"}>{localeNames[l]}</Link>
             ))}
-          </p>
+          </p>}
         </div>
         <ul className="grid gap-2 text-sm">
           <li><a href={links.instagram} rel="noopener" className="inline-block py-1.5 hover:text-gold">Instagram</a></li>

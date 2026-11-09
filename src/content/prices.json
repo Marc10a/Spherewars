@@ -147,7 +147,15 @@
   },
   "personajes/vastagos-de-kurgan/regoretes": {
    "cents": 1400,
-   "sku": null
+   "sku": "SWOM-VA52"
+  },
+  "personajes/alianza/nirlem": {
+   "cents": 1400,
+   "sku": "SWOM-AL02"
+  },
+  "personajes/vastagos-de-kurgan/nek-org": {
+   "cents": 2000,
+   "sku": "SWOM-VA02"
   }
  }
 }

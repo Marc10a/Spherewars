@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale, locales } from "@/lib/i18n";
+import { activeLocales, defaultLocale, isLocale } from "@/lib/i18n";
 import { checkGate } from "@/lib/site-gate";
 
 const COOKIE = "sw_locale";
@@ -44,6 +44,11 @@ async function route(req: NextRequest) {
   if (pathname.startsWith("/admin")) return guardAdmin(req);
 
   const first = pathname.split("/")[1];
+  if (isLocale(first) && !activeLocales.includes(first)) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/${defaultLocale}${pathname.slice(first.length + 1)}`;
+    return NextResponse.redirect(url, 307); // temporary: these languages may come back
+  }
   if (isLocale(first)) {
     // Remember the visitor's explicit choice for next time.
     const res = NextResponse.next();
@@ -54,8 +59,8 @@ async function route(req: NextRequest) {
   // Locale-less URL: saved choice > browser language > default.
   const saved = req.cookies.get(COOKIE)?.value;
   const accept = req.headers.get("accept-language") ?? "";
-  const fromBrowser = accept.split(",").map((p) => p.trim().slice(0, 2).toLowerCase()).find((l) => locales.includes(l as never));
-  const chosen = (saved && isLocale(saved) ? saved : fromBrowser) ?? defaultLocale;
+  const fromBrowser = accept.split(",").map((p) => p.trim().slice(0, 2).toLowerCase()).find((l) => activeLocales.includes(l as never));
+  const chosen = (saved && isLocale(saved) && activeLocales.includes(saved) ? saved : fromBrowser) ?? defaultLocale;
   const url = req.nextUrl.clone();
   url.pathname = `/${chosen}${pathname === "/" ? "" : pathname}`;
   const res = NextResponse.redirect(url, 307); // temporary: depends on cookie/browser language, must not be cached as permanent

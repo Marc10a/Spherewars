@@ -10,7 +10,7 @@ En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad 
 - NIF: ${O.nif}
 - Domicilio: ${O.address}, España
 - Correo electrónico: ${O.email}
-- Teléfono: [[teléfono de contacto]]
+- Teléfono: 687 927 981
 - Datos registrales: Registro Mercantil de Barcelona, [[tomo, folio, hoja e inscripción]]
 
 Este aviso se aplica al sitio web ${O.web} y a la tienda online ${O.shop} (en adelante, «el sitio web»).
@@ -27,7 +27,7 @@ Las compras se rigen por las [Condiciones de venta](/legal/condiciones) y por la
 
 ## 4. Propiedad intelectual e industrial
 
-Los textos, reglas, ilustraciones, fotografías, vídeos, logotipos, nombres de facciones y personajes, y el diseño del sitio web pertenecen a ${O.name} o a sus autores y licenciantes, y están protegidos por la normativa de propiedad intelectual e industrial. [[Confirmar si la marca SphereWars está registrada, ante qué oficina (OEPM o EUIPO) y a nombre de quién]].
+Los textos, reglas, ilustraciones, fotografías, vídeos, logotipos, nombres de facciones y personajes, y el diseño del sitio web pertenecen a ${O.name} o a sus autores y licenciantes, y están protegidos por la normativa de propiedad intelectual e industrial. SphereWars es una marca registrada [[indicar la oficina, OEPM o EUIPO, y el titular]].
 
 Se permite descargar e imprimir el reglamento y las tarjetas que el sitio web ofrece gratis para uso personal y para jugar. Cualquier otro uso, en particular la reproducción, distribución o transformación con fines comerciales, requiere autorización previa por escrito.
 
@@ -92,7 +92,7 @@ No vendemos ni cedemos datos personales. Solo los conocen los proveedores que ne
 - Vercel Inc. (Estados Unidos): alojamiento del sitio web ${O.web}.
 - 10dencehispahard SL (cdmon, España): alojamiento de la tienda ${O.shop}, que funciona con WordPress y WooCommerce, y donde se guardan los pedidos.
 - Redsys Servicios de Procesamiento SL y [[nombre de la entidad bancaria del vendedor]]: cobro con tarjeta y Bizum. Actúan como responsables independientes del tratamiento de los datos de pago [[confirmar rol]].
-- [[Nombre de la empresa de transporte]]: entrega de los pedidos (nombre, dirección y teléfono de envío).
+- SEUR, principalmente: entrega de los pedidos (nombre, dirección y teléfono de envío).
 - Microsoft (servicio de correo Outlook/Hotmail): correo electrónico del vendedor, al que llegan los pedidos y los mensajes [[confirmar proveedor y condiciones]].
 - Solo si el formulario de contacto está activo: Resend Inc. (Estados Unidos), envío de los mensajes por correo; Supabase Inc., base de datos donde se guardan los mensajes [[región de los servidores]]; y Cloudflare Inc. (Estados Unidos), si está activa la verificación antispam Turnstile.
 - [[Asesoría fiscal o contable, si la hay]].
@@ -167,9 +167,9 @@ Si en el futuro añadimos cookies que no sean necesarias, como las de analítica
 
 const condiciones = `## 1. Vendedor y ámbito
 
-Estas condiciones regulan las compras en la tienda online de SphereWars. El vendedor es ${O.name}, NIF ${O.nif}, con domicilio en ${O.address}, España, y correo electrónico ${O.email}. Teléfono: [[teléfono de contacto]].
+Estas condiciones regulan las compras en la tienda online de SphereWars. El vendedor es ${O.name}, NIF ${O.nif}, con domicilio en ${O.address}, España, y correo electrónico ${O.email}. Teléfono: 687 927 981.
 
-Se aplican a las compras de personas consumidoras, según el Real Decreto Legislativo 1/2007, texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios (LGDCU). [[Decidir si también se vende a empresas y tiendas y con qué condiciones]].
+Se aplican a las compras de personas consumidoras, según el Real Decreto Legislativo 1/2007, texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios (LGDCU). También vendemos a tiendas y empresas; a esas compras no se aplican los derechos propios de las personas consumidoras, como el desistimiento [[confirmar con el asesor las condiciones para empresas]].
 
 La versión vigente es la publicada en la web en el momento del pedido. Antes de pagar debes aceptarlas.
 
@@ -177,7 +177,7 @@ La versión vigente es la publicada en la web en el momento del pedido. Antes de
 
 Vendemos miniaturas de resina de 28 mm para el juego SphereWars, que se entregan sin montar y sin pintar, y otros productos del juego. Las fotografías pueden mostrar miniaturas montadas y pintadas solo como ejemplo. Montarlas puede requerir herramientas y pegamento, que no se incluyen [[confirmar]].
 
-[[Advertencia de seguridad y edad recomendada: por ejemplo, «No apto para menores de 14 años. Contiene piezas pequeñas». Confirmar con el asesor]].
+Edad recomendada: a partir de 12 años. [[Confirmar con el asesor la advertencia de seguridad, por ejemplo por piezas pequeñas]].
 
 ## 3. Precios e impuestos
 
@@ -203,7 +203,7 @@ Los gastos llevan el IVA incluido cuando corresponde. Se vende a todos los país
 - Aceptas estas condiciones y pagas. El pedido supone una obligación de pago.
 - Recibes por correo electrónico la confirmación del pedido.
 
-El contrato se celebra en castellano [[confirmar si se ofrece en otros idiomas]]. El pedido queda archivado en la tienda y puedes pedirnos una copia en cualquier momento.
+El contrato se celebra en castellano. El pedido queda archivado en la tienda y puedes pedirnos una copia en cualquier momento.
 
 ## 6. Pago
 
@@ -211,7 +211,7 @@ Se puede pagar con tarjeta o con Bizum mediante la pasarela segura Redsys de nue
 
 ## 7. Entrega
 
-- Transportista: [[nombre de la empresa de transporte]].
+- Transportista: principalmente SEUR.
 - Plazo de preparación y de entrega: [[plazos por destino]]. Si no se indica otro plazo, entregaremos el pedido en un máximo de 30 días naturales desde la compra (artículo 66 bis LGDCU).
 - Si un producto no está disponible después de pagar, te avisaremos y te devolveremos lo pagado por él sin demora indebida.
 - El riesgo de pérdida o daño pasa a ti cuando recibes el pedido.
@@ -260,7 +260,7 @@ Puedes usar el [formulario de desistimiento](#formulario-de-desistimiento) de es
 
 Envía los productos a [[dirección de devolución, si no es el domicilio indicado]] sin demora indebida y, como máximo, en 14 días naturales desde que nos comuniques el desistimiento.
 
-Coste del envío de vuelta: [[decidir quién lo paga: el comprador o el vendedor]].
+Coste del envío de vuelta: si devuelves el pedido por decisión propia, lo pagas tú. Si el producto llega defectuoso, dañado o no es el que pediste, lo pagamos nosotros.
 
 Puedes comprobar el estado de los productos como lo harías en una tienda. Si los manipulas más allá de eso, por ejemplo al separar las piezas de sus coladas, cortarlas, lijarlas, pegarlas o pintarlas, responderás de la disminución de su valor (artículo 108 LGDCU).
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { dict, isLocale, locales, ogLocale, type Dict, type Locale } from "@/lib/i18n";
+import { activeLocales, dict, isLocale, ogLocale, type Dict, type Locale } from "@/lib/i18n";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://spherewars.com";
 export const defaultOg = "/og.jpg";
@@ -9,7 +9,7 @@ export function alternates(locale: string, path: string): Metadata["alternates"]
   const l = isLocale(locale) ? locale : "es";
   return {
     canonical: `/${l}${path}`,
-    languages: { ...Object.fromEntries(locales.map((x) => [x, `/${x}${path}`])), "x-default": `/es${path}` },
+    languages: { ...Object.fromEntries(activeLocales.map((x) => [x, `/${x}${path}`])), "x-default": `/es${path}` },
   };
 }
 

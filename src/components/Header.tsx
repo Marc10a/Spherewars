@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
-import { dict, localeNames, locales, type Locale } from "@/lib/i18n";
+import { activeLocales, dict, localeNames, type Locale } from "@/lib/i18n";
 import { CartLink } from "@/components/shop/CartLink";
 import { AddConfirm } from "@/components/shop/AddConfirm";
 
@@ -35,9 +35,9 @@ export function Header({ locale }: { locale: Locale }) {
     return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("pointerdown", onDown); };
   }, [open]);
 
-  const switcher = (cls: string) => (
+  const switcher = (cls: string) => activeLocales.length > 1 && (
     <div role="group" aria-label={a.language} className={cls}>
-      {locales.map((l) => (
+      {activeLocales.map((l) => (
         <Link
           key={l} href={`/${l}${rest}`} hrefLang={l} lang={l} onClick={() => setOpen(false)}
           aria-current={l === locale ? "true" : undefined} title={localeNames[l]}

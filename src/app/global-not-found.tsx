@@ -3,7 +3,7 @@ import { federo, inter } from "@/lib/fonts";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Wordmark } from "@/components/Wordmark";
-import { dict, localeNames, locales } from "@/lib/i18n";
+import { activeLocales, dict, localeNames } from "@/lib/i18n";
 
 export const metadata: Metadata = { title: `${dict.es.notFound.short} · SphereWars`, description: dict.es.notFound.text, robots: { index: false } };
 
@@ -25,7 +25,7 @@ export default function GlobalNotFound() {
             <h1 className="mt-4 font-display text-3xl">{dict.es.notFound.title}</h1>
             <p className="mx-auto mt-3 max-w-md text-stone">{dict.es.notFound.text}</p>
             <ul className="mx-auto mt-10 grid max-w-xl gap-6 sm:grid-cols-3">
-              {locales.map((l) => (
+              {activeLocales.map((l) => (
                 <li key={l} lang={l} className="flex flex-col items-center gap-3">
                   <span className="font-display text-base text-stone">{localeNames[l]}</span>
                   <Link href={`/${l}`} hrefLang={l} className="btn inline-flex min-h-12 w-full items-center justify-center bg-gold px-5 font-display text-base text-abyss hover:bg-ivory">{dict[l].notFound.home}</Link>

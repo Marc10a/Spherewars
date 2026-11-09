@@ -1,6 +1,8 @@
 export const locales = ["es", "en", "ca"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "es";
+/** Languages open to visitors. English and Catalan stay in the code, unpublished, until someone validates them: add them here to bring them back. */
+export const activeLocales: readonly Locale[] = ["es"];
 export const isLocale = (v: string): v is Locale => (locales as readonly string[]).includes(v);
 
 export const localeNames: Record<Locale, string> = { es: "Español", en: "English", ca: "Català" };

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/lib/i18n";
+import { activeLocales } from "@/lib/i18n";
 import { factions } from "@/content/factions";
 import { factionCharacters, wikiPages } from "@/lib/wiki";
 import { packFor } from "@/lib/shop/packs";
@@ -14,9 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Wiki articles exist only in Spanish: listed once, without hreflang alternates.
   const wiki = wikiPaths.map((p) => ({ url: `${base}/es${p}` }));
   return [...wiki, ...paths.flatMap((p) =>
-    locales.map((l) => ({
+    activeLocales.map((l) => ({
       url: `${base}/${l}${p}`,
-      alternates: { languages: Object.fromEntries(locales.map((x) => [x, `${base}/${x}${p}`])) },
+      alternates: { languages: Object.fromEntries(activeLocales.map((x) => [x, `${base}/${x}${p}`])) },
     })),
   )];
 }

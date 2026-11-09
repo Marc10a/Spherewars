@@ -1659,7 +1659,7 @@
      "Miniatura sin montar y sin pintar."
     ]
    ],
-   "closing": "Añade a El Leviatán a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo! Regoretes Agitadores Los Regoretes Agitadores son una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una jauría de pequeñas y violentas criaturas regor que atacan en grupo sembrando el caos entre sus enemigos. Ideal para jugar, pintar y coleccionar. Pequeños pero rabiosos, los Regoretes atacan siempre en jauría, desatando un frenesí contagioso en la batalla. Privados de las colas mortales de los regor, prefieren capturar a sus presas vivas para devorarlas después. Considerados un experimento fallido de Kurgan, los soimi los desprecian y mantienen a distancia… aunque en el caos de la guerra, estas alimañas siguen siendo violencia pura y descontrolada. Características Referencia: SWOM-VA52 Facción: Vástagos de Kurgan Subfacción: Culto Regor Puntos de Banda: 4 Peana: 4 cm Altura: 3,3 cm Dado de Vida: 1 Material: Resina termoplástica flexible de alta resistencia y gran nivel de detalle. Estado: Miniatura sin montar y sin pintar. Añade a los Regoretes Agitadores del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+   "closing": "Añade a El Leviatán a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
   },
   "personajes/alianza/nirlem": {
    "faction": "alianza",
@@ -1758,6 +1758,55 @@
     ]
    ],
    "closing": "Añade a Nek’Org, el Profeta del Culto Tur’Na’Kurg a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
+  },
+  "personajes/vastagos-de-kurgan/regoretes": {
+   "faction": "vastagos-de-kurgan",
+   "title": "Regoretes Agitadores",
+   "ref": "SWOM-VA52",
+   "intro": "Los Regoretes Agitadores son una miniatura de SphereWars perteneciente a los Vástagos de Kurgan. Fabricada en resina termoplástica flexible de alta resistencia y gran nivel de detalle, representa a una jauría de pequeñas y violentas criaturas regor que atacan en grupo sembrando el caos entre sus enemigos. Ideal para jugar, pintar y coleccionar.",
+   "lore": [
+    "Pequeños pero rabiosos, los Regoretes atacan siempre en jauría, desatando un frenesí contagioso en la batalla. Privados de las colas mortales de los regor, prefieren capturar a sus presas vivas para devorarlas después. Considerados un experimento fallido de Kurgan, los soimi los desprecian y mantienen a distancia… aunque en el caos de la guerra, estas alimañas siguen siendo violencia pura y descontrolada."
+   ],
+   "items": [],
+   "specs": [
+    [
+     "Referencia",
+     "SWOM-VA52"
+    ],
+    [
+     "Facción",
+     "Vástagos de Kurgan"
+    ],
+    [
+     "Subfacción",
+     "Culto Regor"
+    ],
+    [
+     "Puntos de Banda",
+     "4"
+    ],
+    [
+     "Peana",
+     "4 cm"
+    ],
+    [
+     "Altura",
+     "3,3 cm"
+    ],
+    [
+     "Dado de Vida",
+     "1"
+    ],
+    [
+     "Material",
+     "Resina termoplástica flexible de alta resistencia y gran nivel de detalle."
+    ],
+    [
+     "Estado",
+     "Miniatura sin montar y sin pintar."
+    ]
+   ],
+   "closing": "Añade a los Regoretes Agitadores del Culto Regor a tu banda de los Vástagos de Kurgan y amplía tu colección de miniaturas de SphereWars. ¡Alza tu voz, dados y pinceles en Otro Mundo!"
   }
  }
 }
