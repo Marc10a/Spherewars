@@ -11,7 +11,7 @@ En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad 
 - Domicilio: ${O.address}, España
 - Correo electrónico: ${O.email}
 - Teléfono: 687 927 981
-- Datos registrales: Registro Mercantil de Barcelona, [[tomo, folio, hoja e inscripción]]
+- Datos registrales: Registro Mercantil de Barcelona, tomo 32416, folio 76, hoja B-210485, inscripción 1.ª
 
 Este aviso se aplica al sitio web ${O.web} y a la tienda online ${O.shop} (en adelante, «el sitio web»).
 
@@ -27,7 +27,7 @@ Las compras se rigen por las [Condiciones de venta](/legal/condiciones) y por la
 
 ## 4. Propiedad intelectual e industrial
 
-Los textos, reglas, ilustraciones, fotografías, vídeos, logotipos, nombres de facciones y personajes, y el diseño del sitio web pertenecen a ${O.name} o a sus autores y licenciantes, y están protegidos por la normativa de propiedad intelectual e industrial. SphereWars es una marca registrada [[indicar la oficina, OEPM o EUIPO, y el titular]].
+Los textos, reglas, ilustraciones, fotografías, vídeos, logotipos, nombres de facciones y personajes, y el diseño del sitio web pertenecen a ${O.name} o a sus autores y licenciantes, y están protegidos por la normativa de propiedad intelectual e industrial. SphereWars es una marca registrada en la Oficina Española de Patentes y Marcas (OEPM), cuyo titular es Jordi Cañellas Pérez [[confirmar con el asesor cómo consta la autorización de uso de la marca a la empresa]].
 
 Se permite descargar e imprimir el reglamento y las tarjetas que el sitio web ofrece gratis para uso personal y para jugar. Cualquier otro uso, en particular la reproducción, distribución o transformación con fines comerciales, requiere autorización previa por escrito.
 
@@ -91,7 +91,7 @@ No vendemos ni cedemos datos personales. Solo los conocen los proveedores que ne
 
 - Vercel Inc. (Estados Unidos): alojamiento del sitio web ${O.web}.
 - 10dencehispahard SL (cdmon, España): alojamiento de la tienda ${O.shop}, que funciona con WordPress y WooCommerce, y donde se guardan los pedidos.
-- Redsys Servicios de Procesamiento SL y [[nombre de la entidad bancaria del vendedor]]: cobro con tarjeta y Bizum. Actúan como responsables independientes del tratamiento de los datos de pago [[confirmar rol]].
+- Redsys Servicios de Procesamiento SL y CaixaBank SA: cobro con tarjeta y Bizum. Actúan como responsables independientes del tratamiento de los datos de pago [[confirmar rol]].
 - SEUR, principalmente: entrega de los pedidos (nombre, dirección y teléfono de envío).
 - Microsoft (servicio de correo Outlook/Hotmail): correo electrónico del vendedor, al que llegan los pedidos y los mensajes [[confirmar proveedor y condiciones]].
 - Solo si el formulario de contacto está activo: Resend Inc. (Estados Unidos), envío de los mensajes por correo; Supabase Inc., base de datos donde se guardan los mensajes [[región de los servidores]]; y Cloudflare Inc. (Estados Unidos), si está activa la verificación antispam Turnstile.
@@ -212,7 +212,7 @@ Se puede pagar con tarjeta o con Bizum mediante la pasarela segura Redsys de nue
 ## 7. Entrega
 
 - Transportista: principalmente SEUR.
-- Plazo de preparación y de entrega: [[plazos por destino]]. Si no se indica otro plazo, entregaremos el pedido en un máximo de 30 días naturales desde la compra (artículo 66 bis LGDCU).
+- Plazo de preparación y de entrega: en España, 72 horas desde la confirmación del pago. Para envíos fuera de España el plazo depende del destino [[confirmar plazo orientativo para el extranjero]]. Si no se indica otro plazo, entregaremos el pedido en un máximo de 30 días naturales desde la compra (artículo 66 bis LGDCU).
 - Si un producto no está disponible después de pagar, te avisaremos y te devolveremos lo pagado por él sin demora indebida.
 - El riesgo de pérdida o daño pasa a ti cuando recibes el pedido.
 
@@ -258,7 +258,7 @@ Puedes usar el [formulario de desistimiento](#formulario-de-desistimiento) de es
 
 ## 3. Devolución de los productos
 
-Envía los productos a [[dirección de devolución, si no es el domicilio indicado]] sin demora indebida y, como máximo, en 14 días naturales desde que nos comuniques el desistimiento.
+Envía los productos a ${O.name}, ${O.address}, España, sin demora indebida y, como máximo, en 14 días naturales desde que nos comuniques el desistimiento.
 
 Coste del envío de vuelta: si devuelves el pedido por decisión propia, lo pagas tú. Si el producto llega defectuoso, dañado o no es el que pediste, lo pagamos nosotros.
 
